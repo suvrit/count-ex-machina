@@ -7,6 +7,7 @@
     "BrandenHuh",
     "Shephard"
   ],
+  "context_tex": "A homogeneous polynomial with nonnegative coefficients is \\emph{Lorentzian} in the sense of Br\\\"and\\'en and Huh \\cite{BrandenHuh} if all its second-order directional derivatives, taken at positive arguments, are quadratic forms of Lorentzian signature $(+,-,\\ldots,-)$; in two variables, a form $\\sum_{k}a_kx^ky^{d-k}$ is strictly Lorentzian exactly when the normalized coefficients $a_k/\\binom dk$ are strictly log-concave, which is the criterion used below.  Lorentzian polynomials are log-concave on the positive orthant, so $F=-\\log G$ is convex there and every midpoint Jensen gap $\\J_G$ is nonnegative.  Recall that $d$ is a \\emph{semimetric} when it is symmetric, nonnegative, vanishes only on equal arguments, and satisfies the triangle inequality; the triangle inequality is the property that fails below.  In the geometric statement, $K+L=\\{k+\\ell:k\\in K,\\ \\ell\\in L\\}$ is the Minkowski sum of convex bodies and $\\Vol$ is Lebesgue volume.",
   "results": [
     {
       "id": "lorentzian-jensen",

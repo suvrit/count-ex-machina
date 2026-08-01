@@ -106,6 +106,10 @@ discipline is:
      has two): `statement_tex` and `certificate_tex` are the ledger columns,
      `class` and `certificate_level` the classification, `theorem_label` must
      match the `\label` in the dossier;
+   - `context_tex` (optional, per case): our own setup prose — notation and
+     definitions — rendered just before the quoted statements so they can be
+     read without the source paper at hand. It sits outside the quote boxes,
+     so nothing of ours is ever mistaken for the source's words;
    - `provenance` (per result): the statement **as originally posed**, quoted
      ahead of the dossier in the paper — `statement_tex` (the quote),
      `source_tex` (who posed it and where, with `\cite{...}`), `url` and

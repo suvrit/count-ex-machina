@@ -4,6 +4,15 @@
 
 \subsection{Problems 35 and 38: mixed-determinant representation and Permanent-On-Top}
 \dossiercredits{Posed by Borcea and Br\"and\'en \cite{AIMStableProblems}; counterexample found by TODO (TODO); formalized by S.~Sra; audited by S.~Sra.}
+A polynomial $f\in\R[z_1,\ldots,z_n]$ is \emph{real stable} if $f(z_1,\ldots,z_n)\ne0$ whenever every $z_i$ has strictly positive imaginary part.  A symmetric polynomial that is homogeneous of degree $d$ expands uniquely in the basis of Schur polynomials as $p=\sum_{\lambda\vdash d}a_\lambda s_\lambda$, and $p$ is called \emph{Schur-positive} when every $a_\lambda\ge0$.  For a partition $\lambda\vdash d$ we write $f^\lambda$ for the number of standard Young tableaux of shape $\lambda$, $\lambda'$ for the conjugate partition, and, for a $d\times d$ matrix $A=(a_{ij})$,
+\[
+\Imm_\lambda(A)=\sum_{\sigma\in S_d}\chi^\lambda(\sigma)\prod_{i=1}^da_{i\sigma(i)}
+\]
+for the immanant attached to the irreducible character $\chi^\lambda$ of $S_d$; the two extreme cases are $\Imm_{(1^d)}=\det$ and $\Imm_{(d)}=\per$.  Finally, for $n\times n$ matrices $A_1,\ldots,A_m$ the mixed-determinant, or Johnson, polynomial is
+\[
+\eta(A_1,\ldots,A_m)=\sum_{(S_1,\ldots,S_m)}\det(A_1[S_1])\cdots\det(A_m[S_m]),
+\]
+the sum running over all ordered partitions of $\{1,\ldots,n\}$ into pairwise disjoint sets $S_1,\ldots,S_m$ with union $\{1,\ldots,n\}$, and $A[S]$ denoting the principal submatrix of $A$ on the rows and columns in $S$.  When $A\succeq0$ the polynomial $\eta(z_1A,\ldots,z_nA)$ is symmetric, homogeneous, and real stable, and it satisfies $\eta(z_1A,\ldots,z_nA)=\sum_{\lambda\vdash n}\Imm_{\lambda'}(A)s_\lambda(z_1,\ldots,z_n)$ \cite{AIMStableProblems}.  The two problems below ask how far those properties go the other way.
 \begin{problem}[As posed: Borcea--Br\"and\'en, AIM problem list \cite{AIMStableProblems}, Problem 35]
 Characterize all symmetric, real stable and homogeneous polynomial of degree $d$ in $n$ variables.  Is it in fact so that if $p$ is such a polynomial, then there is a $d\times d$ positive semidefinite $d\times d$ matrix $A$ such that
 \[p(z_1,\ldots,z_n)=\eta(z_1A,\ldots,z_nA)?\]
@@ -18,6 +27,7 @@ Lieb's Permanent-On-Top (POT) Conjecture for the symmetric group on $d$ elements
 
 \subsection{Problem 36: stable Schur positivity}
 \dossiercredits{Posed by Borcea and Br\"and\'en \cite{AIMStableProblems}; counterexample found by TODO (TODO); formalized by S.~Sra; audited by S.~Sra.}
+We keep the notation of the previous subsection: real stability means nonvanishing when every variable lies in the open upper half-plane; $a_\lambda$ are the coefficients in the Schur expansion $p=\sum_{\lambda\vdash d}a_\lambda s_\lambda$ of a symmetric homogeneous $p$ of degree $d$; $f^\lambda$ counts standard Young tableaux of shape $\lambda$; and $\Imm_\lambda$ is the immanant of a $d\times d$ matrix attached to the irreducible character $\chi^\lambda$, with $\Imm_{(1^d)}=\det$ and $\Imm_{(d)}=\per$.  Problem 36 asks whether stability forces Schur-positivity outright; Problems 37 and 38 ask for the two endpoint inequalities that would bracket the Schur coefficients between the $\det$ and $\per$ ends of the immanant scale.
 \begin{problem}[As posed: Borcea--Br\"and\'en, AIM problem list \cite{AIMStableProblems}, Problem 36]
 Let $p$ be a symmetric, real stable and homogeneous polynomial of degree $d$ in $n$ variables with $d\le n$ and suppose that $p$ has at least one positive (and then all non-negative) coefficients in the monomial basis.  Is $p$ Schur-positive?  That is, when $p(z_1,\ldots,z_n)$ is expanded in the Schur-basis
 \[p(z_1,\ldots,z_n)=\sum_{\lambda\vdash d}a_\lambda s_\lambda(z_1,\ldots,z_n),\]
@@ -32,6 +42,7 @@ If $A$ is a $d\times d$ matrix then $\det(A)=\Imm_{(1^d)}(A)$ and $\per(A)=\Imm_
 
 \section{Macdonald lattice Schur-convexity}
 \dossiercredits{Posed by McSwiggen and Sahi \cite{McSwiggenSahi2026}; counterexample found by TODO (TODO); formalized by S.~Sra; audited by S.~Sra.}
+For parameters $q,t\in(0,1)$ and a partition $\lambda$ with at most $n$ parts, $P_\lambda(x;q,t)$ denotes the Macdonald polynomial in the monic normalization of Macdonald's book, as used in \cite{McSwiggenSahi2026}; at $q=t$ it specializes to the Schur polynomial $s_\lambda(x)$, which is what the refutation below exploits.  The statement concerns two convexity properties of the map $\lambda\mapsto\Omega_\lambda(x;q,t)$ on partitions: \emph{log-convexity}, and \emph{Schur-convexity}, meaning monotonicity with respect to the dominance (majorization) order, so that $\lambda\succeq\mu$ implies $\Omega_\lambda\ge\Omega_\mu$.  The normalization $\Omega_\lambda$ and the lattice $\mathcal L_n$ of evaluation points are defined inside the quoted statement.
 \begin{problem}[As posed: C.~McSwiggen and S.~Sahi \cite{McSwiggenSahi2026}, Theorem 2.1]
 For all $q,t\in(0,1)$, $a>0$, and $x\in\mathcal L_n^{q,t,a}$, the function $\lambda\mapsto\Omega_\lambda(x;q,t)$ is log-convex and Schur-convex.
 
@@ -42,6 +53,7 @@ Here, by \S2.1 of the same paper, $\Omega_\lambda(x;q,t)=P_\lambda(x;q,t)/P_\lam
 
 \section{Derivatives of the Jacobi-theta kernel}
 \dossiercredits{Posed by Coffey and Csordas \cite{Csordas2014}; counterexample found by TODO (TODO); formalized by S.~Sra; audited by S.~Sra.}
+The kernel $\Phi$ below is the Jacobi theta kernel whose cosine transform is the Riemann $\xi$-function, so inequalities among its derivatives sit directly on the route to the Riemann Hypothesis: the Turán inequalities for the Maclaurin coefficients of $\xi$ are exactly statements of this shape.  A positive function $g$ is \emph{strictly log-concave} when $(g')^2-gg''>0$, so the assertion $J_n(t)>0$ below says precisely that the $(n-1)$st derivative $\Phi^{(n-1)}$ is strictly log-concave, for every order $n$ and every real $t$.
 \begin{problem}[As posed: G.~Csordas \cite{Csordas2014}, Open Problem 4.13, restating Coffey--Csordas Conjecture 2.5]
 ([5, Conjecture 2.5])  Show that the derivatives of the Jacobi theta function, $\Phi(t)$, are (strictly) log-concave on $\R$; that is, for each $n\in\mathbb N$,
 \[J_n(t):=(\Phi^{(n)}(t))^2-\Phi^{(n-1)}(t)\Phi^{(n+1)}(t)>0\quad\text{for }t\in\R.\]
@@ -51,6 +63,15 @@ Here, by (4.2) of the same paper, the Jacobi theta function (without the usual f
 
 \section{Feasible Picard steps for DPP likelihood}
 \dossiercredits{Posed by Mariet and Sra \cite{MarietSra2015}; counterexample found by TODO (TODO); formalized by S.~Sra; audited by S.~Sra.}
+A determinantal point process with positive definite kernel $L$ on a ground set $\mathcal Y$ assigns a subset $Y\subseteq\mathcal Y$ probability proportional to $\det(L_Y)$, the principal minor on $Y$.  Given observed subsets $Y_1,\ldots,Y_n$, learning the kernel means maximizing the log-likelihood
+\[
+\phi(L)=\sum_{i=1}^n\log\det(L_{Y_i})-n\log\det(I+L),
+\]
+whose stationarity condition is $\Delta+L^{-1}=L^{-1}$ for the residual
+\[
+\Delta=\frac1n\sum_{i=1}^nU_i(U_i^*LU_i)^{-1}U_i^*-(I+L)^{-1},
+\]
+where $U_i$ is the indicator matrix selecting the coordinates in $Y_i$.  This suggests the Picard iteration $L_{k+1}=L_k+aL_k\Delta_kL_k$ of the quoted passage; a step size $a$ is \emph{feasible} when it keeps the iterate positive definite, which the source guarantees for $a\le1/(1-\gamma)$ with $\gamma=\max\{\lambda_{\min}(LZ),1/\lambda_{\max}(I+L)\}\in[0,1]$.  Ascent is proved for $a=1$; the conjecture asks for every feasible $a\ge1$.
 \begin{problem}[As posed: Z.~Mariet and S.~Sra \cite{MarietSra2015}, \S2 (unnumbered)]
 Above we showed that for $a=1$ ascent is guaranteed.  Empirically, $a>1$ often works well; Prop.~A.1 presents an easily computable upper bound on feasible $a$.  We conjecture that for all feasible values $a\ge1$, iteration (2.5) is guaranteed to increase the log-likelihood.
 
@@ -72,6 +93,7 @@ The iteration carrying the step size is $L_{k+1}=L_k+aL_k\Delta_kL_k$, displayed
 
 \section{Lorentzian Jensen--Bregman metric principle}
 \dossiercredits{Posed by S.~Sra; counterexample found by TODO (TODO); formalized by S.~Sra; audited by S.~Sra.}
+A homogeneous polynomial with nonnegative coefficients is \emph{Lorentzian} in the sense of Br\"and\'en and Huh \cite{BrandenHuh} if all its second-order directional derivatives, taken at positive arguments, are quadratic forms of Lorentzian signature $(+,-,\ldots,-)$; in two variables, a form $\sum_{k}a_kx^ky^{d-k}$ is strictly Lorentzian exactly when the normalized coefficients $a_k/\binom dk$ are strictly log-concave, which is the criterion used below.  Lorentzian polynomials are log-concave on the positive orthant, so $F=-\log G$ is convex there and every midpoint Jensen gap $\J_G$ is nonnegative.  Recall that $d$ is a \emph{semimetric} when it is symmetric, nonnegative, vanishes only on equal arguments, and satisfies the triangle inequality; the triangle inequality is the property that fails below.  In the geometric statement, $K+L=\{k+\ell:k\in K,\ \ell\in L\}$ is the Minkowski sum of convex bodies and $\Vol$ is Lebesgue volume.
 \begin{problem}[As posed, paraphrased: S.~Sra, standalone problem; formulation as recorded in \S1 of the case's \path{paper.tex}]
 Let $\mathcal C\subset\R^m$ be an open convex cone, let $G:\mathcal C\to(0,\infty)$, and put $F=-\log G$ and
 \[\J_G(x,y):=\frac{F(x)+F(y)}2-F\!\left(\frac{x+y}{2}\right).\]

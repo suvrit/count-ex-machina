@@ -9,6 +9,7 @@
   "bib_keys": [
     "AIMStableProblems"
   ],
+  "context_tex": "We keep the notation of the previous subsection: real stability means nonvanishing when every variable lies in the open upper half-plane; $a_\\lambda$ are the coefficients in the Schur expansion $p=\\sum_{\\lambda\\vdash d}a_\\lambda s_\\lambda$ of a symmetric homogeneous $p$ of degree $d$; $f^\\lambda$ counts standard Young tableaux of shape $\\lambda$; and $\\Imm_\\lambda$ is the immanant of a $d\\times d$ matrix attached to the irreducible character $\\chi^\\lambda$, with $\\Imm_{(1^d)}=\\det$ and $\\Imm_{(d)}=\\per$.  Problem 36 asks whether stability forces Schur-positivity outright; Problems 37 and 38 ask for the two endpoint inequalities that would bracket the Schur coefficients between the $\\det$ and $\\per$ ends of the immanant scale.",
   "results": [
     {
       "id": "aim-problem-36",

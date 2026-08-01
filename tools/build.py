@@ -130,6 +130,9 @@ def validate(cases, allow_todo, errors):
             group = c.get("group")
             if group is not None and group not in GROUPS:
                 err(f"group {group!r} not one of {sorted(GROUPS)}")
+            ctx = c.get("context_tex")
+            if ctx is not None and (is_todo(ctx) or not balanced_braces(ctx)):
+                err("context_tex is TODO, empty, or has unbalanced braces")
         elif status == "withheld":
             if is_todo(c.get("withheld_reason")):
                 err("withheld case needs a non-empty 'withheld_reason'")
@@ -343,9 +346,13 @@ def gen_dossiers(cases):
                 blocks.append(f"\\section{{{GROUPS[group]}}}")
             heading = f"\\subsection{{{title}}}"
         open_group = group
+        # Our own setup prose, so the quoted statement can be read without the
+        # source at hand; it precedes the quotes and stays outside their boxes.
+        context = [c["context_tex"]] if c.get("context_tex") else []
         blocks.append(
             "\n".join(
                 [heading, f"\\dossiercredits{{{credit_line(c)}}}"]
+                + context
                 + problem_blocks(c)
                 + [f"\\input{{../counterexamples/{c['id']}/{c['dossier']}}}"]
             )

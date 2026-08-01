@@ -35,6 +35,9 @@ inadmissible at either level.
    - quote the statement as originally posed in each result's `provenance`
      (`statement_tex`, `source_tex`, `url`, `retrieved`, and `fidelity` —
      `"verbatim"` only if transcribed from the source's own text);
+   - put whatever notation and definitions that quote depends on into the
+     case's `context_tex`; a reader must not have to open the source paper
+     to understand what is being refuted;
    - add any cited works to `tex/references.bib` and list the keys in
      `bib_keys`;
    - record attribution in `credits`: who posed the statement (`posed_by`),
