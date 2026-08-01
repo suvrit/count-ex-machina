@@ -1,9 +1,10 @@
 cff-version: 1.2.0
 message: >-
   If you use this archive, please cite the accompanying paper (preferred).  To
-  cite an individual counterexample, give its case id -- for example
-  aim-problem-36 -- which is stable across revisions.  Ledger numbers are
-  presentation order and are not stable.
+  cite an individual counterexample, give its result id -- for example
+  aim-problem-35 -- which is stable across revisions and is what registry.json
+  enumerates.  Ledger numbers are presentation order and are not stable.  The
+  uid on each registry row is a database key, not a citation.
 title: "count-ex-machina: GPT, the Counterexample Machine"
 abstract: >-
   An archive of AI-assisted counterexamples to published conjectures and to

@@ -9,6 +9,7 @@
   "results": [
     {
       "id": "logdet-loewner",
+      "uid": "2MRX3236",
       "statement_tex": "Loewner monotonicity of alternating log-determinant inclusion--exclusion",
       "class": "user formal problem",
       "certificate_level": "exact",

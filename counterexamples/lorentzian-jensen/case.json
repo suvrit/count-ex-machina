@@ -11,6 +11,7 @@
   "results": [
     {
       "id": "lorentzian-jensen",
+      "uid": "VRP253K2",
       "statement_tex": "Lorentzian Jensen--Bregman metric principle: $\\sqrt{\\J_G}$ a semimetric for every homogeneous Lorentzian $G$",
       "class": "user formal problem",
       "certificate_level": "exact",
@@ -26,6 +27,7 @@
     },
     {
       "id": "log-volume-distance",
+      "uid": "22S7HJGF",
       "statement_tex": "Log-volume midpoint gap as a squared distance on convex bodies \\cite{Shephard}",
       "class": "user formal problem",
       "certificate_level": "exact",

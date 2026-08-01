@@ -10,6 +10,7 @@
   "results": [
     {
       "id": "TODO-globally-unique-result-id",
+      "uid": null,
       "statement_tex": "TODO ledger statement (LaTeX)",
       "class": "user formal problem",
       "certificate_level": "exact",

@@ -57,10 +57,15 @@ replace `ARXIV-ID` below (and update `CITATION.cff` to match).
 }
 ```
 
-To cite an individual counterexample rather than the paper, give its case id —
-for example, `aim-problem-36`. Case ids are stable across revisions. The ledger
-numbers in the table below are **not**: they are presentation order, and
-admitting a new case renumbers the cases after it.
+To cite an individual counterexample rather than the paper, give its **result
+id** — for example, `aim-problem-35`. Result ids are what the table below and
+`registry.json` enumerate, and they are stable across revisions. A result need
+not share the name of the directory holding it: `aim-problem-35` lives in
+`counterexamples/stable-schur/`, which bundles two refuted problems.
+
+The **ledger numbers** in the table are *not* stable — they are presentation
+order, and admitting a case renumbers those after it. Every result also carries
+an immutable `uid` in `registry.json`; that is a database key, not a citation.
 
 ## The cases
 

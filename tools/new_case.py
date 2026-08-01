@@ -35,6 +35,7 @@ from tools.build import (  # noqa: E402  (needs the sys.path insert above)
     DATE_RE,
     FIDELITIES,
     GROUPS,
+    mint_uid,
 )
 
 TEMPLATE = CASES_DIR / "_template"
@@ -100,7 +101,16 @@ def check_month(value: str) -> str | None:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--id", help="case id (kebab-case); prompted for if omitted")
+    parser.add_argument(
+        "--mint-uid",
+        action="store_true",
+        help="print one fresh uid and exit, for a case assembled by hand",
+    )
     args = parser.parse_args()
+
+    if args.mint_uid:
+        print(mint_uid())
+        return 0
 
     if not TEMPLATE.exists():
         sys.exit(f"error: template missing at {TEMPLATE}")
@@ -159,6 +169,7 @@ def main() -> int:
     case["bib_keys"] = bib_keys
     result = case["results"][0]
     result["id"] = case_id
+    result["uid"] = mint_uid()
     result["class"] = klass
     result["certificate_level"] = level
     result["theorem_label"] = label

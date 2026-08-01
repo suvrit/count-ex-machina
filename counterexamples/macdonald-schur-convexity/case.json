@@ -12,6 +12,7 @@
   "results": [
     {
       "id": "macdonald-schur-convexity",
+      "uid": "C4RWCJF1",
       "statement_tex": "McSwiggen--Sahi Theorem 2.1: Macdonald lattice Schur-convexity \\cite{McSwiggenSahi2026}",
       "class": "published theorem",
       "certificate_level": "exact",

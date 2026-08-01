@@ -40,6 +40,11 @@ inadmissible at either level.
 
 2. Fill in the rest of `case.json`:
    - one entry in `results` per refuted statement (usually one);
+   - leave each result's `uid` exactly as minted. It is the registry's primary
+     key and is immutable: the build rejects a uid that has changed, that is
+     reused, or that is malformed. If you assembled the case by hand, mint one
+     with `python tools/new_case.py --mint-uid`. Never write one yourself, and
+     never cite one — humans cite the result `id`;
    - quote the statement as originally posed in each result's `provenance`
      (`statement_tex`, `source_tex`, `url`, `retrieved`, and `fidelity` —
      `"verbatim"` only if transcribed from the source's own text);
@@ -51,7 +56,16 @@ inadmissible at either level.
    - record attribution in `credits`: who posed the statement (`posed_by`),
      which AI model found the witness and when (`found_by`), who formalized
      the argument (`formalized_by`), who audited the certificate
-     (`audited_by`), and who is submitting (`contributed_by`).
+     (`audited_by`), and who is submitting (`contributed_by`);
+   - `found_by` may be a single `{"model", "date"}` object or a **list** of
+     them, for a witness that took more than one model or more than one
+     session to reach;
+   - attribution belongs to the *result*, not the directory. If your case
+     bundles two refuted statements with different histories, give the
+     differing result its own `credits` block. It is merged over the case's
+     key by key, so a result that differs only in `found_by` inherits the
+     rest. The paper then prints one credit line per statement instead of one
+     for the case.
 3. Write `dossier.tex` (body only — the section title and credit line are
    generated) following the structure of the existing dossiers, and
    `verify.py` implementing `verify() -> dict` with exact checks.
@@ -79,4 +93,7 @@ about your case, the metadata is complete.
 Attribution is structural, not decorative: the `credits` block of `case.json`
 is rendered under the dossier heading in the paper and into `registry.json`.
 Model provenance (`found_by`) names the AI model and session date — this
-archive exists to document exactly that.
+archive exists to document exactly that. It is keyed to the individual refuted
+statement, so two results bundled in one directory can carry different finders;
+`registry.json` always emits `found_by` as a list, whichever form `case.json`
+used.

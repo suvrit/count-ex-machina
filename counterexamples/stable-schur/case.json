@@ -14,6 +14,7 @@
   "results": [
     {
       "id": "aim-problem-35",
+      "uid": "4NP5KD9H",
       "statement_tex": "Borcea--Br\\\"and\\'en Problem 35: common-matrix mixed-determinant representation \\cite{AIMStableProblems}",
       "class": "external formal problem",
       "certificate_level": "exact",
@@ -29,6 +30,7 @@
     },
     {
       "id": "aim-problem-38",
+      "uid": "4TWB5MZJ",
       "statement_tex": "Borcea--Br\\\"and\\'en Problem 38: Stable Permanent-On-Top \\cite{AIMStableProblems}",
       "class": "external formal problem",
       "certificate_level": "exact",

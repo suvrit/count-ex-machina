@@ -13,6 +13,7 @@
   "results": [
     {
       "id": "aim-problem-36",
+      "uid": "KKYHCMH6",
       "statement_tex": "Borcea--Br\\\"and\\'en Problem 36: stable Schur positivity \\cite{AIMStableProblems}",
       "class": "external formal problem",
       "certificate_level": "exact",
@@ -28,6 +29,7 @@
     },
     {
       "id": "aim-problem-37",
+      "uid": "VP22SYRW",
       "statement_tex": "Borcea--Br\\\"and\\'en Problem 37: stable Schur inequality (lower endpoint) \\cite{AIMStableProblems}",
       "class": "external formal problem",
       "certificate_level": "exact",

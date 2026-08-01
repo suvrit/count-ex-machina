@@ -12,6 +12,7 @@
   "results": [
     {
       "id": "variance-only-matrix-discrepancy",
+      "uid": "Z32YZNA5",
       "statement_tex": "Variance-sensitive Matrix Spencer for $n$ contractions of size $n\\times n$ \\cite{Bandeira2016}",
       "class": "external conjecture",
       "certificate_level": "exact",

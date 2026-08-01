@@ -12,6 +12,7 @@
   "results": [
     {
       "id": "dpp-feasible-step",
+      "uid": "7X8N5PV5",
       "statement_tex": "Mariet--Sra feasible-step Picard ascent conjecture for DPP likelihood \\cite{MarietSra2015}",
       "class": "published conjecture",
       "certificate_level": "exact",

@@ -9,6 +9,7 @@
   "results": [
     {
       "id": "rank-two-mixed-norm",
+      "uid": "WY47E30H",
       "statement_tex": "Rank-two completely-positive mixed-norm interpolation at $(s,q)=(6/5,6)$",
       "class": "user formal problem",
       "certificate_level": "computer-assisted",

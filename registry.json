@@ -1,5 +1,6 @@
 [
   {
+    "uid": "4NP5KD9H",
     "result_id": "aim-problem-35",
     "case": "stable-schur",
     "title": "Two Borcea-Branden problems",
@@ -19,10 +20,12 @@
     },
     "credits": {
       "posed_by": "Borcea and Br\\\"and\\'en \\cite{AIMStableProblems}",
-      "found_by": {
-        "model": "TODO",
-        "date": "TODO"
-      },
+      "found_by": [
+        {
+          "model": "TODO",
+          "date": "TODO"
+        }
+      ],
       "formalized_by": "S.~Sra",
       "audited_by": "S.~Sra",
       "contributed_by": "S.~Sra"
@@ -34,6 +37,7 @@
     }
   },
   {
+    "uid": "4TWB5MZJ",
     "result_id": "aim-problem-38",
     "case": "stable-schur",
     "title": "Two Borcea-Branden problems",
@@ -53,10 +57,12 @@
     },
     "credits": {
       "posed_by": "Borcea and Br\\\"and\\'en \\cite{AIMStableProblems}",
-      "found_by": {
-        "model": "TODO",
-        "date": "TODO"
-      },
+      "found_by": [
+        {
+          "model": "TODO",
+          "date": "TODO"
+        }
+      ],
       "formalized_by": "S.~Sra",
       "audited_by": "S.~Sra",
       "contributed_by": "S.~Sra"
@@ -68,6 +74,7 @@
     }
   },
   {
+    "uid": "KKYHCMH6",
     "result_id": "aim-problem-36",
     "case": "aim-problem-36",
     "title": "AIM Problem 36: stable Schur positivity",
@@ -87,10 +94,12 @@
     },
     "credits": {
       "posed_by": "Borcea and Br\\\"and\\'en \\cite{AIMStableProblems}",
-      "found_by": {
-        "model": "TODO",
-        "date": "TODO"
-      },
+      "found_by": [
+        {
+          "model": "TODO",
+          "date": "TODO"
+        }
+      ],
       "formalized_by": "S.~Sra",
       "audited_by": "S.~Sra",
       "contributed_by": "S.~Sra"
@@ -104,6 +113,7 @@
     }
   },
   {
+    "uid": "VP22SYRW",
     "result_id": "aim-problem-37",
     "case": "aim-problem-36",
     "title": "AIM Problem 36: stable Schur positivity",
@@ -123,10 +133,12 @@
     },
     "credits": {
       "posed_by": "Borcea and Br\\\"and\\'en \\cite{AIMStableProblems}",
-      "found_by": {
-        "model": "TODO",
-        "date": "TODO"
-      },
+      "found_by": [
+        {
+          "model": "TODO",
+          "date": "TODO"
+        }
+      ],
       "formalized_by": "S.~Sra",
       "audited_by": "S.~Sra",
       "contributed_by": "S.~Sra"
@@ -140,6 +152,7 @@
     }
   },
   {
+    "uid": "C4RWCJF1",
     "result_id": "macdonald-schur-convexity",
     "case": "macdonald-schur-convexity",
     "title": "Macdonald lattice Schur-convexity",
@@ -159,10 +172,12 @@
     },
     "credits": {
       "posed_by": "McSwiggen and Sahi \\cite{McSwiggenSahi2026}",
-      "found_by": {
-        "model": "TODO",
-        "date": "TODO"
-      },
+      "found_by": [
+        {
+          "model": "TODO",
+          "date": "TODO"
+        }
+      ],
       "formalized_by": "S.~Sra",
       "audited_by": "S.~Sra",
       "contributed_by": "S.~Sra"
@@ -174,6 +189,7 @@
     }
   },
   {
+    "uid": "740DPSAS",
     "result_id": "theta-derivative-log-concavity",
     "case": "theta-derivative-log-concavity",
     "title": "Derivatives of the Jacobi-theta kernel",
@@ -193,10 +209,12 @@
     },
     "credits": {
       "posed_by": "Coffey and Csordas \\cite{Csordas2014}",
-      "found_by": {
-        "model": "TODO",
-        "date": "TODO"
-      },
+      "found_by": [
+        {
+          "model": "TODO",
+          "date": "TODO"
+        }
+      ],
       "formalized_by": "S.~Sra",
       "audited_by": "S.~Sra",
       "contributed_by": "S.~Sra"
@@ -212,6 +230,7 @@
     }
   },
   {
+    "uid": "7X8N5PV5",
     "result_id": "dpp-feasible-step",
     "case": "dpp-feasible-step",
     "title": "Feasible Picard steps for DPP likelihood",
@@ -231,10 +250,12 @@
     },
     "credits": {
       "posed_by": "Mariet and Sra \\cite{MarietSra2015}",
-      "found_by": {
-        "model": "TODO",
-        "date": "TODO"
-      },
+      "found_by": [
+        {
+          "model": "TODO",
+          "date": "TODO"
+        }
+      ],
       "formalized_by": "S.~Sra",
       "audited_by": "S.~Sra",
       "contributed_by": "S.~Sra"
@@ -246,6 +267,7 @@
     }
   },
   {
+    "uid": "Z32YZNA5",
     "result_id": "variance-only-matrix-discrepancy",
     "case": "variance-only-matrix-discrepancy",
     "title": "Variance-sensitive Matrix Spencer",
@@ -265,10 +287,12 @@
     },
     "credits": {
       "posed_by": "A.~S.~Bandeira \\cite{Bandeira2016}",
-      "found_by": {
-        "model": "GPT-5.5 (Pro)",
-        "date": "TODO"
-      },
+      "found_by": [
+        {
+          "model": "GPT-5.5 (Pro)",
+          "date": "TODO"
+        }
+      ],
       "formalized_by": "E.~Akba\\c{s} and S.~Sra \\cite{AkbasSra2026}",
       "audited_by": "S.~Sra",
       "contributed_by": "S.~Sra"
@@ -280,6 +304,7 @@
     }
   },
   {
+    "uid": "WY47E30H",
     "result_id": "rank-two-mixed-norm",
     "case": "rank-two-mixed-norm",
     "title": "A rank-two completely-positive mixed-norm inequality",
@@ -299,10 +324,12 @@
     },
     "credits": {
       "posed_by": "S.~Sra",
-      "found_by": {
-        "model": "TODO",
-        "date": "TODO"
-      },
+      "found_by": [
+        {
+          "model": "TODO",
+          "date": "TODO"
+        }
+      ],
       "formalized_by": "S.~Sra",
       "audited_by": "S.~Sra",
       "contributed_by": "S.~Sra"
@@ -318,6 +345,7 @@
     }
   },
   {
+    "uid": "2MRX3236",
     "result_id": "logdet-loewner",
     "case": "logdet-loewner",
     "title": "Loewner monotonicity of alternating log-determinants",
@@ -337,10 +365,12 @@
     },
     "credits": {
       "posed_by": "S.~Sra",
-      "found_by": {
-        "model": "TODO",
-        "date": "TODO"
-      },
+      "found_by": [
+        {
+          "model": "TODO",
+          "date": "TODO"
+        }
+      ],
       "formalized_by": "S.~Sra",
       "audited_by": "S.~Sra",
       "contributed_by": "S.~Sra"
@@ -352,6 +382,7 @@
     }
   },
   {
+    "uid": "VRP253K2",
     "result_id": "lorentzian-jensen",
     "case": "lorentzian-jensen",
     "title": "Lorentzian Jensen-Bregman metric principle",
@@ -371,10 +402,12 @@
     },
     "credits": {
       "posed_by": "S.~Sra",
-      "found_by": {
-        "model": "TODO",
-        "date": "TODO"
-      },
+      "found_by": [
+        {
+          "model": "TODO",
+          "date": "TODO"
+        }
+      ],
       "formalized_by": "S.~Sra",
       "audited_by": "S.~Sra",
       "contributed_by": "S.~Sra"
@@ -386,6 +419,7 @@
     }
   },
   {
+    "uid": "22S7HJGF",
     "result_id": "log-volume-distance",
     "case": "lorentzian-jensen",
     "title": "Lorentzian Jensen-Bregman metric principle",
@@ -405,10 +439,12 @@
     },
     "credits": {
       "posed_by": "S.~Sra",
-      "found_by": {
-        "model": "TODO",
-        "date": "TODO"
-      },
+      "found_by": [
+        {
+          "model": "TODO",
+          "date": "TODO"
+        }
+      ],
       "formalized_by": "S.~Sra",
       "audited_by": "S.~Sra",
       "contributed_by": "S.~Sra"
