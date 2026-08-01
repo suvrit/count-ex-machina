@@ -1,0 +1,11 @@
+[
+  {"id":"aim-problem-35","status":"FALSE","class":"external formal problem","certificate":"exact Schur coefficients plus immanant POT"},
+  {"id":"aim-problem-38","status":"FALSE","class":"external formal problem","certificate":"exact Schur expansion"},
+  {"id":"subgroup-johnson","status":"FALSE","class":"user formal problem","certificate":"exact upper-half-plane zero"},
+  {"id":"macdonald-schur-convexity","status":"FALSE","class":"published theorem","certificate":"exact one-parameter rank-two family"},
+  {"id":"theta-derivative-log-concavity","status":"FALSE","class":"external conjecture","certificate":"interval arithmetic and tail bound"},
+  {"id":"dpp-feasible-step","status":"FALSE","class":"published conjecture","certificate":"exact rational 2x2 update"},
+  {"id":"variance-only-matrix-discrepancy","status":"FALSE","class":"user formal problem","certificate":"exact diagonal sign cube"},
+  {"id":"rank-two-mixed-norm","status":"FALSE","class":"user formal problem","certificate":"rank-two Gram construction and interval ratio"},
+  {"id":"logdet-loewner","status":"FALSE","class":"user formal problem","certificate":"exact rational negative quadratic form"}
+]

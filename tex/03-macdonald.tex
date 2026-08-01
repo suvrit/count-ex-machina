@@ -1,0 +1,23 @@
+\subsection{Macdonald lattice Schur-convexity}
+
+McSwiggen and Sahi normalize the Macdonald polynomial by
+\[
+\Omega_\lambda(x;q,t)=\frac{P_\lambda(x;q,t)}{P_\lambda(t^\delta;q,t)}
+\]
+and state that $\lambda\mapsto\Omega_\lambda(x;q,t)$ is Schur-convex on a scaled dominant $q$-lattice \cite{McSwiggenSahi2026}.
+
+\begin{theorem}[\statusfalse: Theorem 2.1 of \cite{McSwiggenSahi2026}]\label{thm:macdonald}
+The stated Schur-convexity fails already in rank two.
+\end{theorem}
+\begin{proof}
+Set $q=t=r\in(0,1)$, $a=1$, and choose lattice index $\nu=(1,0)$.  The resulting lattice point is $x=(1,1)$.  Let $\lambda=(2,0)$ and $\mu=(1,1)$; then $\lambda\succeq\mu$.  At $q=t$, Macdonald polynomials specialize to Schur polynomials, and direct evaluation gives
+\[
+\Omega_{(2,0)}(1,1;r,r)=\frac{3}{1+r+r^2},\qquad
+\Omega_{(1,1)}(1,1;r,r)=\frac1r.
+\]
+But
+\[
+1+r+r^2-3r=(1-r)^2>0,
+\]
+so $\Omega_{(2,0)}<\Omega_{(1,1)}$ for every $0<r<1$, opposite to Schur-convexity.  At $r=1/2$, the values are $12/7<2$.
+\end{proof}

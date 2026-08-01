@@ -1,0 +1,37 @@
+\subsection{A rank-two completely-positive mixed-norm inequality}
+
+For an entrywise nonnegative matrix $A$, define
+\[
+\|A\|_{p,q}=\left(\sum_j\left(\sum_i |a_{ij}|^p\right)^{q/p}\right)^{1/q}.
+\]
+The formal rank-two problem asked whether, for $s=6/5$ and $q=6$,
+\begin{equation}\label{eq:mixed-target}
+\|A\|_{s,q}\le\sqrt{\|A\|_{s,s}\|A\|_{q,q}}
+\end{equation}
+for every completely positive matrix $A$ of rank at most two.
+
+\begin{theorem}[\statusfalse; computer-assisted exact construction]\label{thm:mixed}
+Inequality \eqref{eq:mixed-target} fails for an explicit $21\times21$ completely positive matrix of rank two.
+\end{theorem}
+\begin{proof}
+Let $X$ have 21 rows, grouped as follows.  For each group use the indicated multiplicity $m_g$, weight $w_g$, and direction $y_g$:
+\[
+\begin{array}{c|cccc}
+g&1&2&3&4\\ \hline
+m_g&1&18&1&1\\
+w_g&46&17&42&1\\
+y_g&(1,0)&(1,1/50)&(1,3/50)&(0,1).
+\end{array}
+\]
+Every row in group $g$ is $w_g^{5/6}y_g$, and set $A=XX^{\mathsf T}$.  Thus $A\succeq0$, $A$ is entrywise nonnegative, and $\operatorname{rank}A=2$.  Put
+\[
+R_A=\frac{\|A\|_{6/5,6}}
+{\sqrt{\|A\|_{6/5,6/5}\|A\|_{6,6}}}.
+\]
+Direct interval evaluation gives
+\begin{align*}
+R_A&\ge 1.00000061733911154365777590600087863798,\\
+R_A&\le 1.00000061733911154365777590600087863800.
+\end{align*}
+The entire interval lies above one.  The source package regenerates $A$ from the four groups and evaluates the ratio independently at 100 digits; a Sage interval script supplies outward rounding.
+\end{proof}

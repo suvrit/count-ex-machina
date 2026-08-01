@@ -1,0 +1,65 @@
+\subsection{Loewner monotonicity of alternating log-determinants}
+
+For $A_1,\ldots,A_n\succeq0$ and $X\succ0$, define
+\[
+f(X)=\sum_{\emptyset\ne S\subseteq[n]}(-1)^{|S|+1}
+\log\det\left(X+\sum_{i\in S}A_i\right).
+\]
+The standalone question was whether $f$ is increasing in the Loewner order.  Its derivative is
+\[
+Df(X)[H]=\tr(C(X)H),\qquad
+C(X)=\sum_{\emptyset\ne S}(-1)^{|S|+1}
+\left(X+\sum_{i\in S}A_i\right)^{-1}.
+\]
+Thus monotonicity for all $H\succeq0$ would require $C(X)\succeq0$.
+
+\begin{theorem}[\statusfalse: Loewner monotonicity]\label{thm:logdet}
+The function above need not be Loewner-increasing, already for $n=4$ and $3\times3$ positive definite matrices.
+\end{theorem}
+\begin{proof}
+Interpret all displayed six-decimal entries as exact rationals of denominator $10^6$, and take
+\[
+X=\begin{pmatrix}
+0.302766&-0.089057&-0.179370\\
+-0.089057&0.027282&0.052935\\
+-0.179370&0.052935&0.107617
+\end{pmatrix},
+\]
+\[
+A_1=\begin{pmatrix}
+0.227979&-1.264394&-0.740843\\
+-1.264394&7.052829&4.136214\\
+-0.740843&4.136214&2.429309
+\end{pmatrix},
+\]
+\[
+A_2=\begin{pmatrix}
+712.456619&657.821465&-108.957581\\
+657.821465&607.377892&-100.602246\\
+-108.957581&-100.602246&16.664150
+\end{pmatrix},
+\]
+\[
+A_3=\begin{pmatrix}
+2.117478&-0.450289&-2.782586\\
+-0.450289&0.096801&0.592006\\
+-2.782586&0.592006&3.659335
+\end{pmatrix},
+\]
+\[
+A_4=\begin{pmatrix}
+0.176290&-0.490538&-0.778637\\
+-0.490538&1.373736&2.178964\\
+-0.778637&2.178964&3.459701
+\end{pmatrix}.
+\]
+Exact leading-principal-minor checks show that all five matrices are positive definite.  The alternating inverse sum has numerical spectrum
+\[
+\{-0.511275\ldots,\;499.1699\ldots,\;1110.2784\ldots\}.
+\]
+More decisively, for the integer vector $v=(844,-249,-475)^{\mathsf T}$, exact rational arithmetic gives
+\[
+v^{\mathsf T}C(X)v<0.
+\]
+Taking $H=vv^{\mathsf T}\succeq0$ yields $Df(X)[H]<0$, so $f$ decreases along a positive semidefinite direction.
+\end{proof}

@@ -1,0 +1,28 @@
+\section{AI-assisted counterexamples in the literature}
+
+A striking concentration of high-value counterexamples appeared in 2026.  Table~\ref{tab:literature} is placed first because it is the empirical premise of this paper: generative models have repeatedly located explicit witnesses to statements that had resisted conventional attack.  Each row points to a public mathematical source, not merely to a product announcement.
+
+\begin{longtable}{@{}p{0.25\textwidth}p{0.22\textwidth}p{0.45\textwidth}@{}}
+\caption{Selected AI-assisted counterexamples in the public literature.  The status in every row is \statusproved\ in the cited mathematical source.}\label{tab:literature}\\
+\toprule
+Problem & Reported AI role & Certified outcome \\
+\midrule
+\endfirsthead
+\toprule
+Problem & Reported AI role & Certified outcome \\
+\midrule
+\endhead
+Jacobian Conjecture in dimension $3$ & Fable, in work announced by L.~Alp\"oge & An explicit Keller map $\C^3\to\C^3$ has constant Jacobian $-2$ and is generically three-to-one; the two-dimensional case remains open \cite{TaoJacobian2026,Shaska2026}.\\
+Erd\H{o}s unit-distance conjecture & Internal OpenAI model & Point sets in $\R^2$ with at least $n^{1+\varepsilon}$ unit distances for a fixed $\varepsilon>0$ \cite{UnitDistanceRemarks2026}.\\
+Gaussian completely monotone conjecture & GPT-5.5 Pro & A one-dimensional measure has the wrong sign in the fifth heat-flow derivative of entropy \cite{GuSellke2026}.\\
+Fisher-information log-convexity & GPT-5.5 Pro & A smooth density on $\R^2$ violates log-convexity along heat flow; tensorization gives all $d\ge2$ \cite{ZouEtAl2026}.\\
+Litvak's Gaussian-minima conjecture & AlphaEvolve-assisted search & The cosine correlation matrix beats the regular-simplex candidate for $p=2,n=4$ \cite{Kunisky2026}.\\
+Pairwise-independent correlation gap & GPT-5.5 Pro & An explicit instance violates the conjectured universal upper bound \cite{RamachandraNatarajan2026}.\\
+Near-quadratic Elekes--R\'onyai expansion & GPT-5.5 Pro and Rethlas & A fixed nonspecial quadratic polynomial has a power-saving image on arbitrarily large algebraic-integer sets \cite{Liu2026}.\\
+Gaussian Moments Conjecture & ChatGPT-5.6 Sol Pro and Fable-linked search & Explicit witnesses exist in three and four Gaussian variables \cite{LongGaussian2026}.\\
+$xz$- and Mathieu conjectures for $SU(2)$ & ChatGPT-5.6 Sol Pro & A three-term Laurent polynomial and its $SU(2)$ lift violate the required vanishing implication \cite{LongSU22026}.\\
+Claw-free chromatic Schur positivity & ChatGPT-5.6 Sol Pro & Line graphs with a negative Schur coefficient disprove the Stanley--Gasharov conjecture \cite{MatherneMorales2026}.\\
+\bottomrule
+\end{longtable}
+
+The examples differ sharply in proof technology, but their certificate profiles are simple: a finite object is proposed, the defining hypotheses are checked, and one strict inequality or collision is verified.  That asymmetry is the operative advantage of counterexample search.

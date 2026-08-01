@@ -1,0 +1,32 @@
+\documentclass[11pt]{amsart}
+\input{preamble}
+
+\title{GPT: The Counterexample Machine}
+\author{Suvrit Sra}
+\email{s.sra@tum.de}
+\address{TU Munich, Dept.\ of Mathematics, School of CIT; Garching, Germany}
+\date{Draft of \today}
+\subjclass[2020]{Primary 68T01, 00A30; Secondary 05E05, 15A42, 26D10, 60E15, 68W40}
+\keywords{AI-assisted mathematics, counterexamples, real stable polynomials, Schur positivity, matrix inequalities, determinantal point processes, reproducible mathematics}
+
+\begin{document}
+\begin{abstract}
+  This document reports GPT driven counterexamples to a number of conjectures, including well-known published conjectures as well as plausible ones made by the author over the course of a decade. Given the asymmetry between proving (typically a \emph{for all} statement) and finding a counterexample (typically a \emph{there exists}), it is no surprise that both the literature and our list of counterexamples are growing rapidly. Code for constructing and verifying the counterexamples is available at: \href{https://github.com/suvrit/count-ex-machina}{\fontfamily{ppl}\selectfont\itshape https://github.com/suvrit/count-ex-machina}.
+\end{abstract}
+\maketitle
+
+\input{01-literature}
+\input{02-admission}
+\input{03-ledger}
+\input{04-dossiers}
+\input{05-exclusions}
+
+
+\subsection*{Acknowledgments}
+The authors acknowledges generous support from the Alexander von Humboldt (AvH) foundation via an AvH Professorship in AI.
+
+\vskip 12pt
+
+\bibliographystyle{amsplain}
+\bibliography{references}
+\end{document}

@@ -1,0 +1,421 @@
+\documentclass[11pt]{article}
+
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,array}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Sym}{\mathfrak S}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\id}{I}
+\newcommand{\HP}{\mathbb H}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\Span}{\operatorname{span}}
+\newcommand{\partn}{\vdash}
+
+\title{A Counterexample to Borcea--Br\"and\'en AIM Problem 36\\
+\large A symmetric determinantal stable polynomial with a negative Schur coefficient}
+\author{}
+\date{Exact GPT-assisted certificate, July 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Borcea--Br\"and\'en AIM Problem 36 asks whether every symmetric, homogeneous,
+real-stable polynomial of degree $d$ in $n\ge d$ variables, with nonnegative
+monomial coefficients, is Schur-positive.  We give an explicit counterexample
+with $d=n=5$.  It is a determinant of a positive-definite linear matrix pencil,
+so real stability and monomial nonnegativity are immediate.  Its exact Schur
+expansion has coefficient $-2972$ at $s_{(1^5)}$.  We also give a conceptual
+one-parameter construction from the Specht module $S^{(3,2)}$ and an exact
+verification script using rational arithmetic only.  No floating-point
+calculation enters the certificate.
+\end{abstract}
+
+\section{The conjecture and the counterexample}
+
+A polynomial $f\in\R[x_1,\dots,x_n]$ is \emph{real stable} if
+\[
+  f(z_1,\dots,z_n)\ne0
+  \qquad\text{whenever }z_1,\dots,z_n\in\HP
+  :=\{z\in\C:\operatorname{Im}z>0\}.
+\]
+Problem 36 in the AIM workshop report asks whether a symmetric, homogeneous,
+real-stable polynomial of degree $d\le n$, with nonnegative coefficients in the
+ordinary monomial basis, must have nonnegative coefficients in the Schur basis
+\cite[Problem~36]{AIM2007}.
+
+Let $J_1,\dots,J_5$ be the following symmetric integer matrices:
+\begingroup
+\scriptsize
+\[
+J_1=
+\begin{pmatrix}
+38&19&19&2&36\\
+19&38&2&19&36\\
+19&2&38&19&36\\
+2&19&19&38&36\\
+36&36&36&36&72
+\end{pmatrix},\qquad
+J_2=
+\begin{pmatrix}
+38&19&19&17&21\\
+19&38&17&19&21\\
+19&17&38&34&36\\
+17&19&34&38&36\\
+21&21&36&36&42
+\end{pmatrix},
+\]
+\[
+J_3=
+\begin{pmatrix}
+38&34&19&17&36\\
+34&38&17&19&36\\
+19&17&38&19&21\\
+17&19&19&38&21\\
+36&36&21&21&42
+\end{pmatrix},\qquad
+J_4=
+\begin{pmatrix}
+38&4&19&2&21\\
+4&8&2&4&6\\
+19&2&38&4&21\\
+2&4&4&8&6\\
+21&6&21&6&42
+\end{pmatrix},
+\]
+\[
+J_5=
+\begin{pmatrix}
+8&4&4&2&6\\
+4&38&2&19&21\\
+4&2&8&4&6\\
+2&19&4&38&21\\
+6&21&6&21&42
+\end{pmatrix}.
+\]
+\endgroup
+Define
+\begin{equation}
+  q(x_1,\dots,x_5)
+  :=\frac1{648}\det\!\left(\sum_{i=1}^5x_iJ_i\right).
+  \label{eq:qdef}
+\end{equation}
+
+\begin{theorem}[Explicit counterexample]
+\label{thm:explicit}
+The polynomial $q$ in \eqref{eq:qdef} is symmetric, homogeneous of degree $5$,
+real stable, and every one of its $126$ ordinary degree-$5$ monomial
+coefficients is strictly positive.  Nevertheless,
+\begin{align}
+q={}&1728s_{(5)}+17712s_{(4,1)}+47115s_{(3,2)}
+      +56643s_{(3,1,1)} \notag\\
+   &\quad +62415s_{(2,2,1)}+56437s_{(2,1,1,1)}
+      -2972s_{(1,1,1,1,1)}.
+\label{eq:schurexpansion}
+\end{align}
+In particular, $q$ is not Schur-positive.
+\end{theorem}
+
+\begin{proof}
+Homogeneity of degree $5$ is immediate from the determinant of a $5\times5$
+linear pencil.  The successive leading principal minors of the matrices $J_i$
+are
+\[
+\begin{array}{c|rrrrr}
+ &\Delta_1&\Delta_2&\Delta_3&\Delta_4&\Delta_5\\ \hline
+J_1&38&1083&28728&202176&1119744\\
+J_2&38&1083&28728&202176&1119744\\
+J_3&38&288&8208&202176&1119744\\
+J_4&38&288&8208&46656&1119744\\
+J_5&8&288&1728&46656&1119744.
+\end{array}
+\]
+They are all positive, so Sylvester's criterion gives $J_i\succ0$ for every $i$.
+If $z_i\in\HP$ and
+$\left(\sum_i z_iJ_i\right)v=0$ for some nonzero $v\in\C^5$, then
+\[
+0=\operatorname{Im}\left\langle v,
+       \left(\sum_i z_iJ_i\right)v\right\rangle
+  =\sum_i \operatorname{Im}(z_i)\,\langle v,J_iv\rangle>0,
+\]
+a contradiction.  Thus $q$ is real stable.
+
+An exact determinant expansion gives
+\begin{align}
+q={}&1728m_{(5)}+19440m_{(4,1)}+66555m_{(3,2)}
+     +140910m_{(3,1,1)}\notag\\
+ &\quad +250440m_{(2,2,1)}+547405m_{(2,1,1,1)}
+     +1182860m_{(1,1,1,1,1)}.
+\label{eq:monomialexpansion}
+\end{align}
+This proves both symmetry and strict positivity of every ordinary monomial
+coefficient.
+
+For completeness, order the partitions of $5$ as
+\[
+(5),(4,1),(3,2),(3,1,1),(2,2,1),(2,1,1,1),(1^5).
+\]
+With this order, the Kostka matrix in
+$s_\lambda=\sum_\mu K_{\lambda\mu}m_\mu$ is
+\[
+K=
+\begin{pmatrix}
+1&1&1&1&1&1&1\\
+0&1&1&2&2&3&4\\
+0&0&1&1&2&3&5\\
+0&0&0&1&1&3&6\\
+0&0&0&0&1&2&5\\
+0&0&0&0&0&1&4\\
+0&0&0&0&0&0&1
+\end{pmatrix}.
+\]
+If $c$ and $a$ are the row vectors of monomial-symmetric and Schur
+coefficients, respectively, then $c=aK$.  Applying $K^{-1}$ to the coefficient
+vector in \eqref{eq:monomialexpansion} gives \eqref{eq:schurexpansion}.  In
+particular, the final coefficient can be checked from the single identity
+\begin{align*}
+[s_{(1^5)}]q
+={}&c_{(5)}-2c_{(4,1)}-2c_{(3,2)}+3c_{(3,1,1)}
+       +3c_{(2,2,1)}\\
+&\qquad -4c_{(2,1,1,1)}+c_{(1^5)}\\
+={}&1728-2(19440)-2(66555)+3(140910)+3(250440)\\
+&\qquad -4(547405)+1182860=-2972.
+\end{align*}
+All polynomial expansions and the Kostka inversion are checked independently by
+the exact script included with this note; see Section~\ref{sec:certificate}.
+\end{proof}
+
+\begin{corollary}
+AIM Problems 36, 37, and 38 are false as stated.
+\end{corollary}
+
+\begin{proof}
+Theorem~\ref{thm:explicit} disproves Problem 36.  For Problem 37, take
+$\lambda=(1^5)$; since $f^{(1^5)}=1$, the proposed inequality would require
+$-2972\ge1728$.  For Problem 38, take $\lambda=(5)$; since $f^{(5)}=1$, the
+proposed inequality would require $1728\le-2972$.
+\end{proof}
+
+\section{Conceptual origin: a one-parameter Specht-module family}
+
+The explicit matrices above are not a random numerical artifact.  They arise
+from a simple equivariant construction on the Specht module $S^{(3,2)}$.
+
+Let $M$ be the real permutation module with orthonormal basis
+$\{e_{ab}:1\le a<b\le5\}$ indexed by the $2$-subsets of $[5]$.  Define an
+$\Sym_5$-equivariant map
+\[
+B:M\longrightarrow\R^5,\qquad B(e_{ab})=e_a+e_b.
+\]
+Its matrix satisfies
+\[
+BB^{\mathsf T}=3I_5+\one\one^{\mathsf T},
+\]
+so $B$ is surjective and $V:=\ker B$ has dimension $5$.  Young's rule for the
+permutation module on $2$-subsets gives
+\[
+M\cong S^{(5)}\oplus S^{(4,1)}\oplus S^{(3,2)},
+\]
+whereas the point-permutation module $\R^5$ is
+$S^{(5)}\oplus S^{(4,1)}$.  Hence
+\[
+V\cong S^{(3,2)}.
+\]
+Let $\rho$ denote the orthogonal representation of $\Sym_5$ on $V$.
+
+For $i\in[5]$, let $H_i\cong\Sym_4$ be the stabilizer of $i$, and set
+\begin{equation}
+P_i:=\frac12
+\sum_{\substack{1\le a<b\le5\\a,b\ne i}}
+\rho((ab)).
+\label{eq:Pi}
+\end{equation}
+
+\begin{lemma}
+Each $P_i$ is an orthogonal projection of rank $3$, and
+\[
+\rho(\sigma)P_i\rho(\sigma)^{-1}=P_{\sigma(i)}
+\qquad(\sigma\in\Sym_5).
+\]
+Moreover, $\sum_{i=1}^5P_i=3I_V$.
+\end{lemma}
+
+\begin{proof}
+The branching rule gives
+\[
+S^{(3,2)}\!\downarrow_{\Sym_4}
+\cong S^{(3,1)}\oplus S^{(2,2)}.
+\]
+The sum of all six transpositions in $\Sym_4$ is central in $\R[\Sym_4]$.
+On an irreducible Specht module $S^\mu$ it acts by the sum of the contents of
+$\mu$.  These sums are
+\[
+\sum_{u\in(3,1)}c(u)=2,
+\qquad
+\sum_{u\in(2,2)}c(u)=0.
+\]
+Therefore the operator in \eqref{eq:Pi} acts as the identity on the
+$3$-dimensional $S^{(3,1)}$ summand and as zero on the $2$-dimensional
+$S^{(2,2)}$ summand.  It is thus an orthogonal rank-$3$ projection.  Covariance
+follows by conjugating the transposition class sum.  Finally, $\sum_iP_i$
+commutes with $\rho(\Sym_5)$, so Schur's lemma makes it scalar on the irreducible
+space $V$.  Its trace is $5\cdot3=15$, hence it equals $3I_V$.
+\end{proof}
+
+For $t\ge0$, define
+\[
+A_i(t):=I_V+tP_i,
+\qquad
+p_t(x):=\det_V\!\left(\sum_{i=1}^5x_iA_i(t)\right).
+\]
+Each $A_i(t)$ is positive definite, with eigenvalues $1+t$ of multiplicity $3$
+and $1$ of multiplicity $2$.
+
+\begin{proposition}
+For every $t\ge0$, the polynomial $p_t$ is symmetric, homogeneous of degree $5$,
+real stable, and has nonnegative monomial coefficients.  Its Schur coefficients
+are
+\begin{align*}
+[s_{(5)}]p_t&=(t+1)^3,\\
+[s_{(4,1)}]p_t&=\frac{(t+1)^2(3t^2+8t+8)}2,\\
+[s_{(3,2)}]p_t&=\frac{(t+1)(9t^4+48t^3+128t^2+160t+80)}{16},\\
+[s_{(3,1,1)}]p_t&=\frac{(t+1)(9t^4+64t^3+168t^2+192t+96)}{16},\\
+[s_{(2,2,1)}]p_t&=\frac{6t^5+41t^4+108t^3+156t^2+120t+40}{8},\\
+[s_{(2,1,1,1)}]p_t&=\frac{6t^5+35t^4+96t^3+132t^2+96t+32}{8},\\
+[s_{(1^5)}]p_t&=-\frac{9t^5-21t^4-56t^3-72t^2-48t-16}{16}.
+\end{align*}
+In particular,
+\[
+[s_{(1^5)}]p_5=-\frac{743}{2}<0.
+\]
+\end{proposition}
+
+\begin{proof}
+The covariance of the $A_i(t)$ proves symmetry.  Positive definiteness proves
+real stability by the same imaginary-part argument used in
+Theorem~\ref{thm:explicit}.  The coefficient of
+$x_1^{\alpha_1}\cdots x_5^{\alpha_5}$ is a positive scalar multiple of the
+mixed discriminant of the multiset containing $\alpha_i$ copies of $A_i(t)$.
+Mixed discriminants of positive-semidefinite matrices are nonnegative; for
+positive-definite arguments they are strictly positive.  Thus the monomial
+coefficients are nonnegative (indeed positive).
+
+The displayed Schur coefficients follow by exact determinant expansion and
+Kostka inversion.  For an entirely transparent intermediate certificate, the
+monomial-symmetric coefficients are listed in Appendix~\ref{app:family}.  The
+included script derives the Kostka matrix by direct enumeration of semistandard
+Young tableaux and independently checks every Schur coefficient by bialternant
+extraction.
+\end{proof}
+
+\begin{remark}
+The unique positive real zero of
+$9t^5-21t^4-56t^3-72t^2-48t-16$ is approximately
+$4.2907656153$.  Thus the construction gives an open ray of counterexamples,
+not merely an isolated example.  This numerical value is not used anywhere in
+the proof.
+\end{remark}
+
+\section{Relation between the conceptual and explicit certificates}
+
+The script chooses a rational basis $K$ of $V=\ker B$ and lets
+$G=K^{\mathsf T}K$ be its Gram matrix.  In that basis, the matrices of $P_i$ are
+$G$-self-adjoint.  At $t=5$, set
+\[
+J_i:=2G(I+5P_i).
+\]
+Then $J_i$ is an ordinary symmetric positive-definite integer matrix and
+\[
+\det\!\left(\sum_i x_iJ_i\right)
+=2^5\det(G)\,p_5(x)=5184p_5(x).
+\]
+Consequently,
+\[
+q(x)=\frac1{648}\det\!\left(\sum_i x_iJ_i\right)=8p_5(x),
+\]
+which explains the normalization in \eqref{eq:qdef}.  The matrices displayed in
+Section~1 are exactly the resulting $J_i$.
+
+\section{Exact computational certificate}
+\label{sec:certificate}
+
+The accompanying file \path{verify_problem36_counterexample.py} requires only Python and SymPy.
+It uses exact rational and integer arithmetic throughout.  Running
+\begin{verbatim}
+python verify_problem36_counterexample.py --verbose
+\end{verbatim}
+performs all of the following checks:
+\begin{enumerate}[leftmargin=2em]
+\item constructs $V=\ker B$ and the five projections $P_i$;
+\item verifies $P_i^2=P_i$, $G$-self-adjointness, rank $3$, full
+      $\Sym_5$-covariance, and $\sum_iP_i=3I$;
+\item constructs the five matrices $J_i$ and verifies positive definiteness by
+      exact principal minors;
+\item expands the determinant into all $126$ degree-$5$ monomials and verifies
+      constancy on every $\Sym_5$-orbit and strict positivity;
+\item computes the Kostka matrix by enumerating semistandard Young tableaux,
+      rather than importing or hard-coding it;
+\item obtains the Schur expansion by exact matrix inversion;
+\item independently recomputes every Schur coefficient using the bialternant
+      extraction formula;
+\item verifies the full one-parameter coefficient formulas stated above.
+\end{enumerate}
+The optional command
+\begin{verbatim}
+python verify_problem36_counterexample.py \
+       --write-json counterexample_certificate.json
+\end{verbatim}
+produces the machine-readable certificate included in the package.
+
+\appendix
+\section{Monomial coefficients of the one-parameter family}
+\label{app:family}
+
+Writing $p_t=\sum_{\mu\partn5}c_\mu(t)m_\mu$, exact expansion gives
+\begin{align*}
+c_{(5)}(t)&=(t+1)^3,\\
+c_{(4,1)}(t)&=\frac{(t+1)^2(3t^2+10t+10)}2,\\
+c_{(3,2)}(t)&=\frac{(t+1)(9t^4+72t^3+232t^2+320t+160)}{16},\\
+c_{(3,1,1)}(t)&=\frac{(t+1)(t+2)(9t^3+62t^2+120t+80)}8,\\
+c_{(2,2,1)}(t)&=\frac{39t^5+317t^4+1040t^3+1728t^2+1440t+480}{16},\\
+c_{(2,1,1,1)}(t)&=\frac{45t^5+348t^4+1100t^3+1764t^2+1440t+480}{8},\\
+c_{(1^5)}(t)&=\frac{99t^5+765t^4+2320t^3+3600t^2+2880t+960}{8}.
+\end{align*}
+All coefficients in these numerators are positive.  Combining these formulas
+with the last column of $K^{-1}$,
+\[
+(1,-2,-2,3,3,-4,1)^{\mathsf T},
+\]
+gives
+\[
+[s_{(1^5)}]p_t
+=-\frac{9t^5-21t^4-56t^3-72t^2-48t-16}{16}.
+\]
+
+\begin{thebibliography}{9}
+\bibitem{AIM2007}
+J.~Borcea, P.~Br\"and\'en, G.~Csordas, and V.~Vinnikov (organizers),
+\emph{P\'olya--Schur--Lax problems: hyperbolicity and stability preservers},
+AIM Workshop Summary, American Institute of Mathematics, 2007,
+\url{https://www.aimath.org/pastworkshops/polyaschurlaxrep.pdf}.
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,31 @@
+\subsection{Variance-only discrepancy}
+
+The standalone dimension-free assertion asks whether a universal $C$ satisfies
+\[
+\min_{x\in\{\pm1\}^n}\left\|\sum_{i=1}^n x_iA_i\right\|_{\rm op}
+\le C\left\|\sum_{i=1}^nA_i^2\right\|_{\rm op}^{1/2}
+\]
+for arbitrary matrix dimension.
+
+\begin{theorem}[\statusfalse: unrestricted variance-only discrepancy]\label{thm:discrepancy}
+No universal $C$ exists without a relation between matrix dimension and the number of summands.
+\end{theorem}
+\begin{proof}
+Take dimension $d=2^n$, index coordinates by $\varepsilon\in\{\pm1\}^n$, and set
+\[
+A_i=\diag(\varepsilon_i:\varepsilon\in\{\pm1\}^n).
+\]
+For every signing $x\in\{\pm1\}^n$, the coordinate $\varepsilon=x$ gives
+\[
+\left\|\sum_i x_iA_i\right\|_{\rm op}=n.
+\]
+On the other hand $A_i^2=I$, hence
+\[
+\left\|\sum_iA_i^2\right\|_{\rm op}^{1/2}=\sqrt n.
+\]
+The ratio is $\sqrt n\to\infty$.
+\end{proof}
+
+\begin{remark}[Scope]
+This does not refute Matrix Spencer formulations in which the matrix dimension is constrained by the number of matrices.  It refutes only the unrestricted dimension-free statement displayed above.
+\end{remark}
