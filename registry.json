@@ -1,0 +1,309 @@
+[
+  {
+    "result_id": "aim-problem-35",
+    "case": "stable-schur",
+    "title": "Two Borcea-Branden problems",
+    "status": "refuted",
+    "ledger_no": 1,
+    "withheld_reason": null,
+    "class": "external formal problem",
+    "certificate_level": "exact",
+    "certificate_tex": "Stable degree-five polynomial plus size-five immanant POT obstruction.",
+    "theorem_label": "thm:common-A",
+    "credits": {
+      "posed_by": "Borcea and Br\\\"and\\'en \\cite{AIMStableProblems}",
+      "found_by": {
+        "model": "TODO",
+        "date": "TODO"
+      },
+      "formalized_by": "S.~Sra",
+      "audited_by": "S.~Sra",
+      "contributed_by": "S.~Sra"
+    },
+    "verify": {
+      "python": "verify.py",
+      "sage": [],
+      "requires": []
+    }
+  },
+  {
+    "result_id": "aim-problem-38",
+    "case": "stable-schur",
+    "title": "Two Borcea-Branden problems",
+    "status": "refuted",
+    "ledger_no": 2,
+    "withheld_reason": null,
+    "class": "external formal problem",
+    "certificate_level": "exact",
+    "certificate_tex": "Exact Schur expansion; four violating partitions.",
+    "theorem_label": "thm:pot",
+    "credits": {
+      "posed_by": "Borcea and Br\\\"and\\'en \\cite{AIMStableProblems}",
+      "found_by": {
+        "model": "TODO",
+        "date": "TODO"
+      },
+      "formalized_by": "S.~Sra",
+      "audited_by": "S.~Sra",
+      "contributed_by": "S.~Sra"
+    },
+    "verify": {
+      "python": "verify.py",
+      "sage": [],
+      "requires": []
+    }
+  },
+  {
+    "result_id": "subgroup-johnson",
+    "case": "subgroup-johnson",
+    "title": "Subgroup Johnson stability",
+    "status": "refuted",
+    "ledger_no": 3,
+    "withheld_reason": null,
+    "class": "user formal problem",
+    "certificate_level": "exact",
+    "certificate_tex": "Minimal $d=3$, $H=C_3$ upper-half-plane zero.",
+    "theorem_label": "thm:subgroup",
+    "credits": {
+      "posed_by": "S.~Sra",
+      "found_by": {
+        "model": "TODO",
+        "date": "TODO"
+      },
+      "formalized_by": "S.~Sra",
+      "audited_by": "S.~Sra",
+      "contributed_by": "S.~Sra"
+    },
+    "verify": {
+      "python": "verify.py",
+      "sage": [],
+      "requires": []
+    }
+  },
+  {
+    "result_id": "macdonald-schur-convexity",
+    "case": "macdonald-schur-convexity",
+    "title": "Macdonald lattice Schur-convexity",
+    "status": "refuted",
+    "ledger_no": 4,
+    "withheld_reason": null,
+    "class": "published theorem",
+    "certificate_level": "exact",
+    "certificate_tex": "Rank-two Schur specialization, valid for every $0<r<1$.",
+    "theorem_label": "thm:macdonald",
+    "credits": {
+      "posed_by": "McSwiggen and Sahi \\cite{McSwiggenSahi2026}",
+      "found_by": {
+        "model": "TODO",
+        "date": "TODO"
+      },
+      "formalized_by": "S.~Sra",
+      "audited_by": "S.~Sra",
+      "contributed_by": "S.~Sra"
+    },
+    "verify": {
+      "python": "verify.py",
+      "sage": [],
+      "requires": []
+    }
+  },
+  {
+    "result_id": "theta-derivative-log-concavity",
+    "case": "theta-derivative-log-concavity",
+    "title": "Derivatives of the Jacobi-theta kernel",
+    "status": "refuted",
+    "ledger_no": 5,
+    "withheld_reason": null,
+    "class": "external conjecture",
+    "certificate_level": "computer-assisted",
+    "certificate_tex": "Rigorous interval evaluation of $J_9(1/50)<0$.",
+    "theorem_label": "thm:theta",
+    "credits": {
+      "posed_by": "Coffey and Csordas \\cite{Csordas2014}",
+      "found_by": {
+        "model": "TODO",
+        "date": "TODO"
+      },
+      "formalized_by": "S.~Sra",
+      "audited_by": "S.~Sra",
+      "contributed_by": "S.~Sra"
+    },
+    "verify": {
+      "python": "verify.py",
+      "sage": [
+        "verify_theta.sage"
+      ],
+      "requires": [
+        "mpmath"
+      ]
+    }
+  },
+  {
+    "result_id": "dpp-feasible-step",
+    "case": "dpp-feasible-step",
+    "title": "Feasible Picard steps for DPP likelihood",
+    "status": "refuted",
+    "ledger_no": 6,
+    "withheld_reason": null,
+    "class": "published conjecture",
+    "certificate_level": "exact",
+    "certificate_tex": "Exact rational $2\\times2$ feasible update with lower likelihood.",
+    "theorem_label": "thm:dpp",
+    "credits": {
+      "posed_by": "Mariet and Sra \\cite{MarietSra2015}",
+      "found_by": {
+        "model": "TODO",
+        "date": "TODO"
+      },
+      "formalized_by": "S.~Sra",
+      "audited_by": "S.~Sra",
+      "contributed_by": "S.~Sra"
+    },
+    "verify": {
+      "python": "verify.py",
+      "sage": [],
+      "requires": []
+    }
+  },
+  {
+    "result_id": "variance-only-matrix-discrepancy",
+    "case": "variance-only-matrix-discrepancy",
+    "title": "Variance-only discrepancy",
+    "status": "refuted",
+    "ledger_no": 7,
+    "withheld_reason": null,
+    "class": "user formal problem",
+    "certificate_level": "exact",
+    "certificate_tex": "Exact diagonal sign-cube family.",
+    "theorem_label": "thm:discrepancy",
+    "credits": {
+      "posed_by": "S.~Sra",
+      "found_by": {
+        "model": "TODO",
+        "date": "TODO"
+      },
+      "formalized_by": "S.~Sra",
+      "audited_by": "S.~Sra",
+      "contributed_by": "S.~Sra"
+    },
+    "verify": {
+      "python": "verify.py",
+      "sage": [],
+      "requires": []
+    }
+  },
+  {
+    "result_id": "rank-two-mixed-norm",
+    "case": "rank-two-mixed-norm",
+    "title": "A rank-two completely-positive mixed-norm inequality",
+    "status": "refuted",
+    "ledger_no": 8,
+    "withheld_reason": null,
+    "class": "user formal problem",
+    "certificate_level": "computer-assisted",
+    "certificate_tex": "Explicit 21-vector Gram matrix and interval-separated ratio $>1$.",
+    "theorem_label": "thm:mixed",
+    "credits": {
+      "posed_by": "S.~Sra",
+      "found_by": {
+        "model": "TODO",
+        "date": "TODO"
+      },
+      "formalized_by": "S.~Sra",
+      "audited_by": "S.~Sra",
+      "contributed_by": "S.~Sra"
+    },
+    "verify": {
+      "python": "verify.py",
+      "sage": [
+        "verify_mixed_norm.sage"
+      ],
+      "requires": [
+        "mpmath"
+      ]
+    }
+  },
+  {
+    "result_id": "logdet-loewner",
+    "case": "logdet-loewner",
+    "title": "Loewner monotonicity of alternating log-determinants",
+    "status": "refuted",
+    "ledger_no": 9,
+    "withheld_reason": null,
+    "class": "user formal problem",
+    "certificate_level": "exact",
+    "certificate_tex": "Rational $3\\times3$ matrices and an exact negative quadratic form.",
+    "theorem_label": "thm:logdet",
+    "credits": {
+      "posed_by": "S.~Sra",
+      "found_by": {
+        "model": "TODO",
+        "date": "TODO"
+      },
+      "formalized_by": "S.~Sra",
+      "audited_by": "S.~Sra",
+      "contributed_by": "S.~Sra"
+    },
+    "verify": {
+      "python": "verify.py",
+      "sage": [],
+      "requires": []
+    }
+  },
+  {
+    "result_id": "aim-problem-36",
+    "case": "aim-problem-36",
+    "title": "AIM Problem 36: stable Schur positivity",
+    "status": "withheld",
+    "ledger_no": null,
+    "withheld_reason": "No valid stable negative-Schur witness recovered; see audit_notes.md and the standalone paper.tex for the exact det-pencil certificate that motivated the attempt.",
+    "class": "external formal problem",
+    "certificate_level": "exact",
+    "certificate_tex": "Exact det-pencil Schur expansion with negative coefficient $-2972$ at $s_{(1^5)}$ (stability of the admitted form not established).",
+    "theorem_label": null,
+    "credits": {
+      "posed_by": "Borcea and Br\\\"and\\'en \\cite{AIMStableProblems}",
+      "found_by": {
+        "model": "TODO",
+        "date": "TODO"
+      },
+      "formalized_by": "S.~Sra",
+      "audited_by": "S.~Sra",
+      "contributed_by": "S.~Sra"
+    },
+    "verify": {
+      "python": "verify.py",
+      "sage": [],
+      "requires": [
+        "sympy"
+      ]
+    }
+  },
+  {
+    "result_id": "lorentzian-jensen",
+    "case": "lorentzian-jensen",
+    "title": "Lorentzian Jensen-Bregman metric principle",
+    "status": "withheld",
+    "ledger_no": null,
+    "withheld_reason": "Log-volume midpoint gap as a squared distance: regeneration of the earlier search produced no violation and the claimed data file was absent; the standalone audit in paper.tex documents the exact triangle-inequality violation that was recovered.",
+    "class": "user formal problem",
+    "certificate_level": "exact",
+    "certificate_tex": "Exact rational lower bound for a triangle-inequality violation of the Jensen--Bregman log-volume distance.",
+    "theorem_label": null,
+    "credits": {
+      "posed_by": "S.~Sra",
+      "found_by": {
+        "model": "TODO",
+        "date": "TODO"
+      },
+      "formalized_by": "S.~Sra",
+      "audited_by": "S.~Sra",
+      "contributed_by": "S.~Sra"
+    },
+    "verify": {
+      "python": "verify.py",
+      "sage": [],
+      "requires": []
+    }
+  }
+]

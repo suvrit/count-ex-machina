@@ -1,0 +1,35 @@
+Let
+\[
+\Phi(t)=\sum_{m\ge1}\pi m^2\bigl(2\pi m^2e^{4t}-3\bigr)e^{5t-\pi m^2e^{4t}}.
+\]
+Coffey and Csordas conjectured, and Csordas recorded as Open Problem 4.13, that every derivative is strictly log-concave:
+\[
+J_n(t):=(\Phi^{(n)}(t))^2-\Phi^{(n-1)}(t)\Phi^{(n+1)}(t)>0
+\quad(n\in\mathbb N,t\in\R).
+\]
+See \cite{Csordas2014}.
+
+\begin{theorem}[\statusfalse; computer-assisted proof]\label{thm:theta}
+At $n=9$ and $t=1/50$, one has $J_9(t)<0$.
+\end{theorem}
+\begin{proof}
+Put $u=\pi m^2e^{4t}$ and define integer polynomials
+\[
+P_0(u)=2u-3,\qquad P_{k+1}(u)=4uP_k'(u)+(5-4u)P_k(u).
+\]
+Termwise differentiation gives
+\[
+\Phi^{(k)}(t)=\sum_{m\ge1}\pi m^2e^{5t-u}P_k(u).
+\]
+Outward-rounded interval summation, with an explicit geometrically bounded tail, yields
+\begin{align*}
+\Phi^{(8)}(1/50)&\approx 2.95940368409056694\cdot10^8,\\
+\Phi^{(9)}(1/50)&\approx 5.80442287530267756\cdot10^9,\\
+\Phi^{(10)}(1/50)&\approx 2.02040519425950258\cdot10^{11},
+\end{align*}
+and an interval for $J_9(1/50)$ contained strictly in the negative half-line, centered at
+\[
+-2.61006208371358922\cdot10^{19}.
+\]
+The source package contains both a high-precision independent evaluator and a Sage \texttt{RealIntervalField} certificate.  The negative margin is many orders of magnitude larger than the certified truncation error.
+\end{proof}

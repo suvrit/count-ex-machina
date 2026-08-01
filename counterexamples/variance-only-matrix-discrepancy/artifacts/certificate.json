@@ -1,0 +1,8 @@
+{
+  "discrepancy": "max_eps |<x,eps>| = n for every signing x",
+  "n_range": [
+    1,
+    8
+  ],
+  "variance_ratio": "n^2 / variance = n, unbounded in n"
+}

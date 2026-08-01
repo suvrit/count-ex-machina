@@ -1,0 +1,28 @@
+{
+  "directions": [
+    "(1,0)",
+    "(1,1/50)",
+    "(1,3/50)",
+    "(0,1)"
+  ],
+  "multiplicities": [
+    1,
+    18,
+    1,
+    1
+  ],
+  "ratio": "1.0000006173391115436577759060008786379837121037681715800476079089249396543458191",
+  "rigorous_certificate": "verify_mixed_norm.sage (outward-rounded intervals)",
+  "s_q": [
+    "6/5",
+    "6"
+  ],
+  "threshold": "1.0000006",
+  "weight_exponent": "5/6",
+  "weights": [
+    46,
+    17,
+    42,
+    1
+  ]
+}

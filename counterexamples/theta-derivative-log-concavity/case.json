@@ -1,0 +1,46 @@
+{
+  "id": "theta-derivative-log-concavity",
+  "title": "Derivatives of the Jacobi-theta kernel",
+  "title_tex": "Derivatives of the Jacobi-theta kernel",
+  "status": "refuted",
+  "order": 4,
+  "dossier": "dossier.tex",
+  "bib_keys": [
+    "Csordas2014"
+  ],
+  "results": [
+    {
+      "id": "theta-derivative-log-concavity",
+      "statement_tex": "Coffey--Csordas Conjecture 2.5 / Csordas Problem 4.13",
+      "class": "external conjecture",
+      "certificate_level": "computer-assisted",
+      "certificate_tex": "Rigorous interval evaluation of $J_9(1/50)<0$.",
+      "theorem_label": "thm:theta"
+    }
+  ],
+  "credits": {
+    "posed_by": "Coffey and Csordas \\cite{Csordas2014}",
+    "found_by": {
+      "model": "TODO",
+      "date": "TODO"
+    },
+    "formalized_by": "S.~Sra",
+    "audited_by": "S.~Sra",
+    "contributed_by": "S.~Sra"
+  },
+  "verify": {
+    "python": "verify.py",
+    "sage": [
+      "verify_theta.sage"
+    ],
+    "requires": [
+      "mpmath"
+    ]
+  },
+  "artifacts": [
+    {
+      "file": "artifacts/certificate.json",
+      "description": "High-precision value of $J_9(1/50)$; the Sage script provides the outward-rounded interval certificate."
+    }
+  ]
+}

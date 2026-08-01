@@ -1,0 +1,44 @@
+{
+  "id": "aim-problem-36",
+  "title": "AIM Problem 36: stable Schur positivity",
+  "title_tex": "Borcea--Br\\\"and\\'en Problem 36: stable Schur positivity",
+  "status": "withheld",
+  "withheld_reason": "No valid stable negative-Schur witness recovered; see audit_notes.md and the standalone paper.tex for the exact det-pencil certificate that motivated the attempt.",
+  "bib_keys": [
+    "AIMStableProblems"
+  ],
+  "results": [
+    {
+      "id": "aim-problem-36",
+      "statement_tex": "Borcea--Br\\\"and\\'en Problem 36: stable Schur positivity",
+      "class": "external formal problem",
+      "certificate_level": "exact",
+      "certificate_tex": "Exact det-pencil Schur expansion with negative coefficient $-2972$ at $s_{(1^5)}$ (stability of the admitted form not established).",
+      "theorem_label": null
+    }
+  ],
+  "credits": {
+    "posed_by": "Borcea and Br\\\"and\\'en \\cite{AIMStableProblems}",
+    "found_by": {
+      "model": "TODO",
+      "date": "TODO"
+    },
+    "formalized_by": "S.~Sra",
+    "audited_by": "S.~Sra",
+    "contributed_by": "S.~Sra"
+  },
+  "verify": {
+    "python": "verify.py",
+    "sage": [],
+    "requires": [
+      "sympy"
+    ]
+  },
+  "artifacts": [
+    {
+      "file": "artifacts/certificate.json",
+      "description": "Exact certificate of the det-pencil construction: basis, Gram data, the five integer PD matrices, and the Schur expansion with its negative coefficient."
+    }
+  ],
+  "paper": "paper.tex"
+}

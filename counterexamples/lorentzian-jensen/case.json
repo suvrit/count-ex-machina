@@ -1,0 +1,40 @@
+{
+  "id": "lorentzian-jensen",
+  "title": "Lorentzian Jensen-Bregman metric principle",
+  "title_tex": "Lorentzian Jensen--Bregman metric principle",
+  "status": "withheld",
+  "withheld_reason": "Log-volume midpoint gap as a squared distance: regeneration of the earlier search produced no violation and the claimed data file was absent; the standalone audit in paper.tex documents the exact triangle-inequality violation that was recovered.",
+  "bib_keys": [],
+  "results": [
+    {
+      "id": "lorentzian-jensen",
+      "statement_tex": "Lorentzian Jensen--Bregman log-volume midpoint metric principle",
+      "class": "user formal problem",
+      "certificate_level": "exact",
+      "certificate_tex": "Exact rational lower bound for a triangle-inequality violation of the Jensen--Bregman log-volume distance.",
+      "theorem_label": null
+    }
+  ],
+  "credits": {
+    "posed_by": "S.~Sra",
+    "found_by": {
+      "model": "TODO",
+      "date": "TODO"
+    },
+    "formalized_by": "S.~Sra",
+    "audited_by": "S.~Sra",
+    "contributed_by": "S.~Sra"
+  },
+  "verify": {
+    "python": "verify.py",
+    "sage": [],
+    "requires": []
+  },
+  "artifacts": [
+    {
+      "file": "artifacts/certificate.json",
+      "description": "Exact rational triangle-inequality violation bound with the three witness points."
+    }
+  ],
+  "paper": "paper.tex"
+}

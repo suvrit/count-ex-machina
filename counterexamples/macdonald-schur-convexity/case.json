@@ -1,0 +1,42 @@
+{
+  "id": "macdonald-schur-convexity",
+  "title": "Macdonald lattice Schur-convexity",
+  "title_tex": "Macdonald lattice Schur-convexity",
+  "status": "refuted",
+  "order": 3,
+  "dossier": "dossier.tex",
+  "bib_keys": [
+    "McSwiggenSahi2026"
+  ],
+  "results": [
+    {
+      "id": "macdonald-schur-convexity",
+      "statement_tex": "McSwiggen--Sahi Theorem 2.1: Macdonald lattice Schur-convexity",
+      "class": "published theorem",
+      "certificate_level": "exact",
+      "certificate_tex": "Rank-two Schur specialization, valid for every $0<r<1$.",
+      "theorem_label": "thm:macdonald"
+    }
+  ],
+  "credits": {
+    "posed_by": "McSwiggen and Sahi \\cite{McSwiggenSahi2026}",
+    "found_by": {
+      "model": "TODO",
+      "date": "TODO"
+    },
+    "formalized_by": "S.~Sra",
+    "audited_by": "S.~Sra",
+    "contributed_by": "S.~Sra"
+  },
+  "verify": {
+    "python": "verify.py",
+    "sage": [],
+    "requires": []
+  },
+  "artifacts": [
+    {
+      "file": "artifacts/certificate.json",
+      "description": "Exact rational reversal checked at sample parameters, with the algebraic identity behind the full one-parameter family."
+    }
+  ]
+}

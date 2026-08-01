@@ -1,0 +1,54 @@
+For a training set $\mathcal T$ and positive definite kernel $L$, the Picard update is
+\[
+L^+=L+aL\Delta(L)L,
+\]
+where $\Delta$ is the likelihood stationarity residual.  Mariet and Sra proved ascent for $a=1$ and conjectured that every feasible $a\ge1$ increases the log-likelihood \cite{MarietSra2015}.
+
+\begin{theorem}[\statusfalse: feasible-step ascent conjecture]\label{thm:dpp}
+A feasible step with $a=5$ can strictly decrease the DPP log-likelihood.
+\end{theorem}
+\begin{proof}
+Use ground set $\{1,2\}$ and observations
+\[
+\mathcal T=\bigl\{\{1\},\{2\},\{1,2\}\bigr\}.
+\]
+Let
+\[
+L_0=\begin{pmatrix}3.37200647&2.62325460\\2.62325460&6.07953037\end{pmatrix},
+\]
+with the displayed decimals interpreted as exact rationals of denominator $10^8$.  For this data,
+\[
+\Delta(L)=\frac13\left[
+\begin{pmatrix}L_{11}^{-1}&0\\0&0\end{pmatrix}
++\begin{pmatrix}0&0\\0&L_{22}^{-1}\end{pmatrix}+L^{-1}\right]-(I+L)^{-1}.
+\]
+At $a=5$, exact rational arithmetic gives
+\[
+L_1=L_0+5L_0\Delta(L_0)L_0
+\approx\begin{pmatrix}
+3.1679125391632645&3.1681701017272776\\
+3.1681701017272776&3.4400758121589554
+\end{pmatrix}.
+\]
+Both matrices are positive definite; numerically,
+\[
+\det L_0\approx13.6187510458,\qquad
+\det L_1\approx0.8605575075.
+\]
+The normalized objective is
+\[
+\phi(L)=\frac13\bigl(\log L_{11}+\log L_{22}+\log\det L\bigr)-\log\det(I+L).
+\]
+The inequality $\phi(L_1)<\phi(L_0)$ is equivalent, after exponentiating and cubing, to the exact rational comparison
+\[
+\frac{(L_1)_{11}(L_1)_{22}\det L_1}{(L_0)_{11}(L_0)_{22}\det L_0}
+<\left(\frac{\det(I+L_1)}{\det(I+L_0)}\right)^3.
+\]
+Numerically, the left and right sides are respectively
+\[
+0.03359118941299074
+\quad\text{and}\quad
+0.04354945027745948.
+\]
+Their exact rational difference is positive.  Hence the step is feasible but descending.
+\end{proof}

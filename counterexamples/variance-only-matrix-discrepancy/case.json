@@ -1,0 +1,40 @@
+{
+  "id": "variance-only-matrix-discrepancy",
+  "title": "Variance-only discrepancy",
+  "title_tex": "Variance-only discrepancy",
+  "status": "refuted",
+  "order": 6,
+  "dossier": "dossier.tex",
+  "bib_keys": [],
+  "results": [
+    {
+      "id": "variance-only-matrix-discrepancy",
+      "statement_tex": "Dimension-free variance-only matrix discrepancy without a dimension restriction",
+      "class": "user formal problem",
+      "certificate_level": "exact",
+      "certificate_tex": "Exact diagonal sign-cube family.",
+      "theorem_label": "thm:discrepancy"
+    }
+  ],
+  "credits": {
+    "posed_by": "S.~Sra",
+    "found_by": {
+      "model": "TODO",
+      "date": "TODO"
+    },
+    "formalized_by": "S.~Sra",
+    "audited_by": "S.~Sra",
+    "contributed_by": "S.~Sra"
+  },
+  "verify": {
+    "python": "verify.py",
+    "sage": [],
+    "requires": []
+  },
+  "artifacts": [
+    {
+      "file": "artifacts/certificate.json",
+      "description": "Exact discrepancy values of the diagonal sign-cube family for $n\\le8$."
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+cff-version: 1.2.0
+message: "If you use this archive, please cite it as below."
+title: "count-ex-machina: GPT, the Counterexample Machine"
+authors:
+  - family-names: Sra
+    given-names: Suvrit
+    affiliation: "TU Munich, Dept. of Mathematics, School of CIT"
+repository-code: "https://github.com/suvrit/count-ex-machina"

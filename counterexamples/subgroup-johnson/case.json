@@ -1,0 +1,40 @@
+{
+  "id": "subgroup-johnson",
+  "title": "Subgroup Johnson stability",
+  "title_tex": "Subgroup Johnson stability",
+  "status": "refuted",
+  "order": 2,
+  "dossier": "dossier.tex",
+  "bib_keys": [],
+  "results": [
+    {
+      "id": "subgroup-johnson",
+      "statement_tex": "Stability of subgroup Johnson polynomials for arbitrary $H\\le S_d$",
+      "class": "user formal problem",
+      "certificate_level": "exact",
+      "certificate_tex": "Minimal $d=3$, $H=C_3$ upper-half-plane zero.",
+      "theorem_label": "thm:subgroup"
+    }
+  ],
+  "credits": {
+    "posed_by": "S.~Sra",
+    "found_by": {
+      "model": "TODO",
+      "date": "TODO"
+    },
+    "formalized_by": "S.~Sra",
+    "audited_by": "S.~Sra",
+    "contributed_by": "S.~Sra"
+  },
+  "verify": {
+    "python": "verify.py",
+    "sage": [],
+    "requires": []
+  },
+  "artifacts": [
+    {
+      "file": "artifacts/certificate.json",
+      "description": "Exact vanishing certificate for the $C_3$ upper-half-plane zero."
+    }
+  ]
+}

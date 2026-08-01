@@ -332,3 +332,10 @@ TSWLatexianTemp*
 
 ## Compiled PDF output (this repo has no PDF figures)
 main.pdf
+
+## Project tooling and regenerable outputs
+.venv/
+__pycache__/
+*.sage.py
+verification_report.json
+paper.pdf

@@ -1,0 +1,30 @@
+{
+  "id": "TODO-must-equal-directory-name",
+  "title": "TODO plain-text title",
+  "title_tex": null,
+  "status": "refuted",
+  "order": 0,
+  "dossier": "dossier.tex",
+  "bib_keys": [],
+  "results": [
+    {
+      "id": "TODO-globally-unique-result-id",
+      "statement_tex": "TODO ledger statement (LaTeX)",
+      "class": "user formal problem",
+      "certificate_level": "exact",
+      "certificate_tex": "TODO one-line certificate description (LaTeX)",
+      "theorem_label": "thm:TODO"
+    }
+  ],
+  "credits": {
+    "posed_by": "TODO (LaTeX; use \\cite{...} for external sources)",
+    "found_by": { "model": "TODO model name", "date": "TODO YYYY-MM" },
+    "formalized_by": "TODO",
+    "audited_by": "TODO",
+    "contributed_by": "TODO"
+  },
+  "verify": { "python": "verify.py", "sage": [], "requires": [] },
+  "artifacts": [
+    { "file": "artifacts/certificate.json", "description": "TODO what the artifact contains" }
+  ]
+}

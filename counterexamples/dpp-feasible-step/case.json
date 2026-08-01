@@ -1,0 +1,42 @@
+{
+  "id": "dpp-feasible-step",
+  "title": "Feasible Picard steps for DPP likelihood",
+  "title_tex": "Feasible Picard steps for DPP likelihood",
+  "status": "refuted",
+  "order": 5,
+  "dossier": "dossier.tex",
+  "bib_keys": [
+    "MarietSra2015"
+  ],
+  "results": [
+    {
+      "id": "dpp-feasible-step",
+      "statement_tex": "Mariet--Sra feasible-step Picard ascent conjecture for DPP likelihood",
+      "class": "published conjecture",
+      "certificate_level": "exact",
+      "certificate_tex": "Exact rational $2\\times2$ feasible update with lower likelihood.",
+      "theorem_label": "thm:dpp"
+    }
+  ],
+  "credits": {
+    "posed_by": "Mariet and Sra \\cite{MarietSra2015}",
+    "found_by": {
+      "model": "TODO",
+      "date": "TODO"
+    },
+    "formalized_by": "S.~Sra",
+    "audited_by": "S.~Sra",
+    "contributed_by": "S.~Sra"
+  },
+  "verify": {
+    "python": "verify.py",
+    "sage": [],
+    "requires": []
+  },
+  "artifacts": [
+    {
+      "file": "artifacts/certificate.json",
+      "description": "Exact rational kernels $L_0,L_1$ and the positive rational likelihood gap."
+    }
+  ]
+}

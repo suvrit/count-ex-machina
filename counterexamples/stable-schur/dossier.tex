@@ -1,0 +1,48 @@
+Borcea--Br\"and\'en posed the relevant representation and endpoint problems in the AIM problem list \cite{AIMStableProblems}.  Let $S=x_1+\cdots+x_5$ and
+\begin{equation}\label{eq:stable-p}
+p(x_1,\ldots,x_5)=\prod_{i=1}^5\left(x_i+5\sum_{j\ne i}x_j\right)=\prod_{i=1}^5(5S-4x_i).
+\end{equation}
+Every factor has strictly positive coefficients, hence has positive imaginary part whenever all variables do; therefore $p$ is real stable.  It is symmetric, homogeneous of degree five in five variables, and has strictly positive monomial coefficients.
+
+\begin{theorem}[\statusfalse: Stable Permanent-On-Top, AIM Problem 38]\label{thm:pot}
+The polynomial \eqref{eq:stable-p} satisfies all hypotheses of Borcea--Br\"and\'en Problem 36 but violates
+\[
+a_\lambda\le f^\lambda a_{(1^5)}.
+\]
+\end{theorem}
+\begin{proof}
+Its exact Schur expansion is
+\begin{align*}
+p={}&625s_{(5)}+4500s_{(4,1)}+7125s_{(3,2)}+8150s_{(3,1,1)}\\
+&+7525s_{(2,2,1)}+6580s_{(2,1,1,1)}+1281s_{(1^5)}.
+\end{align*}
+For $\lambda=(3,2)$, the hook-length formula gives $f^{(3,2)}=5$, whereas
+\[
+7125>5\cdot1281=6405.
+\]
+The same upper endpoint fails for $(3,1,1)$, $(2,2,1)$, and $(2,1,1,1)$.  The source package independently reconstructs the monomial expansion and inverts the Kostka matrix over $\mathbb Z$.
+\end{proof}
+
+The polynomial also has a diagonal positive-definite mixed-determinant representation.  For $j=1,\ldots,5$, let
+\[
+D_j=\diag(5,\ldots,5,\underset{j}{1},5,\ldots,5).
+\]
+Then the multivariate Johnson polynomial satisfies
+\[
+\eta(x_1D_1,\ldots,x_5D_5)=p(x_1,\ldots,x_5).
+\]
+
+\begin{theorem}[\statusfalse: common-matrix representation, AIM Problem 35]\label{thm:common-A}
+There is no $5\times5$ Hermitian positive semidefinite matrix $A$ such that
+\[
+p(x_1,\ldots,x_5)=\eta(x_1A,\ldots,x_5A).
+\]
+\end{theorem}
+\begin{proof}
+Such a representation would identify the Schur coefficients, up to one common positive normalization, with irreducible immanants of $A$ indexed by conjugate partitions.  Immanant Permanent-On-Top is known in size five, indeed in every size at most thirteen \cite{Wanless2022}.  It would therefore force
+$a_\lambda\le f^\lambda a_{(1^5)}$ for every $\lambda\vdash5$, contradicting Theorem~\ref{thm:pot}.
+\end{proof}
+
+\begin{remark}[Scope]
+The example is Schur-positive.  It does not refute AIM Problem 36.  Its lower endpoint inequalities also hold, so it does not refute Problem 37.  The full independent audit is included as \path{counterexamples/stable-schur/artifacts/}.
+\end{remark}

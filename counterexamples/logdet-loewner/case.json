@@ -1,0 +1,40 @@
+{
+  "id": "logdet-loewner",
+  "title": "Loewner monotonicity of alternating log-determinants",
+  "title_tex": "Loewner monotonicity of alternating log-determinants",
+  "status": "refuted",
+  "order": 8,
+  "dossier": "dossier.tex",
+  "bib_keys": [],
+  "results": [
+    {
+      "id": "logdet-loewner",
+      "statement_tex": "Loewner monotonicity of alternating log-determinant inclusion--exclusion",
+      "class": "user formal problem",
+      "certificate_level": "exact",
+      "certificate_tex": "Rational $3\\times3$ matrices and an exact negative quadratic form.",
+      "theorem_label": "thm:logdet"
+    }
+  ],
+  "credits": {
+    "posed_by": "S.~Sra",
+    "found_by": {
+      "model": "TODO",
+      "date": "TODO"
+    },
+    "formalized_by": "S.~Sra",
+    "audited_by": "S.~Sra",
+    "contributed_by": "S.~Sra"
+  },
+  "verify": {
+    "python": "verify.py",
+    "sage": [],
+    "requires": []
+  },
+  "artifacts": [
+    {
+      "file": "artifacts/certificate.json",
+      "description": "Exact rational matrices $X,A_1,\\ldots,A_4$, the test vector, and the negative value of the quadratic form."
+    }
+  ]
+}
