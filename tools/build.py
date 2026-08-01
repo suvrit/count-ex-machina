@@ -345,23 +345,6 @@ def withheld_sorted(cases):
     return sorted((c for c in cases if c["status"] == "withheld"), key=lambda c: c["id"])
 
 
-TRAILING_CITE = re.compile(r"\s*(\\cite\{[^}]*\})\s*$")
-
-
-def ledger_statement(r):
-    """Link the statement to the theorem refuting it, leaving any \\cite outside.
-
-    hyperref does not nest, so a trailing \\cite is peeled off and placed after
-    the link: the statement resolves to its theorem, the citation to the source.
-    """
-    statement = r["statement_tex"]
-    m = TRAILING_CITE.search(statement)
-    cite = f" {m.group(1)}" if m else ""
-    if m:
-        statement = statement[: m.start()]
-    return f"\\hyperref[{r['theorem_label']}]{{{statement}}}{cite}"
-
-
 def gen_ledger(cases):
     # Every admitted row is a disproof, so the table carries no status column.
     lines = [
@@ -380,7 +363,12 @@ def gen_ledger(cases):
     ]
     for c in refuted_in_order(cases):
         for r in c["results"]:
-            lines.append(f"{ledger_statement(r)} & {r['certificate_tex']}\\\\")
+            # Point at the theorem, not the section: a grouped case puts several
+            # results under one section, so a section reference would send
+            # different rows to the same place.  The statement itself is left
+            # unlinked -- its \cite already carries the reader to the source.
+            ref = f" (Thm.~\\ref{{{r['theorem_label']}}})" if r.get("theorem_label") else ""
+            lines.append(f"{r['statement_tex']} & {r['certificate_tex']}{ref}\\\\")
     lines += [r"\bottomrule", r"\end{longtable}", ""]
     return "\n".join(lines)
 
