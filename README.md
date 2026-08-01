@@ -57,20 +57,20 @@ and ledger number from the table below — for example, `aim-problem-36`
 ## The cases
 
 <!-- BEGIN CASE TABLE -->
-| No. | Case | Status | Class | Certificate | Found by |
+| No. | Case | Status | Posed in | Certificate | Found by |
 |---|---|---|---|---|---|
-| 1 | [aim-problem-35](counterexamples/stable-schur/) | refuted | external formal problem | exact | TODO (TODO) |
-| 2 | [aim-problem-38](counterexamples/stable-schur/) | refuted | external formal problem | exact | TODO (TODO) |
-| 3 | [aim-problem-36](counterexamples/aim-problem-36/) | refuted | external formal problem | exact | TODO (TODO) |
-| 4 | [aim-problem-37](counterexamples/aim-problem-36/) | refuted | external formal problem | exact | TODO (TODO) |
-| 5 | [macdonald-schur-convexity](counterexamples/macdonald-schur-convexity/) | refuted | published theorem | exact | TODO (TODO) |
-| 6 | [theta-derivative-log-concavity](counterexamples/theta-derivative-log-concavity/) | refuted | external conjecture | computer-assisted | TODO (TODO) |
-| 7 | [dpp-feasible-step](counterexamples/dpp-feasible-step/) | refuted | published conjecture | exact | TODO (TODO) |
-| 8 | [variance-only-matrix-discrepancy](counterexamples/variance-only-matrix-discrepancy/) | refuted | user formal problem | exact | TODO (TODO) |
-| 9 | [rank-two-mixed-norm](counterexamples/rank-two-mixed-norm/) | refuted | user formal problem | computer-assisted | TODO (TODO) |
-| 10 | [logdet-loewner](counterexamples/logdet-loewner/) | refuted | user formal problem | exact | TODO (TODO) |
-| 11 | [lorentzian-jensen](counterexamples/lorentzian-jensen/) | refuted | user formal problem | exact | TODO (TODO) |
-| 12 | [log-volume-distance](counterexamples/lorentzian-jensen/) | refuted | user formal problem | exact | TODO (TODO) |
+| 1 | [aim-problem-35](counterexamples/stable-schur/) | refuted | [Borcea–Brändén, AIM problem list, Problem 35](https://www.aimath.org/pastworkshops/polyaschurlaxrep.pdf) | exact | TODO (TODO) |
+| 2 | [aim-problem-38](counterexamples/stable-schur/) | refuted | [Borcea–Brändén, AIM problem list, Problem 38](https://www.aimath.org/pastworkshops/polyaschurlaxrep.pdf) | exact | TODO (TODO) |
+| 3 | [aim-problem-36](counterexamples/aim-problem-36/) | refuted | [Borcea–Brändén, AIM problem list, Problem 36](https://www.aimath.org/pastworkshops/polyaschurlaxrep.pdf) | exact | TODO (TODO) |
+| 4 | [aim-problem-37](counterexamples/aim-problem-36/) | refuted | [Borcea–Brändén, AIM problem list, Problem 37](https://www.aimath.org/pastworkshops/polyaschurlaxrep.pdf) | exact | TODO (TODO) |
+| 5 | [macdonald-schur-convexity](counterexamples/macdonald-schur-convexity/) | refuted | [C. McSwiggen and S. Sahi, Theorem 2.1](https://arxiv.org/abs/2605.12680v2) | exact | TODO (TODO) |
+| 6 | [theta-derivative-log-concavity](counterexamples/theta-derivative-log-concavity/) | refuted | [G. Csordas, Open Problem 4.13, restating Coffey–Csordas Conjecture 2.5](https://arxiv.org/abs/1309.0055v2) | computer-assisted | TODO (TODO) |
+| 7 | [dpp-feasible-step](counterexamples/dpp-feasible-step/) | refuted | [Z. Mariet and S. Sra, §2 (unnumbered)](https://proceedings.mlr.press/v37/mariet15.pdf) | exact | TODO (TODO) |
+| 8 | [variance-only-matrix-discrepancy](counterexamples/variance-only-matrix-discrepancy/) | refuted | S. Sra — statement TODO | exact | TODO (TODO) |
+| 9 | [rank-two-mixed-norm](counterexamples/rank-two-mixed-norm/) | refuted | S. Sra — statement TODO | computer-assisted | TODO (TODO) |
+| 10 | [logdet-loewner](counterexamples/logdet-loewner/) | refuted | S. Sra — statement TODO | exact | TODO (TODO) |
+| 11 | [lorentzian-jensen](counterexamples/lorentzian-jensen/) | refuted | [S. Sra, standalone problem; formulation as recorded in §1 of the case's `paper.tex`](counterexamples/lorentzian-jensen/paper.tex) | exact | TODO (TODO) |
+| 12 | [log-volume-distance](counterexamples/lorentzian-jensen/) | refuted | [S. Sra, standalone problem (geometric specialization of the same principle); formulation as recorded in §1 of the case's `paper.tex`](counterexamples/lorentzian-jensen/paper.tex) | exact | TODO (TODO) |
 <!-- END CASE TABLE -->
 
 Withheld cases are documented but excluded from the paper's admitted ledger;
@@ -115,7 +115,10 @@ discipline is:
      `source_tex` (who posed it and where, with `\cite{...}`), `url` and
      `retrieved` for the copy consulted, and `fidelity`: `"verbatim"` only if
      transcribed from the source's own text, otherwise `"paraphrase"`, which
-     the paper labels as such;
+     the paper labels as such. `source_tex` and `url` also become the linked
+     "Posed in" cell of the case table above, so `url` may be a repo-relative
+     path when the statement was posed in a file here; the build fails on any
+     LaTeX macro it cannot render as markdown;
    - `credits`: `posed_by` (use `\cite{...}` for external sources),
      `found_by` (AI model + session date `YYYY-MM`), `formalized_by`,
      `audited_by`, `contributed_by`;

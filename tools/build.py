@@ -392,9 +392,60 @@ def gen_registry(cases):
     return json.dumps(out, indent=2, ensure_ascii=False) + "\n"
 
 
-def gen_readme_table(cases):
+ACCENTS = {
+    r"\"a": "ä", r"\"o": "ö", r"\"u": "ü", r"\"e": "ë",
+    r"\'a": "á", r"\'e": "é", r"\'i": "í", r"\'o": "ó", r"\'u": "ú",
+    r"\^a": "â", r"\^e": "ê", r"\^o": "ô", r"\~n": "ñ",
+}
+TEX_SUBS = [
+    (re.compile(r"\\cite\{[^}]*\}"), ""),
+    (re.compile(r"\\path\{([^}]*)\}"), r"`\1`"),
+    (re.compile(r"\\emph\{([^}]*)\}"), r"*\1*"),
+    (re.compile(r"\\S"), "§"),
+    (re.compile(r"--"), "–"),
+    (re.compile(r"~"), " "),
+    (re.compile(r"\s+"), " "),
+    (re.compile(r"\s+([,.;])"), r"\1"),
+    (re.compile(r",\s*$"), ""),
+]
+
+
+def tex_to_markdown(s, errors, where):
+    """Render a short LaTeX fragment as plain markdown for the README table.
+
+    Deliberately narrow: it handles the constructs the metadata actually uses
+    and reports anything left over, so an unhandled macro fails the build
+    instead of leaking raw LaTeX into the README.
+    """
+    for tex, ch in ACCENTS.items():
+        s = s.replace(tex, ch)
+    for pattern, repl in TEX_SUBS:
+        s = pattern.sub(repl, s)
+    s = s.strip()
+    leftover = set(re.findall(r"\\[A-Za-z]+|[{}]", s))
+    if leftover:
+        errors.append(
+            f"{where}: unhandled LaTeX {sorted(leftover)} in {s!r}; "
+            f"extend TEX_SUBS in tools/build.py"
+        )
+    return s
+
+
+def source_cell(c, r, errors):
+    """Link to where the statement was posed, so a reader can check it."""
+    prov = r.get("provenance") or {}
+    where = f"case {c['id']}, result {r['id']}"
+    if is_todo(prov.get("source_tex")):
+        posed = tex_to_markdown(c["credits"]["posed_by"], errors, where)
+        return f"{posed} — statement TODO"
+    label = tex_to_markdown(prov["source_tex"], errors, where)
+    url = prov.get("url")
+    return f"[{label}]({url})" if url else label
+
+
+def gen_readme_table(cases, errors):
     lines = [
-        "| No. | Case | Status | Class | Certificate | Found by |",
+        "| No. | Case | Status | Posed in | Certificate | Found by |",
         "|---|---|---|---|---|---|",
     ]
     n = 0
@@ -404,14 +455,16 @@ def gen_readme_table(cases):
             found = c["credits"]["found_by"]
             lines.append(
                 f"| {n} | [{r['id']}](counterexamples/{c['id']}/) | refuted "
-                f"| {r['class']} | {r['certificate_level']} | {found['model']} ({found['date']}) |"
+                f"| {source_cell(c, r, errors)} | {r['certificate_level']} "
+                f"| {found['model']} ({found['date']}) |"
             )
     for c in withheld_sorted(cases):
         for r in c["results"]:
             found = c["credits"]["found_by"]
             lines.append(
                 f"| — | [{r['id']}](counterexamples/{c['id']}/) | withheld "
-                f"| {r['class']} | {r['certificate_level']} | {found['model']} ({found['date']}) |"
+                f"| {source_cell(c, r, errors)} | {r['certificate_level']} "
+                f"| {found['model']} ({found['date']}) |"
             )
     return "\n".join(lines)
 
@@ -437,11 +490,15 @@ def main():
     if errors:
         fail(errors)
 
+    readme_table = gen_readme_table(cases, errors)
+    if errors:
+        fail(errors)
+
     outputs = {
         GENERATED_DIR / "ledger.tex": gen_ledger(cases),
         GENERATED_DIR / "dossiers.tex": gen_dossiers(cases),
         REGISTRY: gen_registry(cases),
-        README: splice_readme(gen_readme_table(cases)),
+        README: splice_readme(readme_table),
     }
 
     if args.check:

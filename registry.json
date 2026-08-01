@@ -364,7 +364,7 @@
     "theorem_label": "thm:lorentzian",
     "provenance": {
       "source_tex": "S.~Sra, standalone problem; formulation as recorded in \\S1 of the case's \\path{paper.tex}",
-      "url": null,
+      "url": "counterexamples/lorentzian-jensen/paper.tex",
       "retrieved": null,
       "fidelity": "paraphrase",
       "statement_tex": "Let $\\mathcal C\\subset\\R^m$ be an open convex cone, let $G:\\mathcal C\\to(0,\\infty)$, and put $F=-\\log G$ and\n\\[\\J_G(x,y):=\\frac{F(x)+F(y)}2-F\\!\\left(\\frac{x+y}{2}\\right).\\]\nIf $G$ is homogeneous and Lorentzian, then $d_G:=\\sqrt{\\J_G}$ is a semimetric."
@@ -398,7 +398,7 @@
     "theorem_label": "thm:volume-distance",
     "provenance": {
       "source_tex": "S.~Sra, standalone problem (geometric specialization of the same principle); formulation as recorded in \\S1 of the case's \\path{paper.tex}",
-      "url": null,
+      "url": "counterexamples/lorentzian-jensen/paper.tex",
       "retrieved": null,
       "fidelity": "paraphrase",
       "statement_tex": "The log-volume midpoint gap is the square of a distance on convex bodies: that is,\n\\[d_{\\Vol}(K,L):=\\left[\\log\\Vol\\!\\left(\\frac{K+L}{2}\\right)-\\tfrac12\\log\\Vol(K)-\\tfrac12\\log\\Vol(L)\\right]^{1/2}\\]\nis a semimetric on convex bodies."
