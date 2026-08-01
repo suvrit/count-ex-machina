@@ -255,34 +255,42 @@ def withheld_sorted(cases):
     return sorted((c for c in cases if c["status"] == "withheld"), key=lambda c: c["id"])
 
 
-STATUS_MACROS = {"refuted": r"\statusfalse"}
+TRAILING_CITE = re.compile(r"\s*(\\cite\{[^}]*\})\s*$")
+
+
+def ledger_statement(r):
+    """Link the statement to the theorem refuting it, leaving any \\cite outside.
+
+    hyperref does not nest, so a trailing \\cite is peeled off and placed after
+    the link: the statement resolves to its theorem, the citation to the source.
+    """
+    statement = r["statement_tex"]
+    m = TRAILING_CITE.search(statement)
+    cite = f" {m.group(1)}" if m else ""
+    if m:
+        statement = statement[: m.start()]
+    return f"\\hyperref[{r['theorem_label']}]{{{statement}}}{cite}"
 
 
 def gen_ledger(cases):
+    # Every admitted row is a disproof, so the table carries no status column.
     lines = [
         GENERATED_HEADER + r"\section{Audited archive ledger}",
         "",
-        r"\begin{longtable}{@{}p{0.06\textwidth}p{0.33\textwidth}p{0.15\textwidth}p{0.34\textwidth}@{}}",
+        r"\begin{longtable}{@{}p{0.46\textwidth}p{0.50\textwidth}@{}}",
         r"\caption{Admitted session-derived disproofs.}\label{tab:ledger}\\",
         r"\toprule",
-        r"No. & Formal statement & Status & Certificate \\",
+        r"Formal statement & Certificate \\",
         r"\midrule",
         r"\endfirsthead",
         r"\toprule",
-        r"No. & Formal statement & Status & Certificate \\",
+        r"Formal statement & Certificate \\",
         r"\midrule",
         r"\endhead",
     ]
-    n = 0
     for c in refuted_in_order(cases):
         for r in c["results"]:
-            n += 1
-            # The ledger number links to the theorem that refutes the statement;
-            # any \cite in statement_tex links on to the source.
-            no = f"\\hyperref[{r['theorem_label']}]{{{n}}}"
-            lines.append(
-                f"{no} & {r['statement_tex']} & {STATUS_MACROS[c['status']]} & {r['certificate_tex']}\\\\"
-            )
+            lines.append(f"{ledger_statement(r)} & {r['certificate_tex']}\\\\")
     lines += [r"\bottomrule", r"\end{longtable}", ""]
     return "\n".join(lines)
 
