@@ -7,12 +7,16 @@
 \usepackage{booktabs,tabularx,longtable,array}
 \usepackage{xcolor}
 \usepackage{enumitem}
+\usepackage[authoryear,round]{natbib}
 \usepackage{hyperref}
 \usepackage{cleveref}
 \usepackage{listings}
 \usepackage{graphicx}
 \usepackage{url}
 \usepackage[most]{tcolorbox}
+% Every \cite in the sources is used parenthetically, so make bare \cite mean
+% \citep; \citet is still available where the authors are read as prose.
+\AtBeginDocument{\let\cite\citep}
 \hypersetup{colorlinks=true,linkcolor=blue!45!black,citecolor=blue!45!black,urlcolor=red!65!black}
 \setlist{nosep,leftmargin=*}
 \newcommand{\statusproved}{\textbf{[PROVED]}}
@@ -57,7 +61,7 @@
 \lstset{basicstyle=\ttfamily\small,breaklines=true,frame=single,columns=fullflexible}
 
 
-\title{GPT: The Counterexample Machine}
+\title{\textit{Count-ex-machina}: GPT, the Counterexample Machine}
 \author{Suvrit Sra}
 \email{s.sra@tum.de}
 \address{TU Munich, Dept.\ of Mathematics, School of CIT; Garching, Germany}
@@ -80,8 +84,10 @@
 \subsection*{Acknowledgments}
 The authors acknowledges generous support from the Alexander von Humboldt (AvH) foundation via an AvH Professorship in AI.
 
-\vskip 12pt
 
-\bibliographystyle{amsplain}
+
+\bibliographystyle{abbrvnat}
 \bibliography{references}
+
+\vskip 12pt
 \end{document}

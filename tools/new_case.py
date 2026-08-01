@@ -126,7 +126,7 @@ def main() -> int:
     level = choose("Certificate level", sorted(CERTIFICATE_LEVELS))
 
     print("\nProvenance -- where the statement was posed.")
-    posed_by = ask("posed by (LaTeX; use \\cite{...} for published sources)")
+    posed_by = ask("posed by (LaTeX; the names are already here, so use \\citeyearpar{...})")
     source_tex = ask("source, with section or problem number (LaTeX)")
     url = ask("url of the copy you consulted")
     retrieved = ask("retrieved (YYYY-MM-DD)", default=str(datetime.date.today()))

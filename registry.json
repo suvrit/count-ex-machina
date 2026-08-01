@@ -12,14 +12,14 @@
     "certificate_tex": "Stable degree-five polynomial plus size-five immanant POT obstruction.",
     "theorem_label": "thm:common-A",
     "provenance": {
-      "source_tex": "Borcea--Br\\\"and\\'en, AIM problem list \\cite{AIMStableProblems}, Problem 35",
+      "source_tex": "Borcea--Br\\\"and\\'en, AIM problem list \\citeyearpar{AIMStableProblems}, Problem 35",
       "url": "https://www.aimath.org/pastworkshops/polyaschurlaxrep.pdf",
       "retrieved": "2026-08-01",
       "fidelity": "verbatim",
       "statement_tex": "Characterize all symmetric, real stable and homogeneous polynomial of degree $d$ in $n$ variables.  Is it in fact so that if $p$ is such a polynomial, then there is a $d\\times d$ positive semidefinite $d\\times d$ matrix $A$ such that\n\\[p(z_1,\\ldots,z_n)=\\eta(z_1A,\\ldots,z_nA)?\\]\nThis is not obvious even for $n=2$."
     },
     "credits": {
-      "posed_by": "Borcea and Br\\\"and\\'en \\cite{AIMStableProblems}",
+      "posed_by": "Borcea and Br\\\"and\\'en \\citeyearpar{AIMStableProblems}",
       "found_by": [
         {
           "model": "TODO",
@@ -49,14 +49,14 @@
     "certificate_tex": "Exact Schur expansion; four violating partitions.",
     "theorem_label": "thm:pot",
     "provenance": {
-      "source_tex": "Borcea--Br\\\"and\\'en, AIM problem list \\cite{AIMStableProblems}, Problem 38",
+      "source_tex": "Borcea--Br\\\"and\\'en, AIM problem list \\citeyearpar{AIMStableProblems}, Problem 38",
       "url": "https://www.aimath.org/pastworkshops/polyaschurlaxrep.pdf",
       "retrieved": "2026-08-01",
       "fidelity": "verbatim",
       "statement_tex": "Lieb's Permanent-On-Top (POT) Conjecture for the symmetric group on $d$ elements [J,L] asserts that if $A$ is a $d\\times d$ positive semi-definite matrix then $\\Imm_\\lambda(A)\\le f^\\lambda\\per(A)$ for all $\\lambda\\vdash d$.  An affirmative answer to the following problem would in particular imply the validity of the POT Conjecture.\n\n\\emph{Problem 38.}  Let $p$ be as in Problem 36.  Is $a_\\lambda\\le f^\\lambda a_{(1^d)}$ for all $\\lambda\\vdash d$?"
     },
     "credits": {
-      "posed_by": "Borcea and Br\\\"and\\'en \\cite{AIMStableProblems}",
+      "posed_by": "Borcea and Br\\\"and\\'en \\citeyearpar{AIMStableProblems}",
       "found_by": [
         {
           "model": "TODO",
@@ -86,14 +86,14 @@
     "certificate_tex": "Positive-definite $5\\times5$ det-pencil; exact Schur expansion with $[s_{(1^5)}]q=-2972$.",
     "theorem_label": "thm:aim36",
     "provenance": {
-      "source_tex": "Borcea--Br\\\"and\\'en, AIM problem list \\cite{AIMStableProblems}, Problem 36",
+      "source_tex": "Borcea--Br\\\"and\\'en, AIM problem list \\citeyearpar{AIMStableProblems}, Problem 36",
       "url": "https://www.aimath.org/pastworkshops/polyaschurlaxrep.pdf",
       "retrieved": "2026-08-01",
       "fidelity": "verbatim",
       "statement_tex": "Let $p$ be a symmetric, real stable and homogeneous polynomial of degree $d$ in $n$ variables with $d\\le n$ and suppose that $p$ has at least one positive (and then all non-negative) coefficients in the monomial basis.  Is $p$ Schur-positive?  That is, when $p(z_1,\\ldots,z_n)$ is expanded in the Schur-basis\n\\[p(z_1,\\ldots,z_n)=\\sum_{\\lambda\\vdash d}a_\\lambda s_\\lambda(z_1,\\ldots,z_n),\\]\nis $a_\\lambda\\ge0$ for all $\\lambda\\vdash d$?"
     },
     "credits": {
-      "posed_by": "Borcea and Br\\\"and\\'en \\cite{AIMStableProblems}",
+      "posed_by": "Borcea and Br\\\"and\\'en \\citeyearpar{AIMStableProblems}",
       "found_by": [
         {
           "model": "TODO",
@@ -125,14 +125,14 @@
     "certificate_tex": "Same pencil; $a_{(1^5)}=-2972<1728=f^{(1^5)}a_{(5)}$.",
     "theorem_label": "thm:aim37",
     "provenance": {
-      "source_tex": "Borcea--Br\\\"and\\'en, AIM problem list \\cite{AIMStableProblems}, Problem 37",
+      "source_tex": "Borcea--Br\\\"and\\'en, AIM problem list \\citeyearpar{AIMStableProblems}, Problem 37",
       "url": "https://www.aimath.org/pastworkshops/polyaschurlaxrep.pdf",
       "retrieved": "2026-08-01",
       "fidelity": "verbatim",
       "statement_tex": "If $A$ is a $d\\times d$ matrix then $\\det(A)=\\Imm_{(1^d)}(A)$ and $\\per(A)=\\Imm_{(d)}(A)$, where $(1^d)=(1,\\ldots,1)$ and $(d)=(1^d)'=(d,0,\\ldots,0)$.  Schur's inequality [J,L] asserts that if $A$ is a $d\\times d$ positive semi-definite matrix then $\\Imm_\\lambda(A)\\ge f^\\lambda\\det(A)$ for all $\\lambda\\vdash d$, where $f^\\lambda$ is the number of standard Young tableaux of shape $\\lambda$.  A natural real stable extension of this result would be as follows.\n\n\\emph{Problem 37.}  Let $p$ be as in Problem 36.  Is $a_\\lambda\\ge f^\\lambda a_{(d)}$ for all $\\lambda\\vdash d$?"
     },
     "credits": {
-      "posed_by": "Borcea and Br\\\"and\\'en \\cite{AIMStableProblems}",
+      "posed_by": "Borcea and Br\\\"and\\'en \\citeyearpar{AIMStableProblems}",
       "found_by": [
         {
           "model": "TODO",
@@ -164,14 +164,14 @@
     "certificate_tex": "Rank-two Schur specialization, valid for every $0<r<1$.",
     "theorem_label": "thm:macdonald",
     "provenance": {
-      "source_tex": "C.~McSwiggen and S.~Sahi \\cite{McSwiggenSahi2026}, Theorem 2.1",
+      "source_tex": "C.~McSwiggen and S.~Sahi \\citeyearpar{McSwiggenSahi2026}, Theorem 2.1",
       "url": "https://arxiv.org/abs/2605.12680v2",
       "retrieved": "2026-08-01",
       "fidelity": "verbatim",
       "statement_tex": "For all $q,t\\in(0,1)$, $a>0$, and $x\\in\\mathcal L_n^{q,t,a}$, the function $\\lambda\\mapsto\\Omega_\\lambda(x;q,t)$ is log-convex and Schur-convex.\n\nHere, by \\S2.1 of the same paper, $\\Omega_\\lambda(x;q,t)=P_\\lambda(x;q,t)/P_\\lambda(t^\\delta;q,t)$ is the Macdonald polynomial normalized to $1$ at the principal specialization $t^\\delta=(t^{n-1},t^{n-2},\\ldots,1)$, and the scaled, $t$-shifted, dominant $q$-lattice is\n\\[\\mathcal L_n=\\mathcal L_n^{q,t,a}=\\left\\{(aq^{-\\mu_1}t^{n-1},aq^{-\\mu_2}t^{n-2},\\ldots,aq^{-\\mu_n}):(\\mu_1\\ge\\ldots\\ge\\mu_n)\\in\\mathbb Z^n\\right\\}\\subset\\R^n.\\]"
     },
     "credits": {
-      "posed_by": "McSwiggen and Sahi \\cite{McSwiggenSahi2026}",
+      "posed_by": "McSwiggen and Sahi \\citeyearpar{McSwiggenSahi2026}",
       "found_by": [
         {
           "model": "TODO",
@@ -201,14 +201,14 @@
     "certificate_tex": "Rigorous interval evaluation of $J_9(1/50)<0$.",
     "theorem_label": "thm:theta",
     "provenance": {
-      "source_tex": "G.~Csordas \\cite{Csordas2014}, Open Problem 4.13, restating Coffey--Csordas Conjecture 2.5",
+      "source_tex": "G.~Csordas \\citeyearpar{Csordas2014}, Open Problem 4.13, restating Coffey--Csordas Conjecture 2.5",
       "url": "https://arxiv.org/abs/1309.0055v2",
       "retrieved": "2026-08-01",
       "fidelity": "verbatim",
       "statement_tex": "([5, Conjecture 2.5])  Show that the derivatives of the Jacobi theta function, $\\Phi(t)$, are (strictly) log-concave on $\\R$; that is, for each $n\\in\\mathbb N$,\n\\[J_n(t):=(\\Phi^{(n)}(t))^2-\\Phi^{(n-1)}(t)\\Phi^{(n+1)}(t)>0\\quad\\text{for }t\\in\\R.\\]\nHere, by (4.2) of the same paper, the Jacobi theta function (without the usual factor $4$) is $\\Phi(t):=\\sum_{n\\ge1}\\pi n^2\\left(2\\pi n^2e^{4t}-3\\right)\\exp\\left(5t-\\pi n^2e^{4t}\\right)$."
     },
     "credits": {
-      "posed_by": "Coffey and Csordas \\cite{Csordas2014}",
+      "posed_by": "Coffey and Csordas \\citeyearpar{Csordas2014}",
       "found_by": [
         {
           "model": "TODO",
@@ -242,14 +242,14 @@
     "certificate_tex": "Exact rational $2\\times2$ feasible update with lower likelihood.",
     "theorem_label": "thm:dpp",
     "provenance": {
-      "source_tex": "Z.~Mariet and S.~Sra \\cite{MarietSra2015}, \\S2 (unnumbered)",
+      "source_tex": "Z.~Mariet and S.~Sra \\citeyearpar{MarietSra2015}, \\S2 (unnumbered)",
       "url": "https://proceedings.mlr.press/v37/mariet15.pdf",
       "retrieved": "2026-08-01",
       "fidelity": "verbatim",
       "statement_tex": "Above we showed that for $a=1$ ascent is guaranteed.  Empirically, $a>1$ often works well; Prop.~A.1 presents an easily computable upper bound on feasible $a$.  We conjecture that for all feasible values $a\\ge1$, iteration (2.5) is guaranteed to increase the log-likelihood.\n\nThe iteration carrying the step size is $L_{k+1}=L_k+aL_k\\Delta_kL_k$, displayed as (2.7) in the source; feasibility is the bound $a\\le1/(1-\\gamma)$ of Prop.~A.1."
     },
     "credits": {
-      "posed_by": "Mariet and Sra \\cite{MarietSra2015}",
+      "posed_by": "Mariet and Sra \\citeyearpar{MarietSra2015}",
       "found_by": [
         {
           "model": "TODO",
@@ -279,21 +279,21 @@
     "certificate_tex": "Exact $d=n$ diagonal family: $\\disc=(m-1)/\\sqrt m$ against variance $1+1/m$, a ratio of $\\Theta(\\sqrt{\\log n})$.",
     "theorem_label": "thm:discrepancy",
     "provenance": {
-      "source_tex": "Conjecture 1.2 of E.~Akba\\c{s} and S.~Sra \\cite{AkbasSra2026}, recording Remark 4.25 of A.~S.~Bandeira's problem collection \\cite{Bandeira2016}",
+      "source_tex": "Conjecture 1.2 of E.~Akba\\c{s} and S.~Sra \\citeyearpar{AkbasSra2026}, recording Remark 4.25 of A.~S.~Bandeira's problem collection \\citeyearpar{Bandeira2016}",
       "url": "https://arxiv.org/abs/2606.16005",
       "retrieved": "2026-08-01",
       "fidelity": "verbatim",
       "statement_tex": "There exists a universal constant $C$, such that for any choice of $n$ symmetric matrices $A_1,\\ldots,A_n\\in\\R^{n\\times n}$ satisfying $\\|A_i\\|_{\\rm op}\\le1$ there exists a coloring $x\\in\\{\\pm1\\}^n$, such that\n\\[\\left\\|\\sum_{i=1}^nx_iA_i\\right\\|_{\\rm op}\\le C\\left\\|\\sum_{i=1}^nA_i^2\\right\\|_{\\rm op}^{1/2}.\\]"
     },
     "credits": {
-      "posed_by": "A.~S.~Bandeira \\cite{Bandeira2016}",
+      "posed_by": "A.~S.~Bandeira \\citeyearpar{Bandeira2016}",
       "found_by": [
         {
           "model": "GPT-5.5 (Pro)",
           "date": "TODO"
         }
       ],
-      "formalized_by": "E.~Akba\\c{s} and S.~Sra \\cite{AkbasSra2026}",
+      "formalized_by": "E.~Akba\\c{s} and S.~Sra \\citeyearpar{AkbasSra2026}",
       "audited_by": "S.~Sra",
       "contributed_by": "S.~Sra"
     },

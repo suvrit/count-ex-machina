@@ -13,13 +13,13 @@
     {
       "id": "macdonald-schur-convexity",
       "uid": "C4RWCJF1",
-      "statement_tex": "McSwiggen--Sahi Theorem 2.1: Macdonald lattice Schur-convexity \\cite{McSwiggenSahi2026}",
+      "statement_tex": "McSwiggen--Sahi Theorem 2.1: Macdonald lattice Schur-convexity \\citeyearpar{McSwiggenSahi2026}",
       "class": "published theorem",
       "certificate_level": "exact",
       "certificate_tex": "Rank-two Schur specialization, valid for every $0<r<1$.",
       "theorem_label": "thm:macdonald",
       "provenance": {
-        "source_tex": "C.~McSwiggen and S.~Sahi \\cite{McSwiggenSahi2026}, Theorem 2.1",
+        "source_tex": "C.~McSwiggen and S.~Sahi \\citeyearpar{McSwiggenSahi2026}, Theorem 2.1",
         "url": "https://arxiv.org/abs/2605.12680v2",
         "retrieved": "2026-08-01",
         "fidelity": "verbatim",
@@ -28,7 +28,7 @@
     }
   ],
   "credits": {
-    "posed_by": "McSwiggen and Sahi \\cite{McSwiggenSahi2026}",
+    "posed_by": "McSwiggen and Sahi \\citeyearpar{McSwiggenSahi2026}",
     "found_by": {
       "model": "TODO",
       "date": "TODO"

@@ -17,7 +17,7 @@
       "certificate_tex": "TODO one-line certificate description (LaTeX)",
       "theorem_label": "thm:TODO",
       "provenance": {
-        "source_tex": "TODO who posed it and where (LaTeX; use \\cite{...})",
+        "source_tex": "TODO who posed it and where (LaTeX; \\citeyearpar{...} after a name, \\cite{...} otherwise)",
         "url": null,
         "retrieved": null,
         "fidelity": "TODO verbatim or paraphrase",
@@ -26,7 +26,7 @@
     }
   ],
   "credits": {
-    "posed_by": "TODO (LaTeX; use \\cite{...} for external sources)",
+    "posed_by": "TODO (LaTeX; the names are already here, so use \\citeyearpar{...})",
     "found_by": { "model": "TODO model name", "date": "TODO YYYY-MM" },
     "formalized_by": "TODO",
     "audited_by": "TODO",

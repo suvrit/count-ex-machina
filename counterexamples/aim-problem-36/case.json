@@ -14,13 +14,13 @@
     {
       "id": "aim-problem-36",
       "uid": "KKYHCMH6",
-      "statement_tex": "Borcea--Br\\\"and\\'en Problem 36: stable Schur positivity \\cite{AIMStableProblems}",
+      "statement_tex": "Borcea--Br\\\"and\\'en Problem 36: stable Schur positivity \\citeyearpar{AIMStableProblems}",
       "class": "external formal problem",
       "certificate_level": "exact",
       "certificate_tex": "Positive-definite $5\\times5$ det-pencil; exact Schur expansion with $[s_{(1^5)}]q=-2972$.",
       "theorem_label": "thm:aim36",
       "provenance": {
-        "source_tex": "Borcea--Br\\\"and\\'en, AIM problem list \\cite{AIMStableProblems}, Problem 36",
+        "source_tex": "Borcea--Br\\\"and\\'en, AIM problem list \\citeyearpar{AIMStableProblems}, Problem 36",
         "url": "https://www.aimath.org/pastworkshops/polyaschurlaxrep.pdf",
         "retrieved": "2026-08-01",
         "fidelity": "verbatim",
@@ -30,13 +30,13 @@
     {
       "id": "aim-problem-37",
       "uid": "VP22SYRW",
-      "statement_tex": "Borcea--Br\\\"and\\'en Problem 37: stable Schur inequality (lower endpoint) \\cite{AIMStableProblems}",
+      "statement_tex": "Borcea--Br\\\"and\\'en Problem 37: stable Schur inequality (lower endpoint) \\citeyearpar{AIMStableProblems}",
       "class": "external formal problem",
       "certificate_level": "exact",
       "certificate_tex": "Same pencil; $a_{(1^5)}=-2972<1728=f^{(1^5)}a_{(5)}$.",
       "theorem_label": "thm:aim37",
       "provenance": {
-        "source_tex": "Borcea--Br\\\"and\\'en, AIM problem list \\cite{AIMStableProblems}, Problem 37",
+        "source_tex": "Borcea--Br\\\"and\\'en, AIM problem list \\citeyearpar{AIMStableProblems}, Problem 37",
         "url": "https://www.aimath.org/pastworkshops/polyaschurlaxrep.pdf",
         "retrieved": "2026-08-01",
         "fidelity": "verbatim",
@@ -45,7 +45,7 @@
     }
   ],
   "credits": {
-    "posed_by": "Borcea and Br\\\"and\\'en \\cite{AIMStableProblems}",
+    "posed_by": "Borcea and Br\\\"and\\'en \\citeyearpar{AIMStableProblems}",
     "found_by": {
       "model": "TODO",
       "date": "TODO"

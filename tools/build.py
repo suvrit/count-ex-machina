@@ -588,7 +588,7 @@ ACCENTS = {
     r"\"{a}": "ä", r"\"{o}": "ö", r"\"{u}": "ü", r"\'{e}": "é",
 }
 TEX_SUBS = [
-    (re.compile(r"\\cite\{[^}]*\}"), ""),
+    (re.compile(r"\\cite[a-z]*(?:\[[^\]]*\])*\{[^}]*\}"), ""),
     (re.compile(r"\\path\{([^}]*)\}"), r"`\1`"),
     (re.compile(r"\\emph\{([^}]*)\}"), r"*\1*"),
     (re.compile(r"\\S"), "§"),

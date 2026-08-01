@@ -13,13 +13,13 @@
     {
       "id": "dpp-feasible-step",
       "uid": "7X8N5PV5",
-      "statement_tex": "Mariet--Sra feasible-step Picard ascent conjecture for DPP likelihood \\cite{MarietSra2015}",
+      "statement_tex": "Mariet--Sra feasible-step Picard ascent conjecture for DPP likelihood \\citeyearpar{MarietSra2015}",
       "class": "published conjecture",
       "certificate_level": "exact",
       "certificate_tex": "Exact rational $2\\times2$ feasible update with lower likelihood.",
       "theorem_label": "thm:dpp",
       "provenance": {
-        "source_tex": "Z.~Mariet and S.~Sra \\cite{MarietSra2015}, \\S2 (unnumbered)",
+        "source_tex": "Z.~Mariet and S.~Sra \\citeyearpar{MarietSra2015}, \\S2 (unnumbered)",
         "url": "https://proceedings.mlr.press/v37/mariet15.pdf",
         "retrieved": "2026-08-01",
         "fidelity": "verbatim",
@@ -28,7 +28,7 @@
     }
   ],
   "credits": {
-    "posed_by": "Mariet and Sra \\cite{MarietSra2015}",
+    "posed_by": "Mariet and Sra \\citeyearpar{MarietSra2015}",
     "found_by": {
       "model": "TODO",
       "date": "TODO"
