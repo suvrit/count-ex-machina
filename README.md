@@ -53,10 +53,70 @@ document to `tex/main.tex`.
 Withheld cases are documented but excluded from the paper's admitted ledger;
 see `audit_notes.md` and each case's README for the reason.
 
-## Contributing
+## Adding a counterexample
 
-New counterexamples are welcome once the repository is public — the admission
-criteria and workflow are in [CONTRIBUTING.md](CONTRIBUTING.md). Attribution
-(who posed the statement, which model found the witness, who formalized and
-audited it) is recorded per case in `case.json` and rendered into the paper
+The admission bar (exact or rigorous-interval certificates only; no
+quantifier drift; see `tex/02-admission.tex` and
+[CONTRIBUTING.md](CONTRIBUTING.md)) applies to every new case. The mechanical
+discipline is:
+
+1. **Create the case dir** (kebab-case id; it becomes the directory, registry,
+   and link name):
+
+   ```sh
+   cp -r counterexamples/_template counterexamples/<id>
+   ```
+
+2. **`case.json`** — the single source of truth; everything else is generated
+   from it:
+   - `id` must equal the directory name; `title` / `title_tex` become the
+     dossier subsection heading;
+   - `status`: `"refuted"` (goes into the ledger) or `"withheld"` (documented
+     but excluded; needs `withheld_reason` and a standalone `paper.tex`
+     instead of a dossier);
+   - `order`: next free integer (append-only — existing ledger numbers and
+     theorem numbering never shift);
+   - one `results` entry per refuted statement (usually one; `stable-schur`
+     has two): `statement_tex` and `certificate_tex` are the ledger columns,
+     `class` and `certificate_level` the classification, `theorem_label` must
+     match the `\label` in the dossier;
+   - `credits`: `posed_by` (use `\cite{...}` for external sources),
+     `found_by` (AI model + session date `YYYY-MM`), `formalized_by`,
+     `audited_by`, `contributed_by`;
+   - `verify`: entry script, optional Sage cross-checks, extra pip deps.
+
+3. **`.bib` entries** — add cited works to `tex/references.bib` and list the
+   keys in `bib_keys` (the build fails on unknown keys).
+
+4. **`dossier.tex`** — body only; do **not** write `\subsection` or the credit
+   line (both are generated). Follow the house structure: prose stating the
+   original conjecture with `\cite`, a `theorem` environment whose bracketed
+   title carries `\statusfalse` and whose `\label` equals `theorem_label`, a
+   proof with the explicit witness, optionally `\begin{remark}[Scope]`.
+
+5. **`verify.py`** — implements `verify() -> dict` (raises `AssertionError` on
+   failure; returns `id`/`ok`/`summary`/`witness`), exact arithmetic or
+   rigorous intervals only; the `__main__` block writes
+   `artifacts/certificate.json`. Shared Fraction matrix helpers live in
+   `tools/exactcert.py`. Add Sage interval cross-checks for analytic cases.
+
+6. **Case `README.md`** — statement summary, how to verify, what the
+   artifacts contain.
+
+7. **Regenerate, verify, build**:
+
+   ```sh
+   python tools/build.py        # validates case.json, regenerates ledger/dossiers/registry/this table
+   python tools/verify_all.py   # must end with ALL ... CASES PASS
+   cd tex && latexmk -pdf main
+   ```
+
+8. **Commit everything, including the regenerated files** (`tex/generated/`,
+   `registry.json`, `README.md`, the case's `artifacts/`). Run
+   `python tools/build.py --check` to confirm nothing is stale.
+
+`tools/build.py` fails loudly on TODO placeholders, duplicate orders or
+theorem labels, missing bib keys, and missing files — if it is silent about
+the new case, the metadata is complete. Attribution from `case.json` is
+rendered under the dossier heading in the paper and into `registry.json`
 automatically.
