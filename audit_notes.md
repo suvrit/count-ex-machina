@@ -3,9 +3,9 @@
 Included: twelve formal disproofs in nine dossiers.
 
 Withheld or withdrawn:
-- Subgroup Johnson stability: removed from the paper at the author's request.  This is
-  not a defect of the certificate — the exact d=3, H=C_3 witness stands and verify.py
-  passes; the case and its dossier remain in the archive.
+- Subgroup Johnson stability: a false target raised during an investigation, never a
+  conjecture posed or published anywhere, so it fails the first admission condition.
+  Removed from the archive entirely.
 - Foulkes: the recovered negative plethysm used the reversed parameter range.
 - The planar-zonotope route to the log-volume midpoint-gap claim: regeneration of the
   earlier search produced no violation, and the claimed data file was absent.  The claim

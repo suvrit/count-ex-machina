@@ -418,39 +418,5 @@
       "sage": [],
       "requires": []
     }
-  },
-  {
-    "result_id": "subgroup-johnson",
-    "case": "subgroup-johnson",
-    "title": "Subgroup Johnson stability",
-    "status": "withheld",
-    "ledger_no": null,
-    "withheld_reason": "Removed from the paper at the author's request; not a defect of the certificate. The exact d=3, H=C_3 witness stands and verify.py passes, so the case remains in the archive with its dossier ready should it be admitted again.",
-    "class": "user formal problem",
-    "certificate_level": "exact",
-    "certificate_tex": "Minimal $d=3$, $H=C_3$ upper-half-plane zero.",
-    "theorem_label": null,
-    "provenance": {
-      "source_tex": "TODO: where the statement was posed (session, note, talk)",
-      "url": null,
-      "retrieved": null,
-      "fidelity": "TODO: verbatim or paraphrase",
-      "statement_tex": "TODO: paste the original formal statement exactly as posed"
-    },
-    "credits": {
-      "posed_by": "S.~Sra",
-      "found_by": {
-        "model": "TODO",
-        "date": "TODO"
-      },
-      "formalized_by": "S.~Sra",
-      "audited_by": "S.~Sra",
-      "contributed_by": "S.~Sra"
-    },
-    "verify": {
-      "python": "verify.py",
-      "sage": [],
-      "requires": []
-    }
   }
 ]

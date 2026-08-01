@@ -71,7 +71,6 @@ and ledger number from the table below — for example, `aim-problem-36`
 | 10 | [logdet-loewner](counterexamples/logdet-loewner/) | refuted | user formal problem | exact | TODO (TODO) |
 | 11 | [lorentzian-jensen](counterexamples/lorentzian-jensen/) | refuted | user formal problem | exact | TODO (TODO) |
 | 12 | [log-volume-distance](counterexamples/lorentzian-jensen/) | refuted | user formal problem | exact | TODO (TODO) |
-| — | [subgroup-johnson](counterexamples/subgroup-johnson/) | withheld | user formal problem | exact | TODO (TODO) |
 <!-- END CASE TABLE -->
 
 Withheld cases are documented but excluded from the paper's admitted ledger;
