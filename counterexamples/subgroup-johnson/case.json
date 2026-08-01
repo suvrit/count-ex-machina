@@ -3,7 +3,7 @@
   "title": "Subgroup Johnson stability",
   "title_tex": "Subgroup Johnson stability",
   "status": "refuted",
-  "order": 2,
+  "order": 3,
   "dossier": "dossier.tex",
   "bib_keys": [],
   "results": [
@@ -13,7 +13,14 @@
       "class": "user formal problem",
       "certificate_level": "exact",
       "certificate_tex": "Minimal $d=3$, $H=C_3$ upper-half-plane zero.",
-      "theorem_label": "thm:subgroup"
+      "theorem_label": "thm:subgroup",
+      "provenance": {
+        "source_tex": "TODO: where the statement was posed (session, note, talk)",
+        "url": null,
+        "retrieved": null,
+        "fidelity": "TODO: verbatim or paraphrase",
+        "statement_tex": "TODO: paste the original formal statement exactly as posed"
+      }
     }
   ],
   "credits": {

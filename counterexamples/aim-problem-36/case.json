@@ -1,9 +1,11 @@
 {
   "id": "aim-problem-36",
   "title": "AIM Problem 36: stable Schur positivity",
-  "title_tex": "Borcea--Br\\\"and\\'en Problem 36: stable Schur positivity",
-  "status": "withheld",
-  "withheld_reason": "No valid stable negative-Schur witness recovered; see audit_notes.md and the standalone paper.tex for the exact det-pencil certificate that motivated the attempt.",
+  "title_tex": "Problem 36: stable Schur positivity",
+  "status": "refuted",
+  "order": 2,
+  "group": "aim",
+  "dossier": "dossier.tex",
   "bib_keys": [
     "AIMStableProblems"
   ],
@@ -13,8 +15,30 @@
       "statement_tex": "Borcea--Br\\\"and\\'en Problem 36: stable Schur positivity",
       "class": "external formal problem",
       "certificate_level": "exact",
-      "certificate_tex": "Exact det-pencil Schur expansion with negative coefficient $-2972$ at $s_{(1^5)}$ (stability of the admitted form not established).",
-      "theorem_label": null
+      "certificate_tex": "Positive-definite $5\\times5$ det-pencil; exact Schur expansion with $[s_{(1^5)}]q=-2972$.",
+      "theorem_label": "thm:aim36",
+      "provenance": {
+        "source_tex": "Borcea--Br\\\"and\\'en, AIM problem list \\cite{AIMStableProblems}, Problem 36",
+        "url": "https://www.aimath.org/pastworkshops/polyaschurlaxrep.pdf",
+        "retrieved": "2026-08-01",
+        "fidelity": "verbatim",
+        "statement_tex": "Let $p$ be a symmetric, real stable and homogeneous polynomial of degree $d$ in $n$ variables with $d\\le n$ and suppose that $p$ has at least one positive (and then all non-negative) coefficients in the monomial basis.  Is $p$ Schur-positive?  That is, when $p(z_1,\\ldots,z_n)$ is expanded in the Schur-basis\n\\[p(z_1,\\ldots,z_n)=\\sum_{\\lambda\\vdash d}a_\\lambda s_\\lambda(z_1,\\ldots,z_n),\\]\nis $a_\\lambda\\ge0$ for all $\\lambda\\vdash d$?"
+      }
+    },
+    {
+      "id": "aim-problem-37",
+      "statement_tex": "Borcea--Br\\\"and\\'en Problem 37: stable Schur inequality (lower endpoint)",
+      "class": "external formal problem",
+      "certificate_level": "exact",
+      "certificate_tex": "Same pencil; $a_{(1^5)}=-2972<1728=f^{(1^5)}a_{(5)}$.",
+      "theorem_label": "thm:aim37",
+      "provenance": {
+        "source_tex": "Borcea--Br\\\"and\\'en, AIM problem list \\cite{AIMStableProblems}, Problem 37",
+        "url": "https://www.aimath.org/pastworkshops/polyaschurlaxrep.pdf",
+        "retrieved": "2026-08-01",
+        "fidelity": "verbatim",
+        "statement_tex": "If $A$ is a $d\\times d$ matrix then $\\det(A)=\\Imm_{(1^d)}(A)$ and $\\per(A)=\\Imm_{(d)}(A)$, where $(1^d)=(1,\\ldots,1)$ and $(d)=(1^d)'=(d,0,\\ldots,0)$.  Schur's inequality [J,L] asserts that if $A$ is a $d\\times d$ positive semi-definite matrix then $\\Imm_\\lambda(A)\\ge f^\\lambda\\det(A)$ for all $\\lambda\\vdash d$, where $f^\\lambda$ is the number of standard Young tableaux of shape $\\lambda$.  A natural real stable extension of this result would be as follows.\n\n\\emph{Problem 37.}  Let $p$ be as in Problem 36.  Is $a_\\lambda\\ge f^\\lambda a_{(d)}$ for all $\\lambda\\vdash d$?"
+      }
     }
   ],
   "credits": {

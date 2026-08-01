@@ -3,7 +3,7 @@
   "title": "Variance-only discrepancy",
   "title_tex": "Variance-only discrepancy",
   "status": "refuted",
-  "order": 6,
+  "order": 7,
   "dossier": "dossier.tex",
   "bib_keys": [],
   "results": [
@@ -13,7 +13,14 @@
       "class": "user formal problem",
       "certificate_level": "exact",
       "certificate_tex": "Exact diagonal sign-cube family.",
-      "theorem_label": "thm:discrepancy"
+      "theorem_label": "thm:discrepancy",
+      "provenance": {
+        "source_tex": "TODO: where the statement was posed (session, note, talk)",
+        "url": null,
+        "retrieved": null,
+        "fidelity": "TODO: verbatim or paraphrase",
+        "statement_tex": "TODO: paste the original formal statement exactly as posed"
+      }
     }
   ],
   "credits": {

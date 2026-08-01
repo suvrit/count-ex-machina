@@ -32,6 +32,9 @@ inadmissible at either level.
    - take the next free `order` (run `python tools/build.py` — it enforces
      uniqueness);
    - one entry in `results` per refuted statement (usually one);
+   - quote the statement as originally posed in each result's `provenance`
+     (`statement_tex`, `source_tex`, `url`, `retrieved`, and `fidelity` —
+     `"verbatim"` only if transcribed from the source's own text);
    - add any cited works to `tex/references.bib` and list the keys in
      `bib_keys`;
    - record attribution in `credits`: who posed the statement (`posed_by`),

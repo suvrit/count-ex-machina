@@ -10,6 +10,13 @@
     "certificate_level": "exact",
     "certificate_tex": "Stable degree-five polynomial plus size-five immanant POT obstruction.",
     "theorem_label": "thm:common-A",
+    "provenance": {
+      "source_tex": "Borcea--Br\\\"and\\'en, AIM problem list \\cite{AIMStableProblems}, Problem 35",
+      "url": "https://www.aimath.org/pastworkshops/polyaschurlaxrep.pdf",
+      "retrieved": "2026-08-01",
+      "fidelity": "verbatim",
+      "statement_tex": "Characterize all symmetric, real stable and homogeneous polynomial of degree $d$ in $n$ variables.  Is it in fact so that if $p$ is such a polynomial, then there is a $d\\times d$ positive semidefinite $d\\times d$ matrix $A$ such that\n\\[p(z_1,\\ldots,z_n)=\\eta(z_1A,\\ldots,z_nA)?\\]\nThis is not obvious even for $n=2$."
+    },
     "credits": {
       "posed_by": "Borcea and Br\\\"and\\'en \\cite{AIMStableProblems}",
       "found_by": {
@@ -37,6 +44,13 @@
     "certificate_level": "exact",
     "certificate_tex": "Exact Schur expansion; four violating partitions.",
     "theorem_label": "thm:pot",
+    "provenance": {
+      "source_tex": "Borcea--Br\\\"and\\'en, AIM problem list \\cite{AIMStableProblems}, Problem 38",
+      "url": "https://www.aimath.org/pastworkshops/polyaschurlaxrep.pdf",
+      "retrieved": "2026-08-01",
+      "fidelity": "verbatim",
+      "statement_tex": "Lieb's Permanent-On-Top (POT) Conjecture for the symmetric group on $d$ elements [J,L] asserts that if $A$ is a $d\\times d$ positive semi-definite matrix then $\\Imm_\\lambda(A)\\le f^\\lambda\\per(A)$ for all $\\lambda\\vdash d$.  An affirmative answer to the following problem would in particular imply the validity of the POT Conjecture.\n\n\\emph{Problem 38.}  Let $p$ be as in Problem 36.  Is $a_\\lambda\\le f^\\lambda a_{(1^d)}$ for all $\\lambda\\vdash d$?"
+    },
     "credits": {
       "posed_by": "Borcea and Br\\\"and\\'en \\cite{AIMStableProblems}",
       "found_by": {
@@ -54,16 +68,95 @@
     }
   },
   {
+    "result_id": "aim-problem-36",
+    "case": "aim-problem-36",
+    "title": "AIM Problem 36: stable Schur positivity",
+    "status": "refuted",
+    "ledger_no": 3,
+    "withheld_reason": null,
+    "class": "external formal problem",
+    "certificate_level": "exact",
+    "certificate_tex": "Positive-definite $5\\times5$ det-pencil; exact Schur expansion with $[s_{(1^5)}]q=-2972$.",
+    "theorem_label": "thm:aim36",
+    "provenance": {
+      "source_tex": "Borcea--Br\\\"and\\'en, AIM problem list \\cite{AIMStableProblems}, Problem 36",
+      "url": "https://www.aimath.org/pastworkshops/polyaschurlaxrep.pdf",
+      "retrieved": "2026-08-01",
+      "fidelity": "verbatim",
+      "statement_tex": "Let $p$ be a symmetric, real stable and homogeneous polynomial of degree $d$ in $n$ variables with $d\\le n$ and suppose that $p$ has at least one positive (and then all non-negative) coefficients in the monomial basis.  Is $p$ Schur-positive?  That is, when $p(z_1,\\ldots,z_n)$ is expanded in the Schur-basis\n\\[p(z_1,\\ldots,z_n)=\\sum_{\\lambda\\vdash d}a_\\lambda s_\\lambda(z_1,\\ldots,z_n),\\]\nis $a_\\lambda\\ge0$ for all $\\lambda\\vdash d$?"
+    },
+    "credits": {
+      "posed_by": "Borcea and Br\\\"and\\'en \\cite{AIMStableProblems}",
+      "found_by": {
+        "model": "TODO",
+        "date": "TODO"
+      },
+      "formalized_by": "S.~Sra",
+      "audited_by": "S.~Sra",
+      "contributed_by": "S.~Sra"
+    },
+    "verify": {
+      "python": "verify.py",
+      "sage": [],
+      "requires": [
+        "sympy"
+      ]
+    }
+  },
+  {
+    "result_id": "aim-problem-37",
+    "case": "aim-problem-36",
+    "title": "AIM Problem 36: stable Schur positivity",
+    "status": "refuted",
+    "ledger_no": 4,
+    "withheld_reason": null,
+    "class": "external formal problem",
+    "certificate_level": "exact",
+    "certificate_tex": "Same pencil; $a_{(1^5)}=-2972<1728=f^{(1^5)}a_{(5)}$.",
+    "theorem_label": "thm:aim37",
+    "provenance": {
+      "source_tex": "Borcea--Br\\\"and\\'en, AIM problem list \\cite{AIMStableProblems}, Problem 37",
+      "url": "https://www.aimath.org/pastworkshops/polyaschurlaxrep.pdf",
+      "retrieved": "2026-08-01",
+      "fidelity": "verbatim",
+      "statement_tex": "If $A$ is a $d\\times d$ matrix then $\\det(A)=\\Imm_{(1^d)}(A)$ and $\\per(A)=\\Imm_{(d)}(A)$, where $(1^d)=(1,\\ldots,1)$ and $(d)=(1^d)'=(d,0,\\ldots,0)$.  Schur's inequality [J,L] asserts that if $A$ is a $d\\times d$ positive semi-definite matrix then $\\Imm_\\lambda(A)\\ge f^\\lambda\\det(A)$ for all $\\lambda\\vdash d$, where $f^\\lambda$ is the number of standard Young tableaux of shape $\\lambda$.  A natural real stable extension of this result would be as follows.\n\n\\emph{Problem 37.}  Let $p$ be as in Problem 36.  Is $a_\\lambda\\ge f^\\lambda a_{(d)}$ for all $\\lambda\\vdash d$?"
+    },
+    "credits": {
+      "posed_by": "Borcea and Br\\\"and\\'en \\cite{AIMStableProblems}",
+      "found_by": {
+        "model": "TODO",
+        "date": "TODO"
+      },
+      "formalized_by": "S.~Sra",
+      "audited_by": "S.~Sra",
+      "contributed_by": "S.~Sra"
+    },
+    "verify": {
+      "python": "verify.py",
+      "sage": [],
+      "requires": [
+        "sympy"
+      ]
+    }
+  },
+  {
     "result_id": "subgroup-johnson",
     "case": "subgroup-johnson",
     "title": "Subgroup Johnson stability",
     "status": "refuted",
-    "ledger_no": 3,
+    "ledger_no": 5,
     "withheld_reason": null,
     "class": "user formal problem",
     "certificate_level": "exact",
     "certificate_tex": "Minimal $d=3$, $H=C_3$ upper-half-plane zero.",
     "theorem_label": "thm:subgroup",
+    "provenance": {
+      "source_tex": "TODO: where the statement was posed (session, note, talk)",
+      "url": null,
+      "retrieved": null,
+      "fidelity": "TODO: verbatim or paraphrase",
+      "statement_tex": "TODO: paste the original formal statement exactly as posed"
+    },
     "credits": {
       "posed_by": "S.~Sra",
       "found_by": {
@@ -85,12 +178,19 @@
     "case": "macdonald-schur-convexity",
     "title": "Macdonald lattice Schur-convexity",
     "status": "refuted",
-    "ledger_no": 4,
+    "ledger_no": 6,
     "withheld_reason": null,
     "class": "published theorem",
     "certificate_level": "exact",
     "certificate_tex": "Rank-two Schur specialization, valid for every $0<r<1$.",
     "theorem_label": "thm:macdonald",
+    "provenance": {
+      "source_tex": "C.~McSwiggen and S.~Sahi \\cite{McSwiggenSahi2026}, Theorem 2.1",
+      "url": "https://arxiv.org/abs/2605.12680v2",
+      "retrieved": "2026-08-01",
+      "fidelity": "verbatim",
+      "statement_tex": "For all $q,t\\in(0,1)$, $a>0$, and $x\\in\\mathcal L_n^{q,t,a}$, the function $\\lambda\\mapsto\\Omega_\\lambda(x;q,t)$ is log-convex and Schur-convex.\n\nHere, by \\S2.1 of the same paper, $\\Omega_\\lambda(x;q,t)=P_\\lambda(x;q,t)/P_\\lambda(t^\\delta;q,t)$ is the Macdonald polynomial normalized to $1$ at the principal specialization $t^\\delta=(t^{n-1},t^{n-2},\\ldots,1)$, and the scaled, $t$-shifted, dominant $q$-lattice is\n\\[\\mathcal L_n=\\mathcal L_n^{q,t,a}=\\left\\{(aq^{-\\mu_1}t^{n-1},aq^{-\\mu_2}t^{n-2},\\ldots,aq^{-\\mu_n}):(\\mu_1\\ge\\ldots\\ge\\mu_n)\\in\\mathbb Z^n\\right\\}\\subset\\R^n.\\]"
+    },
     "credits": {
       "posed_by": "McSwiggen and Sahi \\cite{McSwiggenSahi2026}",
       "found_by": {
@@ -112,12 +212,19 @@
     "case": "theta-derivative-log-concavity",
     "title": "Derivatives of the Jacobi-theta kernel",
     "status": "refuted",
-    "ledger_no": 5,
+    "ledger_no": 7,
     "withheld_reason": null,
     "class": "external conjecture",
     "certificate_level": "computer-assisted",
     "certificate_tex": "Rigorous interval evaluation of $J_9(1/50)<0$.",
     "theorem_label": "thm:theta",
+    "provenance": {
+      "source_tex": "G.~Csordas \\cite{Csordas2014}, Open Problem 4.13, restating Coffey--Csordas Conjecture 2.5",
+      "url": "https://arxiv.org/abs/1309.0055v2",
+      "retrieved": "2026-08-01",
+      "fidelity": "verbatim",
+      "statement_tex": "([5, Conjecture 2.5])  Show that the derivatives of the Jacobi theta function, $\\Phi(t)$, are (strictly) log-concave on $\\R$; that is, for each $n\\in\\mathbb N$,\n\\[J_n(t):=(\\Phi^{(n)}(t))^2-\\Phi^{(n-1)}(t)\\Phi^{(n+1)}(t)>0\\quad\\text{for }t\\in\\R.\\]\nHere, by (4.2) of the same paper, the Jacobi theta function (without the usual factor $4$) is $\\Phi(t):=\\sum_{n\\ge1}\\pi n^2\\left(2\\pi n^2e^{4t}-3\\right)\\exp\\left(5t-\\pi n^2e^{4t}\\right)$."
+    },
     "credits": {
       "posed_by": "Coffey and Csordas \\cite{Csordas2014}",
       "found_by": {
@@ -143,12 +250,19 @@
     "case": "dpp-feasible-step",
     "title": "Feasible Picard steps for DPP likelihood",
     "status": "refuted",
-    "ledger_no": 6,
+    "ledger_no": 8,
     "withheld_reason": null,
     "class": "published conjecture",
     "certificate_level": "exact",
     "certificate_tex": "Exact rational $2\\times2$ feasible update with lower likelihood.",
     "theorem_label": "thm:dpp",
+    "provenance": {
+      "source_tex": "Z.~Mariet and S.~Sra \\cite{MarietSra2015}, \\S2 (unnumbered)",
+      "url": "https://proceedings.mlr.press/v37/mariet15.pdf",
+      "retrieved": "2026-08-01",
+      "fidelity": "verbatim",
+      "statement_tex": "Above we showed that for $a=1$ ascent is guaranteed.  Empirically, $a>1$ often works well; Prop.~A.1 presents an easily computable upper bound on feasible $a$.  We conjecture that for all feasible values $a\\ge1$, iteration (2.5) is guaranteed to increase the log-likelihood.\n\nThe iteration carrying the step size is $L_{k+1}=L_k+aL_k\\Delta_kL_k$, displayed as (2.7) in the source; feasibility is the bound $a\\le1/(1-\\gamma)$ of Prop.~A.1."
+    },
     "credits": {
       "posed_by": "Mariet and Sra \\cite{MarietSra2015}",
       "found_by": {
@@ -170,12 +284,19 @@
     "case": "variance-only-matrix-discrepancy",
     "title": "Variance-only discrepancy",
     "status": "refuted",
-    "ledger_no": 7,
+    "ledger_no": 9,
     "withheld_reason": null,
     "class": "user formal problem",
     "certificate_level": "exact",
     "certificate_tex": "Exact diagonal sign-cube family.",
     "theorem_label": "thm:discrepancy",
+    "provenance": {
+      "source_tex": "TODO: where the statement was posed (session, note, talk)",
+      "url": null,
+      "retrieved": null,
+      "fidelity": "TODO: verbatim or paraphrase",
+      "statement_tex": "TODO: paste the original formal statement exactly as posed"
+    },
     "credits": {
       "posed_by": "S.~Sra",
       "found_by": {
@@ -197,12 +318,19 @@
     "case": "rank-two-mixed-norm",
     "title": "A rank-two completely-positive mixed-norm inequality",
     "status": "refuted",
-    "ledger_no": 8,
+    "ledger_no": 10,
     "withheld_reason": null,
     "class": "user formal problem",
     "certificate_level": "computer-assisted",
     "certificate_tex": "Explicit 21-vector Gram matrix and interval-separated ratio $>1$.",
     "theorem_label": "thm:mixed",
+    "provenance": {
+      "source_tex": "TODO: where the statement was posed (session, note, talk)",
+      "url": null,
+      "retrieved": null,
+      "fidelity": "TODO: verbatim or paraphrase",
+      "statement_tex": "TODO: paste the original formal statement exactly as posed"
+    },
     "credits": {
       "posed_by": "S.~Sra",
       "found_by": {
@@ -228,12 +356,19 @@
     "case": "logdet-loewner",
     "title": "Loewner monotonicity of alternating log-determinants",
     "status": "refuted",
-    "ledger_no": 9,
+    "ledger_no": 11,
     "withheld_reason": null,
     "class": "user formal problem",
     "certificate_level": "exact",
     "certificate_tex": "Rational $3\\times3$ matrices and an exact negative quadratic form.",
     "theorem_label": "thm:logdet",
+    "provenance": {
+      "source_tex": "TODO: where the statement was posed (session, note, talk)",
+      "url": null,
+      "retrieved": null,
+      "fidelity": "TODO: verbatim or paraphrase",
+      "statement_tex": "TODO: paste the original formal statement exactly as posed"
+    },
     "credits": {
       "posed_by": "S.~Sra",
       "found_by": {
@@ -251,35 +386,6 @@
     }
   },
   {
-    "result_id": "aim-problem-36",
-    "case": "aim-problem-36",
-    "title": "AIM Problem 36: stable Schur positivity",
-    "status": "withheld",
-    "ledger_no": null,
-    "withheld_reason": "No valid stable negative-Schur witness recovered; see audit_notes.md and the standalone paper.tex for the exact det-pencil certificate that motivated the attempt.",
-    "class": "external formal problem",
-    "certificate_level": "exact",
-    "certificate_tex": "Exact det-pencil Schur expansion with negative coefficient $-2972$ at $s_{(1^5)}$ (stability of the admitted form not established).",
-    "theorem_label": null,
-    "credits": {
-      "posed_by": "Borcea and Br\\\"and\\'en \\cite{AIMStableProblems}",
-      "found_by": {
-        "model": "TODO",
-        "date": "TODO"
-      },
-      "formalized_by": "S.~Sra",
-      "audited_by": "S.~Sra",
-      "contributed_by": "S.~Sra"
-    },
-    "verify": {
-      "python": "verify.py",
-      "sage": [],
-      "requires": [
-        "sympy"
-      ]
-    }
-  },
-  {
     "result_id": "lorentzian-jensen",
     "case": "lorentzian-jensen",
     "title": "Lorentzian Jensen-Bregman metric principle",
@@ -290,6 +396,13 @@
     "certificate_level": "exact",
     "certificate_tex": "Exact rational lower bound for a triangle-inequality violation of the Jensen--Bregman log-volume distance.",
     "theorem_label": null,
+    "provenance": {
+      "source_tex": "TODO: where the statement was posed (session, note, talk)",
+      "url": null,
+      "retrieved": null,
+      "fidelity": "TODO: verbatim or paraphrase",
+      "statement_tex": "TODO: paste the original formal statement exactly as posed"
+    },
     "credits": {
       "posed_by": "S.~Sra",
       "found_by": {

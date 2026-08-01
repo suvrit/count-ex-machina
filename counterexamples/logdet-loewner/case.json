@@ -3,7 +3,7 @@
   "title": "Loewner monotonicity of alternating log-determinants",
   "title_tex": "Loewner monotonicity of alternating log-determinants",
   "status": "refuted",
-  "order": 8,
+  "order": 9,
   "dossier": "dossier.tex",
   "bib_keys": [],
   "results": [
@@ -13,7 +13,14 @@
       "class": "user formal problem",
       "certificate_level": "exact",
       "certificate_tex": "Rational $3\\times3$ matrices and an exact negative quadratic form.",
-      "theorem_label": "thm:logdet"
+      "theorem_label": "thm:logdet",
+      "provenance": {
+        "source_tex": "TODO: where the statement was posed (session, note, talk)",
+        "url": null,
+        "retrieved": null,
+        "fidelity": "TODO: verbatim or paraphrase",
+        "statement_tex": "TODO: paste the original formal statement exactly as posed"
+      }
     }
   ],
   "credits": {

@@ -1,0 +1,110 @@
+Problem 36 of the AIM list \cite{AIMStableProblems} asks whether a symmetric, homogeneous, real-stable polynomial of degree $d\le n$ whose coefficients in the ordinary monomial basis are nonnegative must also have nonnegative coefficients in the Schur basis.  The answer is no already at $d=n=5$.  Let
+\begingroup
+\scriptsize
+\[
+J_1=
+\begin{pmatrix}
+38&19&19&2&36\\
+19&38&2&19&36\\
+19&2&38&19&36\\
+2&19&19&38&36\\
+36&36&36&36&72
+\end{pmatrix},\quad
+J_2=
+\begin{pmatrix}
+38&19&19&17&21\\
+19&38&17&19&21\\
+19&17&38&34&36\\
+17&19&34&38&36\\
+21&21&36&36&42
+\end{pmatrix},\quad
+J_3=
+\begin{pmatrix}
+38&34&19&17&36\\
+34&38&17&19&36\\
+19&17&38&19&21\\
+17&19&19&38&21\\
+36&36&21&21&42
+\end{pmatrix},
+\]
+\[
+J_4=
+\begin{pmatrix}
+38&4&19&2&21\\
+4&8&2&4&6\\
+19&2&38&4&21\\
+2&4&4&8&6\\
+21&6&21&6&42
+\end{pmatrix},\qquad
+J_5=
+\begin{pmatrix}
+8&4&4&2&6\\
+4&38&2&19&21\\
+4&2&8&4&6\\
+2&19&4&38&21\\
+6&21&6&21&42
+\end{pmatrix},
+\]
+\endgroup
+and set
+\begin{equation}\label{eq:aim36-q}
+q(x_1,\ldots,x_5)=\frac1{648}\det\left(\sum_{i=1}^5x_iJ_i\right).
+\end{equation}
+
+\begin{theorem}[\statusfalse: stable Schur positivity, AIM Problem 36]\label{thm:aim36}
+The polynomial \eqref{eq:aim36-q} is symmetric, homogeneous of degree five in five variables, real stable, and all $126$ of its ordinary monomial coefficients are strictly positive, yet
+\[
+[s_{(1^5)}]\,q=-2972<0.
+\]
+\end{theorem}
+\begin{proof}
+The leading principal minors of $J_i$ are
+\[
+\begin{array}{c|rrrrr}
+ &\Delta_1&\Delta_2&\Delta_3&\Delta_4&\Delta_5\\ \hline
+J_1&38&1083&28728&202176&1119744\\
+J_2&38&1083&28728&202176&1119744\\
+J_3&38&288&8208&202176&1119744\\
+J_4&38&288&8208&46656&1119744\\
+J_5&8&288&1728&46656&1119744,
+\end{array}
+\]
+all positive, so Sylvester's criterion gives $J_i\succ0$.  If $z_1,\ldots,z_5$ lie in the open upper half-plane and $(\sum_iz_iJ_i)v=0$ for some $v\ne0$, then
+\[
+0=\operatorname{Im}\left\langle v,\left(\textstyle\sum_iz_iJ_i\right)v\right\rangle=\sum_i\operatorname{Im}(z_i)\langle v,J_iv\rangle>0,
+\]
+a contradiction; hence $q$ is real stable, and homogeneity of degree five is immediate.  Exact expansion of the determinant gives
+\begin{align*}
+q={}&1728m_{(5)}+19440m_{(4,1)}+66555m_{(3,2)}+140910m_{(3,1,1)}\\
+&+250440m_{(2,2,1)}+547405m_{(2,1,1,1)}+1182860m_{(1^5)},
+\end{align*}
+which exhibits both the $S_5$-symmetry and the strict positivity of every monomial coefficient.  Inverting the Kostka matrix over $\mathbb Z$ in the partition order $(5),(4,1),(3,2),(3,1,1),(2,2,1),(2,1,1,1),(1^5)$ yields
+\begin{align*}
+q={}&1728s_{(5)}+17712s_{(4,1)}+47115s_{(3,2)}+56643s_{(3,1,1)}\\
+&+62415s_{(2,2,1)}+56437s_{(2,1,1,1)}-2972s_{(1^5)}.
+\end{align*}
+The last coefficient alone follows from the single integer identity
+\begin{align*}
+[s_{(1^5)}]q={}&1728-2(19440)-2(66555)+3(140910)\\
+&+3(250440)-4(547405)+1182860=-2972.
+\end{align*}
+The source package recomputes the Schur expansion a second, independent way, by the bialternant formula, and every step uses rational arithmetic only.
+\end{proof}
+
+\begin{remark}[Origin of the pencil]
+The matrices are not a numerical accident.  Let $V=\ker B\cong S^{(3,2)}$, where $B$ maps the permutation module on $2$-subsets of $[5]$ to $\mathbb R^5$ by $e_{ab}\mapsto e_a+e_b$, let $P_i$ be the rank-three projection attached to the point stabilizer of $i$, and let $G$ be the Gram matrix of the chosen basis of $V$.  Then $J_i=2G(I+5P_i)$, and the whole one-parameter family $\det(\sum_ix_i(I+tP_i))$ has a closed Schur expansion whose $s_{(1^5)}$ coefficient turns negative for $t$ large; $t=5$ clears denominators.  The standalone write-up \path{counterexamples/aim-problem-36/paper.tex} develops this construction in full.
+\end{remark}
+
+\begin{theorem}[\statusfalse: lower endpoint, AIM Problem 37]\label{thm:aim37}
+The polynomial \eqref{eq:aim36-q} satisfies the hypotheses of Problem 37 but violates its lower endpoint inequality
+\[
+a_\lambda\ge f^\lambda a_{(d)}.
+\]
+\end{theorem}
+\begin{proof}
+Take $\lambda=(1^5)$, so that $f^{(1^5)}=1$.  The inequality would require $a_{(1^5)}\ge a_{(5)}$, that is, $-2972\ge1728$.
+\end{proof}
+
+\begin{remark}[Relation to Problem 38]
+The same sign obstruction refutes Problem 38 as well: at $\lambda=(5)$ the upper endpoint would require $1728\le-2972$.  That refutation is not carried here, because Theorem~\ref{thm:pot} refutes Problem 38 by a Schur-\emph{positive} polynomial, which is the stronger statement.
+\end{remark}

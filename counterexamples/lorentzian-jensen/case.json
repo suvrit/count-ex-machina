@@ -12,7 +12,14 @@
       "class": "user formal problem",
       "certificate_level": "exact",
       "certificate_tex": "Exact rational lower bound for a triangle-inequality violation of the Jensen--Bregman log-volume distance.",
-      "theorem_label": null
+      "theorem_label": null,
+      "provenance": {
+        "source_tex": "TODO: where the statement was posed (session, note, talk)",
+        "url": null,
+        "retrieved": null,
+        "fidelity": "TODO: verbatim or paraphrase",
+        "statement_tex": "TODO: paste the original formal statement exactly as posed"
+      }
     }
   ],
   "credits": {

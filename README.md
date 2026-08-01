@@ -39,14 +39,15 @@ document to `tex/main.tex`.
 |---|---|---|---|---|---|
 | 1 | [aim-problem-35](counterexamples/stable-schur/) | refuted | external formal problem | exact | TODO (TODO) |
 | 2 | [aim-problem-38](counterexamples/stable-schur/) | refuted | external formal problem | exact | TODO (TODO) |
-| 3 | [subgroup-johnson](counterexamples/subgroup-johnson/) | refuted | user formal problem | exact | TODO (TODO) |
-| 4 | [macdonald-schur-convexity](counterexamples/macdonald-schur-convexity/) | refuted | published theorem | exact | TODO (TODO) |
-| 5 | [theta-derivative-log-concavity](counterexamples/theta-derivative-log-concavity/) | refuted | external conjecture | computer-assisted | TODO (TODO) |
-| 6 | [dpp-feasible-step](counterexamples/dpp-feasible-step/) | refuted | published conjecture | exact | TODO (TODO) |
-| 7 | [variance-only-matrix-discrepancy](counterexamples/variance-only-matrix-discrepancy/) | refuted | user formal problem | exact | TODO (TODO) |
-| 8 | [rank-two-mixed-norm](counterexamples/rank-two-mixed-norm/) | refuted | user formal problem | computer-assisted | TODO (TODO) |
-| 9 | [logdet-loewner](counterexamples/logdet-loewner/) | refuted | user formal problem | exact | TODO (TODO) |
-| — | [aim-problem-36](counterexamples/aim-problem-36/) | withheld | external formal problem | exact | TODO (TODO) |
+| 3 | [aim-problem-36](counterexamples/aim-problem-36/) | refuted | external formal problem | exact | TODO (TODO) |
+| 4 | [aim-problem-37](counterexamples/aim-problem-36/) | refuted | external formal problem | exact | TODO (TODO) |
+| 5 | [subgroup-johnson](counterexamples/subgroup-johnson/) | refuted | user formal problem | exact | TODO (TODO) |
+| 6 | [macdonald-schur-convexity](counterexamples/macdonald-schur-convexity/) | refuted | published theorem | exact | TODO (TODO) |
+| 7 | [theta-derivative-log-concavity](counterexamples/theta-derivative-log-concavity/) | refuted | external conjecture | computer-assisted | TODO (TODO) |
+| 8 | [dpp-feasible-step](counterexamples/dpp-feasible-step/) | refuted | published conjecture | exact | TODO (TODO) |
+| 9 | [variance-only-matrix-discrepancy](counterexamples/variance-only-matrix-discrepancy/) | refuted | user formal problem | exact | TODO (TODO) |
+| 10 | [rank-two-mixed-norm](counterexamples/rank-two-mixed-norm/) | refuted | user formal problem | computer-assisted | TODO (TODO) |
+| 11 | [logdet-loewner](counterexamples/logdet-loewner/) | refuted | user formal problem | exact | TODO (TODO) |
 | — | [lorentzian-jensen](counterexamples/lorentzian-jensen/) | withheld | user formal problem | exact | TODO (TODO) |
 <!-- END CASE TABLE -->
 
@@ -70,16 +71,25 @@ discipline is:
 2. **`case.json`** — the single source of truth; everything else is generated
    from it:
    - `id` must equal the directory name; `title` / `title_tex` become the
-     dossier subsection heading;
+     case's own section heading in the paper;
    - `status`: `"refuted"` (goes into the ledger) or `"withheld"` (documented
      but excluded; needs `withheld_reason` and a standalone `paper.tex`
      instead of a dossier);
-   - `order`: next free integer (append-only — existing ledger numbers and
-     theorem numbering never shift);
+   - `order`: next free integer, unless the case joins a group (below);
+   - `group` (optional): cases sharing a group key are emitted as
+     subsections of one common section — currently only `"aim"`, the
+     Borcea–Brändén AIM problems — and their `order` values must be
+     consecutive, so adding one renumbers the cases after it;
    - one `results` entry per refuted statement (usually one; `stable-schur`
      has two): `statement_tex` and `certificate_tex` are the ledger columns,
      `class` and `certificate_level` the classification, `theorem_label` must
      match the `\label` in the dossier;
+   - `provenance` (per result): the statement **as originally posed**, quoted
+     ahead of the dossier in the paper — `statement_tex` (the quote),
+     `source_tex` (who posed it and where, with `\cite{...}`), `url` and
+     `retrieved` for the copy consulted, and `fidelity`: `"verbatim"` only if
+     transcribed from the source's own text, otherwise `"paraphrase"`, which
+     the paper labels as such;
    - `credits`: `posed_by` (use `\cite{...}` for external sources),
      `found_by` (AI model + session date `YYYY-MM`), `formalized_by`,
      `audited_by`, `contributed_by`;
@@ -88,8 +98,8 @@ discipline is:
 3. **`.bib` entries** — add cited works to `tex/references.bib` and list the
    keys in `bib_keys` (the build fails on unknown keys).
 
-4. **`dossier.tex`** — body only; do **not** write `\subsection` or the credit
-   line (both are generated). Follow the house structure: prose stating the
+4. **`dossier.tex`** — body only; do **not** write the `\section` /
+   `\subsection` heading or the credit line (both are generated). Follow the house structure: prose stating the
    original conjecture with `\cite`, a `theorem` environment whose bracketed
    title carries `\statusfalse` and whose `\label` equals `theorem_label`, a
    proof with the explicit witness, optionally `\begin{remark}[Scope]`.

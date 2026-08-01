@@ -3,7 +3,7 @@
   "title": "A rank-two completely-positive mixed-norm inequality",
   "title_tex": "A rank-two completely-positive mixed-norm inequality",
   "status": "refuted",
-  "order": 7,
+  "order": 8,
   "dossier": "dossier.tex",
   "bib_keys": [],
   "results": [
@@ -13,7 +13,14 @@
       "class": "user formal problem",
       "certificate_level": "computer-assisted",
       "certificate_tex": "Explicit 21-vector Gram matrix and interval-separated ratio $>1$.",
-      "theorem_label": "thm:mixed"
+      "theorem_label": "thm:mixed",
+      "provenance": {
+        "source_tex": "TODO: where the statement was posed (session, note, talk)",
+        "url": null,
+        "retrieved": null,
+        "fidelity": "TODO: verbatim or paraphrase",
+        "statement_tex": "TODO: paste the original formal statement exactly as posed"
+      }
     }
   ],
   "credits": {

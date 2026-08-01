@@ -13,7 +13,14 @@
       "class": "user formal problem",
       "certificate_level": "exact",
       "certificate_tex": "TODO one-line certificate description (LaTeX)",
-      "theorem_label": "thm:TODO"
+      "theorem_label": "thm:TODO",
+      "provenance": {
+        "source_tex": "TODO who posed it and where (LaTeX; use \\cite{...})",
+        "url": null,
+        "retrieved": null,
+        "fidelity": "TODO verbatim or paraphrase",
+        "statement_tex": "TODO the original formal statement, exactly as posed"
+      }
     }
   ],
   "credits": {

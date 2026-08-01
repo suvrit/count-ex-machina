@@ -1,5 +1,48 @@
 \documentclass[11pt]{amsart}
-\input{preamble}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,tabularx,longtable,array}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{cleveref}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{url}
+\hypersetup{colorlinks=true,linkcolor=blue!45!black,citecolor=blue!45!black,urlcolor=red!65!black}
+\setlist{nosep,leftmargin=*}
+\newcommand{\statusproved}{\textbf{[PROVED]}}
+\newcommand{\statusfalse}{\textbf{[FALSE]}}
+\newcommand{\statusnumeric}{\textbf{[NUMERICALLY VETTED]}}
+\newcommand{\statusconditional}{\textbf{[CONDITIONAL]}}
+\newcommand{\statusspeculative}{\textbf{[SPECULATIVE]}}
+% Attribution line under each dossier heading; the argument is generated from
+% the case.json credits block by tools/build.py.
+\newcommand{\dossiercredits}[1]{\par\noindent{\small\itshape #1}\par\medskip}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\per}{\operatorname{per}}
+\newcommand{\Imm}{\operatorname{Imm}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\Vol}{\operatorname{Vol}}
+\newcommand{\CE}{\mathsf{CE}}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{audit}[theorem]{Audit finding}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\lstset{basicstyle=\ttfamily\small,breaklines=true,frame=single,columns=fullflexible}
+
 
 \title{GPT: The Counterexample Machine}
 \author{Suvrit Sra}

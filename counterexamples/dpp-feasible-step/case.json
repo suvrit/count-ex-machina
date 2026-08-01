@@ -3,7 +3,7 @@
   "title": "Feasible Picard steps for DPP likelihood",
   "title_tex": "Feasible Picard steps for DPP likelihood",
   "status": "refuted",
-  "order": 5,
+  "order": 6,
   "dossier": "dossier.tex",
   "bib_keys": [
     "MarietSra2015"
@@ -15,7 +15,14 @@
       "class": "published conjecture",
       "certificate_level": "exact",
       "certificate_tex": "Exact rational $2\\times2$ feasible update with lower likelihood.",
-      "theorem_label": "thm:dpp"
+      "theorem_label": "thm:dpp",
+      "provenance": {
+        "source_tex": "Z.~Mariet and S.~Sra \\cite{MarietSra2015}, \\S2 (unnumbered)",
+        "url": "https://proceedings.mlr.press/v37/mariet15.pdf",
+        "retrieved": "2026-08-01",
+        "fidelity": "verbatim",
+        "statement_tex": "Above we showed that for $a=1$ ascent is guaranteed.  Empirically, $a>1$ often works well; Prop.~A.1 presents an easily computable upper bound on feasible $a$.  We conjecture that for all feasible values $a\\ge1$, iteration (2.5) is guaranteed to increase the log-likelihood.\n\nThe iteration carrying the step size is $L_{k+1}=L_k+aL_k\\Delta_kL_k$, displayed as (2.7) in the source; feasibility is the bound $a\\le1/(1-\\gamma)$ of Prop.~A.1."
+      }
     }
   ],
   "credits": {

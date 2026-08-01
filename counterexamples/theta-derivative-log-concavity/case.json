@@ -3,7 +3,7 @@
   "title": "Derivatives of the Jacobi-theta kernel",
   "title_tex": "Derivatives of the Jacobi-theta kernel",
   "status": "refuted",
-  "order": 4,
+  "order": 5,
   "dossier": "dossier.tex",
   "bib_keys": [
     "Csordas2014"
@@ -15,7 +15,14 @@
       "class": "external conjecture",
       "certificate_level": "computer-assisted",
       "certificate_tex": "Rigorous interval evaluation of $J_9(1/50)<0$.",
-      "theorem_label": "thm:theta"
+      "theorem_label": "thm:theta",
+      "provenance": {
+        "source_tex": "G.~Csordas \\cite{Csordas2014}, Open Problem 4.13, restating Coffey--Csordas Conjecture 2.5",
+        "url": "https://arxiv.org/abs/1309.0055v2",
+        "retrieved": "2026-08-01",
+        "fidelity": "verbatim",
+        "statement_tex": "([5, Conjecture 2.5])  Show that the derivatives of the Jacobi theta function, $\\Phi(t)$, are (strictly) log-concave on $\\R$; that is, for each $n\\in\\mathbb N$,\n\\[J_n(t):=(\\Phi^{(n)}(t))^2-\\Phi^{(n-1)}(t)\\Phi^{(n+1)}(t)>0\\quad\\text{for }t\\in\\R.\\]\nHere, by (4.2) of the same paper, the Jacobi theta function (without the usual factor $4$) is $\\Phi(t):=\\sum_{n\\ge1}\\pi n^2\\left(2\\pi n^2e^{4t}-3\\right)\\exp\\left(5t-\\pi n^2e^{4t}\\right)$."
+      }
     }
   ],
   "credits": {
