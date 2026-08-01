@@ -1,8 +1,11 @@
 # Archive audit notes
 
-Included: thirteen formal disproofs in ten dossiers.
+Included: twelve formal disproofs in nine dossiers.
 
 Withheld or withdrawn:
+- Subgroup Johnson stability: removed from the paper at the author's request.  This is
+  not a defect of the certificate — the exact d=3, H=C_3 witness stands and verify.py
+  passes; the case and its dossier remain in the archive.
 - Foulkes: the recovered negative plethysm used the reversed parameter range.
 - The planar-zonotope route to the log-volume midpoint-gap claim: regeneration of the
   earlier search produced no violation, and the claimed data file was absent.  The claim

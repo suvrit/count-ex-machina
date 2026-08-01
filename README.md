@@ -63,15 +63,15 @@ and ledger number from the table below — for example, `aim-problem-36`
 | 2 | [aim-problem-38](counterexamples/stable-schur/) | refuted | external formal problem | exact | TODO (TODO) |
 | 3 | [aim-problem-36](counterexamples/aim-problem-36/) | refuted | external formal problem | exact | TODO (TODO) |
 | 4 | [aim-problem-37](counterexamples/aim-problem-36/) | refuted | external formal problem | exact | TODO (TODO) |
-| 5 | [subgroup-johnson](counterexamples/subgroup-johnson/) | refuted | user formal problem | exact | TODO (TODO) |
-| 6 | [macdonald-schur-convexity](counterexamples/macdonald-schur-convexity/) | refuted | published theorem | exact | TODO (TODO) |
-| 7 | [theta-derivative-log-concavity](counterexamples/theta-derivative-log-concavity/) | refuted | external conjecture | computer-assisted | TODO (TODO) |
-| 8 | [dpp-feasible-step](counterexamples/dpp-feasible-step/) | refuted | published conjecture | exact | TODO (TODO) |
-| 9 | [variance-only-matrix-discrepancy](counterexamples/variance-only-matrix-discrepancy/) | refuted | user formal problem | exact | TODO (TODO) |
-| 10 | [rank-two-mixed-norm](counterexamples/rank-two-mixed-norm/) | refuted | user formal problem | computer-assisted | TODO (TODO) |
-| 11 | [logdet-loewner](counterexamples/logdet-loewner/) | refuted | user formal problem | exact | TODO (TODO) |
-| 12 | [lorentzian-jensen](counterexamples/lorentzian-jensen/) | refuted | user formal problem | exact | TODO (TODO) |
-| 13 | [log-volume-distance](counterexamples/lorentzian-jensen/) | refuted | user formal problem | exact | TODO (TODO) |
+| 5 | [macdonald-schur-convexity](counterexamples/macdonald-schur-convexity/) | refuted | published theorem | exact | TODO (TODO) |
+| 6 | [theta-derivative-log-concavity](counterexamples/theta-derivative-log-concavity/) | refuted | external conjecture | computer-assisted | TODO (TODO) |
+| 7 | [dpp-feasible-step](counterexamples/dpp-feasible-step/) | refuted | published conjecture | exact | TODO (TODO) |
+| 8 | [variance-only-matrix-discrepancy](counterexamples/variance-only-matrix-discrepancy/) | refuted | user formal problem | exact | TODO (TODO) |
+| 9 | [rank-two-mixed-norm](counterexamples/rank-two-mixed-norm/) | refuted | user formal problem | computer-assisted | TODO (TODO) |
+| 10 | [logdet-loewner](counterexamples/logdet-loewner/) | refuted | user formal problem | exact | TODO (TODO) |
+| 11 | [lorentzian-jensen](counterexamples/lorentzian-jensen/) | refuted | user formal problem | exact | TODO (TODO) |
+| 12 | [log-volume-distance](counterexamples/lorentzian-jensen/) | refuted | user formal problem | exact | TODO (TODO) |
+| — | [subgroup-johnson](counterexamples/subgroup-johnson/) | withheld | user formal problem | exact | TODO (TODO) |
 <!-- END CASE TABLE -->
 
 Withheld cases are documented but excluded from the paper's admitted ledger;

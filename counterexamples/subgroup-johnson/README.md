@@ -1,6 +1,6 @@
 # Subgroup Johnson stability
 
-**Status:** refuted (ledger row 3 of the main paper)
+**Status:** withheld — removed from the paper at the author's request; the exact certificate stands and `verify.py` passes.
 **Certificate level:** exact
 
 ## Statement

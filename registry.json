@@ -140,45 +140,11 @@
     }
   },
   {
-    "result_id": "subgroup-johnson",
-    "case": "subgroup-johnson",
-    "title": "Subgroup Johnson stability",
-    "status": "refuted",
-    "ledger_no": 5,
-    "withheld_reason": null,
-    "class": "user formal problem",
-    "certificate_level": "exact",
-    "certificate_tex": "Minimal $d=3$, $H=C_3$ upper-half-plane zero.",
-    "theorem_label": "thm:subgroup",
-    "provenance": {
-      "source_tex": "TODO: where the statement was posed (session, note, talk)",
-      "url": null,
-      "retrieved": null,
-      "fidelity": "TODO: verbatim or paraphrase",
-      "statement_tex": "TODO: paste the original formal statement exactly as posed"
-    },
-    "credits": {
-      "posed_by": "S.~Sra",
-      "found_by": {
-        "model": "TODO",
-        "date": "TODO"
-      },
-      "formalized_by": "S.~Sra",
-      "audited_by": "S.~Sra",
-      "contributed_by": "S.~Sra"
-    },
-    "verify": {
-      "python": "verify.py",
-      "sage": [],
-      "requires": []
-    }
-  },
-  {
     "result_id": "macdonald-schur-convexity",
     "case": "macdonald-schur-convexity",
     "title": "Macdonald lattice Schur-convexity",
     "status": "refuted",
-    "ledger_no": 6,
+    "ledger_no": 5,
     "withheld_reason": null,
     "class": "published theorem",
     "certificate_level": "exact",
@@ -212,7 +178,7 @@
     "case": "theta-derivative-log-concavity",
     "title": "Derivatives of the Jacobi-theta kernel",
     "status": "refuted",
-    "ledger_no": 7,
+    "ledger_no": 6,
     "withheld_reason": null,
     "class": "external conjecture",
     "certificate_level": "computer-assisted",
@@ -250,7 +216,7 @@
     "case": "dpp-feasible-step",
     "title": "Feasible Picard steps for DPP likelihood",
     "status": "refuted",
-    "ledger_no": 8,
+    "ledger_no": 7,
     "withheld_reason": null,
     "class": "published conjecture",
     "certificate_level": "exact",
@@ -284,7 +250,7 @@
     "case": "variance-only-matrix-discrepancy",
     "title": "Variance-only discrepancy",
     "status": "refuted",
-    "ledger_no": 9,
+    "ledger_no": 8,
     "withheld_reason": null,
     "class": "user formal problem",
     "certificate_level": "exact",
@@ -318,7 +284,7 @@
     "case": "rank-two-mixed-norm",
     "title": "A rank-two completely-positive mixed-norm inequality",
     "status": "refuted",
-    "ledger_no": 10,
+    "ledger_no": 9,
     "withheld_reason": null,
     "class": "user formal problem",
     "certificate_level": "computer-assisted",
@@ -356,7 +322,7 @@
     "case": "logdet-loewner",
     "title": "Loewner monotonicity of alternating log-determinants",
     "status": "refuted",
-    "ledger_no": 11,
+    "ledger_no": 10,
     "withheld_reason": null,
     "class": "user formal problem",
     "certificate_level": "exact",
@@ -390,7 +356,7 @@
     "case": "lorentzian-jensen",
     "title": "Lorentzian Jensen-Bregman metric principle",
     "status": "refuted",
-    "ledger_no": 12,
+    "ledger_no": 11,
     "withheld_reason": null,
     "class": "user formal problem",
     "certificate_level": "exact",
@@ -424,7 +390,7 @@
     "case": "lorentzian-jensen",
     "title": "Lorentzian Jensen-Bregman metric principle",
     "status": "refuted",
-    "ledger_no": 13,
+    "ledger_no": 12,
     "withheld_reason": null,
     "class": "user formal problem",
     "certificate_level": "exact",
@@ -436,6 +402,40 @@
       "retrieved": null,
       "fidelity": "paraphrase",
       "statement_tex": "The log-volume midpoint gap is the square of a distance on convex bodies: that is,\n\\[d_{\\Vol}(K,L):=\\left[\\log\\Vol\\!\\left(\\frac{K+L}{2}\\right)-\\tfrac12\\log\\Vol(K)-\\tfrac12\\log\\Vol(L)\\right]^{1/2}\\]\nis a semimetric on convex bodies."
+    },
+    "credits": {
+      "posed_by": "S.~Sra",
+      "found_by": {
+        "model": "TODO",
+        "date": "TODO"
+      },
+      "formalized_by": "S.~Sra",
+      "audited_by": "S.~Sra",
+      "contributed_by": "S.~Sra"
+    },
+    "verify": {
+      "python": "verify.py",
+      "sage": [],
+      "requires": []
+    }
+  },
+  {
+    "result_id": "subgroup-johnson",
+    "case": "subgroup-johnson",
+    "title": "Subgroup Johnson stability",
+    "status": "withheld",
+    "ledger_no": null,
+    "withheld_reason": "Removed from the paper at the author's request; not a defect of the certificate. The exact d=3, H=C_3 witness stands and verify.py passes, so the case remains in the archive with its dossier ready should it be admitted again.",
+    "class": "user formal problem",
+    "certificate_level": "exact",
+    "certificate_tex": "Minimal $d=3$, $H=C_3$ upper-half-plane zero.",
+    "theorem_label": null,
+    "provenance": {
+      "source_tex": "TODO: where the statement was posed (session, note, talk)",
+      "url": null,
+      "retrieved": null,
+      "fidelity": "TODO: verbatim or paraphrase",
+      "statement_tex": "TODO: paste the original formal statement exactly as posed"
     },
     "credits": {
       "posed_by": "S.~Sra",

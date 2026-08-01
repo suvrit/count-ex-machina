@@ -2,8 +2,7 @@
   "id": "subgroup-johnson",
   "title": "Subgroup Johnson stability",
   "title_tex": "Subgroup Johnson stability",
-  "status": "refuted",
-  "order": 3,
+  "status": "withheld",
   "dossier": "dossier.tex",
   "bib_keys": [],
   "results": [
@@ -13,7 +12,7 @@
       "class": "user formal problem",
       "certificate_level": "exact",
       "certificate_tex": "Minimal $d=3$, $H=C_3$ upper-half-plane zero.",
-      "theorem_label": "thm:subgroup",
+      "theorem_label": null,
       "provenance": {
         "source_tex": "TODO: where the statement was posed (session, note, talk)",
         "url": null,
@@ -43,5 +42,6 @@
       "file": "artifacts/certificate.json",
       "description": "Exact vanishing certificate for the $C_3$ upper-half-plane zero."
     }
-  ]
+  ],
+  "withheld_reason": "Removed from the paper at the author's request; not a defect of the certificate. The exact d=3, H=C_3 witness stands and verify.py passes, so the case remains in the archive with its dossier ready should it be admitted again."
 }
