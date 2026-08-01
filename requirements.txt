@@ -1,2 +1,6 @@
-mpmath>=1.3
-sympy>=1.12
+# Pinned exactly, not floored.  This archive's claim is that its certificates
+# recompute; a dependency free to drift is a certificate free to drift.  These
+# are the versions every admitted case is verified against, and the versions CI
+# installs with --no-deps.  Verified on Python 3.14.2.
+mpmath==1.3.0
+sympy==1.14.0

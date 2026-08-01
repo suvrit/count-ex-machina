@@ -1,0 +1,38 @@
+name: verify
+
+# The archive's central claim is that every admitted counterexample is
+# independently checkable.  This workflow is that claim, enforced: metadata and
+# generated files must be current, every certificate must recompute, and the
+# recomputation must be bit-for-bit identical to what is committed.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+
+      # --no-deps keeps the pin strict: only the exact versions in
+      # requirements.txt are installed, with no transitive resolution.
+      - name: Install pinned dependencies
+        run: python -m pip install --no-deps -r requirements.txt
+
+      - name: Validate metadata and confirm generated files are current
+        run: python tools/build.py --check
+
+      # Sage cross-checks are skipped here by design -- `sage` is absent on the
+      # runner, and every case must stand on its pure-Python certificate alone.
+      - name: Verify every counterexample
+        run: python tools/verify_all.py
+
+      - name: Confirm certificates are reproducible bit-for-bit
+        run: git diff --exit-code

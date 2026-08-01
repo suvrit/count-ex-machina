@@ -1,0 +1,75 @@
+name: Submit a counterexample
+description: You have a witness that refutes a publicly posed statement.
+title: "[case] "
+labels: ["counterexample"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this if you have a counterexample but are not yet ready to open a
+        pull request. If the case is already formalized, open a PR instead --
+        the template there is the full checklist.
+
+        A witness found by a model and never certified is still welcome here:
+        turning numerical evidence into an exact certificate is the part this
+        archive is for, and is often the part that needs help.
+
+  - type: textarea
+    id: statement
+    attributes:
+      label: The statement being refuted
+      description: >-
+        Quote it as originally posed, with its hypotheses and quantifiers
+        intact. Do not paraphrase into a stronger claim.
+    validations:
+      required: true
+
+  - type: input
+    id: source
+    attributes:
+      label: Where it was posed
+      description: >-
+        Paper, problem list, talk, or a formal statement posed in advance --
+        with a URL. The statement must have been posed by someone other than
+        whoever found the counterexample.
+    validations:
+      required: true
+
+  - type: textarea
+    id: witness
+    attributes:
+      label: The witness
+      description: >-
+        The explicit object, exactly. Rationals or integers where possible; if
+        the witness is analytic, say what precision you have.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: certificate
+    attributes:
+      label: Certificate status
+      options:
+        - Exact -- verified end to end in exact arithmetic
+        - Computer-assisted -- rigorous interval arithmetic with error control
+        - Numerical only -- needs certification (help wanted)
+    validations:
+      required: true
+
+  - type: input
+    id: found_by
+    attributes:
+      label: Found by
+      description: "Which AI model, and the session date (YYYY-MM). Attribution here is structural, not decorative."
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: drift
+    attributes:
+      label: Quantifier check
+      options:
+        - label: >-
+            I have checked that this refutes the statement as posed, and not a
+            strengthened version of it.
+          required: true

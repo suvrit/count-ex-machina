@@ -6,6 +6,7 @@
   "order": 0,
   "dossier": "dossier.tex",
   "bib_keys": [],
+  "context_tex": "TODO notation and definitions the quoted statement depends on, so it can be read without the source paper at hand",
   "results": [
     {
       "id": "TODO-globally-unique-result-id",

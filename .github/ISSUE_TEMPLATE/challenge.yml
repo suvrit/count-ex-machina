@@ -1,0 +1,50 @@
+name: Challenge an admitted case
+description: You believe a case already in the archive should not have been admitted.
+title: "[challenge] "
+labels: ["audit"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        These are the most valuable issues this repository can receive. The
+        archive publishes what it withdraws (see `audit_notes.md`), and a
+        successful challenge is credited like a result.
+
+  - type: input
+    id: case
+    attributes:
+      label: Case id
+      description: "The directory name, e.g. `stable-schur`."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: ground
+    attributes:
+      label: Grounds
+      options:
+        - Provenance -- the statement was not publicly posed, or not by a third party
+        - Quantifier drift -- what is refuted is a strengthening of the statement
+        - Certificate -- the verification is wrong, incomplete, or rests on floating point
+        - Vacuity -- the witness is arithmetically correct but outside the intended regime
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: argument
+    attributes:
+      label: The argument
+      description: >-
+        Be specific: point at the line of `verify.py`, the hypothesis that was
+        dropped, or the regime the witness escapes to.
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: Reproduction
+      description: "If it is a computational claim, what you ran and what you got."
+    validations:
+      required: false

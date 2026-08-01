@@ -1,8 +1,44 @@
 cff-version: 1.2.0
-message: "If you use this archive, please cite it as below."
+message: >-
+  If you use this archive, please cite the accompanying paper (preferred).  To
+  cite an individual counterexample, give its case id -- for example
+  aim-problem-36 -- which is stable across revisions.  Ledger numbers are
+  presentation order and are not stable.
 title: "count-ex-machina: GPT, the Counterexample Machine"
+abstract: >-
+  An archive of AI-assisted counterexamples to published conjectures and to
+  formally posed problems, admitted only with independently checkable
+  certificates: every case is verified by exact arithmetic or by a rigorous
+  interval computation, never by floating-point evidence alone.
+type: software
 authors:
   - family-names: Sra
     given-names: Suvrit
     affiliation: "TU Munich, Dept. of Mathematics, School of CIT"
+    email: s.sra@tum.de
+license:
+  - Apache-2.0
+  - CC-BY-4.0
+version: 0.1.0
+date-released: "2026-08-01"
 repository-code: "https://github.com/suvrit/count-ex-machina"
+url: "https://github.com/suvrit/count-ex-machina"
+keywords:
+  - AI-assisted mathematics
+  - counterexamples
+  - reproducible mathematics
+  - real stable polynomials
+  - Schur positivity
+  - matrix inequalities
+preferred-citation:
+  type: article
+  title: "count-ex-machina: GPT, the Counterexample Machine"
+  authors:
+    - family-names: Sra
+      given-names: Suvrit
+      affiliation: "TU Munich, Dept. of Mathematics, School of CIT"
+      email: s.sra@tum.de
+  year: 2026
+  notes: >-
+    Preprint; the arXiv identifier is pending.  When it is assigned, add it here
+    and in the BibTeX entry in README.md.

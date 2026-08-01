@@ -26,11 +26,19 @@ inadmissible at either level.
 
 ## Workflow
 
-1. Copy the template: `cp -r counterexamples/_template counterexamples/<your-id>`
-   (kebab-case id; it becomes the directory and registry name).
-2. Fill in `case.json`:
-   - take the next free `order` (run `python tools/build.py` — it enforces
-     uniqueness);
+1. Scaffold the case:
+
+   ```sh
+   make new          # or: python tools/new_case.py
+   ```
+
+   This asks for the id, title, classification, provenance, and credits, then
+   creates `counterexamples/<your-id>/` with the ledger `order`, the
+   `theorem_label`, and every echo of the id already wired up. What is left is
+   the mathematics. (To do it by hand instead: `cp -r counterexamples/_template
+   counterexamples/<your-id>` and take the next free `order` yourself.)
+
+2. Fill in the rest of `case.json`:
    - one entry in `results` per refuted statement (usually one);
    - quote the statement as originally posed in each result's `provenance`
      (`statement_tex`, `source_tex`, `url`, `retrieved`, and `fidelity` —
@@ -51,10 +59,13 @@ inadmissible at either level.
 5. Regenerate and verify:
 
    ```sh
-   python tools/build.py        # validates case.json, regenerates ledger/registry
-   python tools/verify_all.py   # must end with ALL ... CASES PASS
-   cd tex && latexmk -pdf main  # the paper must compile
+   make regen   # validates case.json, regenerates ledger/dossiers/registry
+   make check   # the pull-request gate: metadata valid + every certificate recomputes
+   make paper   # the paper must compile
    ```
+
+   `make check` runs exactly what CI runs. Run it until it is silent about your
+   case; it names each outstanding TODO one at a time.
 
 6. Commit **including the regenerated files** (`tex/generated/`,
    `registry.json`, `README.md`, your `artifacts/`) and open a pull request.

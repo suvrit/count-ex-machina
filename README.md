@@ -32,6 +32,13 @@ Sage cross-checks (where present) are optional and are skipped when `sage` is
 not installed. Note for Overleaf: import the whole repository and set the main
 document to `tex/main.tex`.
 
+The archive is verified against **Python 3.14.2** with the exact versions
+pinned in `requirements.txt` (mpmath 1.3.0, sympy 1.14.0); the Sage
+cross-checks are verified against **SageMath 10.8**. The pins are exact rather
+than lower bounds on purpose — a dependency free to drift is a certificate free
+to drift. CI installs those pins with `--no-deps` and runs the same checks on
+every push and pull request.
+
 ## Citing
 
 The paper is being submitted to the arXiv; until the identifier is assigned,
@@ -50,9 +57,10 @@ replace `ARXIV-ID` below (and update `CITATION.cff` to match).
 }
 ```
 
-To cite an individual counterexample rather than the paper, give its case id
-and ledger number from the table below — for example, `aim-problem-36`
-(no. 3) — since those are stable across revisions.
+To cite an individual counterexample rather than the paper, give its case id —
+for example, `aim-problem-36`. Case ids are stable across revisions. The ledger
+numbers in the table below are **not**: they are presentation order, and
+admitting a new case renumbers the cases after it.
 
 ## The cases
 
@@ -87,8 +95,10 @@ discipline is:
    and link name):
 
    ```sh
-   cp -r counterexamples/_template counterexamples/<id>
+   make new                     # prompts, then wires order/label/id for you
    ```
+
+   or by hand, `cp -r counterexamples/_template counterexamples/<id>`.
 
 2. **`case.json`** — the single source of truth; everything else is generated
    from it:
@@ -145,9 +155,9 @@ discipline is:
 7. **Regenerate, verify, build**:
 
    ```sh
-   python tools/build.py        # validates case.json, regenerates ledger/dossiers/registry/this table
-   python tools/verify_all.py   # must end with ALL ... CASES PASS
-   cd tex && latexmk -pdf main
+   make regen   # validates case.json, regenerates ledger/dossiers/registry/this table
+   make check   # metadata valid + every certificate recomputes; what CI runs
+   make paper
    ```
 
 8. **Commit everything, including the regenerated files** (`tex/generated/`,
@@ -159,3 +169,14 @@ theorem labels, missing bib keys, and missing files — if it is silent about
 the new case, the metadata is complete. Attribution from `case.json` is
 rendered under the dossier heading in the paper and into `registry.json`
 automatically.
+
+## License
+
+Code — `tools/`, every `verify.py`, and the Sage cross-checks — is licensed
+under the Apache License 2.0 ([LICENSE](LICENSE)). Prose and mathematical
+exposition — `tex/`, the dossiers, the case READMEs, and this file — are
+licensed under CC BY 4.0 ([LICENSE-DOCS](LICENSE-DOCS)).
+
+Contributions are accepted under these same terms; Apache-2.0 §5 governs
+inbound code contributions. Please also read the
+[Code of Conduct](CODE_OF_CONDUCT.md).
