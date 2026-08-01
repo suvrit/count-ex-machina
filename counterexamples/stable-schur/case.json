@@ -13,7 +13,7 @@
   "results": [
     {
       "id": "aim-problem-35",
-      "statement_tex": "Borcea--Br\\\"and\\'en Problem 35: common-matrix mixed-determinant representation",
+      "statement_tex": "Borcea--Br\\\"and\\'en Problem 35: common-matrix mixed-determinant representation \\cite{AIMStableProblems}",
       "class": "external formal problem",
       "certificate_level": "exact",
       "certificate_tex": "Stable degree-five polynomial plus size-five immanant POT obstruction.",
@@ -28,7 +28,7 @@
     },
     {
       "id": "aim-problem-38",
-      "statement_tex": "Borcea--Br\\\"and\\'en Problem 38: Stable Permanent-On-Top",
+      "statement_tex": "Borcea--Br\\\"and\\'en Problem 38: Stable Permanent-On-Top \\cite{AIMStableProblems}",
       "class": "external formal problem",
       "certificate_level": "exact",
       "certificate_tex": "Exact Schur expansion; four violating partitions.",

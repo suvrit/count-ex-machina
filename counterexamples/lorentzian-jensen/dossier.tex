@@ -1,0 +1,64 @@
+Both statements fall to a single witness: a strictly Lorentzian bivariate cubic, carried to convex bodies by Shephard's realization theorem.  Throughout, $\J_G(x,y)=\log G(\frac{x+y}2)-\frac12\log G(x)-\frac12\log G(y)$ is the midpoint Jensen gap of $F=-\log G$, and $d_G=\sqrt{\J_G}$.
+
+\begin{theorem}[\statusfalse: Lorentzian Jensen--Bregman metricity]\label{thm:lorentzian}
+For
+\begin{equation}\label{eq:lorentzian-cubic}
+G(x,y)=y^3+\tfrac{11}5xy^2+\tfrac32x^2y+\tfrac1{10}x^3,\qquad(x,y)\in\R_{>0}^2,
+\end{equation}
+the polynomial $G$ is strictly Lorentzian, yet $d_G=\sqrt{\J_G}$ violates the triangle inequality on $\R_{>0}^2$.
+\end{theorem}
+\begin{proof}
+Writing $G=\sum_{k=0}^3a_kx^ky^{3-k}$ gives $(a_0,a_1,a_2,a_3)=(1,\frac{11}5,\frac32,\frac1{10})$.  By the bivariate criterion \cite[Example~2.3]{BrandenHuh}, strict Lorentzianity is strict log-concavity of $a_k/\binom3k$, and
+\[
+\left(1,\tfrac{11}{15},\tfrac12,\tfrac1{10}\right)
+\text{ satisfies }
+\left(\tfrac{11}{15}\right)^2=\tfrac{121}{225}>\tfrac12,\qquad
+\left(\tfrac12\right)^2=\tfrac14>\tfrac{11}{150}.
+\]
+So $G$ is strictly Lorentzian; in particular $F=-\log G$ is convex, and every Jensen gap below is nonnegative.  Take the rational points
+\begin{equation}\label{eq:lorentzian-points}
+p=(35,2),\qquad q=\left(\tfrac{11}2,\tfrac{23}2\right),\qquad r=\left(\tfrac1{500},15\right).
+\end{equation}
+With $R_{ab}:=G((a+b)/2)^2/(G(a)G(b))$ and $\J_G(a,b)=\frac12\log R_{ab}$, exact evaluation gives
+\[
+R_{pq}=\frac{609584616081}{344696430080},\quad
+R_{qr}=\frac{1254036986210090216149539001}{1235460453386242764000000000},\quad
+R_{pr}=\frac{6141969899088096806341860001}{2794813396007162280000000000}.
+\]
+Outward-rounded rational enclosures for the three logarithms and their square roots---no floating point---then certify
+\[
+d_G(p,r)-d_G(p,q)-d_G(q,r)>\frac{7156704176613847159228106087505875849130467}{10^{45}}>0,
+\]
+so the triangle inequality fails.
+\end{proof}
+
+\begin{theorem}[\statusfalse: log-volume distance on convex bodies]\label{thm:volume-distance}
+There are full-dimensional convex bodies $K,L\subset\R^3$ and Minkowski combinations $A,B,C$ of them with
+\[
+d_{\Vol}(A,C)>d_{\Vol}(A,B)+d_{\Vol}(B,C).
+\]
+Hence the proposed log-volume midpoint gap is not the square of a semimetric.
+\end{theorem}
+\begin{proof}
+For convex bodies in $\R^3$ the relative Steiner polynomial is $\Vol(xK+yL)=\sum_{i=0}^3\binom3iW_i(K,L)x^{3-i}y^i$.  Put
+\[
+(W_0,W_1,W_2,W_3)=\left(\tfrac1{10},\tfrac12,\tfrac{11}{15},1\right),
+\]
+which satisfies the full set of Shephard inequalities in dimension three:
+\[
+W_1^2=\tfrac14>\tfrac{11}{150}=W_0W_2,\qquad
+W_1W_2=\tfrac{11}{30}>\tfrac1{10}=W_0W_3,\qquad
+W_2^2=\tfrac{121}{225}>\tfrac12=W_1W_3.
+\]
+By Shephard's realization theorem \cite[Theorem~4]{Shephard} these are the mixed volumes of some pair $K,L\subset\R^3$, whose Steiner polynomial is then exactly the cubic \eqref{eq:lorentzian-cubic}; the positive endpoint coefficients force $\Vol(K),\Vol(L)>0$, so both bodies are full-dimensional.  Setting $A=p_1K+p_2L$, $B=q_1K+q_2L$, $C=r_1K+r_2L$ for the points \eqref{eq:lorentzian-points}, Minkowski linearity gives $(A+B)/2=\frac{p_1+q_1}2K+\frac{p_2+q_2}2L$ and likewise for the other pairs, so
+\[
+d_{\Vol}(A,B)^2=\J_G(p,q),\qquad
+d_{\Vol}(B,C)^2=\J_G(q,r),\qquad
+d_{\Vol}(A,C)^2=\J_G(p,r),
+\]
+and the violation of Theorem~\ref{thm:lorentzian} transfers verbatim.
+\end{proof}
+
+\begin{remark}[What the audit leaves standing]
+The midpoint integral identity and the homogeneous primitive decomposition of the earlier positive argument are correct.  What fails is a claimed Gram-determinant identity for the derivative of a Hessian Rayleigh quotient, whose two sides have incompatible homogeneity in the line direction; the omitted calculation therefore conceals a false identity rather than a technical gap.  The full audit, including the exact enclosure procedure, is \path{counterexamples/lorentzian-jensen/paper.tex}.
+\end{remark}

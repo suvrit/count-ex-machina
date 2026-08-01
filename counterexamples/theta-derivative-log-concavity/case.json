@@ -11,7 +11,7 @@
   "results": [
     {
       "id": "theta-derivative-log-concavity",
-      "statement_tex": "Coffey--Csordas Conjecture 2.5 / Csordas Problem 4.13",
+      "statement_tex": "Coffey--Csordas Conjecture 2.5 / Csordas Problem 4.13 \\cite{Csordas2014}",
       "class": "external conjecture",
       "certificate_level": "computer-assisted",
       "certificate_tex": "Rigorous interval evaluation of $J_9(1/50)<0$.",

@@ -1,6 +1,6 @@
 # Lorentzian Jensen-Bregman metric principle
 
-**Status:** withheld — Log-volume midpoint gap as a squared distance: regeneration of the earlier search produced no violation and the claimed data file was absent; the standalone audit in paper.tex documents the exact triangle-inequality violation that was recovered.
+**Status:** refuted
 **Certificate level:** exact
 
 ## Statement
@@ -26,8 +26,9 @@ prints a `PASS` line and (re)generates the artifacts below.
 
 ## Write-up and credits
 
-This case is excluded from the admitted ledger of the main paper (see
-`/audit_notes.md` and the paper's “Excluded and withdrawn items” section).
-A standalone write-up is `paper.tex` (self-contained; compile with
-`latexmk -pdf paper`). Attribution roles live in the `credits` block of
+`dossier.tex` is the condensed write-up that the main paper inputs; it carries
+both admitted statements, the metric principle and its convex-body
+specialization. `paper.tex` is the self-contained long-form audit, including the
+exact enclosure procedure and the parts of the earlier positive argument that
+survive (compile with `latexmk -pdf paper`). Attribution roles live in the `credits` block of
 `case.json`.

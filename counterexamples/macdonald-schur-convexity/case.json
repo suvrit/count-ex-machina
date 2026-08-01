@@ -11,7 +11,7 @@
   "results": [
     {
       "id": "macdonald-schur-convexity",
-      "statement_tex": "McSwiggen--Sahi Theorem 2.1: Macdonald lattice Schur-convexity",
+      "statement_tex": "McSwiggen--Sahi Theorem 2.1: Macdonald lattice Schur-convexity \\cite{McSwiggenSahi2026}",
       "class": "published theorem",
       "certificate_level": "exact",
       "certificate_tex": "Rank-two Schur specialization, valid for every $0<r<1$.",

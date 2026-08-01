@@ -73,3 +73,17 @@ The iteration carrying the step size is $L_{k+1}=L_k+aL_k\Delta_kL_k$, displayed
 \section{Loewner monotonicity of alternating log-determinants}
 \dossiercredits{Posed by S.~Sra; counterexample found by TODO (TODO); formalized by S.~Sra; audited by S.~Sra.}
 \input{../counterexamples/logdet-loewner/dossier.tex}
+
+\section{Lorentzian Jensen--Bregman metric principle}
+\dossiercredits{Posed by S.~Sra; counterexample found by TODO (TODO); formalized by S.~Sra; audited by S.~Sra.}
+\begin{problem}[As posed, paraphrased: S.~Sra, standalone problem; formulation as recorded in \S1 of the case's \path{paper.tex}]
+Let $\mathcal C\subset\R^m$ be an open convex cone, let $G:\mathcal C\to(0,\infty)$, and put $F=-\log G$ and
+\[\J_G(x,y):=\frac{F(x)+F(y)}2-F\!\left(\frac{x+y}{2}\right).\]
+If $G$ is homogeneous and Lorentzian, then $d_G:=\sqrt{\J_G}$ is a semimetric.
+\end{problem}
+\begin{problem}[As posed, paraphrased: S.~Sra, standalone problem (geometric specialization of the same principle); formulation as recorded in \S1 of the case's \path{paper.tex}]
+The log-volume midpoint gap is the square of a distance on convex bodies: that is,
+\[d_{\Vol}(K,L):=\left[\log\Vol\!\left(\frac{K+L}{2}\right)-\tfrac12\log\Vol(K)-\tfrac12\log\Vol(L)\right]^{1/2}\]
+is a semimetric on convex bodies.
+\end{problem}
+\input{../counterexamples/lorentzian-jensen/dossier.tex}

@@ -12,7 +12,7 @@
   "results": [
     {
       "id": "aim-problem-36",
-      "statement_tex": "Borcea--Br\\\"and\\'en Problem 36: stable Schur positivity",
+      "statement_tex": "Borcea--Br\\\"and\\'en Problem 36: stable Schur positivity \\cite{AIMStableProblems}",
       "class": "external formal problem",
       "certificate_level": "exact",
       "certificate_tex": "Positive-definite $5\\times5$ det-pencil; exact Schur expansion with $[s_{(1^5)}]q=-2972$.",
@@ -27,7 +27,7 @@
     },
     {
       "id": "aim-problem-37",
-      "statement_tex": "Borcea--Br\\\"and\\'en Problem 37: stable Schur inequality (lower endpoint)",
+      "statement_tex": "Borcea--Br\\\"and\\'en Problem 37: stable Schur inequality (lower endpoint) \\cite{AIMStableProblems}",
       "class": "external formal problem",
       "certificate_level": "exact",
       "certificate_tex": "Same pencil; $a_{(1^5)}=-2972<1728=f^{(1^5)}a_{(5)}$.",

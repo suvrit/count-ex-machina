@@ -277,8 +277,11 @@ def gen_ledger(cases):
     for c in refuted_in_order(cases):
         for r in c["results"]:
             n += 1
+            # The ledger number links to the theorem that refutes the statement;
+            # any \cite in statement_tex links on to the source.
+            no = f"\\hyperref[{r['theorem_label']}]{{{n}}}"
             lines.append(
-                f"{n} & {r['statement_tex']} & {STATUS_MACROS[c['status']]} & {r['certificate_tex']}\\\\"
+                f"{no} & {r['statement_tex']} & {STATUS_MACROS[c['status']]} & {r['certificate_tex']}\\\\"
             )
     lines += [r"\bottomrule", r"\end{longtable}", ""]
     return "\n".join(lines)

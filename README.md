@@ -32,6 +32,28 @@ Sage cross-checks (where present) are optional and are skipped when `sage` is
 not installed. Note for Overleaf: import the whole repository and set the main
 document to `tex/main.tex`.
 
+## Citing
+
+The paper is being submitted to the arXiv; until the identifier is assigned,
+replace `ARXIV-ID` below (and update `CITATION.cff` to match).
+
+```bibtex
+@misc{Sra2026CountExMachina,
+  author        = {Suvrit Sra},
+  title         = {{GPT}: The Counterexample Machine},
+  year          = {2026},
+  eprint        = {ARXIV-ID},
+  archivePrefix = {arXiv},
+  primaryClass  = {math.HO},
+  note          = {Code and certificates:
+                   \url{https://github.com/suvrit/count-ex-machina}}
+}
+```
+
+To cite an individual counterexample rather than the paper, give its case id
+and ledger number from the table below — for example, `aim-problem-36`
+(no. 3) — since those are stable across revisions.
+
 ## The cases
 
 <!-- BEGIN CASE TABLE -->
@@ -48,7 +70,8 @@ document to `tex/main.tex`.
 | 9 | [variance-only-matrix-discrepancy](counterexamples/variance-only-matrix-discrepancy/) | refuted | user formal problem | exact | TODO (TODO) |
 | 10 | [rank-two-mixed-norm](counterexamples/rank-two-mixed-norm/) | refuted | user formal problem | computer-assisted | TODO (TODO) |
 | 11 | [logdet-loewner](counterexamples/logdet-loewner/) | refuted | user formal problem | exact | TODO (TODO) |
-| — | [lorentzian-jensen](counterexamples/lorentzian-jensen/) | withheld | user formal problem | exact | TODO (TODO) |
+| 12 | [lorentzian-jensen](counterexamples/lorentzian-jensen/) | refuted | user formal problem | exact | TODO (TODO) |
+| 13 | [log-volume-distance](counterexamples/lorentzian-jensen/) | refuted | user formal problem | exact | TODO (TODO) |
 <!-- END CASE TABLE -->
 
 Withheld cases are documented but excluded from the paper's admitted ledger;

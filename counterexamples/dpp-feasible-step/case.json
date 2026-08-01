@@ -11,7 +11,7 @@
   "results": [
     {
       "id": "dpp-feasible-step",
-      "statement_tex": "Mariet--Sra feasible-step Picard ascent conjecture for DPP likelihood",
+      "statement_tex": "Mariet--Sra feasible-step Picard ascent conjecture for DPP likelihood \\cite{MarietSra2015}",
       "class": "published conjecture",
       "certificate_level": "exact",
       "certificate_tex": "Exact rational $2\\times2$ feasible update with lower likelihood.",

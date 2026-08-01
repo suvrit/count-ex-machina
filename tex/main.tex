@@ -12,6 +12,7 @@
 \usepackage{listings}
 \usepackage{graphicx}
 \usepackage{url}
+\usepackage[most]{tcolorbox}
 \hypersetup{colorlinks=true,linkcolor=blue!45!black,citecolor=blue!45!black,urlcolor=red!65!black}
 \setlist{nosep,leftmargin=*}
 \newcommand{\statusproved}{\textbf{[PROVED]}}
@@ -30,6 +31,7 @@
 \newcommand{\diag}{\operatorname{diag}}
 \newcommand{\Vol}{\operatorname{Vol}}
 \newcommand{\CE}{\mathsf{CE}}
+\newcommand{\J}{\mathsf{J}}
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{lemma}[theorem]{Lemma}
@@ -41,6 +43,16 @@
 \newtheorem{audit}[theorem]{Audit finding}
 \theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
+% Statements quoted as originally posed are boxed so that the source text is
+% never mistaken for our own restatement of it.
+\tcolorboxenvironment{problem}{
+  enhanced jigsaw, breakable,
+  colback=blue!3!white, colframe=blue!45!black,
+  boxrule=0.6pt, arc=2pt,
+  left=8pt, right=8pt, top=7pt, bottom=7pt,
+  borderline west={2.2pt}{-2.2pt}{blue!45!black},
+  before skip=10pt, after skip=10pt,
+}
 \lstset{basicstyle=\ttfamily\small,breaklines=true,frame=single,columns=fullflexible}
 
 
