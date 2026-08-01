@@ -248,28 +248,28 @@
   {
     "result_id": "variance-only-matrix-discrepancy",
     "case": "variance-only-matrix-discrepancy",
-    "title": "Variance-only discrepancy",
+    "title": "Variance-sensitive Matrix Spencer",
     "status": "refuted",
     "ledger_no": 8,
     "withheld_reason": null,
-    "class": "user formal problem",
+    "class": "external conjecture",
     "certificate_level": "exact",
-    "certificate_tex": "Exact diagonal sign-cube family.",
+    "certificate_tex": "Exact $d=n$ diagonal family: $\\disc=(m-1)/\\sqrt m$ against variance $1+1/m$, a ratio of $\\Theta(\\sqrt{\\log n})$.",
     "theorem_label": "thm:discrepancy",
     "provenance": {
-      "source_tex": "TODO: where the statement was posed (session, note, talk)",
-      "url": null,
-      "retrieved": null,
-      "fidelity": "TODO: verbatim or paraphrase",
-      "statement_tex": "TODO: paste the original formal statement exactly as posed"
+      "source_tex": "Conjecture 1.2 of E.~Akba\\c{s} and S.~Sra \\cite{AkbasSra2026}, recording Remark 4.25 of A.~S.~Bandeira's problem collection \\cite{Bandeira2016}",
+      "url": "https://arxiv.org/abs/2606.16005",
+      "retrieved": "2026-08-01",
+      "fidelity": "verbatim",
+      "statement_tex": "There exists a universal constant $C$, such that for any choice of $n$ symmetric matrices $A_1,\\ldots,A_n\\in\\R^{n\\times n}$ satisfying $\\|A_i\\|_{\\rm op}\\le1$ there exists a coloring $x\\in\\{\\pm1\\}^n$, such that\n\\[\\left\\|\\sum_{i=1}^nx_iA_i\\right\\|_{\\rm op}\\le C\\left\\|\\sum_{i=1}^nA_i^2\\right\\|_{\\rm op}^{1/2}.\\]"
     },
     "credits": {
-      "posed_by": "S.~Sra",
+      "posed_by": "A.~S.~Bandeira \\cite{Bandeira2016}",
       "found_by": {
-        "model": "TODO",
+        "model": "GPT-5.5 (Pro)",
         "date": "TODO"
       },
-      "formalized_by": "S.~Sra",
+      "formalized_by": "E.~Akba\\c{s} and S.~Sra \\cite{AkbasSra2026}",
       "audited_by": "S.~Sra",
       "contributed_by": "S.~Sra"
     },

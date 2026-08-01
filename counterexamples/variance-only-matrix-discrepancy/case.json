@@ -1,35 +1,38 @@
 {
   "id": "variance-only-matrix-discrepancy",
-  "title": "Variance-only discrepancy",
-  "title_tex": "Variance-only discrepancy",
+  "title": "Variance-sensitive Matrix Spencer",
+  "title_tex": "Variance-sensitive Matrix Spencer",
   "status": "refuted",
   "order": 7,
   "dossier": "dossier.tex",
-  "bib_keys": [],
+  "bib_keys": [
+    "Bandeira2016",
+    "AkbasSra2026"
+  ],
   "results": [
     {
       "id": "variance-only-matrix-discrepancy",
-      "statement_tex": "Dimension-free variance-only matrix discrepancy without a dimension restriction",
-      "class": "user formal problem",
+      "statement_tex": "Variance-sensitive Matrix Spencer for $n$ contractions of size $n\\times n$ \\cite{Bandeira2016}",
+      "class": "external conjecture",
       "certificate_level": "exact",
-      "certificate_tex": "Exact diagonal sign-cube family.",
+      "certificate_tex": "Exact $d=n$ diagonal family: $\\disc=(m-1)/\\sqrt m$ against variance $1+1/m$, a ratio of $\\Theta(\\sqrt{\\log n})$.",
       "theorem_label": "thm:discrepancy",
       "provenance": {
-        "source_tex": "TODO: where the statement was posed (session, note, talk)",
-        "url": null,
-        "retrieved": null,
-        "fidelity": "TODO: verbatim or paraphrase",
-        "statement_tex": "TODO: paste the original formal statement exactly as posed"
+        "source_tex": "Conjecture 1.2 of E.~Akba\\c{s} and S.~Sra \\cite{AkbasSra2026}, recording Remark 4.25 of A.~S.~Bandeira's problem collection \\cite{Bandeira2016}",
+        "url": "https://arxiv.org/abs/2606.16005",
+        "retrieved": "2026-08-01",
+        "fidelity": "verbatim",
+        "statement_tex": "There exists a universal constant $C$, such that for any choice of $n$ symmetric matrices $A_1,\\ldots,A_n\\in\\R^{n\\times n}$ satisfying $\\|A_i\\|_{\\rm op}\\le1$ there exists a coloring $x\\in\\{\\pm1\\}^n$, such that\n\\[\\left\\|\\sum_{i=1}^nx_iA_i\\right\\|_{\\rm op}\\le C\\left\\|\\sum_{i=1}^nA_i^2\\right\\|_{\\rm op}^{1/2}.\\]"
       }
     }
   ],
   "credits": {
-    "posed_by": "S.~Sra",
+    "posed_by": "A.~S.~Bandeira \\cite{Bandeira2016}",
     "found_by": {
-      "model": "TODO",
+      "model": "GPT-5.5 (Pro)",
       "date": "TODO"
     },
-    "formalized_by": "S.~Sra",
+    "formalized_by": "E.~Akba\\c{s} and S.~Sra \\cite{AkbasSra2026}",
     "audited_by": "S.~Sra",
     "contributed_by": "S.~Sra"
   },
@@ -41,7 +44,8 @@
   "artifacts": [
     {
       "file": "artifacts/certificate.json",
-      "description": "Exact discrepancy values of the diagonal sign-cube family for $n\\le8$."
+      "description": "Exact record of the d=n diagonal family: the variance parameter, the exhaustive discrepancy minimum over all 2^n signings, and the ratio identity, for each checked m."
     }
-  ]
+  ],
+  "context_tex": "For symmetric matrices $A_1,\\ldots,A_n$ the \\emph{discrepancy} is $\\disc(A_1,\\ldots,A_n)=\\min_{x\\in\\{\\pm1\\}^n}\\|\\sum_{i=1}^nx_iA_i\\|_{\\rm op}$.  Spencer's theorem gives an $O(\\sqrt n)$ bound in the scalar case, and the Matrix Spencer conjecture asks for the same $O(\\sqrt n)$ bound for $n$ symmetric contractions of size $n\\times n$.  The variance-sensitive strengthening below replaces the ambient scale $\\sqrt n$ by the intrinsic variance parameter $\\|\\sum_{i=1}^nA_i^2\\|_{\\rm op}^{1/2}$, which never exceeds $\\sqrt n$ and is often far smaller; it is the parameter that controls the norm of a random signing in matrix concentration, and Kyng, Luh and Song established the strengthened bound in the rank-one case.  The dimension regime is the whole point: the conjecture concerns $n$ matrices of size $n\\times n$, so a family whose dimension grows faster than the number of summands says nothing about it."
 }

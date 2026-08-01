@@ -1,29 +1,42 @@
-The standalone dimension-free assertion asks whether a universal $C$ satisfies
-\[
-\min_{x\in\{\pm1\}^n}\left\|\sum_{i=1}^n x_iA_i\right\|_{\rm op}
-\le C\left\|\sum_{i=1}^nA_i^2\right\|_{\rm op}^{1/2}
-\]
-for arbitrary matrix dimension.
+Fix an integer $m\ge2$ and set $n=2^m$, so that the matrices below are $n\times n$ and there are $n$ of them: the dimension is not inflated relative to the number of summands.  Index coordinates by $s=(s_1,\ldots,s_m)\in S:=\{\pm1\}^m$, so $|S|=n$.  Write $p=(1,\ldots,1)$ and $q=(-1,\ldots,-1)$, choose any $U\subseteq S\setminus\{p,q\}$ with $|U|=m$, put $F=S\setminus U$, and fix a bijection $\pi:\{m+1,\ldots,n\}\to F$; note that $p,q\in F$.  Define diagonal matrices
+\begin{equation}\label{eq:disc-family}
+(A_i)_{s,s}=\frac{s_i}{\sqrt m}\quad(1\le i\le m),
+\qquad
+A_k=\frac1{\sqrt m}E_{\pi(k),\pi(k)}\quad(m<k\le n),
+\end{equation}
+where $E_{r,r}$ is the diagonal matrix with a single $1$ in coordinate $r$.  Each $\|A_i\|_{\rm op}=1/\sqrt m\le1$, so the family is admissible.
 
-\begin{theorem}[\statusfalse: unrestricted variance-only discrepancy]\label{thm:discrepancy}
-No universal $C$ exists without a relation between matrix dimension and the number of summands.
+\begin{theorem}[\statusfalse: variance-sensitive Matrix Spencer]\label{thm:discrepancy}
+For the family \eqref{eq:disc-family},
+\[
+\disc(A_1,\ldots,A_n)=\frac{m-1}{\sqrt m},
+\qquad
+\left\|\sum_{i=1}^nA_i^2\right\|_{\rm op}^{1/2}=\sqrt{1+\tfrac1m},
+\]
+so the ratio of the two sides equals $(m-1)/\sqrt{m+1}=\Theta(\sqrt{\log n})$.  No universal constant $C$ can therefore satisfy the variance-sensitive bound, already for $n$ matrices of size $n\times n$.
 \end{theorem}
 \begin{proof}
-Take dimension $d=2^n$, index coordinates by $\varepsilon\in\{\pm1\}^n$, and set
+Since the matrices are diagonal, so is $\sum_iA_i^2$, and its $s$th entry is
 \[
-A_i=\diag(\varepsilon_i:\varepsilon\in\{\pm1\}^n).
+\sum_{i=1}^m\frac{s_i^2}m+\sum_{k=m+1}^n\frac1m\mathbf 1\{s=\pi(k)\}=1+\frac1m\mathbf 1\{s\in F\},
 \]
-For every signing $x\in\{\pm1\}^n$, the coordinate $\varepsilon=x$ gives
+whence $\|\sum_iA_i^2\|_{\rm op}=1+\frac1m$.
+
+For the discrepancy, let $x\in\{\pm1\}^n$ be an arbitrary signing and $X=\sum_{i=1}^nx_iA_i$, so that
 \[
-\left\|\sum_i x_iA_i\right\|_{\rm op}=n.
+X_{s,s}=\frac1{\sqrt m}\sum_{i=1}^mx_is_i+\frac1{\sqrt m}\mathbf 1\{s\in F\}x_{\pi^{-1}(s)}.
 \]
-On the other hand $A_i^2=I$, hence
+Evaluating at the coordinate $s=(x_1,\ldots,x_m)\in S$ makes the first sum equal to $m$, so
 \[
-\left\|\sum_iA_i^2\right\|_{\rm op}^{1/2}=\sqrt n.
+\|X\|_{\rm op}\ge|X_{s,s}|\ge\frac{m}{\sqrt m}-\frac1{\sqrt m}=\frac{m-1}{\sqrt m}.
 \]
-The ratio is $\sqrt n\to\infty$.
+This bound is attained.  Take $x_1=\cdots=x_m=1$ and $x_{k_p}=-1$, $x_{k_q}=1$, where $k_p=\pi^{-1}(p)$ and $k_q=\pi^{-1}(q)$, with the remaining signs arbitrary.  Then $\sqrt mX_{s,s}=\sum_{j=1}^ms_j+\mathbf 1\{s\in F\}x_{\pi^{-1}(s)}$, which equals $m-1$ at $s=p$ and $-(m-1)$ at $s=q$.  For every other $s$ the vector is neither all-plus nor all-minus, so $|\sum_js_j|\le m-2$ and hence $|\sqrt mX_{s,s}|\le m-1$.  Thus $\|X\|_{\rm op}=(m-1)/\sqrt m$, and the infimum over signings is exactly that.
+
+Dividing the two displayed quantities gives $(m-1)/\sqrt{m+1}$, which grows without bound as $m=\log_2n\to\infty$.
 \end{proof}
 
-\begin{remark}[Scope]
-This does not refute Matrix Spencer formulations in which the matrix dimension is constrained by the number of matrices.  It refutes only the unrestricted dimension-free statement displayed above.
+\begin{remark}[Why the dimension regime matters]
+An earlier version of this entry used $n$ matrices of size $2^n\times2^n$.  That is the trivial regime: once the dimension is exponential in the number of summands the failure says nothing about Matrix Spencer, whose whole content lies in $d$ comparable to $n$.  The family above is the informative one, with $d=n$.
+
+The family is commutative, and the growth rate $\sqrt{\log n}$ is exactly what the sharp noncommutative Khintchine inequalities predict in the commutative case, so the logarithmic factor is genuine rather than an artifact of the construction.  This leaves open the possibility raised in \cite{AkbasSra2026} that the variance-sensitive bound survives for sufficiently noncommutative families.  The original Matrix Spencer conjecture is untouched: bounding $\|\sum_iA_i^2\|_{\rm op}^{1/2}\le\sqrt n$ recovers only the weaker $O(\sqrt n)$ target, which this family satisfies comfortably.
 \end{remark}
