@@ -8,7 +8,7 @@
   "bib_keys": [
     "Csordas2014"
   ],
-  "context_tex": "The kernel $\\Phi$ below is the Jacobi theta kernel whose cosine transform is the Riemann $\\xi$-function, so inequalities among its derivatives sit directly on the route to the Riemann Hypothesis: the Turán inequalities for the Maclaurin coefficients of $\\xi$ are exactly statements of this shape.  A positive function $g$ is \\emph{strictly log-concave} when $(g')^2-gg''>0$, so the assertion $J_n(t)>0$ below says precisely that the $(n-1)$st derivative $\\Phi^{(n-1)}$ is strictly log-concave, for every order $n$ and every real $t$.",
+  "context": "context.tex",
   "results": [
     {
       "id": "theta-derivative-log-concavity",
@@ -23,7 +23,7 @@
         "url": "https://arxiv.org/abs/1309.0055v2",
         "retrieved": "2026-08-01",
         "fidelity": "verbatim",
-        "statement_tex": "([5, Conjecture 2.5])  Show that the derivatives of the Jacobi theta function, $\\Phi(t)$, are (strictly) log-concave on $\\R$; that is, for each $n\\in\\mathbb N$,\n\\[J_n(t):=(\\Phi^{(n)}(t))^2-\\Phi^{(n-1)}(t)\\Phi^{(n+1)}(t)>0\\quad\\text{for }t\\in\\R.\\]\nHere, by (4.2) of the same paper, the Jacobi theta function (without the usual factor $4$) is $\\Phi(t):=\\sum_{n\\ge1}\\pi n^2\\left(2\\pi n^2e^{4t}-3\\right)\\exp\\left(5t-\\pi n^2e^{4t}\\right)$."
+        "statement": "statement.tex"
       }
     }
   ],

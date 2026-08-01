@@ -9,7 +9,7 @@
   "bib_keys": [
     "AIMStableProblems"
   ],
-  "context_tex": "We keep the notation of the previous subsection: real stability means nonvanishing when every variable lies in the open upper half-plane; $a_\\lambda$ are the coefficients in the Schur expansion $p=\\sum_{\\lambda\\vdash d}a_\\lambda s_\\lambda$ of a symmetric homogeneous $p$ of degree $d$; $f^\\lambda$ counts standard Young tableaux of shape $\\lambda$; and $\\Imm_\\lambda$ is the immanant of a $d\\times d$ matrix attached to the irreducible character $\\chi^\\lambda$, with $\\Imm_{(1^d)}=\\det$ and $\\Imm_{(d)}=\\per$.  Problem 36 asks whether stability forces Schur-positivity outright; Problems 37 and 38 ask for the two endpoint inequalities that would bracket the Schur coefficients between the $\\det$ and $\\per$ ends of the immanant scale.",
+  "context": "context.tex",
   "results": [
     {
       "id": "aim-problem-36",
@@ -24,7 +24,7 @@
         "url": "https://www.aimath.org/pastworkshops/polyaschurlaxrep.pdf",
         "retrieved": "2026-08-01",
         "fidelity": "verbatim",
-        "statement_tex": "Let $p$ be a symmetric, real stable and homogeneous polynomial of degree $d$ in $n$ variables with $d\\le n$ and suppose that $p$ has at least one positive (and then all non-negative) coefficients in the monomial basis.  Is $p$ Schur-positive?  That is, when $p(z_1,\\ldots,z_n)$ is expanded in the Schur-basis\n\\[p(z_1,\\ldots,z_n)=\\sum_{\\lambda\\vdash d}a_\\lambda s_\\lambda(z_1,\\ldots,z_n),\\]\nis $a_\\lambda\\ge0$ for all $\\lambda\\vdash d$?"
+        "statement": "statement-aim-problem-36.tex"
       }
     },
     {
@@ -40,7 +40,7 @@
         "url": "https://www.aimath.org/pastworkshops/polyaschurlaxrep.pdf",
         "retrieved": "2026-08-01",
         "fidelity": "verbatim",
-        "statement_tex": "If $A$ is a $d\\times d$ matrix then $\\det(A)=\\Imm_{(1^d)}(A)$ and $\\per(A)=\\Imm_{(d)}(A)$, where $(1^d)=(1,\\ldots,1)$ and $(d)=(1^d)'=(d,0,\\ldots,0)$.  Schur's inequality [J,L] asserts that if $A$ is a $d\\times d$ positive semi-definite matrix then $\\Imm_\\lambda(A)\\ge f^\\lambda\\det(A)$ for all $\\lambda\\vdash d$, where $f^\\lambda$ is the number of standard Young tableaux of shape $\\lambda$.  A natural real stable extension of this result would be as follows.\n\n\\emph{Problem 37.}  Let $p$ be as in Problem 36.  Is $a_\\lambda\\ge f^\\lambda a_{(d)}$ for all $\\lambda\\vdash d$?"
+        "statement": "statement-aim-problem-37.tex"
       }
     }
   ],

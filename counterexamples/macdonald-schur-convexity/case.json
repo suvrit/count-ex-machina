@@ -8,7 +8,7 @@
   "bib_keys": [
     "McSwiggenSahi2026"
   ],
-  "context_tex": "For parameters $q,t\\in(0,1)$ and a partition $\\lambda$ with at most $n$ parts, $P_\\lambda(x;q,t)$ denotes the Macdonald polynomial in the monic normalization of Macdonald's book, as used in \\cite{McSwiggenSahi2026}; at $q=t$ it specializes to the Schur polynomial $s_\\lambda(x)$, which is what the refutation below exploits.  The statement concerns two convexity properties of the map $\\lambda\\mapsto\\Omega_\\lambda(x;q,t)$ on partitions: \\emph{log-convexity}, and \\emph{Schur-convexity}, meaning monotonicity with respect to the dominance (majorization) order, so that $\\lambda\\succeq\\mu$ implies $\\Omega_\\lambda\\ge\\Omega_\\mu$.  The normalization $\\Omega_\\lambda$ and the lattice $\\mathcal L_n$ of evaluation points are defined inside the quoted statement.",
+  "context": "context.tex",
   "results": [
     {
       "id": "macdonald-schur-convexity",
@@ -23,7 +23,7 @@
         "url": "https://arxiv.org/abs/2605.12680v2",
         "retrieved": "2026-08-01",
         "fidelity": "verbatim",
-        "statement_tex": "For all $q,t\\in(0,1)$, $a>0$, and $x\\in\\mathcal L_n^{q,t,a}$, the function $\\lambda\\mapsto\\Omega_\\lambda(x;q,t)$ is log-convex and Schur-convex.\n\nHere, by \\S2.1 of the same paper, $\\Omega_\\lambda(x;q,t)=P_\\lambda(x;q,t)/P_\\lambda(t^\\delta;q,t)$ is the Macdonald polynomial normalized to $1$ at the principal specialization $t^\\delta=(t^{n-1},t^{n-2},\\ldots,1)$, and the scaled, $t$-shifted, dominant $q$-lattice is\n\\[\\mathcal L_n=\\mathcal L_n^{q,t,a}=\\left\\{(aq^{-\\mu_1}t^{n-1},aq^{-\\mu_2}t^{n-2},\\ldots,aq^{-\\mu_n}):(\\mu_1\\ge\\ldots\\ge\\mu_n)\\in\\mathbb Z^n\\right\\}\\subset\\R^n.\\]"
+        "statement": "statement.tex"
       }
     }
   ],

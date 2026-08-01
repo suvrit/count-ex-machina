@@ -8,7 +8,7 @@
   "bib_keys": [
     "MarietSra2015"
   ],
-  "context_tex": "A determinantal point process with positive definite kernel $L$ on a ground set $\\mathcal Y$ assigns a subset $Y\\subseteq\\mathcal Y$ probability proportional to $\\det(L_Y)$, the principal minor on $Y$.  Given observed subsets $Y_1,\\ldots,Y_n$, learning the kernel means maximizing the log-likelihood\n\\[\n\\phi(L)=\\sum_{i=1}^n\\log\\det(L_{Y_i})-n\\log\\det(I+L),\n\\]\nwhose stationarity condition is $\\Delta+L^{-1}=L^{-1}$ for the residual\n\\[\n\\Delta=\\frac1n\\sum_{i=1}^nU_i(U_i^*LU_i)^{-1}U_i^*-(I+L)^{-1},\n\\]\nwhere $U_i$ is the indicator matrix selecting the coordinates in $Y_i$.  This suggests the Picard iteration $L_{k+1}=L_k+aL_k\\Delta_kL_k$ of the quoted passage; a step size $a$ is \\emph{feasible} when it keeps the iterate positive definite, which the source guarantees for $a\\le1/(1-\\gamma)$ with $\\gamma=\\max\\{\\lambda_{\\min}(LZ),1/\\lambda_{\\max}(I+L)\\}\\in[0,1]$.  Ascent is proved for $a=1$; the conjecture asks for every feasible $a\\ge1$.",
+  "context": "context.tex",
   "results": [
     {
       "id": "dpp-feasible-step",
@@ -23,7 +23,7 @@
         "url": "https://proceedings.mlr.press/v37/mariet15.pdf",
         "retrieved": "2026-08-01",
         "fidelity": "verbatim",
-        "statement_tex": "Above we showed that for $a=1$ ascent is guaranteed.  Empirically, $a>1$ often works well; Prop.~A.1 presents an easily computable upper bound on feasible $a$.  We conjecture that for all feasible values $a\\ge1$, iteration (2.5) is guaranteed to increase the log-likelihood.\n\nThe iteration carrying the step size is $L_{k+1}=L_k+aL_k\\Delta_kL_k$, displayed as (2.7) in the source; feasibility is the bound $a\\le1/(1-\\gamma)$ of Prop.~A.1."
+        "statement": "statement.tex"
       }
     }
   ],

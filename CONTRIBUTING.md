@@ -45,12 +45,20 @@ inadmissible at either level.
      reused, or that is malformed. If you assembled the case by hand, mint one
      with `python tools/new_case.py --mint-uid`. Never write one yourself, and
      never cite one — humans cite the result `id`;
-   - quote the statement as originally posed in each result's `provenance`
-     (`statement_tex`, `source_tex`, `url`, `retrieved`, and `fidelity` —
-     `"verbatim"` only if transcribed from the source's own text);
-   - put whatever notation and definitions that quote depends on into the
-     case's `context_tex`; a reader must not have to open the source paper
-     to understand what is being refuted;
+   - quote the statement as originally posed in `statement.tex`, and record
+     where it came from in each result's `provenance` (`source_tex`, `url`,
+     `retrieved`, and `fidelity` — `"verbatim"` only if transcribed from the
+     source's own text). A case with several results names one file per
+     result, e.g. `statement-<result-id>.tex`;
+   - put whatever notation and definitions that quote depends on into
+     `context.tex`; a reader must not have to open the source paper to
+     understand what is being refuted;
+   - **prose lives in `.tex` files, never in JSON.** `case.json` names the
+     file (`"context"`, and `provenance.statement`) and the build inlines it,
+     so you write `$\mathcal{Y}$` rather than `"$\\mathcal{Y}$"` on a single
+     line. Whole-line `%` comments in those files are stripped and never reach
+     the paper. Putting the prose back into `case.json` is a build error, not
+     a silent fallback;
    - add any cited works to `tex/references.bib` and list the keys in
      `bib_keys`;
    - record attribution in `credits`: who posed the statement (`posed_by`),

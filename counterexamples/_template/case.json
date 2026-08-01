@@ -6,7 +6,7 @@
   "order": 0,
   "dossier": "dossier.tex",
   "bib_keys": [],
-  "context_tex": "TODO notation and definitions the quoted statement depends on, so it can be read without the source paper at hand",
+  "context": "context.tex",
   "results": [
     {
       "id": "TODO-globally-unique-result-id",
@@ -21,7 +21,7 @@
         "url": null,
         "retrieved": null,
         "fidelity": "TODO verbatim or paraphrase",
-        "statement_tex": "TODO the original formal statement, exactly as posed"
+        "statement": "statement.tex"
       }
     }
   ],

@@ -20,7 +20,7 @@
         "url": null,
         "retrieved": null,
         "fidelity": "TODO: verbatim or paraphrase",
-        "statement_tex": "TODO: paste the original formal statement exactly as posed"
+        "statement": "statement.tex"
       }
     }
   ],

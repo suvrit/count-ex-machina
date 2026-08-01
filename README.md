@@ -10,9 +10,12 @@ evidence alone.
 ## Layout
 
 - `counterexamples/<id>/` — one directory per counterexample: `case.json`
-  (metadata + attribution), `README.md` (how to validate), `dossier.tex`
-  (the paper dossier body), `verify.py` (certificate check), optional Sage
-  cross-checks, and `artifacts/` (machine-readable certificates).
+  (metadata + attribution), `context.tex` (notation the quoted statement
+  needs), `statement.tex` (the statement as originally posed), `README.md`
+  (how to validate), `dossier.tex` (the paper dossier body), `verify.py`
+  (certificate check), optional Sage cross-checks, and `artifacts/`
+  (machine-readable certificates). Prose is always a `.tex` file that
+  `case.json` names; it is never embedded in the JSON.
 - `tex/` — the main paper. `tex/generated/` and `registry.json` are generated
   from the per-case `case.json` files by `tools/build.py` (checked in; do not
   edit by hand).

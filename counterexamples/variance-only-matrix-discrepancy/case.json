@@ -23,7 +23,7 @@
         "url": "https://arxiv.org/abs/2606.16005",
         "retrieved": "2026-08-01",
         "fidelity": "verbatim",
-        "statement_tex": "There exists a universal constant $C$, such that for any choice of $n$ symmetric matrices $A_1,\\ldots,A_n\\in\\R^{n\\times n}$ satisfying $\\|A_i\\|_{\\rm op}\\le1$ there exists a coloring $x\\in\\{\\pm1\\}^n$, such that\n\\[\\left\\|\\sum_{i=1}^nx_iA_i\\right\\|_{\\rm op}\\le C\\left\\|\\sum_{i=1}^nA_i^2\\right\\|_{\\rm op}^{1/2}.\\]"
+        "statement": "statement.tex"
       }
     }
   ],
@@ -48,5 +48,5 @@
       "description": "Exact record of the d=n diagonal family: the variance parameter, the exhaustive discrepancy minimum over all 2^n signings, and the ratio identity, for each checked m."
     }
   ],
-  "context_tex": "For symmetric matrices $A_1,\\ldots,A_n$ the \\emph{discrepancy} is $\\disc(A_1,\\ldots,A_n)=\\min_{x\\in\\{\\pm1\\}^n}\\|\\sum_{i=1}^nx_iA_i\\|_{\\rm op}$.  Spencer's theorem gives an $O(\\sqrt n)$ bound in the scalar case, and the Matrix Spencer conjecture asks for the same $O(\\sqrt n)$ bound for $n$ symmetric contractions of size $n\\times n$.  The variance-sensitive strengthening below replaces the ambient scale $\\sqrt n$ by the intrinsic variance parameter $\\|\\sum_{i=1}^nA_i^2\\|_{\\rm op}^{1/2}$, which never exceeds $\\sqrt n$ and is often far smaller; it is the parameter that controls the norm of a random signing in matrix concentration, and Kyng, Luh and Song established the strengthened bound in the rank-one case.  The dimension regime is the whole point: the conjecture concerns $n$ matrices of size $n\\times n$, so a family whose dimension grows faster than the number of summands says nothing about it."
+  "context": "context.tex"
 }

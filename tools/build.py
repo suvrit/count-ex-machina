@@ -103,6 +103,71 @@ def balanced_braces(s):
     return depth == 0
 
 
+def read_sidecar(case_dir, name, errors, where):
+    """Read a prose sidecar, or record an error naming the file that is missing.
+
+    Whole-line LaTeX comments are dropped: the templates carry their
+    instructions as comments, and those must neither reach the paper nor hide an
+    unfilled TODO from the build.  Surrounding blank lines then go too, so the
+    text matches what an equivalent JSON string literal would have held.
+    """
+    path = case_dir / name
+    if not path.exists():
+        errors.append(f"{where}: sidecar file {name!r} does not exist")
+        return ""
+    lines = path.read_text().splitlines()
+    return "\n".join(l for l in lines if not l.lstrip().startswith("%")).strip("\n")
+
+
+def load_sidecars(case, d, errors):
+    """Resolve prose files into the fields the rest of the build already expects.
+
+    LaTeX lives in .tex files, not in JSON string literals: a paragraph of
+    mathematics inside JSON has to double every backslash and collapse to a
+    single line, which is miserable to write and worse to review.  case.json
+    names the file; this function substitutes its contents, so everything
+    downstream sees exactly the structure it saw before.
+    """
+    cid = case.get("id", d.name)
+    if "context_tex" in case:
+        errors.append(
+            f"case {cid}: 'context_tex' is no longer read from case.json; "
+            "move the prose into a .tex file and name it in 'context'"
+        )
+    name = case.pop("context", None)
+    if name:
+        # Underscore-prefixed, so it stays out of the generated registry; kept
+        # only so that an error can name the file the author must actually edit.
+        case["_context_file"] = name
+        case["context_tex"] = read_sidecar(d, name, errors, f"case {cid}")
+
+    seen = {}
+    for r in case.get("results") or []:
+        rid = r.get("id", "?")
+        prov = r.get("provenance")
+        if not isinstance(prov, dict):
+            continue
+        if "statement_tex" in prov:
+            errors.append(
+                f"case {cid}: result {rid}: provenance 'statement_tex' is no longer read "
+                "from case.json; move the quoted statement into a .tex file and name it "
+                "in provenance 'statement'"
+            )
+        name = prov.pop("statement", None)
+        if not name:
+            continue
+        # Two results quoting the same file would silently attribute one
+        # source's words to the other statement.
+        if name in seen:
+            errors.append(
+                f"case {cid}: result {rid}: statement file {name!r} is already used by "
+                f"result {seen[name]}"
+            )
+        seen[name] = rid
+        r["_statement_file"] = name
+        prov["statement_tex"] = read_sidecar(d, name, errors, f"case {cid}: result {rid}")
+
+
 def load_cases(errors):
     cases = []
     for d in sorted(CASES_DIR.iterdir()):
@@ -118,6 +183,7 @@ def load_cases(errors):
             errors.append(f"case {d.name}: invalid JSON in case.json ({e})")
             continue
         case["_dir"] = d
+        load_sidecars(case, d, errors)
         cases.append(case)
     return cases
 
@@ -168,7 +234,10 @@ def validate(cases, allow_todo, errors):
                 err(f"group {group!r} not one of {sorted(GROUPS)}")
             ctx = c.get("context_tex")
             if ctx is not None and (is_todo(ctx) or not balanced_braces(ctx)):
-                err("context_tex is TODO, empty, or has unbalanced braces")
+                err(
+                    f"{c.get('_context_file', 'context')} is TODO, empty, or has "
+                    "unbalanced braces"
+                )
         elif status == "withheld":
             if is_todo(c.get("withheld_reason")):
                 err("withheld case needs a non-empty 'withheld_reason'")
@@ -249,8 +318,9 @@ def validate(cases, allow_todo, errors):
                         )
                     else:
                         err(
-                            f"result {rid}: provenance needs source_tex and the original "
-                            f"statement_tex (run with --allow-todo during migration)"
+                            f"result {rid}: provenance needs source_tex, and the statement "
+                            f"as originally posed in {r.get('_statement_file', 'its .tex file')} "
+                            f"(run with --allow-todo during migration)"
                         )
                 else:
                     if prov.get("fidelity") not in FIDELITIES:
