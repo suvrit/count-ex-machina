@@ -104,7 +104,7 @@ an immutable `uid` in `registry.json`; that is a database key, not a citation.
 | 5 | [macdonald-schur-convexity](counterexamples/macdonald-schur-convexity/) | refuted | [C. McSwiggen and S. Sahi, Theorem 2.1](https://arxiv.org/abs/2605.12680v2) | exact | TODO (TODO) |
 | 6 | [theta-derivative-log-concavity](counterexamples/theta-derivative-log-concavity/) | refuted | [G. Csordas, Open Problem 4.13, restating Coffey–Csordas Conjecture 2.5](https://arxiv.org/abs/1309.0055v2) | computer-assisted | TODO (TODO) |
 | 7 | [dpp-feasible-step](counterexamples/dpp-feasible-step/) | refuted | [Z. Mariet and S. Sra, §2 (unnumbered)](https://proceedings.mlr.press/v37/mariet15.pdf) | exact | TODO (TODO) |
-| 8 | [variance-only-matrix-discrepancy](counterexamples/variance-only-matrix-discrepancy/) | refuted | [Conjecture 1.2 of E. Akbaş and S. Sra, recording Remark 4.25 of A. S. Bandeira's problem collection](https://arxiv.org/abs/2606.16005) | exact | GPT-5.5 (Pro) (TODO) |
+| 8 | [variance-only-matrix-discrepancy](counterexamples/variance-only-matrix-discrepancy/) | refuted | [Remark 4.25 of A. S. Bandeira's problem collection, quoted here from its restatement as Conjecture 1.2 of E. Akbaş and S. Sra](https://arxiv.org/abs/2606.16005) | exact | GPT-5.5 (Pro) (TODO) |
 | 9 | [rank-two-mixed-norm](counterexamples/rank-two-mixed-norm/) | refuted | S. Sra — statement TODO | computer-assisted | TODO (TODO) |
 | 10 | [logdet-loewner](counterexamples/logdet-loewner/) | refuted | S. Sra — statement TODO | exact | TODO (TODO) |
 | 11 | [lorentzian-jensen](counterexamples/lorentzian-jensen/) | refuted | [S. Sra, standalone problem; formulation as recorded in §1 of the case's `paper.tex`](counterexamples/lorentzian-jensen/paper.tex) | exact | TODO (TODO) |
@@ -116,9 +116,20 @@ see `audit_notes.md` and each case's README for the reason.
 
 ## Adding a counterexample
 
+**The short path.** If you have a counterexample and an AI agent, you do not
+need to clone this repository or learn its layout — paste this to the agent:
+
+```text
+Read https://raw.githubusercontent.com/suvrit/count-ex-machina/main/SUBMIT.md
+and follow it exactly to package the counterexample I have.
+```
+
+It produces one file; send it as an issue or as a pull request adding
+`submissions/<case-id>.md`. See [SUBMIT.md](SUBMIT.md).
+
 The admission bar (exact or rigorous-interval certificates only; no
 quantifier drift; see `tex/02-admission.tex` and
-[CONTRIBUTING.md](CONTRIBUTING.md)) applies to every new case. The mechanical
+[CONTRIBUTING.md](CONTRIBUTING.md)) applies either way, and the full mechanical
 discipline is:
 
 1. **Create the case dir** (kebab-case id; it becomes the directory, registry,

@@ -19,7 +19,7 @@
       "certificate_tex": "Exact $d=n$ diagonal family: $\\disc=(m-1)/\\sqrt m$ against variance $1+1/m$, a ratio of $\\Theta(\\sqrt{\\log n})$.",
       "theorem_label": "thm:discrepancy",
       "provenance": {
-        "source_tex": "Conjecture 1.2 of E.~Akba\\c{s} and S.~Sra \\citeyearpar{AkbasSra2026}, recording Remark 4.25 of A.~S.~Bandeira's problem collection \\citeyearpar{Bandeira2016}",
+        "source_tex": "Remark 4.25 of A.~S.~Bandeira's problem collection \\citeyearpar{Bandeira2016}, quoted here from its restatement as Conjecture 1.2 of E.~Akba\\c{s} and S.~Sra \\citeyearpar{AkbasSra2026}",
         "url": "https://arxiv.org/abs/2606.16005",
         "retrieved": "2026-08-01",
         "fidelity": "verbatim",
