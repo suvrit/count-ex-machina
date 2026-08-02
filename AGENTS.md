@@ -31,7 +31,7 @@ leaving it `TODO`. See “Things that are never OK” below.
 | `tex/01-literature.tex`, `tex/02-admission.tex`, `tex/main.tex`, `tex/references.bib` | hand-written paper | yes, carefully |
 | `tex/generated/` | `ledger.tex`, `dossiers.tex` | **no — generated** |
 | `registry.json` | flattened machine-readable registry | **no — generated** |
-| `README.md` between `<!-- BEGIN/END CASE TABLE -->` | case table | **no — generated** |
+| `README.md` between `<!-- BEGIN/END CASE TABLE -->` and `<!-- BEGIN/END COUNT BADGES -->` | case table, headline counts | **no — generated** |
 | `tools/` | `build.py`, `verify_all.py`, `new_case.py`, `exactcert.py` | yes, but see `tools/AGENTS.md` |
 | `verification_report.json` | last run of `verify_all.py` | no — regenerable, gitignored |
 

@@ -8,8 +8,11 @@ the paper's structure genuinely changes.
 
 - **`build.py`** — validates every `counterexamples/*/case.json` and writes
   four generated artifacts: `tex/generated/ledger.tex`,
-  `tex/generated/dossiers.tex`, `registry.json`, and the `README.md` table
-  between the `<!-- BEGIN/END CASE TABLE -->` markers. `--check` writes nothing
+  `tex/generated/dossiers.tex`, `registry.json`, and two spliced regions of
+  `README.md` — the case table (`<!-- BEGIN/END CASE TABLE -->`) and the
+  headline count badges (`<!-- BEGIN/END COUNT BADGES -->`). Everything else in
+  `README.md`, the rest of the header block included, is hand-written and is
+  preserved verbatim by `splice()`. `--check` writes nothing
   and exits 1 if any of them is stale; `--allow-todo` downgrades the
   `found_by` / provenance TODO errors to warnings (migration only — CI runs
   plain `--check`).

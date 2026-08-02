@@ -1,4 +1,25 @@
+<div align="center">
+
+<img src="assets/ramanujan.jpg" alt="Srinivasa Ramanujan, photographed c. 1913" width="150">
+
 # count-ex-machina
+
+**Counterexamples found by AI, certified by exact arithmetic.**
+
+[![verify](https://github.com/suvrit/count-ex-machina/actions/workflows/verify.yml/badge.svg?branch=main)](https://github.com/suvrit/count-ex-machina/actions/workflows/verify.yml)
+<!-- BEGIN COUNT BADGES -->
+[![counterexamples](https://img.shields.io/badge/counterexamples-12%20refuted-0b7285)](#the-cases)
+[![certificates](https://img.shields.io/badge/certificates-10%20exact%2C%202%20interval-0b7285)](#the-cases)
+<!-- END COUNT BADGES -->
+[![Python](https://img.shields.io/badge/Python-3.14-3776AB?logo=python&logoColor=white)](requirements.txt)
+[![code: Apache 2.0](https://img.shields.io/badge/code-Apache%202.0-4c566a)](LICENSE)
+[![docs: CC BY 4.0](https://img.shields.io/badge/docs-CC%20BY%204.0-4c566a)](LICENSE-DOCS)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-2f9e44)](CONTRIBUTING.md)
+
+<sub>Every admitted case recomputes from source — exact arithmetic or rigorous
+intervals, never floating point.</sub>
+
+</div>
 
 Companion repository for the paper **“GPT: The Counterexample Machine”**
 (Suvrit Sra, TU Munich). It archives AI-assisted counterexamples to published
@@ -191,3 +212,9 @@ licensed under CC BY 4.0 ([LICENSE-DOCS](LICENSE-DOCS)).
 Contributions are accepted under these same terms; Apache-2.0 §5 governs
 inbound code contributions. Please also read the
 [Code of Conduct](CODE_OF_CONDUCT.md).
+
+`assets/ramanujan.jpg` is the well-known photograph of Srinivasa Ramanujan
+(photographer unknown, c. 1913), in the public domain; the copy here is
+downscaled from
+[Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Srinivasa_Ramanujan_-_OPC_-_1.jpg).
+It is an homage, and implies no endorsement of anything in this archive.
