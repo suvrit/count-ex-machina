@@ -1,7 +1,5 @@
 <div align="center">
 
-<img src="assets/ramanujan.jpg" alt="Srinivasa Ramanujan, photographed c. 1913" width="150">
-
 # count-ex-machina
 
 **Counterexamples found by AI, certified by exact arithmetic.**
@@ -212,9 +210,3 @@ licensed under CC BY 4.0 ([LICENSE-DOCS](LICENSE-DOCS)).
 Contributions are accepted under these same terms; Apache-2.0 §5 governs
 inbound code contributions. Please also read the
 [Code of Conduct](CODE_OF_CONDUCT.md).
-
-`assets/ramanujan.jpg` is the well-known photograph of Srinivasa Ramanujan
-(photographer unknown, c. 1913), in the public domain; the copy here is
-downscaled from
-[Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Srinivasa_Ramanujan_-_OPC_-_1.jpg).
-It is an homage, and implies no endorsement of anything in this archive.
