@@ -1,0 +1,98 @@
+% Prose for this counterexample.  Every region below is delimited by an
+% environment that tools/build.py extracts; machine facts (ids, uid, dates,
+% urls, enums) live in case.json.  See counterexamples/AGENTS.md.
+
+\begin{cxtitle}
+Feasible Picard steps for DPP likelihood
+\end{cxtitle}
+
+\begin{cxcredits}
+\posedby{Mariet and Sra \citeyearpar{MarietSra2015}}
+\foundby{TODO}{TODO}
+\formalizedby{S.~Sra}
+\auditedby{S.~Sra}
+\contributedby{S.~Sra}
+\end{cxcredits}
+
+\begin{cxcontext}
+A determinantal point process with positive definite kernel $L$ on a ground set $\mathcal Y$ assigns a subset $Y\subseteq\mathcal Y$ probability proportional to $\det(L_Y)$, the principal minor on $Y$.  Given observed subsets $Y_1,\ldots,Y_n$, learning the kernel means maximizing the log-likelihood
+\[
+\phi(L)=\sum_{i=1}^n\log\det(L_{Y_i})-n\log\det(I+L),
+\]
+whose stationarity condition is $\Delta+L^{-1}=L^{-1}$ for the residual
+\[
+\Delta=\frac1n\sum_{i=1}^nU_i(U_i^*LU_i)^{-1}U_i^*-(I+L)^{-1},
+\]
+where $U_i$ is the indicator matrix selecting the coordinates in $Y_i$.  This suggests the Picard iteration $L_{k+1}=L_k+aL_k\Delta_kL_k$ of the quoted passage; a step size $a$ is \emph{feasible} when it keeps the iterate positive definite, which the source guarantees for $a\le1/(1-\gamma)$ with $\gamma=\max\{\lambda_{\min}(LZ),1/\lambda_{\max}(I+L)\}\in[0,1]$.  Ascent is proved for $a=1$; the conjecture asks for every feasible $a\ge1$.
+\end{cxcontext}
+
+% ---------------- result: dpp-feasible-step ----------------
+
+\begin{cxsource}{dpp-feasible-step}
+Z.~Mariet and S.~Sra \citeyearpar{MarietSra2015}, \S2 (unnumbered)
+\end{cxsource}
+
+\begin{cxstatement}{dpp-feasible-step}
+Above we showed that for $a=1$ ascent is guaranteed.  Empirically, $a>1$ often works well; Prop.~A.1 presents an easily computable upper bound on feasible $a$.  We conjecture that for all feasible values $a\ge1$, iteration (2.5) is guaranteed to increase the log-likelihood.
+
+The iteration carrying the step size is $L_{k+1}=L_k+aL_k\Delta_kL_k$, displayed as (2.7) in the source; feasibility is the bound $a\le1/(1-\gamma)$ of Prop.~A.1.
+\end{cxstatement}
+
+\begin{cxsummary}{dpp-feasible-step}
+Mariet--Sra feasible-step Picard ascent conjecture for DPP likelihood \citeyearpar{MarietSra2015}
+\end{cxsummary}
+
+\begin{cxcertificate}{dpp-feasible-step}
+Exact rational $2\times2$ feasible update with lower likelihood.
+\end{cxcertificate}
+
+\begin{cxrefutation}
+\begin{theorem}[\statusfalse: feasible-step ascent conjecture]\label{thm:dpp}
+A feasible step with $a=5$ can strictly decrease the DPP log-likelihood.
+\end{theorem}
+\begin{proof}
+Use ground set $\{1,2\}$ and observations
+\[
+\mathcal T=\bigl\{\{1\},\{2\},\{1,2\}\bigr\}.
+\]
+Let
+\[
+L_0=\begin{pmatrix}3.37200647&2.62325460\\2.62325460&6.07953037\end{pmatrix},
+\]
+with the displayed decimals interpreted as exact rationals of denominator $10^8$.  For this data,
+\[
+\Delta(L)=\frac13\left[
+\begin{pmatrix}L_{11}^{-1}&0\\0&0\end{pmatrix}
++\begin{pmatrix}0&0\\0&L_{22}^{-1}\end{pmatrix}+L^{-1}\right]-(I+L)^{-1}.
+\]
+At $a=5$, exact rational arithmetic gives
+\[
+L_1=L_0+5L_0\Delta(L_0)L_0
+\approx\begin{pmatrix}
+3.1679125391632645&3.1681701017272776\\
+3.1681701017272776&3.4400758121589554
+\end{pmatrix}.
+\]
+Both matrices are positive definite; numerically,
+\[
+\det L_0\approx13.6187510458,\qquad
+\det L_1\approx0.8605575075.
+\]
+The normalized objective is
+\[
+\phi(L)=\frac13\bigl(\log L_{11}+\log L_{22}+\log\det L\bigr)-\log\det(I+L).
+\]
+The inequality $\phi(L_1)<\phi(L_0)$ is equivalent, after exponentiating and cubing, to the exact rational comparison
+\[
+\frac{(L_1)_{11}(L_1)_{22}\det L_1}{(L_0)_{11}(L_0)_{22}\det L_0}
+<\left(\frac{\det(I+L_1)}{\det(I+L_0)}\right)^3.
+\]
+Numerically, the left and right sides are respectively
+\[
+0.03359118941299074
+\quad\text{and}\quad
+0.04354945027745948.
+\]
+Their exact rational difference is positive.  Hence the step is feasible but descending.
+\end{proof}
+\end{cxrefutation}

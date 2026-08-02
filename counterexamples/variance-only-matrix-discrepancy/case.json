@@ -1,10 +1,9 @@
 {
   "id": "variance-only-matrix-discrepancy",
   "title": "Variance-sensitive Matrix Spencer",
-  "title_tex": "Variance-sensitive Matrix Spencer",
   "status": "refuted",
   "order": 7,
-  "dossier": "dossier.tex",
+  "prose": "case.tex",
   "bib_keys": [
     "Bandeira2016",
     "AkbasSra2026"
@@ -13,30 +12,16 @@
     {
       "id": "variance-only-matrix-discrepancy",
       "uid": "Z32YZNA5",
-      "statement_tex": "Variance-sensitive Matrix Spencer for $n$ contractions of size $n\\times n$ \\cite{Bandeira2016}",
       "class": "external conjecture",
       "certificate_level": "exact",
-      "certificate_tex": "Exact $d=n$ diagonal family: $\\disc=(m-1)/\\sqrt m$ against variance $1+1/m$, a ratio of $\\Theta(\\sqrt{\\log n})$.",
       "theorem_label": "thm:discrepancy",
       "provenance": {
-        "source_tex": "Remark 4.25 of A.~S.~Bandeira's problem collection \\citeyearpar{Bandeira2016}, quoted here from its restatement as Conjecture 1.2 of E.~Akba\\c{s} and S.~Sra \\citeyearpar{AkbasSra2026}",
         "url": "https://arxiv.org/abs/2606.16005",
         "retrieved": "2026-08-01",
-        "fidelity": "verbatim",
-        "statement": "statement.tex"
+        "fidelity": "verbatim"
       }
     }
   ],
-  "credits": {
-    "posed_by": "A.~S.~Bandeira \\citeyearpar{Bandeira2016}",
-    "found_by": {
-      "model": "GPT-5.5 (Pro)",
-      "date": "TODO"
-    },
-    "formalized_by": "E.~Akba\\c{s} and S.~Sra \\citeyearpar{AkbasSra2026}",
-    "audited_by": "S.~Sra",
-    "contributed_by": "S.~Sra"
-  },
   "verify": {
     "python": "verify.py",
     "sage": [],
@@ -47,6 +32,5 @@
       "file": "artifacts/certificate.json",
       "description": "Exact record of the d=n diagonal family: the variance parameter, the exhaustive discrepancy minimum over all 2^n signings, and the ratio identity, for each checked m."
     }
-  ],
-  "context": "context.tex"
+  ]
 }

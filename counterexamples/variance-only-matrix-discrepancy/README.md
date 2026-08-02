@@ -39,11 +39,11 @@ in exact integer and `Fraction` arithmetic.
   parameter, the exhaustive discrepancy minimum over all `2^n` signings, and the ratio
   identity, for each checked `m`.
 
-## Dossier and credits
+## Prose and credits
 
-The LaTeX dossier is `dossier.tex`; it is compiled into the main paper with its
-section title and credit line generated from `case.json` by `tools/build.py`.
-Attribution roles live in the `credits` block of `case.json`: the conjecture is
+Everything written in LaTeX lives in `case.tex`, in `\begin{cx...}` regions that
+`tools/build.py` extracts into the main paper; the section title and credit line
+are generated. The `cxcredits` region records the roles: the conjecture is
 Bandeira's, the counterexample was found by GPT-5.5 (Pro) — as recorded in the
-statement on LLM use in Akbaş–Sra — and formalized by Akbaş and Sra. Cite via
-the main paper (see `/CITATION.cff`).
+statement on LLM use in Akbaş–Sra — and formalized by Akbaş and Sra, whose
+disproof this case reproduces. Cite via the main paper (see `/CITATION.cff`).

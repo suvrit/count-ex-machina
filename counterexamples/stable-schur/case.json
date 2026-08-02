@@ -1,60 +1,40 @@
 {
   "id": "stable-schur",
   "title": "Two Borcea-Branden problems",
-  "title_tex": "Problems 35 and 38: mixed-determinant representation and Permanent-On-Top",
   "status": "refuted",
   "order": 1,
   "group": "aim",
-  "dossier": "dossier.tex",
+  "prose": "case.tex",
   "bib_keys": [
     "AIMStableProblems",
     "Wanless2022"
   ],
-  "context": "context.tex",
   "results": [
     {
       "id": "aim-problem-35",
       "uid": "4NP5KD9H",
-      "statement_tex": "Borcea--Br\\\"and\\'en Problem 35: common-matrix mixed-determinant representation \\citeyearpar{AIMStableProblems}",
       "class": "external formal problem",
       "certificate_level": "exact",
-      "certificate_tex": "Stable degree-five polynomial plus size-five immanant POT obstruction.",
       "theorem_label": "thm:common-A",
       "provenance": {
-        "source_tex": "Borcea--Br\\\"and\\'en, AIM problem list \\citeyearpar{AIMStableProblems}, Problem 35",
         "url": "https://www.aimath.org/pastworkshops/polyaschurlaxrep.pdf",
         "retrieved": "2026-08-01",
-        "fidelity": "verbatim",
-        "statement": "statement-aim-problem-35.tex"
+        "fidelity": "verbatim"
       }
     },
     {
       "id": "aim-problem-38",
       "uid": "4TWB5MZJ",
-      "statement_tex": "Borcea--Br\\\"and\\'en Problem 38: Stable Permanent-On-Top \\citeyearpar{AIMStableProblems}",
       "class": "external formal problem",
       "certificate_level": "exact",
-      "certificate_tex": "Exact Schur expansion; four violating partitions.",
       "theorem_label": "thm:pot",
       "provenance": {
-        "source_tex": "Borcea--Br\\\"and\\'en, AIM problem list \\citeyearpar{AIMStableProblems}, Problem 38",
         "url": "https://www.aimath.org/pastworkshops/polyaschurlaxrep.pdf",
         "retrieved": "2026-08-01",
-        "fidelity": "verbatim",
-        "statement": "statement-aim-problem-38.tex"
+        "fidelity": "verbatim"
       }
     }
   ],
-  "credits": {
-    "posed_by": "Borcea and Br\\\"and\\'en \\citeyearpar{AIMStableProblems}",
-    "found_by": {
-      "model": "TODO",
-      "date": "TODO"
-    },
-    "formalized_by": "S.~Sra",
-    "audited_by": "S.~Sra",
-    "contributed_by": "S.~Sra"
-  },
   "verify": {
     "python": "verify.py",
     "sage": [],

@@ -63,10 +63,9 @@ count-ex-machina/
 ├─ counterexamples/          the archive itself — one directory per case
 │  ├─ _template/             scaffold copied by "make new"
 │  └─ <case-id>/
-│     ├─ case.json           metadata + attribution; the single source of truth
-│     ├─ statement.tex       the statement as originally posed
-│     ├─ context.tex         notation that quote depends on (ours, not theirs)
-│     ├─ dossier.tex         paper body: conjecture, theorem, proof
+│     ├─ case.json           machine facts: ids, uid, enums, dates, urls
+│     ├─ case.tex            all the LaTeX: the statement as posed, the context
+│     │                      it needs, the ledger lines, the refutation
 │     ├─ verify.py           the certificate — exact arithmetic or intervals
 │     ├─ verify_*.sage       optional interval cross-check
 │     ├─ README.md           what it refutes, how to check it
@@ -76,7 +75,7 @@ count-ex-machina/
 │  ├─ 01-literature.tex      AI-assisted counterexamples in the literature
 │  ├─ 02-admission.tex       the authoritative admission rule
 │  ├─ references.bib
-│  └─ generated/             ledger.tex, dossiers.tex — built from case.json
+│  └─ generated/             ledger.tex, refutations.tex — built, never edited
 ├─ tools/
 │  ├─ build.py               validate metadata, regenerate everything derived
 │  ├─ verify_all.py          recompute every certificate
@@ -91,12 +90,16 @@ count-ex-machina/
 └─ CONTRIBUTING.md           the full contributor workflow
 ```
 
-Two rules the layout encodes. **Prose lives in `.tex` files**, named by
-`case.json` and inlined at build time — never in JSON string literals.
-**Generated files are never hand-edited**: `tex/generated/`, `registry.json`,
+Two rules the layout encodes.
+
+**A case is two files.** `case.json` holds machine facts; `case.tex` holds every
+word written in LaTeX, in regions the build extracts. No LaTeX ever goes in the
+JSON — so you write `$\mathcal{Y}$`, and you edit one file rather than four.
+
+**Generated files are never hand-edited.** `tex/generated/`, `registry.json`,
 and this file's case table and count badges all come from the per-case
-`case.json` via `tools/build.py`, and are checked in so a reader need not run
-anything.
+`case.json` and `case.tex` via `tools/build.py`, and are checked in so a reader
+need not run anything.
 
 ## Quickstart
 
@@ -185,48 +188,55 @@ way, and the mechanical discipline is:
 
    or by hand, `cp -r counterexamples/_template counterexamples/<id>`.
 
-2. **`case.json`** — the single source of truth; everything else is generated
-   from it:
-   - `id` must equal the directory name; `title` / `title_tex` become the
-     case's own section heading in the paper;
+   A case is two files. **`case.json` carries machine facts and no LaTeX
+   whatsoever; `case.tex` carries every word written in LaTeX.**
+
+2. **`case.json`**:
+   - `id` must equal the directory name; `title` is plain text, for the
+     registry;
    - `status`: `"refuted"` (goes into the ledger) or `"withheld"` (documented
-     but excluded; needs `withheld_reason` and a standalone `paper.tex`
-     instead of a dossier);
+     but excluded; needs `withheld_reason` and a standalone `paper.tex`);
    - `order`: next free integer, unless the case joins a group (below);
    - `group` (optional): cases sharing a group key are emitted as
      subsections of one common section — currently only `"aim"`, the
      Borcea–Brändén AIM problems — and their `order` values must be
      consecutive, so adding one renumbers the cases after it;
    - one `results` entry per refuted statement (usually one; `stable-schur`
-     has two): `statement_tex` and `certificate_tex` are the ledger columns,
-     `class` and `certificate_level` the classification, `theorem_label` must
-     match the `\label` in the dossier;
-   - `context_tex` (optional, per case): our own setup prose — notation and
-     definitions — rendered just before the quoted statements so they can be
-     read without the source paper at hand. It sits outside the quote boxes,
-     so nothing of ours is ever mistaken for the source's words;
-   - `provenance` (per result): the statement **as originally posed**, quoted
-     ahead of the dossier in the paper — `statement_tex` (the quote),
-     `source_tex` (who posed it and where, with `\cite{...}`), `url` and
-     `retrieved` for the copy consulted, and `fidelity`: `"verbatim"` only if
-     transcribed from the source's own text, otherwise `"paraphrase"`, which
-     the paper labels as such. `source_tex` and `url` also become the linked
-     "Posed in" cell of the case table above, so `url` may be a repo-relative
-     path when the statement was posed in a file here; the build fails on any
-     LaTeX macro it cannot render as markdown;
-   - `credits`: `posed_by` (use `\cite{...}` for external sources),
-     `found_by` (AI model + session date `YYYY-MM`), `formalized_by`,
-     `audited_by`, `contributed_by`;
+     has two): `class` and `certificate_level` the classification,
+     `theorem_label` matching the `\label` in the refutation, and a
+     `provenance` block giving `url` and `retrieved` for the copy consulted
+     plus `fidelity` — `"verbatim"` only if transcribed from the source's own
+     text, otherwise `"paraphrase"`, which the paper labels as such;
    - `verify`: entry script, optional Sage cross-checks, extra pip deps.
 
-3. **`.bib` entries** — add cited works to `tex/references.bib` and list the
-   keys in `bib_keys` (the build fails on unknown keys).
+3. **`case.tex`** — one region per thing, each `\begin{cx...}` and `\end` alone
+   on its line, never nested:
+   - `cxtitle` — the case's section heading in the paper;
+   - `cxcredits` — `\posedby`, `\foundby{model}{YYYY-MM}` (repeatable),
+     `\formalizedby`, `\auditedby`, `\contributedby`; add `cxcredits{result-id}`
+     for a result whose attribution differs, and it merges over the case block
+     role by role;
+   - `cxcontext` (optional) — our own setup prose, notation and definitions,
+     rendered just before the quoted statements so they can be read without the
+     source paper at hand. It sits outside the quote boxes, so nothing of ours
+     is ever mistaken for the source's words;
+   - `cxsource{result-id}` and `cxstatement{result-id}` — who posed it and
+     where, and the statement **as originally posed**, quoted ahead of the
+     refutation in the paper. The source and `provenance.url` also become the
+     linked "Posed in" cell of the case table above, so `url` may be a
+     repo-relative path when the statement was posed in a file here; the build
+     fails on any LaTeX macro it cannot render as markdown;
+   - `cxsummary{result-id}` and `cxcertificate{result-id}` — the two ledger
+     columns, one line each;
+   - `cxrefutation` — body only; do **not** write the `\section` /
+     `\subsection` heading or the credit line (both are generated). Follow the
+     house structure: prose stating the original conjecture with `\cite`, a
+     `theorem` environment whose bracketed title carries `\statusfalse` and
+     whose `\label` equals `theorem_label`, a proof with the explicit witness,
+     optionally `\begin{remark}[Scope]`.
 
-4. **`dossier.tex`** — body only; do **not** write the `\section` /
-   `\subsection` heading or the credit line (both are generated). Follow the house structure: prose stating the
-   original conjecture with `\cite`, a `theorem` environment whose bracketed
-   title carries `\statusfalse` and whose `\label` equals `theorem_label`, a
-   proof with the explicit witness, optionally `\begin{remark}[Scope]`.
+4. **`.bib` entries** — add cited works to `tex/references.bib` and list the
+   keys in `bib_keys` (the build fails on unknown keys).
 
 5. **`verify.py`** — implements `verify() -> dict` (raises `AssertionError` on
    failure; returns `id`/`ok`/`summary`/`witness`), exact arithmetic or
@@ -240,7 +250,7 @@ way, and the mechanical discipline is:
 7. **Regenerate, verify, build**:
 
    ```sh
-   make regen   # validates case.json, regenerates ledger/dossiers/registry/this table
+   make regen   # validates the metadata, regenerates ledger/refutations/registry/this table
    make check   # metadata valid + every certificate recomputes; what CI runs
    make paper
    ```
@@ -251,15 +261,15 @@ way, and the mechanical discipline is:
 
 `tools/build.py` fails loudly on TODO placeholders, duplicate orders or
 theorem labels, missing bib keys, and missing files — if it is silent about
-the new case, the metadata is complete. Attribution from `case.json` is
-rendered under the dossier heading in the paper and into `registry.json`
+the new case, the metadata is complete. Attribution from `cxcredits` is
+rendered under the case heading in the paper and into `registry.json`
 automatically.
 
 ## License
 
 Code — `tools/`, every `verify.py`, and the Sage cross-checks — is licensed
 under the Apache License 2.0 ([LICENSE](LICENSE)). Prose and mathematical
-exposition — `tex/`, the dossiers, the case READMEs, and this file — are
+exposition — `tex/`, every `case.tex`, the case READMEs, and this file — are
 licensed under CC BY 4.0 ([LICENSE-DOCS](LICENSE-DOCS)).
 
 Contributions are accepted under these same terms; Apache-2.0 §5 governs

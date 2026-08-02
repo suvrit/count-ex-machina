@@ -26,9 +26,9 @@ prints a `PASS` line and (re)generates the artifacts below.
 
 ## Write-up and credits
 
-`dossier.tex` is the condensed write-up that the main paper inputs; it carries
-both admitted statements, the metric principle and its convex-body
-specialization. `paper.tex` is the self-contained long-form audit, including the
-exact enclosure procedure and the parts of the earlier positive argument that
-survive (compile with `latexmk -pdf paper`). Attribution roles live in the `credits` block of
-`case.json`.
+The `cxrefutation` region of `case.tex` is the condensed write-up the main
+paper emits; it carries both admitted statements, the metric principle and its
+convex-body specialization. `paper.tex` is the self-contained long-form audit,
+including the exact enclosure procedure and the parts of the earlier positive
+argument that survive (compile with `latexmk -pdf paper`). Attribution roles
+live in the `cxcredits` region of `case.tex`.

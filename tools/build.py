@@ -1,10 +1,14 @@
 #!/usr/bin/env python3
-"""Validate counterexamples/*/case.json and generate the derived files.
+"""Validate each counterexample's case.json + case.tex and generate the rest.
+
+Every case is two files: case.json (machine facts -- ids, uid, enums, dates,
+urls) and case.tex (everything written in LaTeX, in \\begin{cx...} regions this
+script extracts).  No LaTeX belongs in the JSON.
 
 Generated (checked in; never edit by hand):
   tex/generated/ledger.tex     admitted-archive ledger longtable
-  tex/generated/dossiers.tex   dossier section: subsection titles, credit
-                               lines, and \\input of each dossier body
+  tex/generated/refutations.tex  one section per case: title, credit line,
+                               context, the statements as posed, the refutation
   registry.json                flattened machine-readable registry (all cases,
                                including withheld ones)
   README.md                    case table between the BEGIN/END CASE TABLE markers
@@ -110,69 +114,183 @@ def balanced_braces(s):
     return depth == 0
 
 
-def read_sidecar(case_dir, name, errors, where):
-    """Read a prose sidecar, or record an error naming the file that is missing.
+# One case, one prose file: everything an author writes in LaTeX lives in
+# case.tex, delimited by these environments, and case.json holds only machine
+# facts.  Editing a counterexample then means reading one file top to bottom
+# instead of four, which is where consistency between the notation, the quoted
+# statement and the proof actually gets lost.
+#
+# CASE_ENVS take no argument; RESULT_ENVS take the result id, since one case may
+# refute several statements.  cxcredits is both: bare for the case, with an id
+# for a result whose attribution differs.
+CASE_ENVS = {"cxtitle", "cxcontext", "cxrefutation"}
+RESULT_ENVS = {"cxsource", "cxstatement", "cxsummary", "cxcertificate"}
+ALL_ENVS = CASE_ENVS | RESULT_ENVS | {"cxcredits"}
+BEGIN_RE = re.compile(r"^\s*\\begin\{(cx[a-z]+)\}(?:\{([^}]*)\})?\s*$")
+END_RE = re.compile(r"^\s*\\end\{(cx[a-z]+)\}\s*$")
+# Credit roles as they are written in case.tex.  \foundby takes two arguments
+# and may repeat; a witness can take more than one model or more than one
+# session to reach.
+CREDIT_MACROS = {
+    "posedby": "posed_by",
+    "formalizedby": "formalized_by",
+    "auditedby": "audited_by",
+    "contributedby": "contributed_by",
+}
 
-    Whole-line LaTeX comments are dropped: the templates carry their
-    instructions as comments, and those must neither reach the paper nor hide an
-    unfilled TODO from the build.  Surrounding blank lines then go too, so the
-    text matches what an equivalent JSON string literal would have held.
+
+def read_macro_args(s, i, n):
+    """Read n brace groups starting at s[i], honouring nesting.  -> (args, end)."""
+    args = []
+    for _ in range(n):
+        while i < len(s) and s[i].isspace():
+            i += 1
+        if i >= len(s) or s[i] != "{":
+            return None, i
+        depth, start = 0, i + 1
+        while i < len(s):
+            if s[i] == "{":
+                depth += 1
+            elif s[i] == "}":
+                depth -= 1
+                if depth == 0:
+                    break
+            i += 1
+        if i >= len(s):
+            return None, i
+        args.append(s[start:i])
+        i += 1
+    return args, i
+
+
+def parse_credits(body, errors, where):
+    """A cxcredits body: one macro per role, \\foundby repeatable."""
+    credits, i = {}, 0
+    while True:
+        j = body.find("\\", i)
+        if j < 0:
+            break
+        m = re.match(r"\\([a-z]+)", body[j:])
+        if not m:
+            i = j + 1
+            continue
+        name = m.group(1)
+        if name == "foundby":
+            args, i = read_macro_args(body, j + len(m.group(0)), 2)
+            if args is None:
+                errors.append(f"{where}: \\foundby needs two arguments: {{model}}{{YYYY-MM}}")
+                break
+            credits.setdefault("found_by", []).append({"model": args[0], "date": args[1]})
+        elif name in CREDIT_MACROS:
+            args, i = read_macro_args(body, j + len(m.group(0)), 1)
+            if args is None:
+                errors.append(f"{where}: \\{name} needs one argument")
+                break
+            credits[CREDIT_MACROS[name]] = args[0]
+        else:
+            errors.append(
+                f"{where}: unknown credit macro \\{name}; expected "
+                f"{sorted('\\\\' + k for k in ['foundby', *CREDIT_MACROS])}"
+            )
+            i = j + len(m.group(0))
+    return credits
+
+
+def parse_case_tex(text, errors, where):
+    """case.tex -> {(env, arg): body}.
+
+    Regions are found line by line: a \\begin{cx...} and its \\end must each sit
+    alone on a line.  Deliberately literal -- a prose file whose structure needs
+    a LaTeX parser to recover is a prose file whose structure an author cannot
+    see either.  Whole-line comments are dropped from bodies, so the template
+    can carry its guidance as comments without it reaching the paper or hiding
+    an unfilled TODO.
     """
-    path = case_dir / name
-    if not path.exists():
-        errors.append(f"{where}: sidecar file {name!r} does not exist")
-        return ""
-    lines = path.read_text().splitlines()
-    return "\n".join(l for l in lines if not l.lstrip().startswith("%")).strip("\n")
+    regions, open_env, arg, body = {}, None, None, []
+    for lineno, line in enumerate(text.splitlines(), 1):
+        begin = BEGIN_RE.match(line)
+        end = END_RE.match(line)
+        if begin:
+            name = begin.group(1)
+            if open_env:
+                errors.append(
+                    f"{where}: line {lineno}: \\begin{{{name}}} inside {open_env}; "
+                    "these regions may not nest"
+                )
+                return regions
+            if name not in ALL_ENVS:
+                errors.append(f"{where}: line {lineno}: unknown region {name}; expected one of {sorted(ALL_ENVS)}")
+            open_env, arg, body = name, begin.group(2) or "", []
+        elif end:
+            name = end.group(1)
+            if name != open_env:
+                errors.append(f"{where}: line {lineno}: \\end{{{name}}} does not close {open_env or 'anything'}")
+                return regions
+            key = (open_env, arg)
+            if key in regions:
+                label = f"{open_env}{{{arg}}}" if arg else open_env
+                errors.append(f"{where}: {label} appears twice")
+            regions[key] = "\n".join(body).strip("\n")
+            open_env = None
+        elif open_env and not line.lstrip().startswith("%"):
+            body.append(line)
+    if open_env:
+        errors.append(f"{where}: \\begin{{{open_env}}} is never closed")
+    return regions
 
 
-def load_sidecars(case, d, errors):
-    """Resolve prose files into the fields the rest of the build already expects.
+def load_prose(case, d, errors):
+    """Fill the fields the rest of the build expects from the case's one .tex file.
 
-    LaTeX lives in .tex files, not in JSON string literals: a paragraph of
-    mathematics inside JSON has to double every backslash and collapse to a
-    single line, which is miserable to write and worse to review.  case.json
-    names the file; this function substitutes its contents, so everything
-    downstream sees exactly the structure it saw before.
+    Downstream code still sees title_tex / context_tex / statement_tex /
+    certificate_tex / credits exactly as when they were JSON keys; only the
+    place an author writes them has changed.
     """
     cid = case.get("id", d.name)
-    if "context_tex" in case:
-        errors.append(
-            f"case {cid}: 'context_tex' is no longer read from case.json; "
-            "move the prose into a .tex file and name it in 'context'"
-        )
-    name = case.pop("context", None)
-    if name:
-        # Underscore-prefixed, so it stays out of the generated registry; kept
-        # only so that an error can name the file the author must actually edit.
-        case["_context_file"] = name
-        case["context_tex"] = read_sidecar(d, name, errors, f"case {cid}")
-
-    seen = {}
+    where = f"case {cid}"
+    stale = [k for k in ("title_tex", "dossier", "context", "credits") if k in case]
     for r in case.get("results") or []:
-        rid = r.get("id", "?")
-        prov = r.get("provenance")
-        if not isinstance(prov, dict):
-            continue
-        if "statement_tex" in prov:
-            errors.append(
-                f"case {cid}: result {rid}: provenance 'statement_tex' is no longer read "
-                "from case.json; move the quoted statement into a .tex file and name it "
-                "in provenance 'statement'"
-            )
-        name = prov.pop("statement", None)
-        if not name:
-            continue
-        # Two results quoting the same file would silently attribute one
-        # source's words to the other statement.
-        if name in seen:
-            errors.append(
-                f"case {cid}: result {rid}: statement file {name!r} is already used by "
-                f"result {seen[name]}"
-            )
-        seen[name] = rid
-        r["_statement_file"] = name
-        prov["statement_tex"] = read_sidecar(d, name, errors, f"case {cid}: result {rid}")
+        stale += [f"results.{k}" for k in ("statement_tex", "certificate_tex", "credits") if k in r]
+        prov = r.get("provenance") or {}
+        stale += [f"provenance.{k}" for k in ("statement", "statement_tex", "source_tex") if k in prov]
+    if stale:
+        errors.append(
+            f"{where}: {sorted(set(stale))} no longer belong in case.json; that prose "
+            f"lives in {case.get('prose', 'case.tex')} as a cx... region"
+        )
+
+    name = case.get("prose", "case.tex")
+    path = d / name
+    if not path.exists():
+        errors.append(f"{where}: prose file {name!r} does not exist")
+        return
+    regions = parse_case_tex(path.read_text(), errors, f"{where} ({name})")
+    ids = {r.get("id") for r in case.get("results") or []}
+    for (env, arg), body in regions.items():
+        if env in RESULT_ENVS and arg not in ids:
+            errors.append(f"{where}: {env}{{{arg}}} names no result in case.json ({sorted(ids)})")
+        if env in CASE_ENVS and arg:
+            errors.append(f"{where}: {env} takes no argument, got {{{arg}}}")
+
+    case["title_tex"] = regions.get(("cxtitle", ""), "") or case.get("title")
+    if ("cxcontext", "") in regions:
+        case["context_tex"] = regions[("cxcontext", "")]
+    case["_refutation"] = regions.get(("cxrefutation", ""), "")
+    case["credits"] = parse_credits(regions.get(("cxcredits", ""), ""), errors, f"{where} credits")
+    for r in case.get("results") or []:
+        rid = r.get("id")
+        r["statement_tex"] = regions.get(("cxsummary", rid), "")
+        r["certificate_tex"] = regions.get(("cxcertificate", rid), "")
+        # Rebuilt rather than updated, so the registry's provenance fields keep a
+        # fixed order however case.json happens to spell it.
+        prov = r.get("provenance") or {}
+        r["provenance"] = {
+            "source_tex": regions.get(("cxsource", rid), ""),
+            **{k: prov[k] for k in ("url", "retrieved", "fidelity") if k in prov},
+            "statement_tex": regions.get(("cxstatement", rid), ""),
+        }
+        if ("cxcredits", rid) in regions:
+            r["credits"] = parse_credits(regions[("cxcredits", rid)], errors, f"{where}: result {rid} credits")
 
 
 def load_cases(errors):
@@ -190,7 +308,7 @@ def load_cases(errors):
             errors.append(f"case {d.name}: invalid JSON in case.json ({e})")
             continue
         case["_dir"] = d
-        load_sidecars(case, d, errors)
+        load_prose(case, d, errors)
         cases.append(case)
     return cases
 
@@ -231,20 +349,16 @@ def validate(cases, allow_todo, errors):
                 err(f"order {order} already used by case {seen_orders[order]}")
             else:
                 seen_orders[order] = cid
-            dossier = c.get("dossier")
-            if not dossier:
-                err("refuted case needs a 'dossier' file")
-            elif not (c["_dir"] / dossier).exists():
-                err(f"dossier file {dossier} does not exist")
+            if is_todo(c.get("_refutation")):
+                err("the cxrefutation region is missing or still TODO")
+            if is_todo(c.get("title_tex")):
+                err("the cxtitle region is missing or still TODO")
             group = c.get("group")
             if group is not None and group not in GROUPS:
                 err(f"group {group!r} not one of {sorted(GROUPS)}")
             ctx = c.get("context_tex")
             if ctx is not None and (is_todo(ctx) or not balanced_braces(ctx)):
-                err(
-                    f"{c.get('_context_file', 'context')} is TODO, empty, or has "
-                    "unbalanced braces"
-                )
+                err("the cxcontext region is TODO, empty, or has unbalanced braces")
         elif status == "withheld":
             if is_todo(c.get("withheld_reason")):
                 err("withheld case needs a non-empty 'withheld_reason'")
@@ -261,9 +375,7 @@ def validate(cases, allow_todo, errors):
         results = c.get("results") or []
         if not results:
             err("needs at least one entry in 'results'")
-        dossier_text = ""
-        if status == "refuted" and c.get("dossier") and (c["_dir"] / c["dossier"]).exists():
-            dossier_text = (c["_dir"] / c["dossier"]).read_text()
+        refutation = c.get("_refutation") or ""
         for r in results:
             rid = r.get("id")
             if not rid:
@@ -300,9 +412,16 @@ def validate(cases, allow_todo, errors):
                         f"result {rid}: uid {uid} is already bound to result "
                         f"{prior_result[uid]}; uids are never reused"
                     )
-            for field in ("statement_tex", "class", "certificate_level", "certificate_tex"):
+            # Name the thing an author edits: two of these are regions of
+            # case.tex, two are enums in case.json.
+            for field, where in (
+                ("statement_tex", f"the cxsummary{{{rid}}} region"),
+                ("certificate_tex", f"the cxcertificate{{{rid}}} region"),
+                ("class", "case.json 'class'"),
+                ("certificate_level", "case.json 'certificate_level'"),
+            ):
                 if is_todo(r.get(field)):
-                    err(f"result {rid}: missing or TODO field {field!r}")
+                    err(f"result {rid}: {where} is missing or still TODO")
             if r.get("class") not in CLASSES:
                 err(f"result {rid}: class {r.get('class')!r} not one of {sorted(CLASSES)}")
             if r.get("certificate_level") not in CERTIFICATE_LEVELS:
@@ -325,8 +444,8 @@ def validate(cases, allow_todo, errors):
                         )
                     else:
                         err(
-                            f"result {rid}: provenance needs source_tex, and the statement "
-                            f"as originally posed in {r.get('_statement_file', 'its .tex file')} "
+                            f"result {rid}: case.tex needs cxsource{{{rid}}} and cxstatement"
+                            f"{{{rid}}}, the statement as originally posed "
                             f"(run with --allow-todo during migration)"
                         )
                 else:
@@ -347,43 +466,38 @@ def validate(cases, allow_todo, errors):
                     if label in seen_labels:
                         err(f"result {rid}: theorem_label {label!r} already used by {seen_labels[label]}")
                     seen_labels[label] = cid
-                    if f"\\label{{{label}}}" not in dossier_text:
-                        err(f"result {rid}: \\label{{{label}}} not found in {c.get('dossier')}")
+                    if f"\\label{{{label}}}" not in refutation:
+                        err(f"result {rid}: \\label{{{label}}} not found in the cxrefutation region")
 
         # Credits are validated per result on the merged block, so a result that
-        # overrides only 'found_by' still inherits -- and still has to have -- the
+        # overrides only \foundby still inherits -- and still has to have -- the
         # rest.  A case-level block alone is never enough to pass.
         for r in c.get("results") or []:
             rid = r.get("id") or "?"
-            unknown = set(r.get("credits") or {}) - CREDIT_ROLES
-            if unknown:
-                err(f"result {rid}: unknown credits key(s) {sorted(unknown)}")
             eff = effective_credits(c, r)
+            macro = {v: k for k, v in CREDIT_MACROS.items()}
             for role in ("posed_by", "formalized_by", "audited_by", "contributed_by"):
                 if is_todo(eff.get(role)):
-                    err(f"result {rid}: credits.{role} is missing or TODO")
+                    err(f"result {rid}: cxcredits is missing \\{macro[role]}, or it is TODO")
             finders = found_by_list(eff)
             if not finders:
-                err(f"result {rid}: credits.found_by is empty")
+                err(f"result {rid}: cxcredits has no \\foundby")
             for f in finders:
-                if not isinstance(f, dict):
-                    err(f"result {rid}: each credits.found_by entry must be an object")
-                    continue
                 model, date = f.get("model"), f.get("date")
                 if is_todo(model) or is_todo(date):
                     if allow_todo:
                         print(
-                            f"warning: case {cid}: result {rid}: credits.found_by has TODO values",
+                            f"warning: case {cid}: result {rid}: \\foundby has TODO values",
                             file=sys.stderr,
                         )
                     else:
                         err(
-                            f"result {rid}: credits.found_by needs a real model and date "
+                            f"result {rid}: \\foundby needs a real model and date "
                             "(run with --allow-todo during migration)"
                         )
                 elif not DATE_RE.match(date):
                     err(
-                        f"result {rid}: credits.found_by.date {date!r} must match "
+                        f"result {rid}: \\foundby date {date!r} must match "
                         "YYYY-MM or YYYY-MM-DD"
                     )
 
@@ -494,16 +608,16 @@ def credit_blocks(c):
     """
     per = [(r, effective_credits(c, r)) for r in c["results"]]
     if all(e == per[0][1] for _, e in per):
-        return [f"\\dossiercredits{{{credit_line(per[0][1])}}}"]
+        return [f"\\casecredits{{{credit_line(per[0][1])}}}"]
     out = []
     for r, e in per:
         ref = f"\\Cref{{{r['theorem_label']}}}" if r.get("theorem_label") else r["id"]
-        out.append(f"\\dossiercredits{{{ref}: {credit_line(e)}}}")
+        out.append(f"\\casecredits{{{ref}: {credit_line(e)}}}")
     return out
 
 
 def problem_blocks(c):
-    """Quote each refuted statement as originally posed, ahead of the dossier."""
+    """Quote each refuted statement as originally posed, ahead of the refutation."""
     out = []
     for r in c["results"]:
         prov = r.get("provenance") or {}
@@ -522,8 +636,13 @@ def problem_blocks(c):
     return out
 
 
-def gen_dossiers(cases):
-    """One section per case, except that grouped cases share one section."""
+def gen_refutations(cases):
+    """One section per case, except that grouped cases share one section.
+
+    The refutation body is inlined rather than \\input: it now lives inside
+    case.tex among the other regions, and a \\input of a whole file is exactly
+    what that consolidation removed.
+    """
     blocks = []
     open_group = None
     for c in refuted_in_order(cases):
@@ -545,7 +664,7 @@ def gen_dossiers(cases):
                 + credit_blocks(c)
                 + context
                 + problem_blocks(c)
-                + [f"\\input{{../counterexamples/{c['id']}/{c['dossier']}}}"]
+                + [c["_refutation"]]
             )
         )
     return GENERATED_HEADER + "\n" + "\n\n".join(blocks) + "\n"
@@ -715,7 +834,7 @@ def main():
 
     outputs = {
         GENERATED_DIR / "ledger.tex": gen_ledger(cases),
-        GENERATED_DIR / "dossiers.tex": gen_dossiers(cases),
+        GENERATED_DIR / "refutations.tex": gen_refutations(cases),
         REGISTRY: gen_registry(cases),
         README: splice_readme(readme_table, gen_count_badges(cases)),
     }

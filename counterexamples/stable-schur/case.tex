@@ -1,0 +1,118 @@
+% Prose for this counterexample.  Every region below is delimited by an
+% environment that tools/build.py extracts; machine facts (ids, uid, dates,
+% urls, enums) live in case.json.  See counterexamples/AGENTS.md.
+
+\begin{cxtitle}
+Problems 35 and 38: mixed-determinant representation and Permanent-On-Top
+\end{cxtitle}
+
+\begin{cxcredits}
+\posedby{Borcea and Br\"and\'en \citeyearpar{AIMStableProblems}}
+\foundby{TODO}{TODO}
+\formalizedby{S.~Sra}
+\auditedby{S.~Sra}
+\contributedby{S.~Sra}
+\end{cxcredits}
+
+\begin{cxcontext}
+A polynomial $f\in\R[z_1,\ldots,z_n]$ is \emph{real stable} if $f(z_1,\ldots,z_n)\ne0$ whenever every $z_i$ has strictly positive imaginary part.  A symmetric polynomial that is homogeneous of degree $d$ expands uniquely in the basis of Schur polynomials as $p=\sum_{\lambda\vdash d}a_\lambda s_\lambda$, and $p$ is called \emph{Schur-positive} when every $a_\lambda\ge0$.  For a partition $\lambda\vdash d$ we write $f^\lambda$ for the number of standard Young tableaux of shape $\lambda$, $\lambda'$ for the conjugate partition, and, for a $d\times d$ matrix $A=(a_{ij})$,
+\[
+\Imm_\lambda(A)=\sum_{\sigma\in S_d}\chi^\lambda(\sigma)\prod_{i=1}^da_{i\sigma(i)}
+\]
+for the immanant attached to the irreducible character $\chi^\lambda$ of $S_d$; the two extreme cases are $\Imm_{(1^d)}=\det$ and $\Imm_{(d)}=\per$.  Finally, for $n\times n$ matrices $A_1,\ldots,A_m$ the mixed-determinant, or Johnson, polynomial is
+\[
+\eta(A_1,\ldots,A_m)=\sum_{(S_1,\ldots,S_m)}\det(A_1[S_1])\cdots\det(A_m[S_m]),
+\]
+the sum running over all ordered partitions of $\{1,\ldots,n\}$ into pairwise disjoint sets $S_1,\ldots,S_m$ with union $\{1,\ldots,n\}$, and $A[S]$ denoting the principal submatrix of $A$ on the rows and columns in $S$.  When $A\succeq0$ the polynomial $\eta(z_1A,\ldots,z_nA)$ is symmetric, homogeneous, and real stable, and it satisfies $\eta(z_1A,\ldots,z_nA)=\sum_{\lambda\vdash n}\Imm_{\lambda'}(A)s_\lambda(z_1,\ldots,z_n)$ \cite{AIMStableProblems}.  The two problems below ask how far those properties go the other way.
+\end{cxcontext}
+
+% ---------------- result: aim-problem-35 ----------------
+
+\begin{cxsource}{aim-problem-35}
+Borcea--Br\"and\'en, AIM problem list \citeyearpar{AIMStableProblems}, Problem 35
+\end{cxsource}
+
+\begin{cxstatement}{aim-problem-35}
+Characterize all symmetric, real stable and homogeneous polynomial of degree $d$ in $n$ variables.  Is it in fact so that if $p$ is such a polynomial, then there is a $d\times d$ positive semidefinite $d\times d$ matrix $A$ such that
+\[p(z_1,\ldots,z_n)=\eta(z_1A,\ldots,z_nA)?\]
+This is not obvious even for $n=2$.
+\end{cxstatement}
+
+\begin{cxsummary}{aim-problem-35}
+Borcea--Br\"and\'en Problem 35: common-matrix mixed-determinant representation \citeyearpar{AIMStableProblems}
+\end{cxsummary}
+
+\begin{cxcertificate}{aim-problem-35}
+Stable degree-five polynomial plus size-five immanant POT obstruction.
+\end{cxcertificate}
+
+% ---------------- result: aim-problem-38 ----------------
+
+\begin{cxsource}{aim-problem-38}
+Borcea--Br\"and\'en, AIM problem list \citeyearpar{AIMStableProblems}, Problem 38
+\end{cxsource}
+
+\begin{cxstatement}{aim-problem-38}
+Lieb's Permanent-On-Top (POT) Conjecture for the symmetric group on $d$ elements [J,L] asserts that if $A$ is a $d\times d$ positive semi-definite matrix then $\Imm_\lambda(A)\le f^\lambda\per(A)$ for all $\lambda\vdash d$.  An affirmative answer to the following problem would in particular imply the validity of the POT Conjecture.
+
+\emph{Problem 38.}  Let $p$ be as in Problem 36.  Is $a_\lambda\le f^\lambda a_{(1^d)}$ for all $\lambda\vdash d$?
+\end{cxstatement}
+
+\begin{cxsummary}{aim-problem-38}
+Borcea--Br\"and\'en Problem 38: Stable Permanent-On-Top \citeyearpar{AIMStableProblems}
+\end{cxsummary}
+
+\begin{cxcertificate}{aim-problem-38}
+Exact Schur expansion; four violating partitions.
+\end{cxcertificate}
+
+\begin{cxrefutation}
+Borcea--Br\"and\'en posed the relevant representation and endpoint problems in the AIM problem list \citeyearpar{AIMStableProblems}.  Let $S=x_1+\cdots+x_5$ and
+\begin{equation}\label{eq:stable-p}
+p(x_1,\ldots,x_5)=\prod_{i=1}^5\left(x_i+5\sum_{j\ne i}x_j\right)=\prod_{i=1}^5(5S-4x_i).
+\end{equation}
+Every factor has strictly positive coefficients, hence has positive imaginary part whenever all variables do; therefore $p$ is real stable.  It is symmetric, homogeneous of degree five in five variables, and has strictly positive monomial coefficients.
+
+\begin{theorem}[\statusfalse: Stable Permanent-On-Top, AIM Problem 38]\label{thm:pot}
+The polynomial \eqref{eq:stable-p} satisfies all hypotheses of Borcea--Br\"and\'en Problem 36 but violates
+\[
+a_\lambda\le f^\lambda a_{(1^5)}.
+\]
+\end{theorem}
+\begin{proof}
+Its exact Schur expansion is
+\begin{align*}
+p={}&625s_{(5)}+4500s_{(4,1)}+7125s_{(3,2)}+8150s_{(3,1,1)}\\
+&+7525s_{(2,2,1)}+6580s_{(2,1,1,1)}+1281s_{(1^5)}.
+\end{align*}
+For $\lambda=(3,2)$, the hook-length formula gives $f^{(3,2)}=5$, whereas
+\[
+7125>5\cdot1281=6405.
+\]
+The same upper endpoint fails for $(3,1,1)$, $(2,2,1)$, and $(2,1,1,1)$.  The source package independently reconstructs the monomial expansion and inverts the Kostka matrix over $\mathbb Z$.
+\end{proof}
+
+The polynomial also has a diagonal positive-definite mixed-determinant representation.  For $j=1,\ldots,5$, let
+\[
+D_j=\diag(5,\ldots,5,\underset{j}{1},5,\ldots,5).
+\]
+Then the multivariate Johnson polynomial satisfies
+\[
+\eta(x_1D_1,\ldots,x_5D_5)=p(x_1,\ldots,x_5).
+\]
+
+\begin{theorem}[\statusfalse: common-matrix representation, AIM Problem 35]\label{thm:common-A}
+There is no $5\times5$ Hermitian positive semidefinite matrix $A$ such that
+\[
+p(x_1,\ldots,x_5)=\eta(x_1A,\ldots,x_5A).
+\]
+\end{theorem}
+\begin{proof}
+Such a representation would identify the Schur coefficients, up to one common positive normalization, with irreducible immanants of $A$ indexed by conjugate partitions.  Immanant Permanent-On-Top is known in size five, indeed in every size at most thirteen \cite{Wanless2022}.  It would therefore force
+$a_\lambda\le f^\lambda a_{(1^5)}$ for every $\lambda\vdash5$, contradicting Theorem~\ref{thm:pot}.
+\end{proof}
+
+\begin{remark}[Scope]
+The example is Schur-positive, and its lower endpoint inequalities hold, so it refutes neither Problem 36 nor Problem 37; those require the positive-definite pencil of Theorem~\ref{thm:aim36} below.  The full independent audit is included as \path{counterexamples/stable-schur/artifacts/}.
+\end{remark}
+\end{cxrefutation}

@@ -1,3 +1,38 @@
+% Prose for this counterexample.  Every region below is delimited by an
+% environment that tools/build.py extracts; machine facts (ids, uid, dates,
+% urls, enums) live in case.json.  See counterexamples/AGENTS.md.
+
+\begin{cxtitle}
+A rank-two completely-positive mixed-norm inequality
+\end{cxtitle}
+
+\begin{cxcredits}
+\posedby{S.~Sra}
+\foundby{TODO}{TODO}
+\formalizedby{S.~Sra}
+\auditedby{S.~Sra}
+\contributedby{S.~Sra}
+\end{cxcredits}
+
+% ---------------- result: rank-two-mixed-norm ----------------
+
+\begin{cxsource}{rank-two-mixed-norm}
+TODO: where the statement was posed (session, note, talk)
+\end{cxsource}
+
+\begin{cxstatement}{rank-two-mixed-norm}
+TODO: paste the original formal statement exactly as posed
+\end{cxstatement}
+
+\begin{cxsummary}{rank-two-mixed-norm}
+Rank-two completely-positive mixed-norm interpolation at $(s,q)=(6/5,6)$
+\end{cxsummary}
+
+\begin{cxcertificate}{rank-two-mixed-norm}
+Explicit 21-vector Gram matrix and interval-separated ratio $>1$.
+\end{cxcertificate}
+
+\begin{cxrefutation}
 For an entrywise nonnegative matrix $A$, define
 \[
 \|A\|_{p,q}=\left(\sum_j\left(\sum_i |a_{ij}|^p\right)^{q/p}\right)^{1/q}.
@@ -33,3 +68,4 @@ R_A&\le 1.00000061733911154365777590600087863800.
 \end{align*}
 The entire interval lies above one.  The source package regenerates $A$ from the four groups and evaluates the ratio independently at 100 digits; a Sage interval script supplies outward rounding.
 \end{proof}
+\end{cxrefutation}

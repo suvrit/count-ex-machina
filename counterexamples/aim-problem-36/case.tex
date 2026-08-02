@@ -1,3 +1,64 @@
+% Prose for this counterexample.  Every region below is delimited by an
+% environment that tools/build.py extracts; machine facts (ids, uid, dates,
+% urls, enums) live in case.json.  See counterexamples/AGENTS.md.
+
+\begin{cxtitle}
+Problem 36: stable Schur positivity
+\end{cxtitle}
+
+\begin{cxcredits}
+\posedby{Borcea and Br\"and\'en \citeyearpar{AIMStableProblems}}
+\foundby{TODO}{TODO}
+\formalizedby{S.~Sra}
+\auditedby{S.~Sra}
+\contributedby{S.~Sra}
+\end{cxcredits}
+
+\begin{cxcontext}
+We keep the notation of the previous subsection: real stability means nonvanishing when every variable lies in the open upper half-plane; $a_\lambda$ are the coefficients in the Schur expansion $p=\sum_{\lambda\vdash d}a_\lambda s_\lambda$ of a symmetric homogeneous $p$ of degree $d$; $f^\lambda$ counts standard Young tableaux of shape $\lambda$; and $\Imm_\lambda$ is the immanant of a $d\times d$ matrix attached to the irreducible character $\chi^\lambda$, with $\Imm_{(1^d)}=\det$ and $\Imm_{(d)}=\per$.  Problem 36 asks whether stability forces Schur-positivity outright; Problems 37 and 38 ask for the two endpoint inequalities that would bracket the Schur coefficients between the $\det$ and $\per$ ends of the immanant scale.
+\end{cxcontext}
+
+% ---------------- result: aim-problem-36 ----------------
+
+\begin{cxsource}{aim-problem-36}
+Borcea--Br\"and\'en, AIM problem list \citeyearpar{AIMStableProblems}, Problem 36
+\end{cxsource}
+
+\begin{cxstatement}{aim-problem-36}
+Let $p$ be a symmetric, real stable and homogeneous polynomial of degree $d$ in $n$ variables with $d\le n$ and suppose that $p$ has at least one positive (and then all non-negative) coefficients in the monomial basis.  Is $p$ Schur-positive?  That is, when $p(z_1,\ldots,z_n)$ is expanded in the Schur-basis
+\[p(z_1,\ldots,z_n)=\sum_{\lambda\vdash d}a_\lambda s_\lambda(z_1,\ldots,z_n),\]
+is $a_\lambda\ge0$ for all $\lambda\vdash d$?
+\end{cxstatement}
+
+\begin{cxsummary}{aim-problem-36}
+Borcea--Br\"and\'en Problem 36: stable Schur positivity \citeyearpar{AIMStableProblems}
+\end{cxsummary}
+
+\begin{cxcertificate}{aim-problem-36}
+Positive-definite $5\times5$ det-pencil; exact Schur expansion with $[s_{(1^5)}]q=-2972$.
+\end{cxcertificate}
+
+% ---------------- result: aim-problem-37 ----------------
+
+\begin{cxsource}{aim-problem-37}
+Borcea--Br\"and\'en, AIM problem list \citeyearpar{AIMStableProblems}, Problem 37
+\end{cxsource}
+
+\begin{cxstatement}{aim-problem-37}
+If $A$ is a $d\times d$ matrix then $\det(A)=\Imm_{(1^d)}(A)$ and $\per(A)=\Imm_{(d)}(A)$, where $(1^d)=(1,\ldots,1)$ and $(d)=(1^d)'=(d,0,\ldots,0)$.  Schur's inequality [J,L] asserts that if $A$ is a $d\times d$ positive semi-definite matrix then $\Imm_\lambda(A)\ge f^\lambda\det(A)$ for all $\lambda\vdash d$, where $f^\lambda$ is the number of standard Young tableaux of shape $\lambda$.  A natural real stable extension of this result would be as follows.
+
+\emph{Problem 37.}  Let $p$ be as in Problem 36.  Is $a_\lambda\ge f^\lambda a_{(d)}$ for all $\lambda\vdash d$?
+\end{cxstatement}
+
+\begin{cxsummary}{aim-problem-37}
+Borcea--Br\"and\'en Problem 37: stable Schur inequality (lower endpoint) \citeyearpar{AIMStableProblems}
+\end{cxsummary}
+
+\begin{cxcertificate}{aim-problem-37}
+Same pencil; $a_{(1^5)}=-2972<1728=f^{(1^5)}a_{(5)}$.
+\end{cxcertificate}
+
+\begin{cxrefutation}
 The answer to both is no already at $d=n=5$.  Let
 \begingroup
 \scriptsize
@@ -108,3 +169,4 @@ Take $\lambda=(1^5)$, so that $f^{(1^5)}=1$.  The inequality would require $a_{(
 \begin{remark}[Relation to Problem 38]
 The same sign obstruction refutes Problem 38 as well: at $\lambda=(5)$ the upper endpoint would require $1728\le-2972$.  That refutation is not carried here, because Theorem~\ref{thm:pot} refutes Problem 38 by a Schur-\emph{positive} polynomial, which is the stronger statement.
 \end{remark}
+\end{cxrefutation}

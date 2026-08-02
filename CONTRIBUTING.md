@@ -58,50 +58,46 @@ the build errors, and the things it must never invent spelled out.
    the mathematics. (To do it by hand instead: `cp -r counterexamples/_template
    counterexamples/<your-id>` and take the next free `order` yourself.)
 
-2. Fill in the rest of `case.json`:
+2. Fill in `case.json` — **machine facts only**, no LaTeX:
    - one entry in `results` per refuted statement (usually one);
    - leave each result's `uid` exactly as minted. It is the registry's primary
      key and is immutable: the build rejects a uid that has changed, that is
      reused, or that is malformed. If you assembled the case by hand, mint one
      with `python tools/new_case.py --mint-uid`. Never write one yourself, and
      never cite one — humans cite the result `id`;
-   - quote the statement as originally posed in `statement.tex`, and record
-     where it came from in each result's `provenance` (`source_tex`, `url`,
-     `retrieved`, and `fidelity` — `"verbatim"` only if transcribed from the
-     source's own text). A case with several results names one file per
-     result, e.g. `statement-<result-id>.tex`;
-   - put whatever notation and definitions that quote depends on into
-     `context.tex`; a reader must not have to open the source paper to
-     understand what is being refuted;
-   - **prose lives in `.tex` files, never in JSON.** `case.json` names the
-     file (`"context"`, and `provenance.statement`) and the build inlines it,
-     so you write `$\mathcal{Y}$` rather than `"$\\mathcal{Y}$"` on a single
-     line. Whole-line `%` comments in those files are stripped and never reach
-     the paper. Putting the prose back into `case.json` is a build error, not
-     a silent fallback;
+   - `provenance` records `url` and `retrieved` (the copy you consulted) and
+     `fidelity` — `"verbatim"` only if transcribed from the source's own text;
    - add any cited works to `tex/references.bib` and list the keys in
-     `bib_keys`;
-   - record attribution in `credits`: who posed the statement (`posed_by`),
-     which AI model found the witness and when (`found_by`), who formalized
-     the argument (`formalized_by`), who audited the certificate
-     (`audited_by`), and who is submitting (`contributed_by`);
-   - `found_by` may be a single `{"model", "date"}` object or a **list** of
-     them, for a witness that took more than one model or more than one
-     session to reach;
+     `bib_keys`.
+3. Write `case.tex` — **everything in LaTeX**, one region at a time:
+   - `cxstatement{result-id}` quotes the statement as originally posed, and
+     `cxsource{result-id}` says who posed it and where;
+   - `cxcontext` gives whatever notation and definitions that quote depends
+     on; a reader must not have to open the source paper to understand what is
+     being refuted;
+   - `cxsummary` and `cxcertificate` are the two ledger columns, one line each;
+   - `cxrefutation` is the conjecture, the theorem, and the proof — body only,
+     since the section title and credit line are generated;
+   - `cxcredits` records attribution: `\posedby` (who posed the statement),
+     `\foundby{model}{YYYY-MM}` (which AI model found the witness and when),
+     `\formalizedby`, `\auditedby`, `\contributedby`. `\foundby` may repeat for
+     a witness that took more than one model or more than one session;
    - attribution belongs to the *result*, not the directory. If your case
-     bundles two refuted statements with different histories, give the
-     differing result its own `credits` block. It is merged over the case's
-     key by key, so a result that differs only in `found_by` inherits the
-     rest. The paper then prints one credit line per statement instead of one
-     for the case.
-3. Write `dossier.tex` (body only — the section title and credit line are
-   generated) following the structure of the existing dossiers, and
-   `verify.py` implementing `verify() -> dict` with exact checks.
-4. Fill in the case `README.md`.
+     bundles two refuted statements with different histories, add a
+     `cxcredits{result-id}` for the one that differs. It merges over the case
+     block role by role, so a result differing only in its finder inherits the
+     rest, and the paper then prints one credit line per statement.
+
+   **No LaTeX goes back into the JSON.** Writing `$\mathcal{Y}$` in a `.tex`
+   file rather than `"$\\mathcal{Y}$"` on one collapsed JSON line is the whole
+   point; the build rejects prose left in `case.json`, by name. Whole-line `%`
+   comments inside a region are stripped and never reach the paper.
+4. Write `verify.py`, implementing `verify() -> dict` with exact checks, and
+   fill in the case `README.md`.
 5. Regenerate and verify:
 
    ```sh
-   make regen   # validates case.json, regenerates ledger/dossiers/registry
+   make regen   # validates the metadata, regenerates ledger/refutations/registry
    make check   # the pull-request gate: metadata valid + every certificate recomputes
    make paper   # the paper must compile
    ```
@@ -118,10 +114,10 @@ about your case, the metadata is complete.
 
 ## Credit policy
 
-Attribution is structural, not decorative: the `credits` block of `case.json`
-is rendered under the dossier heading in the paper and into `registry.json`.
-Model provenance (`found_by`) names the AI model and session date — this
+Attribution is structural, not decorative: the `cxcredits` region of `case.tex`
+is rendered under the case heading in the paper and into `registry.json`.
+Model provenance (`\foundby`) names the AI model and session date — this
 archive exists to document exactly that. It is keyed to the individual refuted
 statement, so two results bundled in one directory can carry different finders;
-`registry.json` always emits `found_by` as a list, whichever form `case.json`
-used.
+`registry.json` always emits `found_by` as a list, however many `\foundby`
+lines the case wrote.

@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Scaffold a new counterexample directory with every cross-reference wired.
 
-The mechanical parts of a case -- the id echoed into four files, the ledger
-`order`, the `theorem_label` that has to match the `\\label` in the dossier --
-are exactly the parts contributors get wrong, and none of them require any
+The mechanical parts of a case -- the id echoed by several regions, the ledger
+`order`, the `theorem_label` that has to match the `\\label` in the refutation
+-- are exactly the parts contributors get wrong, and none of them require any
 judgement.  This script fills those in and leaves TODO markers only where
 actual mathematics has to be written.
 
@@ -163,7 +163,6 @@ def main() -> int:
     case = json.loads((TEMPLATE / "case.json").read_text())
     case["id"] = case_id
     case["title"] = title
-    case["title_tex"] = title
     case["status"] = "refuted"
     case["order"] = order
     case["bib_keys"] = bib_keys
@@ -173,21 +172,27 @@ def main() -> int:
     result["class"] = klass
     result["certificate_level"] = level
     result["theorem_label"] = label
-    result["provenance"].update(
-        {"source_tex": source_tex, "url": url, "retrieved": retrieved, "fidelity": fidelity}
-    )
-    case["credits"] = {
-        "posed_by": posed_by,
-        "found_by": {"model": model, "date": found_date},
-        "formalized_by": formalized_by,
-        "audited_by": audited_by,
-        "contributed_by": contributed_by,
-    }
+    result["provenance"].update({"url": url, "retrieved": retrieved, "fidelity": fidelity})
     (dest / "case.json").write_text(json.dumps(case, indent=2, ensure_ascii=False) + "\n")
 
-    # Wire the label the build cross-checks between case.json and the dossier.
-    dossier = (dest / "dossier.tex").read_text().replace("thm:TODO", label)
-    (dest / "dossier.tex").write_text(dossier)
+    # Everything answered above is LaTeX, so it goes into case.tex -- including
+    # the result id echoed by four regions and the label the build cross-checks
+    # against case.json.
+    tex = (dest / "case.tex").read_text()
+    for old, new in (
+        ("TODO-result-id", case_id),
+        ("thm:TODO", label),
+        ("TODO title, as it should head this case's section in the paper", title),
+        (r"TODO who posed it; use \citeyearpar{key} after a name", posed_by),
+        (r"TODO source, with \cite{key}", source_tex),
+        ("TODO model name", model),
+        ("TODO YYYY-MM", found_date),
+        (r"\formalizedby{TODO}", rf"\formalizedby{{{formalized_by}}}"),
+        (r"\auditedby{TODO}", rf"\auditedby{{{audited_by}}}"),
+        (r"\contributedby{TODO}", rf"\contributedby{{{contributed_by}}}"),
+    ):
+        tex = tex.replace(old, new)
+    (dest / "case.tex").write_text(tex)
 
     verify = (dest / "verify.py").read_text().replace("TODO-must-match-case.json-id", case_id)
     (dest / "verify.py").write_text(verify)
@@ -209,11 +214,10 @@ def main() -> int:
     print(f"\nCreated counterexamples/{case_id}/ as ledger order {order}.\n")
     print("What is filled in: id, order, theorem label, classification, provenance,")
     print("credits. What is left: the mathematics.\n")
-    print("  1. dossier.tex  -- the conjecture, the theorem, the proof")
+    print("  1. case.tex     -- the statement as posed, the context it needs, the")
+    print("                     one-line ledger entries, and the refutation itself")
     print(f"  2. verify.py    -- exact checks; `python counterexamples/{case_id}/verify.py`")
-    print("  3. case.json    -- statement_tex, certificate_tex, context_tex, and the")
-    print("                     provenance statement quoted as originally posed")
-    print("  4. README.md    -- summary and artifact description\n")
+    print("  3. README.md    -- summary and artifact description\n")
     print("Then run `make check`. It will name every TODO that is still outstanding.")
     return 0
 

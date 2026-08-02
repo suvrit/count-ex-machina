@@ -1,0 +1,76 @@
+% Every word of this case that is written in LaTeX.  Machine facts -- ids, uid,
+% dates, urls, enums -- live next door in case.json, and no LaTeX belongs there.
+%
+% Each region below is delimited by an environment that tools/build.py extracts.
+% A \begin{cx...} and its \end must each sit alone on a line.  Regions may not
+% nest.  Whole-line %-comments (like these) are stripped and never reach the
+% paper, so the guidance here costs nothing.
+%
+% Regions taking a result id -- cxsource, cxstatement, cxsummary, cxcertificate
+% -- are repeated once per refuted statement.  Most cases have exactly one.
+
+\begin{cxtitle}
+TODO title, as it should head this case's section in the paper
+\end{cxtitle}
+
+% Who did what.  \foundby takes the model and the session month, and may be
+% repeated when a witness took more than one model or more than one session.
+% Add \begin{cxcredits}{result-id} for a result whose attribution differs; it
+% is merged over this block role by role.
+\begin{cxcredits}
+\posedby{TODO who posed it; use \citeyearpar{key} after a name}
+\foundby{TODO model name}{TODO YYYY-MM}
+\formalizedby{TODO}
+\auditedby{TODO}
+\contributedby{TODO}
+\end{cxcredits}
+
+% Our own setup prose: the notation and definitions the quoted statement below
+% depends on, so a reader never has to open the source paper.  Rendered outside
+% the quote boxes, so nothing of ours is mistaken for the source's words.
+% Delete this region if the statement genuinely needs no notation.
+\begin{cxcontext}
+TODO notation and definitions the quoted statement depends on
+\end{cxcontext}
+
+% ---------------- result: TODO-result-id ----------------
+
+% Who posed the statement and where, with a section or problem number.
+\begin{cxsource}{TODO-result-id}
+TODO source, with \cite{key}
+\end{cxsource}
+
+% The statement exactly as originally posed -- hypotheses and quantifiers
+% intact.  case.json's provenance.fidelity says "verbatim" only if this was
+% transcribed from the source's own text.
+\begin{cxstatement}{TODO-result-id}
+TODO the statement as originally posed
+\end{cxstatement}
+
+% The two ledger columns, one line each.
+\begin{cxsummary}{TODO-result-id}
+TODO one-line statement for the ledger table
+\end{cxsummary}
+
+\begin{cxcertificate}{TODO-result-id}
+TODO one line: what the certificate is
+\end{cxcertificate}
+
+% The refutation: the conjecture in prose, the theorem that kills it, the proof
+% exhibiting the witness.  No \section heading and no credit line -- both are
+% generated.  The \label must equal theorem_label in case.json.
+\begin{cxrefutation}
+TODO prose stating the original conjecture, with \cite{key}.
+
+\begin{theorem}[\statusfalse: TODO short name]\label{thm:TODO}
+TODO the claim, refuted as posed.
+\end{theorem}
+\begin{proof}
+TODO the explicit witness, with exact values, and how to read any displayed
+decimals.
+\end{proof}
+
+\begin{remark}[Scope]
+TODO optional: what is and is not refuted.
+\end{remark}
+\end{cxrefutation}

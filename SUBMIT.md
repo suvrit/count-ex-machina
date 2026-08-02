@@ -54,8 +54,9 @@ evidence into an exact certificate is much of what this archive is for.
 - **Do not invent a `uid` or an `order`.** Leave `uid` as `null` and omit
   `order` entirely — the maintainers assign both, and a value you make up will
   collide with a real one.
-- **Prose goes in `.tex` blocks, never inside JSON strings.** Write
-  `$\mathcal{Y}$`, not `"$\\mathcal{Y}$"`.
+- **No LaTeX in the JSON, ever.** Every word you write in LaTeX belongs in
+  `case.tex`; `case.json` carries ids, enums, dates and urls and nothing else.
+  Write `$\mathcal{Y}$`, not `"$\\mathcal{Y}$"`.
 
 ## What to produce
 
@@ -72,57 +73,76 @@ example `logdet-loewner`, `rank-two-mixed-norm`.
 ```json file=case.json
 {
   "id": "<case-id>",
-  "title": "<plain-text title, becomes the paper's section heading>",
-  "title_tex": "<same, LaTeX if it needs math>",
+  "title": "<plain-text title, for the registry>",
   "status": "refuted",
-  "dossier": "dossier.tex",
-  "context": "context.tex",
+  "prose": "case.tex",
   "bib_keys": ["<keys of the works you cite; the entries go in the bibtex block>"],
   "results": [
     {
       "id": "<usually the same as the case id; one entry per refuted statement>",
       "uid": null,
-      "statement_tex": "<one line: the statement, for the ledger table>",
       "class": "<published theorem | published conjecture | external conjecture | external formal problem | user formal problem>",
       "certificate_level": "<exact | computer-assisted>",
-      "certificate_tex": "<one line: what the certificate is, e.g. 'Exact rational 3x3 witness and a negative quadratic form.'>",
       "theorem_label": "thm:<case-id>",
       "provenance": {
-        "source_tex": "<who posed it and where, with \\cite{key} — a section or problem number if there is one>",
         "url": "<link to the copy you consulted>",
         "retrieved": "<YYYY-MM-DD>",
-        "fidelity": "<verbatim | paraphrase>",
-        "statement": "statement.tex"
+        "fidelity": "<verbatim | paraphrase>"
       }
     }
   ],
-  "credits": {
-    "posed_by": "<who posed the statement, with \\citeyearpar{key} after a name>",
-    "found_by": { "model": "<AI model name>", "date": "<YYYY-MM of the session>" },
-    "formalized_by": "<who wrote the proof>",
-    "audited_by": "<who checked the certificate>",
-    "contributed_by": "<who is submitting>"
-  },
   "verify": { "python": "verify.py", "sage": [], "requires": [] },
   "artifacts": [
-    { "file": "artifacts/certificate.json", "description": "<what the certificate file contains>" }
+    { "file": "artifacts/certificate.json", "description": "<what it contains; plain text>" }
   ]
 }
 ```
 
-```latex file=statement.tex
+**No LaTeX goes in that JSON.** It holds machine facts only — ids, enums,
+dates, urls. Every word you write in LaTeX goes in the file below, in regions
+our build extracts. A `\begin{cx...}` and its `\end` must each sit alone on a
+line, and regions may not nest. The four regions taking a result id repeat once
+per refuted statement; most cases have exactly one.
+
+```latex file=case.tex
+\begin{cxtitle}
+The title heading this case's section in the paper.
+\end{cxtitle}
+
+\begin{cxcredits}
+\posedby{who posed the statement, with \citeyearpar{key} after a name}
+\foundby{AI model name}{YYYY-MM of the session}
+\formalizedby{who wrote the proof}
+\auditedby{who checked the certificate}
+\contributedby{who is submitting}
+\end{cxcredits}
+
+\begin{cxcontext}
+Whatever notation and definitions the quoted statement depends on, so a reader
+never has to open the source paper.  This is your prose, not the source's.
+Delete this region if the statement needs no notation.
+\end{cxcontext}
+
+\begin{cxsource}{<result-id>}
+Who posed it and where, with \cite{key} and a section or problem number.
+\end{cxsource}
+
+\begin{cxstatement}{<result-id>}
 The statement exactly as originally posed, hypotheses and quantifiers intact.
-Quote it; do not restate it in your own words unless you set fidelity to
-"paraphrase".
-```
+Quote it; do not restate it in your own words unless fidelity is "paraphrase".
+\end{cxstatement}
 
-```latex file=context.tex
-Whatever notation and definitions that quoted statement depends on, so a reader
-never has to open the source paper. This is your prose, not the source's.
-```
+\begin{cxsummary}{<result-id>}
+One line: the statement, for the ledger table.
+\end{cxsummary}
 
-```latex file=dossier.tex
-Body only -- no \section heading and no credit line, both are generated.
+\begin{cxcertificate}{<result-id>}
+One line: what the certificate is, e.g. exact rational $3\times3$ witness and a
+negative quadratic form.
+\end{cxcertificate}
+
+\begin{cxrefutation}
+No \section heading and no credit line -- both are generated.
 
 Prose introducing the conjecture, with \cite{key}.
 
@@ -134,6 +154,7 @@ Prose introducing the conjecture, with \cite{key}.
   decimals -- e.g. "interpret all six-decimal entries as exact rationals of
   denominator $10^6$".
 \end{proof}
+\end{cxrefutation}
 ```
 
 ```python file=verify.py
@@ -194,8 +215,8 @@ Run `python verify.py`; it raises on any failed check and writes the artifact.
 ```
 ````
 
-Omit the `bibtex` block if you cite nothing. Omit `context.tex` only if the
-statement genuinely needs no notation — that is rare.
+Omit the `bibtex` block if you cite nothing. Omit the `cxcontext` region only if
+the statement genuinely needs no notation — that is rare.
 
 If a block's own content contains a fence, open that block with **four**
 backticks so the inner one cannot close it early.

@@ -1,39 +1,24 @@
 {
   "id": "logdet-loewner",
   "title": "Loewner monotonicity of alternating log-determinants",
-  "title_tex": "Loewner monotonicity of alternating log-determinants",
   "status": "refuted",
   "order": 9,
-  "dossier": "dossier.tex",
+  "prose": "case.tex",
   "bib_keys": [],
   "results": [
     {
       "id": "logdet-loewner",
       "uid": "2MRX3236",
-      "statement_tex": "Loewner monotonicity of alternating log-determinant inclusion--exclusion",
       "class": "user formal problem",
       "certificate_level": "exact",
-      "certificate_tex": "Rational $3\\times3$ matrices and an exact negative quadratic form.",
       "theorem_label": "thm:logdet",
       "provenance": {
-        "source_tex": "TODO: where the statement was posed (session, note, talk)",
         "url": null,
         "retrieved": null,
-        "fidelity": "TODO: verbatim or paraphrase",
-        "statement": "statement.tex"
+        "fidelity": "TODO: verbatim or paraphrase"
       }
     }
   ],
-  "credits": {
-    "posed_by": "S.~Sra",
-    "found_by": {
-      "model": "TODO",
-      "date": "TODO"
-    },
-    "formalized_by": "S.~Sra",
-    "audited_by": "S.~Sra",
-    "contributed_by": "S.~Sra"
-  },
   "verify": {
     "python": "verify.py",
     "sage": [],

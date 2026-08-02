@@ -1,9 +1,0 @@
-A polynomial $f\in\R[z_1,\ldots,z_n]$ is \emph{real stable} if $f(z_1,\ldots,z_n)\ne0$ whenever every $z_i$ has strictly positive imaginary part.  A symmetric polynomial that is homogeneous of degree $d$ expands uniquely in the basis of Schur polynomials as $p=\sum_{\lambda\vdash d}a_\lambda s_\lambda$, and $p$ is called \emph{Schur-positive} when every $a_\lambda\ge0$.  For a partition $\lambda\vdash d$ we write $f^\lambda$ for the number of standard Young tableaux of shape $\lambda$, $\lambda'$ for the conjugate partition, and, for a $d\times d$ matrix $A=(a_{ij})$,
-\[
-\Imm_\lambda(A)=\sum_{\sigma\in S_d}\chi^\lambda(\sigma)\prod_{i=1}^da_{i\sigma(i)}
-\]
-for the immanant attached to the irreducible character $\chi^\lambda$ of $S_d$; the two extreme cases are $\Imm_{(1^d)}=\det$ and $\Imm_{(d)}=\per$.  Finally, for $n\times n$ matrices $A_1,\ldots,A_m$ the mixed-determinant, or Johnson, polynomial is
-\[
-\eta(A_1,\ldots,A_m)=\sum_{(S_1,\ldots,S_m)}\det(A_1[S_1])\cdots\det(A_m[S_m]),
-\]
-the sum running over all ordered partitions of $\{1,\ldots,n\}$ into pairwise disjoint sets $S_1,\ldots,S_m$ with union $\{1,\ldots,n\}$, and $A[S]$ denoting the principal submatrix of $A$ on the rows and columns in $S$.  When $A\succeq0$ the polynomial $\eta(z_1A,\ldots,z_nA)$ is symmetric, homogeneous, and real stable, and it satisfies $\eta(z_1A,\ldots,z_nA)=\sum_{\lambda\vdash n}\Imm_{\lambda'}(A)s_\lambda(z_1,\ldots,z_n)$ \cite{AIMStableProblems}.  The two problems below ask how far those properties go the other way.

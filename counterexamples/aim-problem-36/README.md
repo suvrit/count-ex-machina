@@ -27,7 +27,8 @@ prints a `PASS` line and (re)generates the artifacts below.
 
 ## Write-up and credits
 
-`dossier.tex` is the condensed write-up that the main paper inputs. `paper.tex`
-is the self-contained long form, including the Specht-module origin of the
-pencil (compile with `latexmk -pdf paper`). Attribution roles live in the
-`credits` block of `case.json`.
+The `cxrefutation` region of `case.tex` is the condensed write-up the main
+paper emits; the rest of `case.tex` holds the title, credits, context, and the
+statements as posed. `paper.tex` is the self-contained long form, including the
+Specht-module origin of the pencil (compile with `latexmk -pdf paper`).
+Attribution roles live in the `cxcredits` region.

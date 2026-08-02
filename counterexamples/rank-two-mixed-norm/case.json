@@ -1,39 +1,24 @@
 {
   "id": "rank-two-mixed-norm",
   "title": "A rank-two completely-positive mixed-norm inequality",
-  "title_tex": "A rank-two completely-positive mixed-norm inequality",
   "status": "refuted",
   "order": 8,
-  "dossier": "dossier.tex",
+  "prose": "case.tex",
   "bib_keys": [],
   "results": [
     {
       "id": "rank-two-mixed-norm",
       "uid": "WY47E30H",
-      "statement_tex": "Rank-two completely-positive mixed-norm interpolation at $(s,q)=(6/5,6)$",
       "class": "user formal problem",
       "certificate_level": "computer-assisted",
-      "certificate_tex": "Explicit 21-vector Gram matrix and interval-separated ratio $>1$.",
       "theorem_label": "thm:mixed",
       "provenance": {
-        "source_tex": "TODO: where the statement was posed (session, note, talk)",
         "url": null,
         "retrieved": null,
-        "fidelity": "TODO: verbatim or paraphrase",
-        "statement": "statement.tex"
+        "fidelity": "TODO: verbatim or paraphrase"
       }
     }
   ],
-  "credits": {
-    "posed_by": "S.~Sra",
-    "found_by": {
-      "model": "TODO",
-      "date": "TODO"
-    },
-    "formalized_by": "S.~Sra",
-    "audited_by": "S.~Sra",
-    "contributed_by": "S.~Sra"
-  },
   "verify": {
     "python": "verify.py",
     "sage": [

@@ -1,42 +1,26 @@
 {
   "id": "theta-derivative-log-concavity",
   "title": "Derivatives of the Jacobi-theta kernel",
-  "title_tex": "Derivatives of the Jacobi-theta kernel",
   "status": "refuted",
   "order": 5,
-  "dossier": "dossier.tex",
+  "prose": "case.tex",
   "bib_keys": [
     "Csordas2014"
   ],
-  "context": "context.tex",
   "results": [
     {
       "id": "theta-derivative-log-concavity",
       "uid": "740DPSAS",
-      "statement_tex": "Coffey--Csordas Conjecture 2.5 / Csordas Problem 4.13 \\citeyearpar{Csordas2014}",
       "class": "external conjecture",
       "certificate_level": "computer-assisted",
-      "certificate_tex": "Rigorous interval evaluation of $J_9(1/50)<0$.",
       "theorem_label": "thm:theta",
       "provenance": {
-        "source_tex": "G.~Csordas \\citeyearpar{Csordas2014}, Open Problem 4.13, restating Coffey--Csordas Conjecture 2.5",
         "url": "https://arxiv.org/abs/1309.0055v2",
         "retrieved": "2026-08-01",
-        "fidelity": "verbatim",
-        "statement": "statement.tex"
+        "fidelity": "verbatim"
       }
     }
   ],
-  "credits": {
-    "posed_by": "Coffey and Csordas \\citeyearpar{Csordas2014}",
-    "found_by": {
-      "model": "TODO",
-      "date": "TODO"
-    },
-    "formalized_by": "S.~Sra",
-    "audited_by": "S.~Sra",
-    "contributed_by": "S.~Sra"
-  },
   "verify": {
     "python": "verify.py",
     "sage": [

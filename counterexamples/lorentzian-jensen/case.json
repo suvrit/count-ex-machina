@@ -1,57 +1,40 @@
 {
   "id": "lorentzian-jensen",
   "title": "Lorentzian Jensen-Bregman metric principle",
-  "title_tex": "Lorentzian Jensen--Bregman metric principle",
   "status": "refuted",
+  "order": 10,
+  "prose": "case.tex",
   "bib_keys": [
     "BrandenHuh",
     "Shephard"
   ],
-  "context": "context.tex",
+  "paper": "paper.tex",
   "results": [
     {
       "id": "lorentzian-jensen",
       "uid": "VRP253K2",
-      "statement_tex": "Lorentzian Jensen--Bregman metric principle: $\\sqrt{\\J_G}$ a semimetric for every homogeneous Lorentzian $G$",
       "class": "user formal problem",
       "certificate_level": "exact",
-      "certificate_tex": "Strictly Lorentzian rational cubic and three rational points; exact rational triangle-violation bound $>7.15\\times10^{-3}$.",
       "theorem_label": "thm:lorentzian",
       "provenance": {
-        "source_tex": "S.~Sra, standalone problem; formulation as recorded in \\S1 of the case's \\path{paper.tex}",
         "url": "counterexamples/lorentzian-jensen/paper.tex",
         "retrieved": null,
-        "fidelity": "paraphrase",
-        "statement": "statement-lorentzian-jensen.tex"
+        "fidelity": "paraphrase"
       }
     },
     {
       "id": "log-volume-distance",
       "uid": "22S7HJGF",
-      "statement_tex": "Log-volume midpoint gap as a squared distance on convex bodies \\cite{Shephard}",
       "class": "user formal problem",
       "certificate_level": "exact",
-      "certificate_tex": "Shephard realization of the same cubic as a Steiner polynomial in $\\R^3$; the violation transfers verbatim.",
       "theorem_label": "thm:volume-distance",
       "provenance": {
-        "source_tex": "S.~Sra, standalone problem (geometric specialization of the same principle); formulation as recorded in \\S1 of the case's \\path{paper.tex}",
         "url": "counterexamples/lorentzian-jensen/paper.tex",
         "retrieved": null,
-        "fidelity": "paraphrase",
-        "statement": "statement-log-volume-distance.tex"
+        "fidelity": "paraphrase"
       }
     }
   ],
-  "credits": {
-    "posed_by": "S.~Sra",
-    "found_by": {
-      "model": "TODO",
-      "date": "TODO"
-    },
-    "formalized_by": "S.~Sra",
-    "audited_by": "S.~Sra",
-    "contributed_by": "S.~Sra"
-  },
   "verify": {
     "python": "verify.py",
     "sage": [],
@@ -62,8 +45,5 @@
       "file": "artifacts/certificate.json",
       "description": "Exact rational triangle-inequality violation bound with the three witness points."
     }
-  ],
-  "paper": "paper.tex",
-  "order": 10,
-  "dossier": "dossier.tex"
+  ]
 }

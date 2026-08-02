@@ -6,9 +6,9 @@ the paper's structure genuinely changes.
 
 ## What each script owns
 
-- **`build.py`** — validates every `counterexamples/*/case.json` and writes
+- **`build.py`** — validates every case (`case.json` + `case.tex`) and writes
   four generated artifacts: `tex/generated/ledger.tex`,
-  `tex/generated/dossiers.tex`, `registry.json`, and two spliced regions of
+  `tex/generated/refutations.tex`, `registry.json`, and two spliced regions of
   `README.md` — the case table (`<!-- BEGIN/END CASE TABLE -->`) and the
   headline count badges (`<!-- BEGIN/END COUNT BADGES -->`). Everything else in
   `README.md`, the rest of the header block included, is hand-written and is
@@ -37,6 +37,11 @@ the paper's structure genuinely changes.
 
 ## Invariants to preserve
 
+0. **No LaTeX in `case.json`.** Every word an author writes in LaTeX lives in
+   `case.tex`, delimited by the `cx...` environments `parse_case_tex()` reads;
+   the JSON carries ids, uid, enums, dates, urls. `load_prose()` rejects a
+   case.json that still holds prose, by name. A new field that would carry
+   LaTeX is a new region, not a new key.
 1. **`build.py` is stdlib-only.** It runs before dependencies matter, and CI
    installs pins with `--no-deps`.
 2. **Collect errors, then report together.** `validate()` appends to `errors`

@@ -24,10 +24,13 @@ prints a `PASS` line and (re)generates the artifacts below.
 
 - `artifacts/certificate.json` — Exact rational kernels $L_0,L_1$ and the positive rational likelihood gap.
 
-## Dossier and credits
+## Prose and credits
 
-The LaTeX dossier is `dossier.tex`; it is compiled into the main paper
-(section “Counterexample dossiers”) with its title and credit line generated
-from `case.json` by `tools/build.py`. Attribution roles (posed by, found by,
-formalized by, audited by, contributed by) live in the `credits` block of
-`case.json`. Cite via the main paper (see `/CITATION.cff`).
+Everything written in LaTeX lives in `case.tex` — the title, the credits, the
+context, the statement as posed, the ledger lines, and the refutation — in
+`\begin{cx...}` regions that `tools/build.py` extracts into the main paper. The
+section title and the credit line are generated. Attribution roles (`\posedby`,
+`\foundby`, `\formalizedby`, `\auditedby`, `\contributedby`) are the
+`cxcredits` region.
+
+Cite via the main paper (see `/CITATION.cff`).

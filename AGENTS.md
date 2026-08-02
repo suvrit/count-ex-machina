@@ -26,13 +26,13 @@ leaving it `TODO`. See “Things that are never OK” below.
 
 | Path | What it is | May an agent edit it? |
 |---|---|---|
-| `counterexamples/<dir>/` | one bundle per case: `case.json`, `*.tex`, `verify.py`, `artifacts/` | **yes** — this is where the work is |
+| `counterexamples/<dir>/` | one bundle per case: `case.json` (machine facts), `case.tex` (all prose), `verify.py`, `artifacts/` | **yes** — this is where the work is |
 | `counterexamples/_template/` | scaffold copied by `tools/new_case.py` | only to change the scaffold itself |
 | `tex/01-literature.tex`, `tex/02-admission.tex`, `tex/main.tex`, `tex/references.bib` | hand-written paper | yes, carefully |
-| `tex/generated/` | `ledger.tex`, `dossiers.tex` | **no — generated** |
+| `tex/generated/` | `ledger.tex`, `refutations.tex` | **no — generated** |
 | `registry.json` | flattened machine-readable registry | **no — generated** |
 | `README.md` between `<!-- BEGIN/END CASE TABLE -->` and `<!-- BEGIN/END COUNT BADGES -->` | case table, headline counts | **no — generated** |
-| `tools/` | `build.py`, `verify_all.py`, `new_case.py`, `exactcert.py` | yes, but see `tools/AGENTS.md` |
+| `tools/` | `build.py`, `verify_all.py`, `new_case.py`, `unpack_submission.py`, `exactcert.py` | yes, but see `tools/AGENTS.md` |
 | `verification_report.json` | last run of `verify_all.py` | no — regenerable, gitignored |
 
 A case **directory** is not a case **result**. Twelve results live in nine
@@ -47,7 +47,7 @@ Ids, ledger rows, credits, and citations are keyed to the **result**.
 make venv                    # python3 -m venv .venv + pinned deps, --no-deps
 make check                   # build.py --check && verify_all.py   <- the CI gate
 make verify                  # certificates only
-make regen                   # regenerate ledger, dossiers, registry, README table
+make regen                   # regenerate ledger, refutations, registry, README table
 make paper                   # cd tex && latexmk -pdf main
 ```
 
@@ -84,9 +84,9 @@ an attribution.
 
 ## Things that are never OK
 
-1. **Inventing attribution or provenance.** `found_by` model and date,
-   `posed_by`, `source_tex`, `url`, `retrieved` — these describe events in the
-   world. If you do not know, leave the `TODO` and say so in your summary.
+1. **Inventing attribution or provenance.** `\foundby` model and date,
+   `\posedby`, the `cxsource` region, `url`, `retrieved` — these describe events
+   in the world. If you do not know, leave the `TODO` and say so in your summary.
    Never mark `fidelity: "verbatim"` unless the text was transcribed from the
    source; `"paraphrase"` is the honest default and the paper labels it as such.
 2. **Making a check pass by weakening it.** Loosening a tolerance, deleting an
@@ -96,17 +96,20 @@ an attribution.
    inadmissible as evidence. Use `fractions.Fraction`, `sympy` exact types, or
    `mpmath` at declared precision with a rigorous tail bound (and add a Sage
    interval cross-check for analytic cases).
-4. **Hand-editing generated files.** Edit `case.json` (or the `.tex` sidecars)
+4. **Putting LaTeX in `case.json`.** Every word written in LaTeX belongs in
+   the case's `case.tex`, inside a `cx...` region; the JSON carries ids, uid,
+   enums, dates, urls. The build rejects prose left in the JSON by name.
+5. **Hand-editing generated files.** Edit `case.json` (or the case's `case.tex`)
    and regenerate. A hand-edit is reverted by the next `make regen`, and CI
    runs `git diff --exit-code`, so it fails there anyway.
-5. **Changing or reusing a `uid`.** It is the registry's immutable primary key,
+6. **Changing or reusing a `uid`.** It is the registry's immutable primary key,
    checked against the committed `registry.json`. Mint one only with
    `python tools/new_case.py --mint-uid`, never by hand, and never cite one —
    humans cite the result `id`.
-6. **Fixing other people's TODOs while passing through.** Renumbering `order`,
+7. **Fixing other people's TODOs while passing through.** Renumbering `order`,
    touching a neighbouring case, or reformatting adjacent LaTeX turns a
    reviewable diff into an unreviewable one.
-7. **Refuting a strengthening.** If you tightened a hypothesis or flipped a
+8. **Refuting a strengthening.** If you tightened a hypothesis or flipped a
    quantifier to make the witness work, you have refuted a different statement.
    This is the failure mode that gets a case withdrawn (see `audit_notes.md`).
 
@@ -118,7 +121,7 @@ an attribution.
 | Package a case for someone else's repository visit | `SUBMIT.md` — the self-contained brief for a contributor's agent |
 | Unpack an incoming submission | `make unpack BUNDLE=submissions/<id>.md` |
 | Fix or extend a `verify.py` | `counterexamples/AGENTS.md` § verify.py contract |
-| Edit a statement, dossier, or context prose | `counterexamples/AGENTS.md` § prose lives in `.tex` |
+| Edit a statement, refutation, or context prose | `counterexamples/AGENTS.md` § case.tex, region by region |
 | Understand a build error | `counterexamples/AGENTS.md` § build errors → fixes |
 | Change the generator or the schema | `tools/AGENTS.md` |
 | Touch the paper or its macros | `tex/AGENTS.md` |

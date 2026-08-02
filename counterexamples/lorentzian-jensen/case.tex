@@ -1,3 +1,64 @@
+% Prose for this counterexample.  Every region below is delimited by an
+% environment that tools/build.py extracts; machine facts (ids, uid, dates,
+% urls, enums) live in case.json.  See counterexamples/AGENTS.md.
+
+\begin{cxtitle}
+Lorentzian Jensen--Bregman metric principle
+\end{cxtitle}
+
+\begin{cxcredits}
+\posedby{S.~Sra}
+\foundby{TODO}{TODO}
+\formalizedby{S.~Sra}
+\auditedby{S.~Sra}
+\contributedby{S.~Sra}
+\end{cxcredits}
+
+\begin{cxcontext}
+A homogeneous polynomial with nonnegative coefficients is \emph{Lorentzian} in the sense of Br\"and\'en and Huh \citeyearpar{BrandenHuh} if all its second-order directional derivatives, taken at positive arguments, are quadratic forms of Lorentzian signature $(+,-,\ldots,-)$; in two variables, a form $\sum_{k}a_kx^ky^{d-k}$ is strictly Lorentzian exactly when the normalized coefficients $a_k/\binom dk$ are strictly log-concave, which is the criterion used below.  Lorentzian polynomials are log-concave on the positive orthant, so $F=-\log G$ is convex there and every midpoint Jensen gap $\J_G$ is nonnegative.  Recall that $d$ is a \emph{semimetric} when it is symmetric, nonnegative, vanishes only on equal arguments, and satisfies the triangle inequality; the triangle inequality is the property that fails below.  In the geometric statement, $K+L=\{k+\ell:k\in K,\ \ell\in L\}$ is the Minkowski sum of convex bodies and $\Vol$ is Lebesgue volume.
+\end{cxcontext}
+
+% ---------------- result: lorentzian-jensen ----------------
+
+\begin{cxsource}{lorentzian-jensen}
+S.~Sra, standalone problem; formulation as recorded in \S1 of the case's \path{paper.tex}
+\end{cxsource}
+
+\begin{cxstatement}{lorentzian-jensen}
+Let $\mathcal C\subset\R^m$ be an open convex cone, let $G:\mathcal C\to(0,\infty)$, and put $F=-\log G$ and
+\[\J_G(x,y):=\frac{F(x)+F(y)}2-F\!\left(\frac{x+y}{2}\right).\]
+If $G$ is homogeneous and Lorentzian, then $d_G:=\sqrt{\J_G}$ is a semimetric.
+\end{cxstatement}
+
+\begin{cxsummary}{lorentzian-jensen}
+Lorentzian Jensen--Bregman metric principle: $\sqrt{\J_G}$ a semimetric for every homogeneous Lorentzian $G$
+\end{cxsummary}
+
+\begin{cxcertificate}{lorentzian-jensen}
+Strictly Lorentzian rational cubic and three rational points; exact rational triangle-violation bound $>7.15\times10^{-3}$.
+\end{cxcertificate}
+
+% ---------------- result: log-volume-distance ----------------
+
+\begin{cxsource}{log-volume-distance}
+S.~Sra, standalone problem (geometric specialization of the same principle); formulation as recorded in \S1 of the case's \path{paper.tex}
+\end{cxsource}
+
+\begin{cxstatement}{log-volume-distance}
+The log-volume midpoint gap is the square of a distance on convex bodies: that is,
+\[d_{\Vol}(K,L):=\left[\log\Vol\!\left(\frac{K+L}{2}\right)-\tfrac12\log\Vol(K)-\tfrac12\log\Vol(L)\right]^{1/2}\]
+is a semimetric on convex bodies.
+\end{cxstatement}
+
+\begin{cxsummary}{log-volume-distance}
+Log-volume midpoint gap as a squared distance on convex bodies \cite{Shephard}
+\end{cxsummary}
+
+\begin{cxcertificate}{log-volume-distance}
+Shephard realization of the same cubic as a Steiner polynomial in $\R^3$; the violation transfers verbatim.
+\end{cxcertificate}
+
+\begin{cxrefutation}
 Both statements fall to a single witness: a strictly Lorentzian bivariate cubic, carried to convex bodies by Shephard's realization theorem.  Throughout, $\J_G(x,y)=\log G(\frac{x+y}2)-\frac12\log G(x)-\frac12\log G(y)$ is the midpoint Jensen gap of $F=-\log G$, and $d_G=\sqrt{\J_G}$.
 
 \begin{theorem}[\statusfalse: Lorentzian Jensen--Bregman metricity]\label{thm:lorentzian}
@@ -62,3 +123,4 @@ and the violation of Theorem~\ref{thm:lorentzian} transfers verbatim.
 \begin{remark}[What the audit leaves standing]
 The midpoint integral identity and the homogeneous primitive decomposition of the earlier positive argument are correct.  What fails is a claimed Gram-determinant identity for the derivative of a Hessian Rayleigh quotient, whose two sides have incompatible homogeneity in the line direction; the omitted calculation therefore conceals a false identity rather than a technical gap.  The full audit, including the exact enclosure procedure, is \path{counterexamples/lorentzian-jensen/paper.tex}.
 \end{remark}
+\end{cxrefutation}

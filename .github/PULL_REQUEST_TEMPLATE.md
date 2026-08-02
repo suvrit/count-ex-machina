@@ -26,9 +26,9 @@ see [CONTRIBUTING.md](../CONTRIBUTING.md)):
 - [ ] `case.json` is complete, including `credits.found_by` (AI model **and**
       session date) -- the archive exists to document exactly that.
 - [ ] Any cited works are in `tex/references.bib` and listed in `bib_keys`.
-- [ ] `context_tex` gives whatever notation the quoted statement depends on, so
+- [ ] The `cxcontext` region gives whatever notation the statement depends on, so
       a reader need not open the source paper.
-- [ ] `python tools/build.py` regenerated the ledger, dossiers, registry, and
+- [ ] `python tools/build.py` regenerated the ledger, refutations, registry, and
       README table, and those regenerated files are committed.
 - [ ] `python tools/build.py --check` exits 0.
 - [ ] `python tools/verify_all.py` ends with `ALL ... CASES PASS`.

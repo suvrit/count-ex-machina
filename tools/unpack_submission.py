@@ -31,8 +31,8 @@ from tools.new_case import ID_RE, next_order  # noqa: E402
 # An opening fence records its own length: a block whose content contains a
 # shorter fence (a ```sh inside a README) must not be closed by it.
 OPEN_RE = re.compile(r"^(`{3,})\s*[A-Za-z]*\s+file=(\S+)\s*$")
-REQUIRED = {"case.json", "dossier.tex", "verify.py", "README.md"}
-KNOWN = REQUIRED | {"statement.tex", "context.tex", "references.bib.add"}
+REQUIRED = {"case.json", "case.tex", "verify.py", "README.md"}
+KNOWN = REQUIRED | {"references.bib.add"}
 
 
 def parse_blocks(text, errors):
