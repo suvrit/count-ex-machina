@@ -7,11 +7,12 @@
 PY ?= .venv/bin/python
 
 .DEFAULT_GOAL := help
-.PHONY: help venv new check verify regen paper all clean
+.PHONY: help venv new unpack check verify regen paper all clean
 
 help:
 	@echo "make venv    create .venv and install the pinned dependencies"
 	@echo "make new     scaffold a new counterexample (interactive)"
+	@echo "make unpack BUNDLE=submissions/x.md   unpack a SUBMIT.md bundle"
 	@echo "make check   validate metadata + verify every certificate  <- the PR gate"
 	@echo "make verify  run every counterexample's verify.py only"
 	@echo "make regen   regenerate ledger, dossiers, registry, README table"
@@ -25,6 +26,10 @@ venv:
 
 new:
 	@$(PY) tools/new_case.py
+
+# Maintainer side of SUBMIT.md: one contributed markdown bundle -> a case dir.
+unpack:
+	@$(PY) tools/unpack_submission.py $(BUNDLE)
 
 # build.py --check fails if any metadata is incomplete or any generated file is
 # stale; verify_all.py recomputes every certificate from scratch.

@@ -10,6 +10,11 @@ body:
         pull request. If the case is already formalized, open a PR instead --
         the template there is the full checklist.
 
+        Working with an AI agent? Point it at
+        [SUBMIT.md](https://raw.githubusercontent.com/suvrit/count-ex-machina/main/SUBMIT.md)
+        and paste the bundle it produces into the fields below; it packages
+        everything we need in one file.
+
         A witness found by a model and never certified is still welcome here:
         turning numerical evidence into an exact certificate is the part this
         archive is for, and is often the part that needs help.

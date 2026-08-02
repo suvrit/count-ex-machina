@@ -25,6 +25,12 @@ the paper's structure genuinely changes.
   `CERTIFICATE_LEVELS`, `FIDELITIES`, `GROUPS`, `DATE_RE`, and `mint_uid` from
   `build.py` rather than duplicating them, so the scaffolder can never emit a
   value the validator rejects. Keep it that way. `--mint-uid` prints one uid.
+- **`unpack_submission.py`** — turns a `SUBMIT.md` bundle (one markdown file of
+  `file=`-tagged fences, produced by a contributor's agent) back into
+  `counterexamples/<id>/`. It assigns the two fields a submitter must never
+  choose off-repository — the `uid` and the ledger `order` — and refuses an
+  existing directory, an unknown block tag, or a missing required block. It
+  validates no mathematics; `make check` does that.
 - **`exactcert.py`** — shared `Fraction` matrix helpers (`inv2`, `inv3`,
   `det2`, `det3`, `madd`, `mmul2`, `mscale`, `assert_positive_definite_2/3`).
   Exact arithmetic only; nothing here may return a `float`.

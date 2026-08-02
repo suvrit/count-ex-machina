@@ -115,6 +115,8 @@ an attribution.
 | Task | Start here |
 |---|---|
 | Add a counterexample | `make new`, then `counterexamples/AGENTS.md` |
+| Package a case for someone else's repository visit | `SUBMIT.md` — the self-contained brief for a contributor's agent |
+| Unpack an incoming submission | `make unpack BUNDLE=submissions/<id>.md` |
 | Fix or extend a `verify.py` | `counterexamples/AGENTS.md` § verify.py contract |
 | Edit a statement, dossier, or context prose | `counterexamples/AGENTS.md` § prose lives in `.tex` |
 | Understand a build error | `counterexamples/AGENTS.md` § build errors → fixes |

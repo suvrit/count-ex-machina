@@ -24,9 +24,25 @@ arithmetic end to end; a **computer-assisted proof** may use rigorous interval
 arithmetic with explicit error control. Floating-point-only evidence is
 inadmissible at either level.
 
+## The short path: let an agent package it
+
+If you have an AI agent, you can skip this workflow entirely. Paste to it:
+
+```text
+Read https://raw.githubusercontent.com/suvrit/count-ex-machina/main/SUBMIT.md
+and follow it exactly to package the counterexample I have.
+```
+
+[SUBMIT.md](SUBMIT.md) is self-contained: the admission bar, the file format,
+the checks to run, and the things it must never invent. The agent emits one
+markdown bundle; send it as an issue, or as a pull request adding
+`submissions/<case-id>.md`. You need not clone this repository or install
+anything, and the same admission bar applies to what arrives.
+
 ## Workflow
 
-If an AI agent is doing the mechanical work, point it at
+This is the full discipline, for contributors working in a clone. If an AI
+agent is doing the mechanical work here instead, point it at
 [AGENTS.md](AGENTS.md) — same rules, written for a machine, with the schema,
 the build errors, and the things it must never invent spelled out.
 
