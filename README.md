@@ -26,23 +26,77 @@ independently checkable certificates: every admitted case is verified by exact
 arithmetic or by a rigorous interval computation — never by floating-point
 evidence alone.
 
+## Contribute one in a single paste
+
+You have a counterexample and an AI agent open. That is the whole prerequisite
+— no clone, no install, nothing below this section to read. Paste this to the
+agent:
+
+```text
+Read https://raw.githubusercontent.com/suvrit/count-ex-machina/main/SUBMIT.md
+and follow it exactly to package the counterexample I have.
+```
+
+It reads [SUBMIT.md](SUBMIT.md) — the admission bar, the file format, the
+checks to run — and hands you back **one markdown file**. Open an issue and
+paste it in, or a pull request adding `submissions/<case-id>.md`. Done.
+
+What that file has to clear, and what your agent is told not to fudge:
+
+- the statement was **posed publicly by someone else**, or formally in advance;
+- its **hypotheses and quantifiers are untouched** — refuting a strengthening
+  refutes nothing;
+- the witness is checked by **exact arithmetic or rigorous intervals**, never
+  by floating point;
+- attribution is **real or left blank**: which model found it, in which month,
+  and who posed the statement. A guess is worse than a `TODO`.
+
+Numerical evidence you cannot yet certify is still welcome as an issue —
+turning it into an exact certificate is much of what this archive is for. The
+long-form version of all this, for contributors working in a clone, is
+[Adding a counterexample](#adding-a-counterexample).
+
 ## Layout
 
-- `counterexamples/<id>/` — one directory per counterexample: `case.json`
-  (metadata + attribution), `context.tex` (notation the quoted statement
-  needs), `statement.tex` (the statement as originally posed), `README.md`
-  (how to validate), `dossier.tex` (the paper dossier body), `verify.py`
-  (certificate check), optional Sage cross-checks, and `artifacts/`
-  (machine-readable certificates). Prose is always a `.tex` file that
-  `case.json` names; it is never embedded in the JSON.
-- `tex/` — the main paper. `tex/generated/` and `registry.json` are generated
-  from the per-case `case.json` files by `tools/build.py` (checked in; do not
-  edit by hand).
-- `tools/` — `build.py` (validate + regenerate), `verify_all.py` (run every
-  case), `exactcert.py` (shared exact-arithmetic helpers).
-- `AGENTS.md` — orientation for AI coding agents, with shorter briefs in
-  `counterexamples/`, `tex/`, and `tools/`. Human contributors want
-  [CONTRIBUTING.md](CONTRIBUTING.md) instead.
+```text
+count-ex-machina/
+├─ counterexamples/          the archive itself — one directory per case
+│  ├─ _template/             scaffold copied by "make new"
+│  └─ <case-id>/
+│     ├─ case.json           metadata + attribution; the single source of truth
+│     ├─ statement.tex       the statement as originally posed
+│     ├─ context.tex         notation that quote depends on (ours, not theirs)
+│     ├─ dossier.tex         paper body: conjecture, theorem, proof
+│     ├─ verify.py           the certificate — exact arithmetic or intervals
+│     ├─ verify_*.sage       optional interval cross-check
+│     ├─ README.md           what it refutes, how to check it
+│     └─ artifacts/          certificate.json, written by verify.py
+├─ tex/                      the paper
+│  ├─ main.tex               preamble, front matter, the four \input's
+│  ├─ 01-literature.tex      AI-assisted counterexamples in the literature
+│  ├─ 02-admission.tex       the authoritative admission rule
+│  ├─ references.bib
+│  └─ generated/             ledger.tex, dossiers.tex — built from case.json
+├─ tools/
+│  ├─ build.py               validate metadata, regenerate everything derived
+│  ├─ verify_all.py          recompute every certificate
+│  ├─ new_case.py            scaffold a case ("make new")
+│  ├─ unpack_submission.py   turn a SUBMIT.md bundle into a case directory
+│  └─ exactcert.py           shared exact-arithmetic helpers
+├─ submissions/              inbox for contributed bundles; never built by CI
+├─ Makefile                  one-command entry points; "make check" is the gate
+├─ registry.json             every result, flattened and machine-readable
+├─ SUBMIT.md                 the one-paste brief for a contributor's agent
+├─ AGENTS.md                 orientation for AI agents; more in the dirs above
+└─ CONTRIBUTING.md           the full contributor workflow
+```
+
+Two rules the layout encodes. **Prose lives in `.tex` files**, named by
+`case.json` and inlined at build time — never in JSON string literals.
+**Generated files are never hand-edited**: `tex/generated/`, `registry.json`,
+and this file's case table and count badges all come from the per-case
+`case.json` via `tools/build.py`, and are checked in so a reader need not run
+anything.
 
 ## Quickstart
 
@@ -116,21 +170,11 @@ see `audit_notes.md` and each case's README for the reason.
 
 ## Adding a counterexample
 
-**The short path.** If you have a counterexample and an AI agent, you do not
-need to clone this repository or learn its layout — paste this to the agent:
-
-```text
-Read https://raw.githubusercontent.com/suvrit/count-ex-machina/main/SUBMIT.md
-and follow it exactly to package the counterexample I have.
-```
-
-It produces one file; send it as an issue or as a pull request adding
-`submissions/<case-id>.md`. See [SUBMIT.md](SUBMIT.md).
-
-The admission bar (exact or rigorous-interval certificates only; no
-quantifier drift; see `tex/02-admission.tex` and
-[CONTRIBUTING.md](CONTRIBUTING.md)) applies either way, and the full mechanical
-discipline is:
+This is the long form, for contributors working in a clone; most people want
+[the single paste](#contribute-one-in-a-single-paste) instead. The admission
+bar (exact or rigorous-interval certificates only; no quantifier drift; see
+`tex/02-admission.tex` and [CONTRIBUTING.md](CONTRIBUTING.md)) applies either
+way, and the mechanical discipline is:
 
 1. **Create the case dir** (kebab-case id; it becomes the directory, registry,
    and link name):
