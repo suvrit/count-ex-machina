@@ -67,7 +67,7 @@ prose the maintainers should read.
 
 Name it `<case-id>.md`, where `<case-id>` is kebab-case (lowercase letters,
 digits, single hyphens) and names the mathematical object or claim — for
-example `logdet-loewner`, `rank-two-mixed-norm`.
+example `quantum-coupon-collector`, `rank-two-mixed-norm`.
 
 ````markdown
 ```json file=case.json

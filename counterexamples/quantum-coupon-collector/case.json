@@ -1,0 +1,37 @@
+{
+  "id": "quantum-coupon-collector",
+  "title": "Quantum coupon collection: positivity of an alternating sum of inverses",
+  "status": "refuted",
+  "prose": "case.tex",
+  "bib_keys": [
+    "Sra2017QuantumCoupon",
+    "FlajoletGardyThimonier1992",
+    "NiculescuSra2023"
+  ],
+  "results": [
+    {
+      "id": "quantum-coupon-collector",
+      "uid": "Y1FNF1QR",
+      "class": "user formal problem",
+      "certificate_level": "exact",
+      "theorem_label": "thm:quantum-coupon-collector",
+      "provenance": {
+        "url": "https://mathoverflow.net/questions/263833/quantum-coupon-collection-positivity-of-an-alternating-sum-of-matrices",
+        "retrieved": "2026-08-02",
+        "fidelity": "verbatim"
+      }
+    }
+  ],
+  "verify": {
+    "python": "verify.py",
+    "sage": [],
+    "requires": []
+  },
+  "artifacts": [
+    {
+      "file": "artifacts/certificate.json",
+      "description": "Exact rational n=6 Loewner witness, exact rational n=10 trace witness, certified sign intervals, and the structural checks (positive definiteness, noncommutativity, general position)"
+    }
+  ],
+  "order": 9
+}

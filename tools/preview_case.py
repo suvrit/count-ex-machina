@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Compile one case on its own: `make preview CASE=logdet-loewner`.
+"""Compile one case on its own: `make preview CASE=quantum-coupon-collector`.
 
 The point of tex/cxcase.sty being a real package is that a case is a real LaTeX
 document fragment.  This wraps one counterexamples/<id>/case.tex in a minimal

@@ -68,18 +68,18 @@ As of the current commit, on a clean tree:
 - `make verify` → **passes**, `ALL 9 CASES PASS` (two Sage cross-checks pass
   too, if Sage is installed). Keep it that way; this is the gate you can hold
   yourself to.
-- `make check` → **fails with 14 pre-existing errors**: one
-  `credits.found_by` TODO for each of the twelve results, plus missing
-  `provenance` for `logdet-loewner` and `rank-two-mixed-norm`. These are the
-  maintainer's to fill in — they are facts about real sessions that nobody can
-  reconstruct from the repository.
+- `make check` → **fails with 12 pre-existing errors**: one
+  `credits.found_by` TODO for each of the twelve results except
+  `quantum-coupon-collector`, plus a missing `provenance` for
+  `rank-two-mixed-norm`. These are the maintainer's to fill in — they are facts
+  about real sessions that nobody can reconstruct from the repository.
 - Generated files are nevertheless **current**: `tools/build.py --allow-todo`
   reproduces them byte-for-byte. Because plain `build.py` refuses to write
   while errors stand, use `--allow-todo` to regenerate today, and diff the
   result — anything beyond your own case is drift you introduced.
 
-So: capture the error list *before* you start, and compare. Fourteen errors
-after your change means you broke nothing; thirteen probably means you invented
+So: capture the error list *before* you start, and compare. Twelve errors
+after your change means you broke nothing; eleven probably means you invented
 an attribution.
 
 ## Things that are never OK

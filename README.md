@@ -164,7 +164,7 @@ an immutable `uid` in `registry.json`; that is a database key, not a citation.
 | 7 | [dpp-feasible-step](counterexamples/dpp-feasible-step/) | refuted | [Z. Mariet and S. Sra, §2 (unnumbered)](https://proceedings.mlr.press/v37/mariet15.pdf) | exact | TODO (TODO) |
 | 8 | [variance-only-matrix-discrepancy](counterexamples/variance-only-matrix-discrepancy/) | refuted | [Remark 4.25 of A. S. Bandeira's problem collection, quoted here from its restatement as Conjecture 1.2 of E. Akbaş and S. Sra](https://arxiv.org/abs/2606.16005) | exact | GPT-5.5 (Pro) (TODO) |
 | 9 | [rank-two-mixed-norm](counterexamples/rank-two-mixed-norm/) | refuted | S. Sra — statement TODO | computer-assisted | TODO (TODO) |
-| 10 | [logdet-loewner](counterexamples/logdet-loewner/) | refuted | S. Sra — statement TODO | exact | TODO (TODO) |
+| 10 | [quantum-coupon-collector](counterexamples/quantum-coupon-collector/) | refuted | [S. Sra, MathOverflow question 263833](https://mathoverflow.net/questions/263833/quantum-coupon-collection-positivity-of-an-alternating-sum-of-matrices) | exact | GPT Pro (2026-02-16) |
 | 11 | [lorentzian-jensen](counterexamples/lorentzian-jensen/) | refuted | [S. Sra, standalone problem; formulation as recorded in §1 of the case's `paper.tex`](counterexamples/lorentzian-jensen/paper.tex) | exact | TODO (TODO) |
 | 12 | [log-volume-distance](counterexamples/lorentzian-jensen/) | refuted | [S. Sra, standalone problem (geometric specialization of the same principle); formulation as recorded in §1 of the case's `paper.tex`](counterexamples/lorentzian-jensen/paper.tex) | exact | TODO (TODO) |
 <!-- END CASE TABLE -->

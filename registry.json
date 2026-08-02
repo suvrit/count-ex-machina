@@ -345,34 +345,34 @@
     }
   },
   {
-    "uid": "2MRX3236",
-    "result_id": "logdet-loewner",
-    "case": "logdet-loewner",
-    "title": "Loewner monotonicity of alternating log-determinants",
+    "uid": "Y1FNF1QR",
+    "result_id": "quantum-coupon-collector",
+    "case": "quantum-coupon-collector",
+    "title": "Quantum coupon collection: positivity of an alternating sum of inverses",
     "status": "refuted",
     "ledger_no": 10,
     "withheld_reason": null,
     "class": "user formal problem",
     "certificate_level": "exact",
-    "certificate_tex": "Rational $3\\times3$ matrices and an exact negative quadratic form.",
-    "theorem_label": "thm:logdet",
+    "certificate_tex": "Exact rational $3\\times3$ matrices with $n=6$ and the integer vector $(4,1,3)^{\\mathsf T}$ give a quadratic form strictly between $-96$ and $-95$.",
+    "theorem_label": "thm:quantum-coupon-collector",
     "provenance": {
-      "source_tex": "TODO: where the statement was posed (session, note, talk)",
-      "url": null,
-      "retrieved": null,
-      "fidelity": "TODO: verbatim or paraphrase",
-      "statement_tex": "TODO: paste the original formal statement exactly as posed"
+      "source_tex": "S.~Sra, MathOverflow question 263833 \\citeyearpar{Sra2017QuantumCoupon}",
+      "url": "https://mathoverflow.net/questions/263833/quantum-coupon-collection-positivity-of-an-alternating-sum-of-matrices",
+      "retrieved": "2026-08-02",
+      "fidelity": "verbatim",
+      "statement_tex": "Here we take symmetric positive definite matrices $X_1,\\ldots,X_n\\in\\mathbf{S}_{++}^d$, and consider the sum\n\\[\nQ_n(X_1,\\ldots,X_n):=\\sum_{k=1}^n(-1)^{k+1}\n\\sum_{1\\le i_1<\\cdots<i_k\\le n}\\left(X_{i_1}+\\cdots+X_{i_k}\\right)^{-1}.\n\\]\n\n\\textbf{Conjecture.} For $n\\ge1$, and $X_1,\\ldots,X_n\\in\\mathbf{S}_{++}^d$, we have $Q_n(X_1,\\ldots,X_n)\\succ0$.\n\n\\emph{Note.} The cases $n=1,2,3$ are trivially true.  I've tried $n=4$ numerically, and it seems to hold.  (Also, by CCP, positivity immediately holds for a tuple of simultaneously diagonalizable matrices.)"
     },
     "credits": {
-      "posed_by": "S.~Sra",
+      "posed_by": "S.~Sra \\citeyearpar{Sra2017QuantumCoupon}",
       "found_by": [
         {
-          "model": "TODO",
-          "date": "TODO"
+          "model": "GPT Pro",
+          "date": "2026-02-16"
         }
       ],
-      "formalized_by": "S.~Sra",
-      "audited_by": "S.~Sra",
+      "formalized_by": "GPT-5.6 Pro, which re-derived the exact witnesses in 2026-08",
+      "audited_by": "GPT-5.6 Pro, using exact rational arithmetic",
       "contributed_by": "S.~Sra"
     },
     "verify": {

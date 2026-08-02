@@ -15,5 +15,17 @@ Withheld or withdrawn:
   earlier search produced no violation, and the claimed data file was absent.  The claim
   itself is refuted in the `lorentzian-jensen` case via Shephard realization, so only
   the zonotope construction is withdrawn.
-- Unshifted inverse inclusion-exclusion: archive summaries mention n=6 and trace n=10 witnesses, but the exact matrices were not recoverable.
+- Unshifted inverse inclusion-exclusion: found on Feb 16, 2026 with the GPT Pro model then
+  current, but the exact n=6 and trace n=10 matrices from that session were not preserved,
+  leaving only archive summaries that mentioned them.  Both witnesses were re-derived in
+  August 2026 and are now admitted as `quantum-coupon-collector`, against the conjecture Sra
+  posed on MathOverflow in March 2017 (question 263833) rather than against an unsourced
+  summary.  The credit line reads `GPT Pro (2026-02-16)`: the February model version was
+  never recorded, and no version is guessed for it.
+- Loewner monotonicity of alternating log-determinants (`logdet-loewner`): the same
+  alternating sum of inverses, but taken about a base point X, so a distinct statement --
+  and one for which no source was ever recovered.  The case carried no quoted statement and
+  no provenance; its working note recorded only the same "Feb 16, 2026; GPT-Pro" session.
+  Withdrawn in favour of `quantum-coupon-collector`, which refutes a publicly posed statement
+  with a permalink.  Its retired uid is 2MRX3236 and must never be reused.
 - All intermediate route-killers, sufficient-condition failures, and assistant-generated strengthenings.

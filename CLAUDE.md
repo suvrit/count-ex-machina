@@ -15,7 +15,7 @@ If you read nothing else:
    Leave the `TODO` and report it.
 3. `tex/generated/`, `registry.json`, and the `README.md` case table are
    **generated**. Edit `case.json` or a `.tex` sidecar, then `make regen`.
-4. `make check` **already fails** with 14 pre-existing errors on a clean tree
-   (twelve `credits.found_by` TODOs, two missing provenance blocks). Capture
+4. `make check` **already fails** with 12 pre-existing errors on a clean tree
+   (eleven `credits.found_by` TODOs, one missing provenance block). Capture
    the list before you start; only new errors are yours. `make verify` passes
    and must stay passing.
