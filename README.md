@@ -21,6 +21,9 @@ evidence alone.
   edit by hand).
 - `tools/` — `build.py` (validate + regenerate), `verify_all.py` (run every
   case), `exactcert.py` (shared exact-arithmetic helpers).
+- `AGENTS.md` — orientation for AI coding agents, with shorter briefs in
+  `counterexamples/`, `tex/`, and `tools/`. Human contributors want
+  [CONTRIBUTING.md](CONTRIBUTING.md) instead.
 
 ## Quickstart
 

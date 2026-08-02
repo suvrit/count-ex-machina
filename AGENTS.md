@@ -1,0 +1,139 @@
+# AGENTS.md — orientation for AI coding agents
+
+Read this before touching anything. It is the tool-neutral brief; `CLAUDE.md`
+points here, and `counterexamples/`, `tex/`, and `tools/` each carry a shorter
+`AGENTS.md` for work inside them.
+
+## What this repository is
+
+An archive of AI-found counterexamples to publicly posed mathematical
+statements, companion to the paper *“GPT: The Counterexample Machine”*
+(Suvrit Sra, TU Munich). It is not a software project that happens to contain
+mathematics: the artifact being shipped is **twelve refuted statements, each
+with a certificate a stranger can recompute**.
+
+One invariant governs everything:
+
+> Every admitted counterexample is verified by exact arithmetic (integers,
+> rationals, algebraic identities) or by a rigorous outward-rounded interval
+> computation — **never** by floating-point evidence alone.
+
+The second invariant is honesty of attribution: who posed the statement, which
+model found the witness, in which month. Fabricating any of that is worse than
+leaving it `TODO`. See “Things that are never OK” below.
+
+## 30-second map
+
+| Path | What it is | May an agent edit it? |
+|---|---|---|
+| `counterexamples/<dir>/` | one bundle per case: `case.json`, `*.tex`, `verify.py`, `artifacts/` | **yes** — this is where the work is |
+| `counterexamples/_template/` | scaffold copied by `tools/new_case.py` | only to change the scaffold itself |
+| `tex/01-literature.tex`, `tex/02-admission.tex`, `tex/main.tex`, `tex/references.bib` | hand-written paper | yes, carefully |
+| `tex/generated/` | `ledger.tex`, `dossiers.tex` | **no — generated** |
+| `registry.json` | flattened machine-readable registry | **no — generated** |
+| `README.md` between `<!-- BEGIN/END CASE TABLE -->` | case table | **no — generated** |
+| `tools/` | `build.py`, `verify_all.py`, `new_case.py`, `exactcert.py` | yes, but see `tools/AGENTS.md` |
+| `verification_report.json` | last run of `verify_all.py` | no — regenerable, gitignored |
+
+A case **directory** is not a case **result**. Twelve results live in nine
+directories (`stable-schur` holds `aim-problem-35` and `aim-problem-38`;
+`aim-problem-36` holds `aim-problem-36` and `aim-problem-37`;
+`lorentzian-jensen` holds `lorentzian-jensen` and `log-volume-distance`).
+Ids, ledger rows, credits, and citations are keyed to the **result**.
+
+## Commands
+
+```sh
+make venv                    # python3 -m venv .venv + pinned deps, --no-deps
+make check                   # build.py --check && verify_all.py   <- the CI gate
+make verify                  # certificates only
+make regen                   # regenerate ledger, dossiers, registry, README table
+make paper                   # cd tex && latexmk -pdf main
+```
+
+`PY` overrides the interpreter (`make check PY=python3`); the default is
+`.venv/bin/python`. Single case: `.venv/bin/python tools/verify_all.py --only <case-id>`
+(the directory id, not the result id), or `cd counterexamples/<id> && python verify.py`.
+
+Toolchain: Python 3.14.2, `mpmath==1.3.0`, `sympy==1.14.0` — pinned exactly, not
+floored, and installed with `--no-deps`. Do not relax a pin to make something
+install; a dependency free to drift is a certificate free to drift. Sage
+cross-checks run when `sage` is on `PATH` and are skipped loudly otherwise (CI
+has no Sage, so every case must stand on its pure-Python certificate alone).
+
+## The baseline is red — know what is *your* failure
+
+As of the current commit, on a clean tree:
+
+- `make verify` → **passes**, `ALL 9 CASES PASS` (two Sage cross-checks pass
+  too, if Sage is installed). Keep it that way; this is the gate you can hold
+  yourself to.
+- `make check` → **fails with 14 pre-existing errors**: one
+  `credits.found_by` TODO for each of the twelve results, plus missing
+  `provenance` for `logdet-loewner` and `rank-two-mixed-norm`. These are the
+  maintainer's to fill in — they are facts about real sessions that nobody can
+  reconstruct from the repository.
+- Generated files are nevertheless **current**: `tools/build.py --allow-todo`
+  reproduces them byte-for-byte. Because plain `build.py` refuses to write
+  while errors stand, use `--allow-todo` to regenerate today, and diff the
+  result — anything beyond your own case is drift you introduced.
+
+So: capture the error list *before* you start, and compare. Fourteen errors
+after your change means you broke nothing; thirteen probably means you invented
+an attribution.
+
+## Things that are never OK
+
+1. **Inventing attribution or provenance.** `found_by` model and date,
+   `posed_by`, `source_tex`, `url`, `retrieved` — these describe events in the
+   world. If you do not know, leave the `TODO` and say so in your summary.
+   Never mark `fidelity: "verbatim"` unless the text was transcribed from the
+   source; `"paraphrase"` is the honest default and the paper labels it as such.
+2. **Making a check pass by weakening it.** Loosening a tolerance, deleting an
+   `assert`, dropping a case from a loop, or converting an exact comparison to
+   a float one destroys the only thing this repository claims.
+3. **Floating point in a certificate.** `float`, `numpy`, and bare `math` are
+   inadmissible as evidence. Use `fractions.Fraction`, `sympy` exact types, or
+   `mpmath` at declared precision with a rigorous tail bound (and add a Sage
+   interval cross-check for analytic cases).
+4. **Hand-editing generated files.** Edit `case.json` (or the `.tex` sidecars)
+   and regenerate. A hand-edit is reverted by the next `make regen`, and CI
+   runs `git diff --exit-code`, so it fails there anyway.
+5. **Changing or reusing a `uid`.** It is the registry's immutable primary key,
+   checked against the committed `registry.json`. Mint one only with
+   `python tools/new_case.py --mint-uid`, never by hand, and never cite one —
+   humans cite the result `id`.
+6. **Fixing other people's TODOs while passing through.** Renumbering `order`,
+   touching a neighbouring case, or reformatting adjacent LaTeX turns a
+   reviewable diff into an unreviewable one.
+7. **Refuting a strengthening.** If you tightened a hypothesis or flipped a
+   quantifier to make the witness work, you have refuted a different statement.
+   This is the failure mode that gets a case withdrawn (see `audit_notes.md`).
+
+## Common tasks
+
+| Task | Start here |
+|---|---|
+| Add a counterexample | `make new`, then `counterexamples/AGENTS.md` |
+| Fix or extend a `verify.py` | `counterexamples/AGENTS.md` § verify.py contract |
+| Edit a statement, dossier, or context prose | `counterexamples/AGENTS.md` § prose lives in `.tex` |
+| Understand a build error | `counterexamples/AGENTS.md` § build errors → fixes |
+| Change the generator or the schema | `tools/AGENTS.md` |
+| Touch the paper or its macros | `tex/AGENTS.md` |
+| Decide whether a case is admissible at all | `tex/02-admission.tex`, then `CONTRIBUTING.md` |
+
+## Definition of done
+
+1. `make regen` (today: `.venv/bin/python tools/build.py --allow-todo`) run, and
+   the regenerated files committed.
+2. `make check` shows no error naming your case — the pre-existing fourteen may
+   remain.
+3. `make verify` ends with `ALL n CASES PASS`.
+4. `make paper` compiles.
+5. `git status` clean after a second `make verify` — certificates must
+   recompute bit-for-bit, which is what CI's `git diff --exit-code` enforces.
+6. Your summary states plainly what you did **not** do: every TODO left, every
+   assumption made, every check skipped. Under-claiming is cheap here;
+   over-claiming corrupts an archive whose entire value is that its claims hold.
+
+License: code Apache-2.0, prose CC BY 4.0. Contributions land under both.

@@ -26,6 +26,10 @@ inadmissible at either level.
 
 ## Workflow
 
+If an AI agent is doing the mechanical work, point it at
+[AGENTS.md](AGENTS.md) — same rules, written for a machine, with the schema,
+the build errors, and the things it must never invent spelled out.
+
 1. Scaffold the case:
 
    ```sh
