@@ -105,9 +105,7 @@ line, and regions may not nest. The four regions taking a result id repeat once
 per refuted statement; most cases have exactly one.
 
 ```latex file=case.tex
-\begin{cxtitle}
-The title heading this case's section in the paper.
-\end{cxtitle}
+\cxtitle{The title heading this case's section in the paper}
 
 \begin{cxcredits}
 \posedby{who posed the statement, with \citeyearpar{key} after a name}

@@ -75,7 +75,8 @@ count-ex-machina/
 │  ├─ 01-literature.tex      AI-assisted counterexamples in the literature
 │  ├─ 02-admission.tex       the authoritative admission rule
 │  ├─ references.bib
-│  └─ generated/             ledger.tex, refutations.tex — built, never edited
+│  ├─ cxcase.sty             the case format: the cx... environments
+│  └─ generated/             cases.tex — the ordered case list, generated
 ├─ tools/
 │  ├─ build.py               validate metadata, regenerate everything derived
 │  ├─ verify_all.py          recompute every certificate
@@ -211,7 +212,7 @@ way, and the mechanical discipline is:
 
 3. **`case.tex`** — one region per thing, each `\begin{cx...}` and `\end` alone
    on its line, never nested:
-   - `cxtitle` — the case's section heading in the paper;
+   - `\cxtitle{...}` — the case's section heading in the paper;
    - `cxcredits` — `\posedby`, `\foundby{model}{YYYY-MM}` (repeatable),
      `\formalizedby`, `\auditedby`, `\contributedby`; add `cxcredits{result-id}`
      for a result whose attribution differs, and it merges over the case block
@@ -250,7 +251,7 @@ way, and the mechanical discipline is:
 7. **Regenerate, verify, build**:
 
    ```sh
-   make regen   # validates the metadata, regenerates ledger/refutations/registry/this table
+   make regen   # validates the metadata, regenerates the case list, registry, this table
    make check   # metadata valid + every certificate recomputes; what CI runs
    make paper
    ```

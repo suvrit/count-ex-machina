@@ -1,0 +1,260 @@
+% cxcase.sty -- the counterexample case format for count-ex-machina.
+%
+% A case is one counterexamples/<id>/case.tex, written as a sequence of regions:
+%
+%   \begin{cxtitle}    ... \end{cxtitle}        the case heading
+%   \begin{cxcredits}  ... \end{cxcredits}      \posedby \foundby \formalizedby ...
+%   \begin{cxcontext}  ... \end{cxcontext}      our setup prose (optional)
+%   \begin{cxsource}{r}... \end{cxsource}       who posed result r, and where
+%   \begin{cxstatement}{r} ... \end{cxstatement}  r as originally posed (boxed)
+%   \begin{cxsummary}{r}   ... \end{cxsummary}    r's ledger statement cell
+%   \begin{cxcertificate}{r} ... \end{cxcertificate}  r's ledger certificate cell
+%   \begin{cxrefutation} ... \end{cxrefutation}   the theorem and its proof
+%
+% These are real LaTeX environments, so an unclosed or misspelled one is a
+% compile error rather than something a parser has to be taught to notice, and
+% a case compiles on its own (see \cxstandalone below and `make preview`).
+%
+% The ledger is assembled the way LaTeX assembles a table of contents: each
+% cxcertificate writes a row into the .aux file, and \cxledger typesets the rows
+% the previous pass wrote.  The document therefore needs two passes for a new or
+% changed case, which is what latexmk does anyway.
+%
+% What this package does NOT know is metadata: ledger order, grouping, and
+% whether a quoted statement is verbatim or a paraphrase all live in the
+% per-case case.json and reach LaTeX through tex/generated/cases.tex, which
+% tools/build.py writes.  Prose is LaTeX's; facts are the JSON's.
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{cxcase}[2026/08/02 v1.0 count-ex-machina case format]
+
+\RequirePackage{environ}
+\RequirePackage{amsmath,amssymb,amsthm,mathtools}
+\RequirePackage{booktabs,longtable,array}
+\RequirePackage{xcolor}
+\RequirePackage[most]{tcolorbox}
+
+% ---------------------------------------------------------------------------
+% Status tags and the shared notation every case may use.
+% ---------------------------------------------------------------------------
+\newcommand{\statusproved}{\textbf{[PROVED]}}
+\newcommand{\statusfalse}{\textbf{[FALSE]}}
+\newcommand{\statusnumeric}{\textbf{[NUMERICALLY VETTED]}}
+\newcommand{\statusconditional}{\textbf{[CONDITIONAL]}}
+\newcommand{\statusspeculative}{\textbf{[SPECULATIVE]}}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\per}{\operatorname{per}}
+\newcommand{\Imm}{\operatorname{Imm}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\Vol}{\operatorname{Vol}}
+\newcommand{\CE}{\mathsf{CE}}
+\newcommand{\J}{\mathsf{J}}
+\newcommand{\disc}{\operatorname{disc}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{audit}[theorem]{Audit finding}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+% Statements quoted as originally posed are boxed, so that the source's words
+% are never mistaken for our restatement of them.
+\tcolorboxenvironment{problem}{
+  enhanced jigsaw, breakable,
+  colback=blue!3!white, colframe=blue!45!black,
+  boxrule=0.6pt, arc=2pt,
+  left=8pt, right=8pt, top=7pt, bottom=7pt,
+  borderline west={2.2pt}{-2.2pt}{blue!45!black},
+  before skip=10pt, after skip=10pt,
+}
+
+% ---------------------------------------------------------------------------
+% Metadata set by tex/generated/cases.tex, immediately before each \input.
+% ---------------------------------------------------------------------------
+\newcommand{\cx@level}{section}
+% \cxlevel{section|subsection} -- grouped cases are subsections of a shared
+% section, so the heading level is a property of the ledger, not of the case.
+\newcommand{\cxlevel}[1]{\renewcommand{\cx@level}{#1}}
+% \cxverbatim{result} / \cxparaphrase{result} -- whether the quoted statement
+% is the source's own text.  Two commands rather than one with a value, so the
+% test is \@ifundefined rather than a string comparison: comparing strings in
+% TeX is a trap (\newcommand makes \long macros, \@namedef does not, and \ifx
+% then reports two identical texts as different).  Anything not declared
+% verbatim is treated as a paraphrase and labelled as one.
+\newcommand{\cxverbatim}[1]{}
+\newcommand{\cxparaphrase}[1]{\@namedef{cx@para@#1}{}}
+% \cxtheorem{result}{label} -- the \label the case's theorem carries.  Labels
+% are chosen by the author (thm:common-A, thm:pot), not derivable from the id,
+% so the ledger and the per-result credit line are told rather than guessing.
+\newcommand{\cxtheorem}[2]{\@namedef{cx@theorem@#1}{#2}}
+\newcommand{\cx@theorem}[1]{%
+  \@ifundefined{cx@theorem@#1}{thm:#1}{\@nameuse{cx@theorem@#1}}}
+% \cxgroup{Heading} -- opens the shared section a group of cases lives under.
+\newcommand{\cxgroup}[1]{\section{#1}}
+
+% ---------------------------------------------------------------------------
+% Title and credits.
+% ---------------------------------------------------------------------------
+% A macro, not an environment: amsart sets subsection headings run-in, and a
+% run-in heading issued from inside an environment is dropped when the group
+% closes.  A title is one line anyway.
+\newcommand{\cxtitle}[1]{\csname\cx@level\endcsname{#1}}
+
+% One macro per role, so that a per-result block can override a role and
+% inherit the others.  \foundby accumulates: a witness may have taken more than
+% one model or more than one session, and those read as one clause.
+\let\cx@posed\@empty
+\let\cx@found\@empty
+\let\cx@formalized\@empty
+\let\cx@audited\@empty
+\let\cx@contributed\@empty
+\newcommand{\posedby}[1]{\def\cx@posed{#1}}
+\newcommand{\formalizedby}[1]{\def\cx@formalized{#1}}
+\newcommand{\auditedby}[1]{\def\cx@audited{#1}}
+\newcommand{\contributedby}[1]{\def\cx@contributed{#1}}
+\newcommand{\foundby}[2]{%
+  \ifx\cx@found\@empty
+    \def\cx@found{#1 (#2)}%
+  \else
+    \g@addto@macro\cx@found{ and #1 (#2)}%
+  \fi}
+
+% A case-level block starts from nothing -- roles do not leak from the case
+% before it -- and then becomes the default its own per-result blocks build on.
+\newcommand{\cx@resetroles}{%
+  \global\let\cx@posed\@empty        \global\let\cx@found\@empty
+  \global\let\cx@formalized\@empty   \global\let\cx@audited\@empty
+  \global\let\cx@contributed\@empty}
+% The case's own block becomes the default every per-result block starts from.
+\newcommand{\cx@saveroles}{%
+  \global\let\cx@d@posed\cx@posed        \global\let\cx@d@found\cx@found
+  \global\let\cx@d@formalized\cx@formalized \global\let\cx@d@audited\cx@audited
+  \global\let\cx@d@contributed\cx@contributed}
+\newcommand{\cx@loadroles}{%
+  \let\cx@posed\cx@d@posed              \let\cx@found\cx@d@found
+  \let\cx@formalized\cx@d@formalized    \let\cx@audited\cx@d@audited
+  \let\cx@contributed\cx@d@contributed}
+\cx@saveroles
+
+\newcommand{\cx@printcredits}[1]{%
+  \par\noindent{\small\itshape
+    \if\relax\detokenize{#1}\relax\else\Cref{\cx@theorem{#1}}: \fi
+    Posed by \cx@posed; counterexample found by \cx@found;
+    formalized by \cx@formalized; audited by \cx@audited
+    % Naming the same person twice in one line reads as a mistake, so a
+    % contributor who also formalized the case is not repeated.
+    \ifx\cx@contributed\cx@formalized\else; contributed by \cx@contributed\fi
+    .}\par\medskip}
+
+% Bare: the credit line for the whole case.  With [result-id]: the credits of
+% one result, printed with a reference to its theorem, for a case whose bundled
+% statements have different histories.  Roles not restated are inherited.
+\newenvironment{cxcredits}[1][]{%
+  \def\cx@this{#1}%
+  \if\relax\detokenize{#1}\relax\cx@resetroles\else\cx@loadroles\fi
+}{%
+  \expandafter\cx@printcredits\expandafter{\cx@this}%
+  \expandafter\if\relax\detokenize\expandafter{\cx@this}\relax\cx@saveroles\fi}
+
+% ---------------------------------------------------------------------------
+% Context, the statements as posed, and the refutation.
+% ---------------------------------------------------------------------------
+% Our own setup prose.  Deliberately outside the quote boxes below: nothing of
+% ours may be mistaken for the source's words.
+% Plain environments, not \NewEnviron: nothing here needs the body captured,
+% and capturing it re-tokenises the prose, which perturbs the spacing TeX gives
+% display math.  Only the regions that must store text for later (cxsource,
+% cxsummary) or hand it to another environment (cxstatement) capture anything.
+\newenvironment{cxcontext}{}{\par}
+
+% Recorded, not typeset: the source becomes the heading of the quote box.
+% \let, not \def{\BODY}: \BODY is reassigned by the next environment, so the
+% region has to be snapshotted here rather than referenced later.
+\NewEnviron{cxsource}[1]{%
+  \global\expandafter\let\csname cx@source@#1\endcsname\BODY}
+\newcommand{\cx@source}[1]{%
+  \@ifundefined{cx@source@#1}{\PackageError{cxcase}%
+    {No \string\begin{cxsource}{#1} before the statement}%
+    {Every cxstatement{r} needs a cxsource{r} earlier in the file.}}%
+    {\@nameuse{cx@source@#1}}}
+
+% \cxpending{result} -- provenance not yet recorded.  The quote box is then
+% omitted rather than printing a TODO into the paper; the missing source is
+% reported by tools/build.py, which is where an unfilled field belongs.
+\newcommand{\cxpending}[1]{\@namedef{cx@pending@#1}{}}
+\newenvironment{cxstatement}[1]{%
+  % A pending result has no recorded source, so its placeholder is typeset into
+  % a box that is then dropped -- nothing reaches the paper.
+  \@ifundefined{cx@pending@#1}{%
+    \begin{problem}[As posed\@ifundefined{cx@para@#1}{}{, paraphrased}:
+        \cx@source{#1}]%
+  }{\cx@pendingtrue\setbox\@tempboxa\vbox\bgroup}%
+}{%
+  \ifcx@pending\egroup\cx@pendingfalse\else\end{problem}\fi}
+\newif\ifcx@pending
+
+\newenvironment{cxrefutation}{}{}
+
+% ---------------------------------------------------------------------------
+% The ledger: rows written to the .aux on one pass, typeset on the next.
+% ---------------------------------------------------------------------------
+\newcommand{\cx@rows}{}
+% Called while the previous run's .aux is read, before \cxledger typesets.
+\newcommand{\cxledgerrow}[3]{%
+  \g@addto@macro\cx@rows{#1 & #2\ (Thm.~\ref{#3})\\}}
+
+\NewEnviron{cxsummary}[1]{%
+  \global\expandafter\let\csname cx@summary@#1\endcsname\BODY}
+\newcommand{\cx@summary}[1]{%
+  \@ifundefined{cx@summary@#1}{\PackageError{cxcase}%
+    {No \string\begin{cxsummary}{#1} before the certificate}%
+    {Every cxcertificate{r} needs a cxsummary{r} earlier in the file.}}%
+    {\@nameuse{cx@summary@#1}}}
+
+% The certificate closes a result, so this is where the row is complete.  The
+% theorem is referenced rather than the section: a grouped case puts several
+% results under one section, and four rows pointing at the same place would
+% tell a reader nothing.
+\NewEnviron{cxcertificate}[1]{%
+  \expandafter\let\expandafter\cx@thissummary\csname cx@summary@#1\endcsname
+  \protected@write\@auxout{}{%
+    \string\cxledgerrow{\unexpanded\expandafter{\cx@thissummary}}%
+                       {\unexpanded\expandafter{\BODY}}{\cx@theorem{#1}}}}
+
+% Typeset the ledger collected on the previous pass.  Placed before the cases,
+% which is why it cannot be built in one run.
+\newcommand{\cxledger}{%
+  \ifx\cx@rows\@empty
+    \PackageWarning{cxcase}{Ledger is empty; rerun LaTeX to collect the rows}%
+  \fi
+  \begin{longtable}{@{}p{0.46\textwidth}p{0.50\textwidth}@{}}
+  \caption{Admitted session-derived disproofs.}\label{tab:ledger}\\
+  \toprule
+  Formal statement & Certificate \\
+  \midrule
+  \endfirsthead
+  \toprule
+  Formal statement & Certificate \\
+  \midrule
+  \endhead
+  \cx@rows
+  \bottomrule
+  \end{longtable}}
+
+% ---------------------------------------------------------------------------
+% Standalone preview: `make preview CASE=<id>` wraps one case in a minimal
+% document so it can be compiled while it is being written.  The ledger regions
+% record rather than typeset, so a preview shows the case, not the table.
+% ---------------------------------------------------------------------------
+\newcommand{\cxstandalone}[1]{%
+  \section*{Preview: \texttt{#1}}%
+  \renewcommand{\cx@level}{subsection}}
+\endinput

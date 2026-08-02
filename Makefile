@@ -7,7 +7,7 @@
 PY ?= .venv/bin/python
 
 .DEFAULT_GOAL := help
-.PHONY: help venv new unpack check verify regen paper all clean
+.PHONY: help venv new unpack check verify regen paper preview all clean
 
 help:
 	@echo "make venv    create .venv and install the pinned dependencies"
@@ -15,8 +15,9 @@ help:
 	@echo "make unpack BUNDLE=submissions/x.md   unpack a SUBMIT.md bundle"
 	@echo "make check   validate metadata + verify every certificate  <- the PR gate"
 	@echo "make verify  run every counterexample's verify.py only"
-	@echo "make regen   regenerate ledger, dossiers, registry, README table"
+	@echo "make regen   regenerate the case list, registry, README table"
 	@echo "make paper   build tex/main.pdf"
+	@echo "make preview CASE=<id>   compile one case on its own"
 	@echo "make all     check, then build the paper"
 	@echo "make clean   remove LaTeX build artifacts"
 
@@ -45,6 +46,11 @@ regen:
 
 paper:
 	cd tex && latexmk -pdf main
+
+# One case, typeset on its own while it is being written.  Metadata (heading
+# level, verbatim vs paraphrase) is not applied; see tools/preview_case.py.
+preview:
+	@$(PY) tools/preview_case.py $(CASE)
 
 all: check paper
 

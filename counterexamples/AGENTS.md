@@ -43,8 +43,8 @@ unfilled TODO.
 
 | Region | | |
 |---|---|---|
-| `cxtitle` | once | the case's section heading in the paper |
-| `cxcredits` | once, `{result-id}` to override | `\posedby` `\foundby{model}{YYYY-MM}` `\formalizedby` `\auditedby` `\contributedby` |
+| `\cxtitle{...}` | once | the case's section heading (a macro: a run-in subsection heading issued from inside an environment is dropped by LaTeX) |
+| `cxcredits` | once, `[result-id]` to override | `\posedby` `\foundby{model}{YYYY-MM}` `\formalizedby` `\auditedby` `\contributedby` |
 | `cxcontext` | optional | our setup prose: notation the quoted statement needs, rendered outside the quote boxes so our words are never mistaken for the source's |
 | `cxsource{rid}` | per result | who posed it and where, with `\cite{...}` |
 | `cxstatement{rid}` | per result | the statement **as originally posed** |
@@ -53,7 +53,7 @@ unfilled TODO.
 | `cxrefutation` | once | the conjecture in prose, the theorem, the proof |
 
 `\foundby` may repeat when a witness took more than one model or session. A
-`cxcredits{rid}` merges over the case block role by role, so a result that
+`cxcredits[rid]` merges over the case block role by role, so a result that
 differs only in its finder need not restate the rest.
 
 `cxrefutation` is body only — the `\section` / `\subsection` heading and the
@@ -78,9 +78,12 @@ Prose stating the original conjecture, with \cite{key}.
 \end{cxrefutation}
 ```
 
-The `cx...` environments are ours, not LaTeX's: the build extracts the regions
-and emits their contents, so nothing defines them in the preamble. Preamble
-macros you may use (and must not redefine) are listed in `tex/AGENTS.md`.
+These are **real LaTeX environments**, defined in `tex/cxcase.sty`, which also
+defines the theorem environments, status tags and notation a case may use — so
+a misspelled or unclosed region is a compile error, and one case compiles on its
+own: `make preview CASE=<id>`. `tools/build.py` reads the same regions for
+`registry.json` and the README table, which are not LaTeX's to produce.
+The macros you may use and must not redefine are listed in `tex/AGENTS.md`.
 
 ## case.json, field by field
 

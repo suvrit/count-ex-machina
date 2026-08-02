@@ -6,9 +6,10 @@ urls) and case.tex (everything written in LaTeX, in \\begin{cx...} regions this
 script extracts).  No LaTeX belongs in the JSON.
 
 Generated (checked in; never edit by hand):
-  tex/generated/ledger.tex     admitted-archive ledger longtable
-  tex/generated/refutations.tex  one section per case: title, credit line,
-                               context, the statements as posed, the refutation
+  tex/generated/cases.tex      the paper's case list: per-case metadata
+                               (heading level, theorem labels, fidelity) and an
+                               \\input of each case.tex, in ledger order.  The
+                               typesetting itself is tex/cxcase.sty's job
   registry.json                flattened machine-readable registry (all cases,
                                including withheld ones)
   README.md                    case table between the BEGIN/END CASE TABLE markers
@@ -123,7 +124,7 @@ def balanced_braces(s):
 # CASE_ENVS take no argument; RESULT_ENVS take the result id, since one case may
 # refute several statements.  cxcredits is both: bare for the case, with an id
 # for a result whose attribution differs.
-CASE_ENVS = {"cxtitle", "cxcontext", "cxrefutation"}
+CASE_ENVS = {"cxcontext", "cxrefutation"}
 RESULT_ENVS = {"cxsource", "cxstatement", "cxsummary", "cxcertificate"}
 ALL_ENVS = CASE_ENVS | RESULT_ENVS | {"cxcredits"}
 BEGIN_RE = re.compile(r"^\s*\\begin\{(cx[a-z]+)\}(?:\{([^}]*)\})?\s*$")
@@ -196,6 +197,21 @@ def parse_credits(body, errors, where):
     return credits
 
 
+def parse_title(text, errors, where):
+    """The \\cxtitle{...} line.  A title is one line, so it is a macro, not a
+    region -- and a run-in subsection heading issued from inside an environment
+    would be dropped by LaTeX anyway (see tex/cxcase.sty)."""
+    i = text.find("\\cxtitle")
+    if i < 0:
+        errors.append(f"{where}: no \\cxtitle{{...}}")
+        return ""
+    args, _ = read_macro_args(text, i + len("\\cxtitle"), 1)
+    if args is None:
+        errors.append(f"{where}: \\cxtitle needs one braced argument")
+        return ""
+    return args[0].strip()
+
+
 def parse_case_tex(text, errors, where):
     """case.tex -> {(env, arg): body}.
 
@@ -264,7 +280,9 @@ def load_prose(case, d, errors):
     if not path.exists():
         errors.append(f"{where}: prose file {name!r} does not exist")
         return
-    regions = parse_case_tex(path.read_text(), errors, f"{where} ({name})")
+    text = path.read_text()
+    regions = parse_case_tex(text, errors, f"{where} ({name})")
+    title = parse_title(text, errors, f"{where} ({name})")
     ids = {r.get("id") for r in case.get("results") or []}
     for (env, arg), body in regions.items():
         if env in RESULT_ENVS and arg not in ids:
@@ -272,7 +290,7 @@ def load_prose(case, d, errors):
         if env in CASE_ENVS and arg:
             errors.append(f"{where}: {env} takes no argument, got {{{arg}}}")
 
-    case["title_tex"] = regions.get(("cxtitle", ""), "") or case.get("title")
+    case["title_tex"] = title or case.get("title")
     if ("cxcontext", "") in regions:
         case["context_tex"] = regions[("cxcontext", "")]
     case["_refutation"] = regions.get(("cxrefutation", ""), "")
@@ -536,34 +554,6 @@ def withheld_sorted(cases):
     return sorted((c for c in cases if c["status"] == "withheld"), key=lambda c: c["id"])
 
 
-def gen_ledger(cases):
-    # Every admitted row is a disproof, so the table carries no status column.
-    lines = [
-        GENERATED_HEADER + r"\section{Audited archive ledger}",
-        "",
-        r"\begin{longtable}{@{}p{0.46\textwidth}p{0.50\textwidth}@{}}",
-        r"\caption{Admitted session-derived disproofs.}\label{tab:ledger}\\",
-        r"\toprule",
-        r"Formal statement & Certificate \\",
-        r"\midrule",
-        r"\endfirsthead",
-        r"\toprule",
-        r"Formal statement & Certificate \\",
-        r"\midrule",
-        r"\endhead",
-    ]
-    for c in refuted_in_order(cases):
-        for r in c["results"]:
-            # Point at the theorem, not the section: a grouped case puts several
-            # results under one section, so a section reference would send
-            # different rows to the same place.  The statement itself is left
-            # unlinked -- its \cite already carries the reader to the source.
-            ref = f" (Thm.~\\ref{{{r['theorem_label']}}})" if r.get("theorem_label") else ""
-            lines.append(f"{r['statement_tex']} & {r['certificate_tex']}{ref}\\\\")
-    lines += [r"\bottomrule", r"\end{longtable}", ""]
-    return "\n".join(lines)
-
-
 def effective_credits(c, r):
     """The case credits with this result's overrides applied, key by key.
 
@@ -588,86 +578,36 @@ def found_by_str(credits):
     return " and ".join(f"{f.get('model')} ({f.get('date')})" for f in found_by_list(credits))
 
 
-def credit_line(cr):
-    parts = [
-        f"Posed by {cr['posed_by']}",
-        f"counterexample found by {found_by_str(cr)}",
-        f"formalized by {cr['formalized_by']}",
-        f"audited by {cr['audited_by']}",
-    ]
-    if cr.get("contributed_by") and cr["contributed_by"] != cr["formalized_by"]:
-        parts.append(f"contributed by {cr['contributed_by']}")
-    return "; ".join(parts) + "."
+def gen_cases(cases):
+    """The paper's case list: metadata, then \\input of each case.tex in order.
 
-
-def credit_blocks(c):
-    """One credit line for the case, or one per result when they disagree.
-
-    A single line across bundled results would assert something false about one
-    of them as soon as their finders differ.
+    Everything typeset comes out of the case files themselves, through the
+    environments tex/cxcase.sty defines.  What LaTeX cannot know is metadata --
+    where a case sits in the ledger, whether it shares a section with others,
+    which theorem label a result carries, and whether its quoted statement is
+    the source's own words -- so that is what this file carries.
     """
-    per = [(r, effective_credits(c, r)) for r in c["results"]]
-    if all(e == per[0][1] for _, e in per):
-        return [f"\\casecredits{{{credit_line(per[0][1])}}}"]
-    out = []
-    for r, e in per:
-        ref = f"\\Cref{{{r['theorem_label']}}}" if r.get("theorem_label") else r["id"]
-        out.append(f"\\casecredits{{{ref}: {credit_line(e)}}}")
-    return out
-
-
-def problem_blocks(c):
-    """Quote each refuted statement as originally posed, ahead of the refutation."""
-    out = []
-    for r in c["results"]:
-        prov = r.get("provenance") or {}
-        if is_todo(prov.get("statement_tex")) or is_todo(prov.get("source_tex")):
-            continue
-        qualifier = "" if prov.get("fidelity") == "verbatim" else ", paraphrased"
-        out.append(
-            "\n".join(
-                [
-                    f"\\begin{{problem}}[As posed{qualifier}: {prov['source_tex']}]",
-                    prov["statement_tex"],
-                    r"\end{problem}",
-                ]
-            )
-        )
-    return out
-
-
-def gen_refutations(cases):
-    """One section per case, except that grouped cases share one section.
-
-    The refutation body is inlined rather than \\input: it now lives inside
-    case.tex among the other regions, and a \\input of a whole file is exactly
-    what that consolidation removed.
-    """
-    blocks = []
+    lines = [GENERATED_HEADER.rstrip("\n")]
     open_group = None
     for c in refuted_in_order(cases):
-        title = c.get("title_tex") or c["title"]
         group = c.get("group")
-        if group is None:
-            heading = f"\\section{{{title}}}"
-        else:
-            if group != open_group:
-                blocks.append(f"\\section{{{GROUPS[group]}}}")
-            heading = f"\\subsection{{{title}}}"
+        if group is not None and group != open_group:
+            lines.append(f"\\cxgroup{{{GROUPS[group]}}}")
         open_group = group
-        # Our own setup prose, so the quoted statement can be read without the
-        # source at hand; it precedes the quotes and stays outside their boxes.
-        context = [c["context_tex"]] if c.get("context_tex") else []
-        blocks.append(
-            "\n".join(
-                [heading]
-                + credit_blocks(c)
-                + context
-                + problem_blocks(c)
-                + [c["_refutation"]]
-            )
-        )
-    return GENERATED_HEADER + "\n" + "\n\n".join(blocks) + "\n"
+        lines.append("")
+        lines.append(f"\\cxlevel{{{'subsection' if group else 'section'}}}")
+        for r in c["results"]:
+            if r.get("theorem_label"):
+                lines.append(f"\\cxtheorem{{{r['id']}}}{{{r['theorem_label']}}}")
+            prov = r.get("provenance") or {}
+            # A result whose source is not yet recorded is declared pending, so
+            # the paper omits the quote box instead of typesetting a TODO.
+            if is_todo(prov.get("statement_tex")) or is_todo(prov.get("source_tex")):
+                lines.append(f"\\cxpending{{{r['id']}}}")
+            elif prov.get("fidelity") in FIDELITIES:
+                lines.append(f"\\cx{prov['fidelity']}{{{r['id']}}}")
+        lines.append(f"\\input{{../counterexamples/{c['id']}/{c.get('prose', 'case.tex')}}}")
+    return "\n".join(lines) + "\n"
 
 
 def gen_registry(cases):
@@ -833,8 +773,7 @@ def main():
         fail(errors)
 
     outputs = {
-        GENERATED_DIR / "ledger.tex": gen_ledger(cases),
-        GENERATED_DIR / "refutations.tex": gen_refutations(cases),
+        GENERATED_DIR / "cases.tex": gen_cases(cases),
         REGISTRY: gen_registry(cases),
         README: splice_readme(readme_table, gen_count_badges(cases)),
     }

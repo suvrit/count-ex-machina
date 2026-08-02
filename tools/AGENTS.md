@@ -7,8 +7,8 @@ the paper's structure genuinely changes.
 ## What each script owns
 
 - **`build.py`** — validates every case (`case.json` + `case.tex`) and writes
-  four generated artifacts: `tex/generated/ledger.tex`,
-  `tex/generated/refutations.tex`, `registry.json`, and two spliced regions of
+  three generated artifacts: `tex/generated/cases.tex`,
+  `registry.json`, and two spliced regions of
   `README.md` — the case table (`<!-- BEGIN/END CASE TABLE -->`) and the
   headline count badges (`<!-- BEGIN/END COUNT BADGES -->`). Everything else in
   `README.md`, the rest of the header block included, is hand-written and is

@@ -28,8 +28,8 @@ leaving it `TODO`. See “Things that are never OK” below.
 |---|---|---|
 | `counterexamples/<dir>/` | one bundle per case: `case.json` (machine facts), `case.tex` (all prose), `verify.py`, `artifacts/` | **yes** — this is where the work is |
 | `counterexamples/_template/` | scaffold copied by `tools/new_case.py` | only to change the scaffold itself |
-| `tex/01-literature.tex`, `tex/02-admission.tex`, `tex/main.tex`, `tex/references.bib` | hand-written paper | yes, carefully |
-| `tex/generated/` | `ledger.tex`, `refutations.tex` | **no — generated** |
+| `tex/01-literature.tex`, `tex/02-admission.tex`, `tex/main.tex`, `tex/references.bib`, `tex/cxcase.sty` | hand-written paper and the case format | yes, carefully |
+| `tex/generated/` | `cases.tex` — the ordered `\input` list and per-case metadata | **no — generated** |
 | `registry.json` | flattened machine-readable registry | **no — generated** |
 | `README.md` between `<!-- BEGIN/END CASE TABLE -->` and `<!-- BEGIN/END COUNT BADGES -->` | case table, headline counts | **no — generated** |
 | `tools/` | `build.py`, `verify_all.py`, `new_case.py`, `unpack_submission.py`, `exactcert.py` | yes, but see `tools/AGENTS.md` |
@@ -47,7 +47,7 @@ Ids, ledger rows, credits, and citations are keyed to the **result**.
 make venv                    # python3 -m venv .venv + pinned deps, --no-deps
 make check                   # build.py --check && verify_all.py   <- the CI gate
 make verify                  # certificates only
-make regen                   # regenerate ledger, refutations, registry, README table
+make regen                   # regenerate the case list, registry, README table
 make paper                   # cd tex && latexmk -pdf main
 ```
 

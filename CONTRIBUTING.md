@@ -97,7 +97,7 @@ the build errors, and the things it must never invent spelled out.
 5. Regenerate and verify:
 
    ```sh
-   make regen   # validates the metadata, regenerates ledger/refutations/registry
+   make regen   # validates the metadata, regenerates the case list and registry
    make check   # the pull-request gate: metadata valid + every certificate recomputes
    make paper   # the paper must compile
    ```
