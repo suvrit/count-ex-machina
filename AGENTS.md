@@ -135,6 +135,7 @@ an attribution.
 | Change the generator or the schema | `tools/AGENTS.md` |
 | Touch the paper or its macros | `tex/AGENTS.md` |
 | Decide whether a case is admissible at all | `tex/02-admission.tex`, then `CONTRIBUTING.md` |
+| Check whether a case duplicates an admitted one | `audit_notes.md` § duplicates — no build check exists; read the sources |
 
 ## Definition of done
 

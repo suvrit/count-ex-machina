@@ -29,3 +29,43 @@ Withheld or withdrawn:
   Withdrawn in favour of `quantum-coupon-collector`, which refutes a publicly posed statement
   with a permalink.  Its retired uid is 2MRX3236 and must never be reused.
 - All intermediate route-killers, sufficient-condition failures, and assistant-generated strengthenings.
+
+Duplicates and statement identity:
+
+`tools/build.py` enforces uniqueness only on keys the archive mints for itself --
+`order`, result `id`, `uid`, `theorem_label`.  None of them identifies a *statement*, so
+nothing in the build can tell that two records refute the same thing.  `provenance.url` is
+the only field pointing at the statement rather than at our record of it, and it is not
+unique by construction: the same claim reaches us through different copies.
+
+Detection is a review task, performed by hand with AI assistance.  No automated duplicate
+check is planned.  The cheap one -- reject two results sharing a `provenance.url` -- is
+deliberately not built: it catches only the easiest kind below and would buy false
+confidence about the other three.
+
+Four kinds, and the standing disposition of each:
+- Same statement, two submitters.  First admitted wins.  The second is credited in the
+  case's `cxcredits`, which already accepts a repeated `\foundby` for a witness that took
+  more than one model or session.  The only kind a url comparison would find.
+- Same statement reached through different sources.  Already present in the archive:
+  `variance-only-matrix-discrepancy` quotes Bandeira's Remark 4.25 *as restated* in
+  Conjecture 1.2 of Akbas-Sra.  Two urls, one statement -- so a url check would have
+  called it clean.  Only someone reading both sources catches this.
+- One witness, several statements.  Not a duplicate at all, and the reason a case
+  directory is not a case result: `stable-schur` refutes two AIM problems with one
+  polynomial, and one Lorentzian cubic settles both `lorentzian-jensen` and
+  `log-volume-distance`.  Count by statement, never by witness or by directory.
+- Already refuted in the literature.  The damaging kind, since the archive would be
+  claiming news that is not news.  Not detectable from anything in the repository, and not
+  currently one of the three admission conditions; if it ever needs to be enforced, it
+  belongs in `tex/02-admission.tex` as a fourth condition rather than in code.
+
+Two dispositions set in August 2026, recorded here because they are precedent:
+- A record that duplicates another is withdrawn rather than merged: the surviving case
+  keeps its own uid, the withdrawn one has its uid retired permanently, and the reason is
+  written into this file.  See `logdet-loewner` above.
+- One phenomenon gets one ledger row when only one statement was actually posed.  The
+  quantum coupon collector's trace consequence fails independently, at n=10, but was never
+  posed anywhere on its own, so it is a second theorem inside that case's refutation rather
+  than a second ledger row.  The ledger counts statements that someone posed, not theorems
+  that we proved false.
