@@ -22,6 +22,15 @@ The second invariant is honesty of attribution: who posed the statement, which
 model found the witness, in which month. Fabricating any of that is worse than
 leaving it `TODO`. See “Things that are never OK” below.
 
+Those two invariants are the *only* narrow things here. The scope is broad on
+purpose, so do not gatekeep a case on anything else: a statement need not be
+famous (this archive is not restaging Riemann or Collatz — catalogues like
+mathconjectures.com already cover those), a contributor need not be a
+professional, and a certificate need not be machine-checked. A Lean, Rocq, or
+Isabelle development is welcome and carried with the case, but it is not a
+precondition and earns no higher standing than fifty lines of exact-rational
+Python. Judge the evidence, never the pedigree.
+
 ## 30-second map
 
 | Path | What it is | May an agent edit it? |

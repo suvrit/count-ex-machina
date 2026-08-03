@@ -18,14 +18,22 @@ Everything below is written for the agent.
 
 ## What this archive accepts
 
-A counterexample is admissible only if **all three** hold. If one fails, say so
-plainly to the user and stop — a case that cannot clear this bar wastes their
-time and ours.
+The archive is deliberately broad. The statement need not be famous — this is
+not a collection of assaults on the great open problems, and catalogues such as
+mathconjectures.com already cover those. A lemma stated in passing in a
+preprint, a plausible strengthening on a problem list, or a "surely this holds"
+from a forum thread is exactly what belongs here. Nor does it matter who the
+user is: researcher, student, hobbyist, anyone.
 
-1. **Provenance.** The refuted statement was published or publicly posed by
-   someone *other than* whoever found the counterexample, or was posed formally
-   in advance. A statement invented in the same session that refutes it does
-   not qualify.
+What is not broad is the certificate. A counterexample is admissible only if
+**all three** conditions hold. If one fails, say so plainly to the user and
+stop — a case that cannot clear this bar wastes their time and ours.
+
+1. **Provenance.** The refuted statement appeared publicly before the
+   counterexample was sought — a paper, preprint, problem list, talk, or public
+   forum post — or was posed formally and recorded in advance. A statement
+   invented in the same session that refutes it does not qualify. Prominence is
+   irrelevant; the point is only that the statement was not built to fall.
 2. **No quantifier drift.** The original hypotheses and quantifiers are
    preserved exactly. If you tightened a hypothesis, widened a domain, or
    flipped a quantifier to make the witness work, you have refuted a *different*
@@ -35,6 +43,13 @@ time and ours.
    rigorous outward-rounded interval computation with explicit error control.
    **Floating-point evidence is inadmissible.** `float`, `numpy`, and bare
    `math` do not certify anything here.
+
+Condition 3 is about checkability, not about tooling. Fifty lines of exact
+rational Python satisfy it. So does a Lean, Rocq, or Isabelle development,
+which is welcome and will be carried with the case — but do not treat one as
+required, and do not tell the user their case is weaker without it. The harness
+that runs on every push is Python plus optional Sage, so package a `verify.py`
+either way.
 
 A witness you found numerically and cannot yet certify is still welcome — but
 say so, and send it as an issue rather than a package. Turning numerical

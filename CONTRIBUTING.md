@@ -1,7 +1,14 @@
 # Contributing a counterexample
 
-Contributions are welcome. The bar is deliberately high: this archive only
-admits counterexamples with independently checkable certificates.
+Contributions are welcome, from anyone. The bar is on the certificate, not on
+the prominence of the statement or the credentials of the sender: this archive
+admits counterexamples whose witnesses an independent reader can recompute.
+
+It is also not trying to restage the famous conjectures — catalogues such as
+[mathconjectures.com](https://mathconjectures.com) already do that. What is
+wanted here is whatever the community actually finds: a lemma stated in passing
+in a preprint, a plausible strengthening on a problem list, a "surely this
+holds" from a seminar or a forum thread.
 
 ## Admission criteria
 
@@ -9,9 +16,11 @@ The authoritative statement is the “Admission rule and audit standard” secti
 of the paper (`tex/02-admission.tex`); in summary, an admissible archive
 counterexample must satisfy all three conditions:
 
-1. **Provenance of the statement.** The refuted statement is published or
-   publicly posed by someone other than the discoverer of the counterexample,
-   or it is a standalone formal problem explicitly posed in advance.
+1. **Provenance of the statement.** The refuted statement appeared publicly
+   before the counterexample was sought — in a paper, preprint, problem list,
+   talk, or public forum post — or was posed formally and recorded in advance.
+   Who posed it, and how prominent they are, does not matter; what matters is
+   that the statement was not invented in order to be refuted.
 2. **No quantifier drift.** The original hypotheses and quantifiers are
    preserved exactly; refuting a strengthening of a statement does not count
    as refuting the statement.
@@ -23,6 +32,14 @@ Certificate levels (same section): an **exact certificate** uses only exact
 arithmetic end to end; a **computer-assisted proof** may use rigorous interval
 arithmetic with explicit error control. Floating-point-only evidence is
 inadmissible at either level.
+
+Condition 3 is about checkability, not about technology. A short exact-rational
+Python script satisfies it, and most cases here are exactly that. A machine
+checked development in Lean, Rocq, or Isabelle also satisfies it and is very
+welcome — send it and it will be carried with the case — but it is **not** a
+precondition, and no case ranks lower for lacking one. The harness that runs on
+every push is Python plus optional Sage cross-checks, so a case must still
+stand on a certificate that harness can execute.
 
 ## The short path: let an agent package it
 

@@ -20,11 +20,15 @@ intervals, never floating point.</sub>
 </div>
 
 Companion repository for the paper **“GPT: The Counterexample Machine”**
-(Suvrit Sra, TU Munich). It archives AI-assisted counterexamples to published
-conjectures and to formal problems posed by the author, together with
-independently checkable certificates: every admitted case is verified by exact
-arithmetic or by a rigorous interval computation — never by floating-point
-evidence alone.
+(Suvrit Sra, TU Munich). It archives AI-assisted counterexamples to
+mathematical statements that were posed publicly — in a paper, a preprint, a
+problem list, a talk, a forum thread — together with certificates a stranger
+can recompute: every admitted case is verified by exact arithmetic or by a
+rigorous interval computation, never by floating-point evidence alone.
+
+The archive is **broad by design**. A refuted statement does not have to be
+famous, and you do not have to be a professional mathematician to send one in.
+What is not negotiable is the certificate — see [Scope](#scope).
 
 ## Contribute one in a single paste
 
@@ -43,7 +47,9 @@ paste it in, or a pull request adding `submissions/<case-id>.md`. Done.
 
 What that file has to clear, and what your agent is told not to fudge:
 
-- the statement was **posed publicly by someone else**, or formally in advance;
+- the statement **appeared publicly before you refuted it** — paper, preprint,
+  problem list, talk, forum post — or was posed formally and recorded in
+  advance;
 - its **hypotheses and quantifiers are untouched** — refuting a strengthening
   refutes nothing;
 - the witness is checked by **exact arithmetic or rigorous intervals**, never
@@ -55,6 +61,38 @@ Numerical evidence you cannot yet certify is still welcome as an issue —
 turning it into an exact certificate is much of what this archive is for. The
 long-form version of all this, for contributors working in a clone, is
 [Adding a counterexample](#adding-a-counterexample).
+
+## Scope
+
+**Not the famous conjectures.** This archive is not trying to restage Riemann,
+Collatz, or Hodge. Catalogues of the great open problems already exist and do
+the job well — [mathconjectures.com](https://mathconjectures.com), for one,
+lists a few hundred, sorted by field and prominence. Nothing here competes with
+that, and a case is not more welcome for being about a household name.
+
+What this archive collects is the other end of the distribution: the lemma
+stated in passing in someone's preprint, the plausible strengthening on a
+problem list, the "surely this holds" from a seminar or a forum thread.
+Statements nobody got around to checking, which turn out to be false. They are
+individually modest and collectively the point — one of [the cases
+below](#the-cases) had stood unanswered on MathOverflow for nine years.
+
+**Anyone may contribute.** Research mathematicians, students, hobbyists, people
+who found something odd while poking at a computer algebra system. The archive
+does not ask who you are or where you work. It asks whether the statement was
+posed publicly before you refuted it, and whether the witness recomputes.
+
+**Any certificate technology.** Exact rational arithmetic in fifty lines of
+Python is a perfectly good certificate, and most cases here are exactly that. A
+Lean, Rocq, or Isabelle development is very welcome — send it and it will be
+carried alongside the case — but it is **not** a precondition, and no case
+ranks lower for lacking one. Machine-checked proof is one way to make a
+refutation independently checkable, not the definition of it.
+
+What the requirement actually is: an independent reader reruns the check and
+gets the same answer. Today's harness runs Python, with optional Sage interval
+cross-checks. The one thing that stays inadmissible is floating-point evidence
+with no rigorous enclosure — that certifies nothing, in any language.
 
 ## Layout
 

@@ -5,7 +5,7 @@ A conversational archive contains many false statements that are mathematically 
 \begin{definition}[Admissible archive counterexample]
 A recovered disproof is admitted only when all three conditions hold.
 \begin{enumerate}
-\item The refuted statement is either published or publicly posed by another researcher, or is a standalone formal problem explicitly posed by the author.
+\item The refuted statement appeared publicly before the counterexample was sought---in a published paper, a preprint, a problem list, a talk, or a public forum post---or is a standalone formal problem recorded in advance of the search.  Neither the prominence of the statement nor the standing of whoever posed it bears on admission; the condition exists only to exclude statements invented in order to be refuted.
 \item The original hypotheses and quantifiers are preserved.  A counterexample to a strengthening is not represented as a counterexample to the underlying conjecture.
 \item The witness is independently checkable from the manuscript and source package by exact arithmetic, a complete analytic calculation, or a rigorous interval certificate.
 \end{enumerate}
@@ -14,5 +14,7 @@ A recovered disproof is admitted only when all three conditions hold.
 \begin{definition}[Certificate levels]
 An \emph{exact certificate} reduces the contradiction to integer or rational arithmetic.  A \emph{computer-assisted proof} combines exact symbolic identities with outward-rounded interval arithmetic and an explicit tail estimate.  Floating-point evidence without such an enclosure is not admitted as a disproof.
 \end{definition}
+
+The filter is narrow about evidence and deliberately catholic about everything else.  It is not an assault on the celebrated open problems, for which curated catalogues already exist and serve the purpose better; the statements gathered here are mostly modest ones---a lemma asserted in passing, a plausible strengthening on a problem list, a question left open in a forum thread---and the archive is open to researchers, students and amateurs on the same terms.  The third condition likewise privileges no particular verification technology: a short exact-rational program discharges it, as does a development in a proof assistant, which is welcome but is not a precondition and confers no higher standing.  What the condition demands is only that an independent reader can rerun the check and obtain the same answer.
 
 This filter leaves twelve formal disproofs in nine dossiers, one per section below.  The count is by formal statement: two Borcea--Br\"and\'en problems fall to a single Schur-positive stable polynomial, two more to a single positive-definite pencil, and a metric principle together with its convex-body specialization to a single Lorentzian cubic.  Each admitted statement is quoted below as it was originally posed, before any dossier restates it.
