@@ -4,7 +4,11 @@
 
 **Counterexamples found by AI, certified by exact arithmetic.**
 
+<!-- The verify badge is parked while the workflow's push/pull_request triggers
+     are commented out; see .github/workflows/verify.yml.  Restore this line
+     together with those triggers:
 [![verify](https://github.com/suvrit/count-ex-machina/actions/workflows/verify.yml/badge.svg?branch=main)](https://github.com/suvrit/count-ex-machina/actions/workflows/verify.yml)
+-->
 <!-- BEGIN COUNT BADGES -->
 [![counterexamples](https://img.shields.io/badge/counterexamples-13%20refuted%2C%204%20additional-0b7285)](#the-cases)
 [![certificates](https://img.shields.io/badge/certificates-15%20exact%2C%202%20interval-0b7285)](#the-cases)

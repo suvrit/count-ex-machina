@@ -38,7 +38,7 @@ Python. Judge the evidence, never the pedigree.
 | `counterexamples/<dir>/` | one bundle per case: `case.json` (machine facts), `case.tex` (all prose), `verify.py`, `artifacts/` | **yes** — this is where the work is |
 | `counterexamples/_template/` | scaffold copied by `tools/new_case.py` | only to change the scaffold itself |
 | `tex/01-literature.tex`, `tex/02-admission.tex`, `tex/main.tex`, `tex/references.bib`, `tex/cxcase.sty` | hand-written paper and the case format | yes, carefully |
-| `tex/generated/` | `cases.tex` — the ordered `\input` list and per-case metadata | **no — generated** |
+| `tex/generated/` | `cases.tex` and `appendix.tex` — the ordered `\input` lists and per-case metadata | **no — generated** (but the `\input` lines in `tex/main.tex` that place them are hand-written and yours to move) |
 | `registry.json` | flattened machine-readable registry | **no — generated** |
 | `README.md` between `<!-- BEGIN/END CASE TABLE -->` and `<!-- BEGIN/END COUNT BADGES -->` | case table, headline counts | **no — generated** |
 | `tools/` | `build.py`, `verify_all.py`, `new_case.py`, `unpack_submission.py`, `exactcert.py` | yes, but see `tools/AGENTS.md` |
@@ -83,6 +83,11 @@ As of the current commit, on a clean tree:
   `provenance` for `rank-two-mixed-norm`. These are the maintainer's to fill in
   — they are facts about real sessions that nobody can reconstruct from the
   repository.
+- CI is **temporarily disabled** because of exactly those twelve: the workflow's
+  `push` and `pull_request` triggers are commented out in
+  `.github/workflows/verify.yml`, so nothing runs automatically and the verify
+  badge is parked. Run `make check` yourself; it is still the gate, and the
+  workflow can be dispatched by hand from the Actions tab.
 - Generated files are nevertheless **current**: `tools/build.py --allow-todo`
   reproduces them byte-for-byte. Because plain `build.py` refuses to write
   while errors stand, use `--allow-todo` to regenerate today, and diff the

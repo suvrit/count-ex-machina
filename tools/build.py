@@ -631,33 +631,26 @@ def found_by_str(credits):
     return " and ".join(f"{f.get('model')} ({f.get('date')})" for f in found_by_list(credits))
 
 
-def gen_cases(cases):
-    """The paper's case list: metadata, then \\input of each case.tex in order.
+def emit_cases(selected, lines, grouped=True):
+    """Append the metadata and \\input for each case in `selected` to `lines`.
 
     Everything typeset comes out of the case files themselves, through the
     environments tex/cxcase.sty defines.  What LaTeX cannot know is metadata --
     where a case sits in the ledger, whether it shares a section with others,
     which theorem label a result carries, and whether its quoted statement is
-    the source's own words -- so that is what this file carries.
+    the source's own words -- so that is what these files carry.
+
+    `grouped=False` suppresses the per-group headings: the appendix already has
+    one heading of its own and does not reissue a section for each source.
     """
-    lines = [GENERATED_HEADER.rstrip("\n")]
     open_group = None
-    opened_appendix = False
-    for c in refuted_in_order(cases):
-        in_appendix = bool(c.get("appendix"))
-        if in_appendix and not opened_appendix:
-            # One appendix section holds every de-emphasised case, whatever its
-            # source, so group headings are not reissued inside it.
-            lines.append("")
-            lines.append(f"\\cxappendix{{{APPENDIX_TITLE}}}")
-            opened_appendix = True
-            open_group = None
+    for c in selected:
         group = c.get("group")
-        if not in_appendix and group is not None and group != open_group:
+        if grouped and group is not None and group != open_group:
             lines.append(f"\\cxgroup{{{GROUPS[group]}}}")
         open_group = group
         lines.append("")
-        lines.append(f"\\cxlevel{{{'subsection' if (group or in_appendix) else 'section'}}}")
+        lines.append(f"\\cxlevel{{{'subsection' if (group or not grouped) else 'section'}}}")
         for r in c["results"]:
             if r.get("theorem_label"):
                 lines.append(f"\\cxtheorem{{{r['id']}}}{{{r['theorem_label']}}}")
@@ -669,7 +662,31 @@ def gen_cases(cases):
             elif prov.get("fidelity") in FIDELITIES:
                 lines.append(f"\\cx{prov['fidelity']}{{{r['id']}}}")
         lines.append(f"\\input{{../counterexamples/{c['id']}/{c.get('prose', 'case.tex')}}}")
-    return "\n".join(lines) + "\n"
+    return lines
+
+
+def gen_cases(cases):
+    """The body case list, \\input by main.tex where the sections belong."""
+    return "\n".join(emit_cases(body_in_order(cases), [GENERATED_HEADER.rstrip("\n")])) + "\n"
+
+
+def gen_appendix(cases):
+    """The appendix, in its own file so main.tex decides where it sits.
+
+    Kept separate from cases.tex precisely so the appendix can be moved,
+    surrounded, or temporarily dropped by editing one \\input line by hand,
+    without the generator having an opinion about where in the document it goes.
+    """
+    lines = [GENERATED_HEADER.rstrip("\n")]
+    selected = appendix_in_order(cases)
+    if not selected:
+        # Still written, so main.tex's \input never dangles when the archive
+        # happens to have no de-emphasised cases.
+        lines.append("% No cases are currently marked \"appendix\": true.")
+        return "\n".join(lines) + "\n"
+    lines.append("")
+    lines.append(f"\\cxappendix{{{APPENDIX_TITLE}}}")
+    return "\n".join(emit_cases(selected, lines, grouped=False)) + "\n"
 
 
 def gen_registry(cases):
@@ -866,6 +883,7 @@ def main():
 
     outputs = {
         GENERATED_DIR / "cases.tex": gen_cases(cases),
+        GENERATED_DIR / "appendix.tex": gen_appendix(cases),
         REGISTRY: gen_registry(cases),
         README: splice_readme(readme_table, gen_count_badges(cases)),
     }
