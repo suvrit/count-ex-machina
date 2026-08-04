@@ -33,12 +33,13 @@
 
 \begin{document}
 \begin{abstract}
-  This document reports 17 counterexamples found using GPT (Pro versions) over the course of the past 12 months, spanning combinatorics, number theory, convextiy, functional analysis, among other areas. The counterexamples concern  both well-known problems as well as lesser known ones. The rapid proliferation of AI assisted counterexamples in the literature at the moment could be attributed to the inherent asymmetry between proving a claim versus finding a single witness that refutes a claim. Our counterexample collection is supported by the repository: \href{https://github.com/suvrit/count-ex-machina}{\fontfamily{ppl}\selectfont\itshape https://github.com/suvrit/count-ex-machina}, and we warmly welcome contributions from the wider community, hoping to help build an \emph{``open-source database of counterexamples.''}
+  This document reports 17 counterexamples found using GPT (Pro versions) over the course of the past 12 months, spanning combinatorics, number theory, convexity, functional analysis, among other areas. The counterexamples concern  both (reasonably) well-known problems as well as lesser known ones. Our counterexample collection is accompanied by: \href{https://github.com/suvrit/count-ex-machina}{\fontfamily{ppl}\selectfont\itshape https://github.com/suvrit/count-ex-machina}, and we warmly welcome new contributions to this repository, hoping to help build an \emph{``open-source database of counterexamples.''}
 \end{abstract}
 \maketitle
 
 \input{01-literature}
 \input{02-admission}
+
 \section{Audited archive ledger}
 % Rows are collected from every case's cxcertificate region on the previous
 % pass; see tex/cxcase.sty.
@@ -50,16 +51,16 @@
 \subsection*{Acknowledgments}
 The author acknowledges generous support from the Alexander von Humboldt (AvH) foundation via an AvH Professorship in AI.
 
+
+\bibliographystyle{abbrvnat}
+\bibliography{references}
+
+
 % The appendix of de-emphasised cases.  Both files are generated, but this line
 % is not: move it, wrap it, or comment it out freely -- the generator has no
 % opinion about where in the document the appendix sits.  It issues \appendix
 % itself, so anything after this line is numbered as appendix material.
 \input{generated/appendix}
-
-
-
-\bibliographystyle{abbrvnat}
-\bibliography{references}
-
 \vskip 12pt
+
 \end{document}
