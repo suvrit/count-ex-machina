@@ -15,15 +15,16 @@
 % compile error rather than something a parser has to be taught to notice, and
 % a case compiles on its own (see \cxstandalone below and `make preview`).
 %
-% The ledger is assembled the way LaTeX assembles a table of contents: each
-% cxcertificate writes a row into the .aux file, and \cxledger typesets the rows
-% the previous pass wrote.  The document therefore needs two passes for a new or
-% changed case, which is what latexmk does anyway.
+% The ledger is not assembled here.  cxsummary and cxcertificate only delimit
+% the two columns; tools/build.py reads them and writes the rows to
+% tex/generated/ledger.tex, and the table that holds those rows sits in
+% main.tex where it can be restyled by hand.
 %
 % What this package does NOT know is metadata: ledger order, grouping, and
 % whether a quoted statement is verbatim or a paraphrase all live in the
-% per-case case.json and reach LaTeX through tex/generated/cases.tex, which
-% tools/build.py writes.  Prose is LaTeX's; facts are the JSON's.
+% per-case case.json and reach LaTeX through tex/generated/cases.tex and
+% tex/generated/appendix.tex, which tools/build.py writes.  Prose is LaTeX's;
+% facts are the JSON's.
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{cxcase}[2026/08/02 v1.0 count-ex-machina case format]
@@ -51,7 +52,21 @@
 \newcommand{\Vol}{\operatorname{Vol}}
 \newcommand{\CE}{\mathsf{CE}}
 \newcommand{\J}{\mathsf{J}}
+
+
 \newcommand{\disc}{\operatorname{disc}}
+
+\definecolor{darkblue}{rgb}{0.0,0.0,0.75}
+\newcommand{\db}[1]{\textbf{\textcolor{darkblue}{#1}}}
+
+% \cxn -- the ledger's row number, in the margin column of tex/ledger.tex.
+% Auto-incrementing, so rows can be inserted, reordered or deleted without
+% renumbering anything by hand.  \refstepcounter rather than \stepcounter so a
+% row can carry a \label and be cited as "item 9" from the prose.  Reset with
+% \setcounter{cxrow}{0} before the table.  Do not put \cxn in a longtable head:
+% heads are typeset once per page and the counter would run ahead.
+\newcounter{cxrow}
+\newcommand{\cxn}{\refstepcounter{cxrow}\db{\thecxrow.}}
 
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{proposition}[theorem]{Proposition}
@@ -210,50 +225,19 @@
 \newenvironment{cxrefutation}{}{}
 
 % ---------------------------------------------------------------------------
-% The ledger: rows written to the .aux on one pass, typeset on the next.
+% The ledger cells.
 % ---------------------------------------------------------------------------
-\newcommand{\cx@rows}{}
-% Called while the previous run's .aux is read, before \cxledger typesets.
-\newcommand{\cxledgerrow}[3]{%
-  \g@addto@macro\cx@rows{#1 & #2\ (Thm.~\ref{#3})\\}}
-
-\NewEnviron{cxsummary}[1]{%
-  \global\expandafter\let\csname cx@summary@#1\endcsname\BODY}
-\newcommand{\cx@summary}[1]{%
-  \@ifundefined{cx@summary@#1}{\PackageError{cxcase}%
-    {No \string\begin{cxsummary}{#1} before the certificate}%
-    {Every cxcertificate{r} needs a cxsummary{r} earlier in the file.}}%
-    {\@nameuse{cx@summary@#1}}}
-
-% The certificate closes a result, so this is where the row is complete.  The
-% theorem is referenced rather than the section: a grouped case puts several
-% results under one section, and four rows pointing at the same place would
-% tell a reader nothing.
-\NewEnviron{cxcertificate}[1]{%
-  \expandafter\let\expandafter\cx@thissummary\csname cx@summary@#1\endcsname
-  \protected@write\@auxout{}{%
-    \string\cxledgerrow{\unexpanded\expandafter{\cx@thissummary}}%
-                       {\unexpanded\expandafter{\BODY}}{\cx@theorem{#1}}}}
-
-% Typeset the ledger collected on the previous pass.  Placed before the cases,
-% which is why it cannot be built in one run.
-\newcommand{\cxledger}{%
-  \ifx\cx@rows\@empty
-    \PackageWarning{cxcase}{Ledger is empty; rerun LaTeX to collect the rows}%
-  \fi
-  \begin{longtable}{@{}p{0.46\textwidth}p{0.50\textwidth}@{}}
-  \caption{Admitted session-derived disproofs.}\label{tab:ledger}\\
-  \toprule
-  Formal statement & Certificate \\
-  \midrule
-  \endfirsthead
-  \toprule
-  Formal statement & Certificate \\
-  \midrule
-  \endhead
-  \cx@rows
-  \bottomrule
-  \end{longtable}}
+% These two regions carry the ledger's columns, but nothing here typesets them.
+% tools/build.py reads both and writes tex/generated/ledger.tex, and main.tex
+% holds the table that \input's those rows -- so the ledger is visible and
+% editable where it is used, rather than assembled by a macro out of sight.
+%
+% Until August 2026 each cxcertificate instead wrote a row into the .aux file
+% for a \cxledger macro to typeset on the next pass.  That worked, but it hid
+% the whole table inside this package and made the ledger need two runs to
+% appear.  Both regions now simply swallow their bodies.
+\NewEnviron{cxsummary}[1]{}
+\NewEnviron{cxcertificate}[1]{}
 
 % ---------------------------------------------------------------------------
 % Standalone preview: `make preview CASE=<id>` wraps one case in a minimal

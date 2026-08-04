@@ -15,6 +15,8 @@
 \usepackage{listings}
 \usepackage{graphicx}
 \usepackage{url}
+\usepackage{multirow}
+
 % Every \cite in the sources is used parenthetically, so make bare \cite mean
 % \citep; \citet is still available where the authors are read as prose.
 \AtBeginDocument{\let\cite\citep}
@@ -40,10 +42,11 @@
 \input{01-literature}
 \input{02-admission}
 
-\section{Audited archive ledger}
-% Rows are collected from every case's cxcertificate region on the previous
-% pass; see tex/cxcase.sty.
-\cxledger
+\section{Summary of counterexamples}
+% tex/ledger.tex is hand-written and nothing regenerates it: edit the table
+% there row by row.  `make check` only verifies that every admitted result
+% still has a row, and prints the row to paste when one is missing.
+\input{ledger}
 
 \input{generated/cases}
 

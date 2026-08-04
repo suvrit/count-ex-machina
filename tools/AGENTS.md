@@ -18,6 +18,14 @@ the paper's structure genuinely changes.
   and exits 1 if any of them is stale; `--allow-todo` downgrades the
   `found_by` / provenance TODO errors to warnings (migration only — CI runs
   plain `--check`).
+
+  It also **checks, but never writes, `tex/ledger.tex`**: that table is
+  hand-written, and `check_ledger()` only confirms that every refuted result's
+  `theorem_label` appears in a `\ref` there and that no row names a result that
+  does not exist, printing a paste-ready row for anything missing. It runs
+  unconditionally rather than only when the rest of validation passes —
+  otherwise it would be dead code for as long as the baseline carries errors,
+  which is exactly when a missing row would slip through.
 - **`verify_all.py`** — discovers cases by scanning `counterexamples/*/case.json`
   and deliberately does **not** trust the generated `registry.json`. Imports
   each `verify.py` by path, calls `verify()`, asserts `ok is True`, runs the

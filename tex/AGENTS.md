@@ -21,11 +21,29 @@ the case file itself, through `cxcase.sty`. That is why a `cxrefutation` must
 contain **no** heading and **no** credit line of its own: the package emits
 both. Paths inside a case resolve against `tex/`.
 
-**The ledger is built by LaTeX, not by Python.** Each `cxcertificate` writes its
-row into the `.aux` file and `\cxledger` (called from `main.tex`) typesets the
-rows the previous pass wrote — the mechanism `\tableofcontents` uses. A new or
-changed case therefore needs two passes to appear in the table, which `latexmk`
-does anyway; a one-pass run warns `Ledger is empty`.
+**The ledger is hand-written.** `tex/ledger.tex` holds the whole table —
+`longtable` preamble, caption, rules, running header, and one row per admitted
+statement — and **nothing regenerates it**. Reword a cell, resize the columns,
+reorder or annotate rows freely; `make regen` will not touch a character.
+
+What `tools/build.py` does instead is check *coverage*: every refuted result's
+`theorem_label` must appear in a `\ref` somewhere in the file, and every
+`\ref{thm:...}` there must name a real result. Add a case and `make check`
+names the missing row and prints one you can paste. That single `\ref` is the
+only tie between the table and the cases; the prose is yours. A `cxsummary` or
+`cxcertificate` edit therefore does **not** propagate — update the row yourself
+if you want it to.
+
+Keep blank lines out of the table body: inside an alignment a blank line is a
+`\par`, which makes the following `\bottomrule` an illegal `\noalign`. Comment
+lines are fine, which is why the row separators are `%`.
+
+Until August 2026 the ledger was assembled by LaTeX instead: each
+`cxcertificate` wrote a row into the `.aux` and a `\cxledger` macro in
+`cxcase.sty` typeset the previous pass's rows, so the table needed two passes
+and could not be edited where it was used. Both `\cxledger` and `\cxledgerrow`
+are gone, and `cxsummary` / `cxcertificate` now only delimit text for
+`registry.json` and for the suggested-row message.
 
 ## Compiling
 

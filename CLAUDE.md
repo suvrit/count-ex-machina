@@ -15,6 +15,10 @@ If you read nothing else:
    Leave the `TODO` and report it.
 3. `tex/generated/`, `registry.json`, and the `README.md` case table are
    **generated**. Edit `case.json` or a `.tex` sidecar, then `make regen`.
+   Everything else in `tex/` is the maintainer's prose. **You may draft
+   anything; once a human has edited it, it is theirs — do not regenerate,
+   reformat, or "resync" it unless asked in that session.** Report drift
+   instead of fixing it. See "Who owns which file" in AGENTS.md.
 4. `make check` **already fails** with 12 pre-existing errors on a clean tree
    (eleven `credits.found_by` TODOs, one missing provenance block). Capture
    the list before you start; only new errors are yours. `make verify` passes

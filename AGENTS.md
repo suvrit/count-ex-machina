@@ -31,6 +31,41 @@ Isabelle development is welcome and carried with the case, but it is not a
 precondition and earns no higher standing than fifty lines of exact-rational
 Python. Judge the evidence, never the pedigree.
 
+## Who owns which file
+
+The archive is written with AI assistance, so the boundary between what a tool
+may rewrite and what a person has taken responsibility for has to be explicit.
+Two rules, and they are not negotiable by an agent:
+
+1. **A generator may produce a first draft of anything.** Scaffolding a case,
+   a section, a table, a whole document is fine and expected.
+2. **Once a human edits it, they own it, and no agent regenerates it without
+   being told to in that session.** Adoption is one-way. "It drifted from the
+   data" is a reason to *report* the drift, never to overwrite the prose.
+
+So each file is in exactly one of three states:
+
+| State | Who writes it | Examples |
+|---|---|---|
+| **machine-owned** | the generator, every `make regen` | `tex/generated/`, `registry.json`, the two marker-delimited regions of `README.md` |
+| **adopted** | the maintainer, by hand; the build only *checks* it | `tex/ledger.tex` |
+| **hand-written** | the maintainer, always | `tex/main.tex`, `tex/01-literature.tex`, `tex/02-admission.tex`, `tex/cxcase.sty`, every `case.tex`, all the `AGENTS.md` files |
+
+`tools/build.py` enforces the first row: `machine_owned()` lists the only paths
+it may write, and any other output path fails the build rather than silently
+overwriting someone's prose. Nothing enforces the second row but this rule —
+follow it.
+
+**Adopting a generated file** (the `tex/ledger.tex` worked example): take its
+current generated content as the seed, move it out of `tex/generated/`, delete
+its entry from `outputs` in `build.py`, and replace the generation with a
+*check* that catches the one thing a human can silently get wrong — usually
+coverage, not wording. `check_ledger()` verifies every admitted result still
+has a row and prints a paste-ready row for anything missing; it says nothing
+about how the row reads, because that is the maintainer's. Run such a check
+unconditionally, not behind `if not errors`, or it is dead code exactly while
+the baseline is red.
+
 ## 30-second map
 
 | Path | What it is | May an agent edit it? |
@@ -39,6 +74,7 @@ Python. Judge the evidence, never the pedigree.
 | `counterexamples/_template/` | scaffold copied by `tools/new_case.py` | only to change the scaffold itself |
 | `tex/01-literature.tex`, `tex/02-admission.tex`, `tex/main.tex`, `tex/references.bib`, `tex/cxcase.sty` | hand-written paper and the case format | yes, carefully |
 | `tex/generated/` | `cases.tex` and `appendix.tex` — the ordered `\input` lists and per-case metadata | **no — generated** (but the `\input` lines in `tex/main.tex` that place them are hand-written and yours to move) |
+| `tex/ledger.tex` | the archive ledger table, row by row | **yes — hand-written.** Nothing regenerates it; `build.py` only checks that every admitted result still has a row |
 | `registry.json` | flattened machine-readable registry | **no — generated** |
 | `README.md` between `<!-- BEGIN/END CASE TABLE -->` and `<!-- BEGIN/END COUNT BADGES -->` | case table, headline counts | **no — generated** |
 | `tools/` | `build.py`, `verify_all.py`, `new_case.py`, `unpack_submission.py`, `exactcert.py` | yes, but see `tools/AGENTS.md` |

@@ -38,6 +38,9 @@ GENERATED_DIR = ROOT / "tex" / "generated"
 REFERENCES_BIB = ROOT / "tex" / "references.bib"
 README = ROOT / "README.md"
 REGISTRY = ROOT / "registry.json"
+# Hand-written, never generated: the maintainer edits this table row by row.
+# build.py only checks that it still covers every admitted result.
+LEDGER_TEX = ROOT / "tex" / "ledger.tex"
 
 CLASSES = {
     "published theorem",
@@ -107,6 +110,24 @@ def fail(errors):
     for e in errors:
         print("error:", e, file=sys.stderr)
     sys.exit(1)
+
+
+# Everything the generator is allowed to overwrite.  README.md is on the list
+# only because splice_readme() rewrites two marker-delimited regions of it and
+# preserves the rest verbatim; every other word in that file is hand-written.
+MACHINE_OWNED = (GENERATED_DIR, REGISTRY, README)
+
+
+def machine_owned(path):
+    """True if build.py may write `path`.
+
+    The archive's rule is that a file is generated or it is the maintainer's,
+    never both, and that adoption is one-way: once prose is hand-written, no
+    generator reclaims it.  This is the enforcement of that rule; the
+    documentation of it lives in /AGENTS.md.
+    """
+    path = path.resolve()
+    return any(path == owned or owned in path.parents for owned in MACHINE_OWNED)
 
 
 def balanced_braces(s):
@@ -665,6 +686,53 @@ def emit_cases(selected, lines, grouped=True):
     return lines
 
 
+def ledger_row(c, r, n):
+    """The row a maintainer can paste into tex/ledger.tex for a new result."""
+    statement = " ".join((r.get("statement_tex") or "").split())
+    certificate = " ".join((r.get("certificate_tex") or "").split())
+    label = r.get("theorem_label") or f"thm:{r['id']}"
+    where = "appendix" if c.get("appendix") else "body"
+    # \cxn rather than a literal number: the ledger numbers itself, so a pasted
+    # row lands correctly wherever it is put and nothing needs renumbering.
+    return (f"  % {r['id']} ({where}; generator's ledger position {n})\n"
+            f"  \\cxn & {statement} & {certificate}\\ (Thm.~\\ref{{{label}}})\\\\")
+
+
+def check_ledger(cases, errors):
+    """tex/ledger.tex is hand-written; make sure it still covers every result.
+
+    The table's prose, ordering and layout are the maintainer's, so nothing here
+    rewrites it.  The one thing a human can silently get wrong is omitting a
+    case -- the ledger is the paper's headline claim about how many statements
+    fell -- so the build checks coverage and nothing else.  A result is matched
+    by its theorem_label appearing in a \\ref, which the row already carries;
+    no extra markup is imposed on the file.
+    """
+    if not LEDGER_TEX.exists():
+        errors.append(f"{LEDGER_TEX.relative_to(ROOT)} is missing; it is hand-written, not generated")
+        return
+    text = LEDGER_TEX.read_text()
+    referenced = set(re.findall(r"\\ref\{([^}]*)\}", text))
+    known = {}
+    n = 0
+    for c in refuted_in_order(cases):
+        for r in c["results"]:
+            n += 1
+            label = r.get("theorem_label") or f"thm:{r['id']}"
+            known[label] = (c, r, n)
+            if label not in referenced:
+                errors.append(
+                    f"tex/ledger.tex has no row for result {r['id']}: add one "
+                    f"referencing \\ref{{{label}}}. Suggested row:\n{ledger_row(c, r, n)}"
+                )
+    for label in sorted(referenced - set(known)):
+        if label.startswith("thm:"):
+            errors.append(
+                f"tex/ledger.tex references \\ref{{{label}}}, which names no admitted "
+                f"result; delete that row or fix the label"
+            )
+
+
 def gen_cases(cases):
     """The body case list, \\input by main.tex where the sections belong."""
     return "\n".join(emit_cases(body_in_order(cases), [GENERATED_HEADER.rstrip("\n")])) + "\n"
@@ -874,6 +942,11 @@ def main():
     errors = []
     cases = load_cases(errors)
     validate(cases, args.allow_todo, errors)
+    # tex/ledger.tex is not generated, so this is a coverage check rather than a
+    # staleness one.  It runs unconditionally: gating it on validate() passing
+    # would make it dead code for as long as the baseline carries errors, which
+    # is precisely when a missing row is most likely to slip through.
+    check_ledger(cases, errors)
     if errors:
         fail(errors)
 
@@ -887,6 +960,15 @@ def main():
         REGISTRY: gen_registry(cases),
         README: splice_readme(readme_table, gen_count_badges(cases)),
     }
+    # Ownership guard.  Prose the maintainer has adopted is theirs, and the
+    # generator must be unable to take it back by accident: a new output path
+    # that is not machine-owned fails here rather than silently overwriting
+    # hand-written work.  See "Who owns which file" in /AGENTS.md.
+    trespass = sorted(str(p.relative_to(ROOT)) for p in outputs if not machine_owned(p))
+    if trespass:
+        fail([f"build.py may not write {p}: it is hand-written. Generate it once, "
+              f"then check it instead (tex/ledger.tex is the worked example)."
+              for p in trespass])
 
     if args.check:
         stale = [
