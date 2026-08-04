@@ -1,20 +1,23 @@
-\section{Admission rule and audit standard}
-
+\section{How we selected the counterexamples and resolutions}
 A conversational archive contains many false statements that are mathematically irrelevant: temporary lemmas, deliberately strengthened targets, pointwise surrogates for integrated inequalities, and sufficient conditions invented only to test a route.  This paper excludes them.
 
-\begin{definition}[Admissible archive counterexample]
-A recovered disproof is admitted only when all three conditions hold.
+\begin{definition}[Admission criteria]
+A refutation to a conjecture or the (negative) resolution of a problem is admitted into our collection under the following three conditions:
 \begin{enumerate}
-\item The refuted statement appeared publicly before the counterexample was sought---in a published paper, a preprint, a problem list, a talk, or a public forum post---or is a standalone formal problem recorded in advance of the search.  Neither the prominence of the statement nor the standing of whoever posed it bears on admission; the condition exists only to exclude statements invented in order to be refuted.
-\item The original hypotheses and quantifiers are preserved.  A counterexample to a strengthening is not represented as a counterexample to the underlying conjecture.
-\item The witness is independently checkable from the manuscript and source package by exact arithmetic, a complete analytic calculation, or a rigorous interval certificate.
+\item The refuted statement appeared publicly before the counterexample was sought---in a published paper, a preprint, a problem list, a talk, or a public forum post. Neither the prominence of the statement, nor the standing of whoever posed it bears on admission; the condition exists only to exclude statements invented in order to be refuted.
+\item The original hypotheses and quantifiers are fully preserved.  A counterexample to a strengthening or any modification of the problem is not admitted as a refutation to the underlying conjecture.\footnote{It may well be that a modified statement is the more ``natural'' one, but given the automation involved, to be pedantically correct, we cannot admit any changes, unless the modified version itself satisfies condition~1.}
+\item The refutation witness is independently checkable from the manuscript, through source code that implements exact arithmetic, a complete analytic calculation, a rigorous interval certificate, theorem prover code, etc.
 \end{enumerate}
 \end{definition}
 
-\begin{definition}[Certificate levels]
-An \emph{exact certificate} reduces the contradiction to integer or rational arithmetic.  A \emph{computer-assisted proof} combines exact symbolic identities with outward-rounded interval arithmetic and an explicit tail estimate.  Floating-point evidence without such an enclosure is not admitted as a disproof.
-\end{definition}
+Most of the statements studied in this manuscript involve problems that are likely well-known to specialists, though some of them are certainly less-known. There exist several curated catalogs online for ``famous'' mathematical conjectures, and our collection does not seek to compete with them, but to rather complement them by also providing a home to more modest problems. Our archive is open to all, researchers, students and amateurs on the same terms. Moreover, we advocate no particular verification technology: a short exact-rational program works, as does a development in a proof assistant (welcome but not a precondition), or another legit certificate. For the 17 counterexamples presented in this manuscript, we present verifiable certificates in the accompanying git repo.
 
-The filter is narrow about evidence and deliberately catholic about everything else.  It is not an assault on the celebrated open problems, for which curated catalogues already exist and serve the purpose better; the statements gathered here are mostly modest ones---a lemma asserted in passing, a plausible strengthening on a problem list, a question left open in a forum thread---and the archive is open to researchers, students and amateurs on the same terms.  The third condition likewise privileges no particular verification technology: a short exact-rational program discharges it, as does a development in a proof assistant, which is welcome but is not a precondition and confers no higher standing.  What the condition demands is only that an independent reader can rerun the check and obtain the same answer.
+% For instance, an \emph{exact certificate} reduces the contradiction to integer or rational arithmetic; a \emph{computer-assisted proof} combines exact symbolic identities with outward-rounded interval arithmetic and an explicit tail estimate.  Floating-point evidence without such an enclosure is not admitted as a disproof.
 
-This filter leaves seventeen formal disproofs in fourteen dossiers, one per section below, except that dossiers drawn from a common source are gathered as subsections of a single section.  Five of them are placed in Appendix~\ref{sec:additional} rather than the body: they clear the three conditions on the same evidence as everything else, but the statements are slight, and in three instances a public resolution was already in hand elsewhere and is credited in the dossier.  The distinction is editorial emphasis, never evidential standing.  The count is by formal statement: two Borcea--Br\"and\'en problems fall to a single Schur-positive stable polynomial, two more to a single positive-definite pencil, and a metric principle together with its convex-body specialization to a single Lorentzian cubic.  Each admitted statement is quoted below as it was originally posed, before any dossier restates it.
+% This filter leaves seventeen formal disproofs in fourteen dossiers, one per section below, except that dossiers drawn from a common source are gathered as subsections of a single section.  Five of them are placed in Appendix~\ref{sec:additional} rather than the body: they clear the three conditions on the same evidence as everything else, but the statements are slight, and in three instances a public resolution was already in hand elsewhere and is credited in the dossier.  The distinction is editorial emphasis, never evidential standing.  The count is by formal statement: two Borcea--Br\"and\'en problems fall to a single Schur-positive stable polynomial, two more to a single positive-definite pencil, and a metric principle together with its convex-body specialization to a single Lorentzian cubic.  Each admitted statement is quoted below as it was originally posed, before any dossier restates it.
+
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: "main"
+%%% End:
