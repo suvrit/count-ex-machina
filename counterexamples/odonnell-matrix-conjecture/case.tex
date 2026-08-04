@@ -1,0 +1,273 @@
+\cxtitle{Ryan O'Donnell's matrix conjecture}
+
+\begin{cxcredits}
+\posedby{R.~O'Donnell and J.~Wright \citeyearpar{ODonnell2015AlmostDiagonal}}
+\foundby{GPT-5.6 Pro}{2026-08}
+\formalizedby{GPT-5.6 Pro}
+\auditedby{GPT-5.6 Pro}
+\contributedby{Suvrit Sra}
+\end{cxcredits}
+
+\begin{cxcontext}
+For a Hermitian matrix $X$, write
+\[
+  \lVert X\rVert_1=\operatorname{tr}|X|
+\]
+for its trace norm.  For $R\in\mathbb C^{n\times n}$, let
+$D=\operatorname{Diag}(R)=\operatorname{diag}(d_1,\ldots,d_n)$ be its diagonal
+part, and let $\Lambda(R)$ be the diagonal matrix carrying the eigenvalues
+$\lambda_1\geq\cdots\geq\lambda_n$ in sorted order, so that
+\[
+  \epsilon:=\lVert D-\Lambda(R)\rVert_1=\sum_i|\lambda_i-d_{ii}|
+\]
+measures how far the diagonal sits from the spectrum.  The source states its
+conclusion asymptotically, as $\lVert R-D\rVert_1=O(\sqrt\epsilon)$; an
+absolute constant in that $O(\cdot)$ is exactly an absolute $c$ with
+$\lVert R-D\rVert_1^2\leq c\,\epsilon$, which is the form refuted below.
+
+Neither $\epsilon$ nor the source's conclusion specifies how the diagonal
+entries are to be ordered against the sorted spectrum.  In the family below
+both $(\lambda_i)$ and $(d_i)$ are strictly decreasing in the displayed index
+order, and the common sorted order minimises $\sum_i|\lambda_i-d_{\sigma(i)}|$
+over permutations $\sigma$; the witness therefore makes $\epsilon$ as small
+as any matching allows, and the refutation does not rely on a favorable
+pairing.
+\end{cxcontext}
+
+\begin{cxsource}{odonnell-matrix-conjecture}
+R.~O'Donnell, answering a question of Nengkun Yu on MathOverflow
+\cite{ODonnell2015AlmostDiagonal}, reports that he and J.~Wright had been
+considering the problem in connection with quantum tomography, and closes by
+conjecturing the unit-trace case.  The same conjecture was put to S.~Sra by
+O'Donnell in personal communication, a fact the public answer itself records.
+\end{cxsource}
+
+\begin{cxstatement}{odonnell-matrix-conjecture}
+The question answered was whether a positive semidefinite $M$ with
+$\lVert D(M)-\Lambda(M)\rVert_1\leq\epsilon$ must lie within $2\epsilon$ of
+some diagonal matrix.  O'Donnell observes that for the variant he and Wright
+cared about --- $M$ close to \emph{its own} diagonal --- the answer is no in
+general, and then conjectures the normalised case:
+
+\begin{quote}
+``If you restrict $M$ to have trace $1$, then we felt the desired result was
+true but with a weaker conclusion of $O(\sqrt\epsilon)$ rather than
+$2\epsilon$.''
+\end{quote}
+
+Written out, and with the implied constant absolute: for every unit-trace
+positive semidefinite $R$ with eigenvalues $\lambda_i$ and diagonal entries
+$d_{ii}$,
+\[
+  \lVert R-\operatorname{Diag}(R)\rVert_1^2
+  \leq c\sum_i |\lambda_i-d_{ii}|
+\]
+for some absolute constant $c$ independent of $n$.
+\end{cxstatement}
+
+\begin{cxsummary}{odonnell-matrix-conjecture}
+Every absolute $c$ fails: an exact real-symmetric density-matrix family has ratio greater than $(\log_2 n)/32$.
+\end{cxsummary}
+
+\begin{cxcertificate}{odonnell-matrix-conjecture}
+An exact algebraic Givens-rotation family with a rational dyadic lower bound, accompanied by a standard-library exact-arithmetic verifier.
+\end{cxcertificate}
+
+\begin{cxrefutation}
+The conjecture \cite{ODonnell2015AlmostDiagonal} asks whether the off-diagonal
+trace norm of a density matrix can be controlled, up to an absolute constant,
+by the square root of the $\ell_1$ displacement between its spectrum and its
+diagonal.  The following exact family shows logarithmic divergence.
+
+\begin{theorem}[\statusfalse: O'Donnell's matrix conjecture]\label{thm:odonnell-matrix-conjecture}
+For every $C>0$ there exist an integer $n$ and a real symmetric positive
+semidefinite matrix $R\in\mathbb R^{n\times n}$ with
+$\operatorname{tr}R=1$ such that, writing
+$D=\operatorname{Diag}(R)=\operatorname{diag}(d_1,\ldots,d_n)$ and listing the
+eigenvalues $\lambda_1\geq\cdots\geq\lambda_n$,
+\[
+  \frac{\lVert R-D\rVert_1^2}
+       {\sum_{i=1}^n |\lambda_i-d_i|}>C.
+\]
+Moreover, both $(\lambda_i)$ and $(d_i)$ are strictly decreasing.
+\end{theorem}
+
+\begin{proof}
+Fix an integer $m\geq2$ and put
+\[
+  n=2^m,\qquad q=n,\qquad
+  H=H_{n-1}=\sum_{i=1}^{n-1}\frac1i,
+\]
+\[
+  B=1+q^2H,\qquad
+  \delta=\frac1{2B},\qquad
+  \eta=\frac1{2n}.
+\]
+Define positive spectral gaps by
+\[
+  g_1=\delta(1+q^2),
+  \qquad
+  g_i=\delta\frac{q^2}{i^2}
+  \quad (2\leq i\leq n-1),
+\]
+and set
+\[
+  \lambda_n=\eta,
+  \qquad
+  \lambda_i=\eta+\sum_{k=i}^{n-1}g_k
+  \quad (1\leq i\leq n-1).
+\]
+Then $\lambda_1>\cdots>\lambda_n>0$, and
+\[
+\begin{aligned}
+  \sum_{i=1}^n\lambda_i
+  &=n\eta+\sum_{i=1}^{n-1}i g_i \\
+  &=\frac12+\delta\left(1+q^2+q^2\sum_{i=2}^{n-1}\frac1i\right)
+    =\frac12+\delta B=1.
+\end{aligned}
+\]
+Thus $\Lambda=\operatorname{diag}(\lambda_1,\ldots,\lambda_n)$ is a density
+matrix.
+
+For $1\leq i\leq n-1$, put
+\[
+  r_i=\frac qi,
+  \qquad
+  c_i=\frac{q}{\sqrt{q^2+i^2}},
+  \qquad
+  s_i=\frac{i}{\sqrt{q^2+i^2}}.
+\]
+Hence $c_i^2+s_i^2=1$ and $c_i/s_i=r_i$.  Let $G_i$ be the identity except
+for the following orthogonal block in coordinates $i,i+1$:
+\[
+  \begin{pmatrix}
+    c_i&-s_i\\
+    s_i& c_i
+  \end{pmatrix}.
+\]
+Starting from $R^{(0)}=\Lambda$, define successively
+\[
+  R^{(i)}=G_iR^{(i-1)}G_i^{\mathsf T},
+  \qquad 1\leq i\leq n-1,
+\]
+and let $R=R^{(n-1)}$.  This is an exact algebraic matrix.  Since it is
+orthogonally similar to $\Lambda$, it is real symmetric, positive semidefinite,
+has trace one, and has eigenvalues $(\lambda_i)$.
+
+We next compute its diagonal exactly.  Before the first rotation, the active
+diagonal gap is
+\[
+  \lambda_1-\lambda_2=g_1=\delta(1+r_1^2).
+\]
+Before rotation $G_i$ for $i\geq2$, coordinate $i$ has diagonal entry
+$\lambda_i+\delta$, coordinate $i+1$ has diagonal entry $\lambda_{i+1}$,
+and coordinate $i+1$ has not previously been touched.  Thus the active
+$2\times2$ principal block is diagonal and its diagonal gap is
+\[
+  (\lambda_i+\delta)-\lambda_{i+1}
+  =g_i+\delta
+  =\delta(1+r_i^2).
+\]
+In both cases,
+\[
+  s_i^2\,\delta(1+r_i^2)=\delta.
+\]
+Consequently, $G_i$ transfers exactly $\delta$ from diagonal position $i$ to
+position $i+1$.  Induction gives
+\[
+  d_1=\lambda_1-\delta,
+  \qquad
+  d_i=\lambda_i\quad(2\leq i\leq n-1),
+  \qquad
+  d_n=\lambda_n+\delta.
+\]
+These entries are strictly decreasing: at the first edge the remaining gap is
+$g_1-\delta=\delta q^2>0$, at every interior edge it is $g_i>0$, and at the
+last edge it is
+\[
+  g_{n-1}-\delta
+  =\delta\left(\frac{q^2}{(n-1)^2}-1\right)>0
+\]
+because $q=n$.  Therefore
+\[
+  \sum_{i=1}^n|\lambda_i-d_i|=2\delta.
+\]
+
+The same rotation calculation gives useful exact off-diagonal entries.  At
+step $i$, the newly created $(i,i+1)$ entry has magnitude
+\[
+  c_is_i\,\delta(1+r_i^2)=\delta r_i.
+\]
+For $i\leq n-2$, the next rotation multiplies this entry by $c_{i+1}$; all
+later rotations leave it unchanged.  Hence
+\[
+  |R_{i,i+1}|=
+  \begin{cases}
+    \delta r_i c_{i+1},&1\leq i\leq n-2,\\
+    \delta r_{n-1},&i=n-1.
+  \end{cases}
+\]
+Let $A=R-D$.  Pinch $A$ to the disjoint coordinate blocks
+$(1,2),(3,4),\ldots,(n-1,n)$.  Trace norm is contractive under pinching, and
+each retained zero-diagonal $2\times2$ block has trace norm twice the magnitude
+of its off-diagonal entry.  If
+\[
+  O=\sum_{\substack{1\leq i\leq n-1\\ i\ \mathrm{odd}}}\frac1i,
+\]
+then $q=n$ implies
+\[
+  c_j^2=\frac{q^2}{q^2+j^2}>\frac12
+  \qquad(1\leq j\leq n-1).
+\]
+Using the multiplier $1>1/\sqrt2$ for the final edge as well, we obtain
+\[
+  \lVert A\rVert_1
+  \geq 2\sum_{\substack{1\leq i\leq n-1\\ i\ \mathrm{odd}}}|R_{i,i+1}|
+  >\sqrt2\,\delta q O.
+\]
+It follows that
+\[
+\begin{aligned}
+  \frac{\lVert R-D\rVert_1^2}
+       {\sum_i|\lambda_i-d_i|}
+  &>\frac{2\delta^2q^2O^2}{2\delta}
+    =\delta q^2O^2
+    =\frac{q^2O^2}{2(1+q^2H)}\\
+  &>\frac{O^2}{2(H+1)}.
+\end{aligned}
+\]
+
+It remains only to estimate the two harmonic sums.  In each dyadic block
+$[2^k,2^{k+1})$, for $1\leq k\leq m-1$, there are $2^{k-1}$ odd integers,
+each contributing more than $2^{-(k+1)}$.  Therefore
+\[
+  O>1+\frac{m-1}{4}=\frac{m+3}{4}.
+\]
+Also
+\[
+  H_{n-1}<1+\log(n-1)<m+1.
+\]
+Consequently,
+\[
+  \frac{\lVert R-D\rVert_1^2}
+       {\sum_i|\lambda_i-d_i|}
+  >\frac{(m+3)^2}{32(m+2)}
+  >\frac{m}{32}.
+\]
+Given any real $C>0$, choose an integer $m>32C$.  The resulting exact matrix
+has ratio greater than $C$, proving that no dimension-independent constant can
+exist.
+\end{proof}
+
+\begin{remark}[Scope]
+What falls is the unit-trace conjecture of \cite{ODonnell2015AlmostDiagonal},
+namely $\lVert R-\operatorname{Diag}(R)\rVert_1=O(\sqrt\epsilon)$ with an
+absolute implied constant.  Two neighbouring statements are untouched.  The
+question originally posed there, whether such an $M$ lies within $2\epsilon$ of
+\emph{some} diagonal matrix, is not the target; nor is the unnormalised variant,
+which the same answer already resolves in the negative by a perturbative
+argument.  The witness happens to settle the own-diagonal form of both, since
+$\lVert R-D\rVert_1/\epsilon$ diverges along the family, but only the unit-trace
+conjecture was posed as plausible and only it is claimed here.
+\end{remark}
+\end{cxrefutation}

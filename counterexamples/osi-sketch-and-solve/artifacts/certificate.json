@@ -1,0 +1,61 @@
+{
+  "atoms": [
+    {
+      "matrix": [
+        [
+          "1",
+          "0"
+        ],
+        [
+          "0",
+          "1"
+        ]
+      ],
+      "probability": "49/50"
+    },
+    {
+      "matrix": [
+        [
+          "1",
+          "0"
+        ],
+        [
+          "1",
+          "0"
+        ]
+      ],
+      "probability": "1/100"
+    },
+    {
+      "matrix": [
+        [
+          "1",
+          "0"
+        ],
+        [
+          "-1",
+          "0"
+        ]
+      ],
+      "probability": "1/100"
+    }
+  ],
+  "bad_probability": "1/50",
+  "injection_success_probability_at_least": "99/100",
+  "isotropy": [
+    [
+      "1",
+      "0"
+    ],
+    [
+      "0",
+      "1"
+    ]
+  ],
+  "rho": "1/100",
+  "squared_residual_ratios": [
+    "1",
+    "2",
+    "2"
+  ]
+}

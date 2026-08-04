@@ -1,6 +1,6 @@
 # Archive audit notes
 
-Included: twelve formal disproofs in nine case directories.
+Included: seventeen formal disproofs in fourteen case directories.
 
 Withheld or withdrawn:
 - Subgroup Johnson stability: a false target raised during an investigation, never a
@@ -28,6 +28,24 @@ Withheld or withdrawn:
   no provenance; its working note recorded only the same "Feb 16, 2026; GPT-Pro" session.
   Withdrawn in favour of `quantum-coupon-collector`, which refutes a publicly posed statement
   with a permalink.  Its retired uid is 2MRX3236 and must never be reused.
+- Tensor-network strict approximation (Problem 6.1 of the Simons workshop collection,
+  arXiv:2602.05394v2): the item asks for a polynomial-time algorithm, not a universal claim,
+  so no witness can refute it.  What the bundle exhibited is that the requested strict
+  inequality demands a negative squared norm whenever the input is representable -- a `<`
+  that should be a `≤`, i.e. a proofreading note on the manuscript.  The arithmetic is
+  exact and correct; the item is simply not refutable.  Bundle preserved in
+  `submissions/not-admitted/`.
+- Krylov defective compression (Problem 3.5 of the same collection): refuted only by taking
+  the full Krylov space, k = n, where Q is unitary and Q*AQ is a similarity transform of A
+  rather than a compression.  The paper's Motivation, four lines below the statement, says
+  "for all k < n", so the witness needs precisely the value the surrounding text excludes.
+  Discarding a stated hypothesis is the mirror image of the strengthening ban in AGENTS.md
+  section 8 and yields a counterexample to something nobody posed.  Bundle preserved in
+  `submissions/not-admitted/`.
+- Both of the above were declined in August 2026 and are the reason `SUBMIT.md` now carries
+  a condition 0 (the item must be a statement, not a request) and an amendment to condition 2
+  (dropping a hypothesis is quantifier drift too).  Neither was ever unpacked, so neither
+  holds a uid; nothing needs retiring.
 - All intermediate route-killers, sufficient-condition failures, and assistant-generated strengthenings.
 
 Duplicates and statement identity:

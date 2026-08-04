@@ -1,0 +1,123 @@
+\cxtitle{Failure of the proposed Hamiltonian NEPv Rayleigh identity}
+
+\begin{cxcredits}
+\posedby{Amsel et al., \S6.2 \citeyearpar{AmselEtAl2026}}
+\foundby{OpenAI Codex}{2026-08}
+\formalizedby{OpenAI Codex}
+\auditedby{OpenAI Codex}
+\contributedby{Suvrit Sra}
+\end{cxcredits}
+
+\begin{cxcontext}
+Section~6.2 considers $n,d\in\mathbb N$, nonzero vectors
+$x_1,\ldots,x_d\in\mathbb C^n$, and matrices
+$F_i,G_{i,j},K_{i,j}\in\mathbb C^{n\times n}$ that are Hermitian and have
+norm at most one.  It defines
+\[
+H=\sum_{i=1}^{d}\left(F_i^{\langle i\rangle}
+ +\sum_{j=1}^{d}G_{i,j}^{\langle i\rangle}
+ K_{i,j}^{\langle j\rangle}\right)
+\]
+and the product-state Rayleigh quotient
+\[
+f(x_1,\ldots,x_d)=
+\frac{(x_1\otimes\cdots\otimes x_d)^H
+H(x_1\otimes\cdots\otimes x_d)}
+{\prod_{j=1}^{d}x_j^Hx_j}.
+\]
+The proposed block diagonal matrix $A$ has blocks
+\[
+A_i=\left(\frac{\sum_{j=1}^{d}x_j^Hx_j}{x_i^Hx_i}\right)
+\left(F_i+\sum_{j=1}^{d}G_{i,j}
+\frac{x_j^HK_{i,j}x_j}{x_j^Hx_j}\right).
+\]
+The displayed source statement writes the stack through $x_n$, although $A$
+has $d$ blocks and the surrounding text declares the NEPv dimension to be
+$nd$.  The only dimensionally consistent reading is the stack through $x_d$;
+the counterexample below uses $d=1$, so that $z=x_1$.
+\end{cxcontext}
+
+\begin{cxsource}{hamiltonian-nepv-identity}
+The assertion appears immediately after equation~(20) in Section~6.2 of the
+Simons workshop report \cite{AmselEtAl2026}.  That section is
+scribed by Edgar Solomonik and records
+discussion with Elias Jarlebring, Florian Schafer, Maryam Dehghan, Tamara
+Kolda, and Chris Cama\~no; it says the question is based on a pre-workshop
+question of Elias Jarlebring.
+\end{cxsource}
+
+\begin{cxstatement}{hamiltonian-nepv-identity}
+Then, we have that with
+\[
+z=\begin{bmatrix}x_{1}\\
+\vdots\\
+x_{n}\end{bmatrix},\quad
+\frac{z^{H}A(z)z}{z^{H}z}=f(x_{1},\ldots,x_{d}).
+\]
+\end{cxstatement}
+
+\begin{cxsummary}{hamiltonian-nepv-identity}
+The proposed NEPv matrix does not reproduce the product-state Rayleigh
+quotient when the Hamiltonian sum includes a same-site term with $i=j$.
+\end{cxsummary}
+
+\begin{cxcertificate}{hamiltonian-nepv-identity}
+The certificate consists of exact $2\times2$ integer matrices and the integer
+vector $(1,2)^T$, for which the two assertedly equal values are $0$ and
+$-4/25$.
+\end{cxcertificate}
+
+\begin{cxrefutation}
+The construction in Section~6.2 of \cite{AmselEtAl2026} replaces a same-site
+expectation of a product by the product of two expectations.  Those
+quantities need not agree.
+
+\begin{theorem}[\statusfalse: proposed NEPv Rayleigh identity]
+\label{thm:hamiltonian-nepv-identity}
+The displayed Rayleigh-quotient identity following equation~(20) is false for
+the stated matrix formulas.  This refutes an assertion in the setup of
+Problem~6.2, not the problem's request for an efficient algorithm.
+\end{theorem}
+\begin{proof}
+Set $n=2$ and $d=1$, and take
+\[
+F_1=\begin{pmatrix}0&0\\0&0\end{pmatrix},\qquad
+G_{1,1}=\begin{pmatrix}1&0\\0&0\end{pmatrix},\qquad
+K_{1,1}=\begin{pmatrix}0&0\\0&-1\end{pmatrix},\qquad
+x_1=\begin{pmatrix}1\\2\end{pmatrix}.
+\]
+All three matrices are Hermitian and have norm at most one.  Moreover,
+$G_{1,1}$ and $K_{1,1}$ commute, so the matrix $H$ below is Hermitian.  Since
+$d=1$, equation~(18) gives
+\[
+H=G_{1,1}K_{1,1}
+=\begin{pmatrix}0&0\\0&0\end{pmatrix}.
+\]
+Therefore the objective in equation~(19) is
+\[
+f(x_1)=\frac{x_1^HHx_1}{x_1^Hx_1}=\frac{0}{5}=0.
+\]
+On the other hand, the scalar prefactor in equation~(20) is one and
+\[
+\frac{x_1^HK_{1,1}x_1}{x_1^Hx_1}=-\frac45,
+\qquad
+A(x_1)=-\frac45G_{1,1}.
+\]
+It follows that
+\[
+\frac{x_1^HA(x_1)x_1}{x_1^Hx_1}
+=-\frac45\frac{1}{5}=-\frac{4}{25}\ne0=f(x_1).
+\]
+The failed step is specific and algebraic: for $i=j$, equation~(18) contains
+\[
+\frac{x_i^HG_{i,i}K_{i,i}x_i}{x_i^Hx_i},
+\]
+whereas equation~(20) produces
+\[
+\left(\frac{x_i^HG_{i,i}x_i}{x_i^Hx_i}\right)
+\left(\frac{x_i^HK_{i,i}x_i}{x_i^Hx_i}\right).
+\]
+Hermiticity of the two factors does not make these expressions equal; the
+counterexample uses commuting factors and even has $H=0$.
+\end{proof}
+\end{cxrefutation}

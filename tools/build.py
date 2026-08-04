@@ -53,7 +53,10 @@ CERTIFICATE_LEVELS = {"exact", "computer-assisted"}
 FIDELITIES = {"verbatim", "paraphrase"}
 # Cases sharing a group key are emitted as subsections of one common section
 # instead of one section each; their 'order' values must be consecutive.
-GROUPS = {"aim": "Borcea--Br\\\"and\\'en AIM problems"}
+GROUPS = {
+    "aim": "Borcea--Br\\\"and\\'en AIM problems",
+    "amsel": "Open questions from the Simons workshop of Amsel et al.",
+}
 DATE_RE = re.compile(r"^\d{4}-\d{2}(-\d{2})?$")
 # Immutable per-result identity, and the primary key of registry.json.  The
 # alphabet is Crockford base32 -- no I, L, O or U -- so a uid survives being

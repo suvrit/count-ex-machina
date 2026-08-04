@@ -454,5 +454,190 @@
       "sage": [],
       "requires": []
     }
+  },
+  {
+    "uid": "XQB6RV2P",
+    "result_id": "odonnell-matrix-conjecture",
+    "case": "odonnell-matrix-conjecture",
+    "title": "No dimension-free constant in O'Donnell's matrix conjecture",
+    "status": "refuted",
+    "ledger_no": 13,
+    "withheld_reason": null,
+    "class": "external conjecture",
+    "certificate_level": "exact",
+    "certificate_tex": "An exact algebraic Givens-rotation family with a rational dyadic lower bound, accompanied by a standard-library exact-arithmetic verifier.",
+    "theorem_label": "thm:odonnell-matrix-conjecture",
+    "provenance": {
+      "source_tex": "R.~O'Donnell, answering a question of Nengkun Yu on MathOverflow\n\\cite{ODonnell2015AlmostDiagonal}, reports that he and J.~Wright had been\nconsidering the problem in connection with quantum tomography, and closes by\nconjecturing the unit-trace case.  The same conjecture was put to S.~Sra by\nO'Donnell in personal communication, a fact the public answer itself records.",
+      "url": "https://mathoverflow.net/a/212759",
+      "retrieved": "2026-08-04",
+      "fidelity": "paraphrase",
+      "statement_tex": "The question answered was whether a positive semidefinite $M$ with\n$\\lVert D(M)-\\Lambda(M)\\rVert_1\\leq\\epsilon$ must lie within $2\\epsilon$ of\nsome diagonal matrix.  O'Donnell observes that for the variant he and Wright\ncared about --- $M$ close to \\emph{its own} diagonal --- the answer is no in\ngeneral, and then conjectures the normalised case:\n\n\\begin{quote}\n``If you restrict $M$ to have trace $1$, then we felt the desired result was\ntrue but with a weaker conclusion of $O(\\sqrt\\epsilon)$ rather than\n$2\\epsilon$.''\n\\end{quote}\n\nWritten out, and with the implied constant absolute: for every unit-trace\npositive semidefinite $R$ with eigenvalues $\\lambda_i$ and diagonal entries\n$d_{ii}$,\n\\[\n  \\lVert R-\\operatorname{Diag}(R)\\rVert_1^2\n  \\leq c\\sum_i |\\lambda_i-d_{ii}|\n\\]\nfor some absolute constant $c$ independent of $n$."
+    },
+    "credits": {
+      "posed_by": "R.~O'Donnell and J.~Wright \\citeyearpar{ODonnell2015AlmostDiagonal}",
+      "found_by": [
+        {
+          "model": "GPT-5.6 Pro",
+          "date": "2026-08"
+        }
+      ],
+      "formalized_by": "GPT-5.6 Pro",
+      "audited_by": "GPT-5.6 Pro",
+      "contributed_by": "Suvrit Sra"
+    },
+    "verify": {
+      "python": "verify.py",
+      "sage": [],
+      "requires": []
+    }
+  },
+  {
+    "uid": "XMH9AHRY",
+    "result_id": "sdd-nystrom-diminishing-returns",
+    "case": "sdd-nystrom-diminishing-returns",
+    "title": "Strict diagonal dominance does not ensure diminishing Nyström error reductions",
+    "status": "refuted",
+    "ledger_no": 14,
+    "withheld_reason": null,
+    "class": "external formal problem",
+    "certificate_level": "exact",
+    "certificate_tex": "An exact integer $4\\times4$ matrix, rational shift, four rational principal\ninverse traces, and the positive violation gap $2165/14833896$.",
+    "theorem_label": "thm:sdd-nystrom-diminishing-returns",
+    "provenance": {
+      "source_tex": "Problem~4.6 of Amsel et al. \\cite{AmselEtAl2026}, posed there by Mark Fornace.\nColbrook \\cite{Colbrook2026} subsequently completed the answer before this\nindependent witness was found.",
+      "url": "https://arxiv.org/html/2602.05394v2",
+      "retrieved": "2026-08-04",
+      "fidelity": "verbatim",
+      "statement_tex": "Prove or disprove the submodularity of the nuclear Nystr\\\"om error~(14) when\n$L$ is assumed, in contrast to the above, to be (a) SDDM and positive-definite\nor (b) SDD and positive-definite."
+    },
+    "credits": {
+      "posed_by": "Mark Fornace \\citeyearpar{AmselEtAl2026}",
+      "found_by": [
+        {
+          "model": "OpenAI Codex",
+          "date": "2026-08"
+        }
+      ],
+      "formalized_by": "OpenAI Codex",
+      "audited_by": "OpenAI Codex",
+      "contributed_by": "Suvrit Sra"
+    },
+    "verify": {
+      "python": "verify.py",
+      "sage": [],
+      "requires": []
+    }
+  },
+  {
+    "uid": "43W158R5",
+    "result_id": "osi-sketch-and-solve",
+    "case": "osi-sketch-and-solve",
+    "title": "An oblivious subspace injection need not give relative-error sketch-and-solve",
+    "status": "refuted",
+    "ledger_no": 15,
+    "withheld_reason": null,
+    "class": "external formal problem",
+    "certificate_level": "exact",
+    "certificate_tex": "Three exact rationally weighted $2\\times2$ sketch atoms, with exact isotropy,\nan exact $99/100$ injection guarantee, and exact squared residual ratios.",
+    "theorem_label": "thm:osi-sketch-and-solve",
+    "provenance": {
+      "source_tex": "Problem~5.1 of the Simons workshop report of Amsel et al.\n\\cite{AmselEtAl2026}, scribed for Section~5 by Raphael A. Meyer.  Townsend and\nWang \\cite{TownsendWang2026} had already resolved the general question; this\nwitness is independent and claims no priority.",
+      "url": "https://arxiv.org/html/2602.05394v2",
+      "retrieved": "2026-08-04",
+      "fidelity": "verbatim",
+      "statement_tex": "Let $A\\in\\mathbb{R}^{n\\times d}$ be a full-rank matrix,\n$B\\in\\mathbb{R}^{n\\times p}$ be a matrix, and let\n$\\Omega\\in\\mathbb{R}^{n\\times k}$ be an oblivious subspace injection with\ndimension $d$ and injectivity $1-\\varepsilon$. Let\n$\\widetilde{X}=(\\Omega^{\\top}A)^{+}(\\Omega^{\\top}B)\\in\\mathbb{R}^{d\\times p}$\nbe the sketch-and-solve approximation to the ordinary least-squares solution\n$X=A^{+}B$. (Here, ${}^{+}$ denotes the Moore--Penrose pseudoinverse.) Prove\nor disprove: Does it necessarily hold that\n\\[\n\\|A\\widetilde{X}-B\\|_{\\rm F}\\leq(1+\\mathcal{O}(\\varepsilon))\n\\min_{X\\in\\mathbb{R}^{d\\times p}}\\|AX-B\\|_{\\rm F}?\n\\]"
+    },
+    "credits": {
+      "posed_by": "Amsel et al. \\citeyearpar{AmselEtAl2026}",
+      "found_by": [
+        {
+          "model": "OpenAI Codex",
+          "date": "2026-08"
+        }
+      ],
+      "formalized_by": "OpenAI Codex",
+      "audited_by": "OpenAI Codex",
+      "contributed_by": "Suvrit Sra"
+    },
+    "verify": {
+      "python": "verify.py",
+      "sage": [],
+      "requires": []
+    }
+  },
+  {
+    "uid": "0AR0V0FD",
+    "result_id": "hamiltonian-nepv-identity",
+    "case": "hamiltonian-nepv-identity",
+    "title": "Failure of the proposed Hamiltonian NEPv Rayleigh identity",
+    "status": "refuted",
+    "ledger_no": 16,
+    "withheld_reason": null,
+    "class": "published theorem",
+    "certificate_level": "exact",
+    "certificate_tex": "The certificate consists of exact $2\\times2$ integer matrices and the integer\nvector $(1,2)^T$, for which the two assertedly equal values are $0$ and\n$-4/25$.",
+    "theorem_label": "thm:hamiltonian-nepv-identity",
+    "provenance": {
+      "source_tex": "The assertion appears immediately after equation~(20) in Section~6.2 of the\nSimons workshop report \\cite{AmselEtAl2026}.  That section is\nscribed by Edgar Solomonik and records\ndiscussion with Elias Jarlebring, Florian Schafer, Maryam Dehghan, Tamara\nKolda, and Chris Cama\\~no; it says the question is based on a pre-workshop\nquestion of Elias Jarlebring.",
+      "url": "https://arxiv.org/abs/2602.05394v2",
+      "retrieved": "2026-08-04",
+      "fidelity": "verbatim",
+      "statement_tex": "Then, we have that with\n\\[\nz=\\begin{bmatrix}x_{1}\\\\\n\\vdots\\\\\nx_{n}\\end{bmatrix},\\quad\n\\frac{z^{H}A(z)z}{z^{H}z}=f(x_{1},\\ldots,x_{d}).\n\\]"
+    },
+    "credits": {
+      "posed_by": "Amsel et al., \\S6.2 \\citeyearpar{AmselEtAl2026}",
+      "found_by": [
+        {
+          "model": "OpenAI Codex",
+          "date": "2026-08"
+        }
+      ],
+      "formalized_by": "OpenAI Codex",
+      "audited_by": "OpenAI Codex",
+      "contributed_by": "Suvrit Sra"
+    },
+    "verify": {
+      "python": "verify.py",
+      "sage": [],
+      "requires": []
+    }
+  },
+  {
+    "uid": "BG0YN3VJ",
+    "result_id": "qrcp-orthonormal-greedy",
+    "case": "qrcp-orthonormal-greedy",
+    "title": "Exact QRCP can miss the orthonormal-row conditioning bound",
+    "status": "refuted",
+    "ledger_no": 17,
+    "withheld_reason": null,
+    "class": "external formal problem",
+    "certificate_level": "exact",
+    "certificate_tex": "An exact rational $8\\times3$ Grassmann-chart matrix, three positive rational\npivot gaps, and the Rayleigh gap $192051/250000$.",
+    "theorem_label": "thm:qrcp-orthonormal-greedy",
+    "provenance": {
+      "source_tex": "Problem~4.3 of Amsel et al. \\cite{AmselEtAl2026}, sourced there to Anil Damle\nand Daniel Kressner.  Chen, Liu, He, and Dong \\cite{ChenLiuHeDong2026} were\nthe first to publish a negative resolution.",
+      "url": "https://arxiv.org/html/2602.05394v2",
+      "retrieved": "2026-08-04",
+      "fidelity": "verbatim",
+      "statement_tex": "``It is known that there exists $I$ such that\n$\\|Q(I,:)^{-1}\\|_2\\leq\\sqrt{k(n-k+1)}$ [HP92] and there is a fairly efficient\n$O(nk^2)$ algorithm that satisfies this bound [Osi25].''  Problem~4.3 then\nasks: ``Does the QRCP algorithm typically used in practice satisfy the above,\nor a similar, bound.''"
+    },
+    "credits": {
+      "posed_by": "Anil Damle and Daniel Kressner \\citeyearpar{AmselEtAl2026}",
+      "found_by": [
+        {
+          "model": "OpenAI Codex",
+          "date": "2026-08"
+        }
+      ],
+      "formalized_by": "OpenAI Codex",
+      "audited_by": "OpenAI Codex",
+      "contributed_by": "Suvrit Sra"
+    },
+    "verify": {
+      "python": "verify.py",
+      "sage": [],
+      "requires": []
+    }
   }
 ]

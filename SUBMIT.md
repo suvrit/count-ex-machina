@@ -25,19 +25,43 @@ preprint, a plausible strengthening on a problem list, or a "surely this holds"
 from a forum thread is exactly what belongs here. Nor does it matter who the
 user is: researcher, student, hobbyist, anyone.
 
-What is not broad is the certificate. A counterexample is admissible only if
-**all three** conditions hold. If one fails, say so plainly to the user and
+What is not broad is the certificate. Condition 0 decides whether the item is
+the kind of thing a witness can refute at all; past that gate, a counterexample
+is admissible only if **all three** of the numbered conditions hold — those
+three are the archive's standing rule, stated authoritatively in
+`tex/02-admission.tex`. If any of them fails, say so plainly to the user and
 stop — a case that cannot clear this bar wastes their time and ours.
 
+0. **It is a statement, not a request.** A counterexample refutes a claim that
+   is either true or false. An item asking someone to *find an algorithm*,
+   *prove or characterize*, or *explain* is a research prompt, and observing
+   that it is unsatisfiable as literally typed — a `<` that should be `≤`, an
+   optimum that is trivially zero, a missing positivity convention — is a
+   proofreading note, not a counterexample. Send those to the authors, not
+   here. If the item is a request, stop and say so.
 1. **Provenance.** The refuted statement appeared publicly before the
    counterexample was sought — a paper, preprint, problem list, talk, or public
    forum post — or was posed formally and recorded in advance. A statement
    invented in the same session that refutes it does not qualify. Prominence is
    irrelevant; the point is only that the statement was not built to fall.
+
+   **Open the source and find the item.** Do not cite from memory or from a
+   summary. Retrieve the document at the `url` you are about to record, locate
+   the numbered statement, and confirm the number, the section, and the wording
+   all match. A confident citation to a section or theorem number that does not
+   exist in the document is the worst defect a bundle can carry, and it is not
+   detectable by anything downstream. If you cannot open the source, say so and
+   write `TODO`.
 2. **No quantifier drift.** The original hypotheses and quantifiers are
    preserved exactly. If you tightened a hypothesis, widened a domain, or
    flipped a quantifier to make the witness work, you have refuted a *different*
    statement. Check this explicitly before packaging anything.
+
+   This cuts both ways: **dropping** a hypothesis is drift too. Hypotheses are
+   not only in the displayed sentence — read the motivation, the worked example,
+   and the paragraphs on either side. If the surrounding text says `k < n` and
+   your witness needs `k = n`, you have refuted something the authors did not
+   state and plainly did not mean.
 3. **Independent checkability.** The witness is verified by exact arithmetic
    (integers, `fractions.Fraction`, exact `sympy`, algebraic identities) or by a
    rigorous outward-rounded interval computation with explicit error control.
@@ -62,6 +86,19 @@ evidence into an exact certificate is much of what this archive is for.
   world. If you do not know one, write `TODO` and tell the user which fact is
   missing. A plausible-looking guess is the single worst thing you can put in
   this package.
+- **Credit the document, not a bystander.** Name an individual in `\posedby`
+  only when the source itself attributes the statement to them. In a
+  multi-author report, a scribed section, or workshop notes, the named scribe
+  or the person credited with a related question is usually not the author of
+  the sentence you are refuting. Attribute to the work — "Amsel et al.,
+  §6.2" — and put whatever the source does say about who raised it in
+  `cxsource`, where it can be checked. Getting this wrong publicly assigns a
+  mistake to a real person who may not have made it.
+- **Say if someone got there first.** Before packaging, spend a few minutes
+  checking whether the statement has already been resolved in the literature.
+  Prior work does not disqualify a case — an independent, smaller, or exactly
+  rational witness is still worth having — but it must be stated in `cxsource`
+  and to the user, and the package must claim no priority it does not have.
 - **Never mark a quote `verbatim` unless you transcribed it from the source's
   own text.** Otherwise it is `paraphrase`, and the paper labels it as such.
 - **Never weaken a check to make it pass.** If `verify.py` fails, the witness or
@@ -247,8 +284,20 @@ Run these yourself. They need nothing but Python 3.
    decimal literals used in comparisons. Any hit is a defect unless it is
    `mpmath` at a declared precision with a stated error bound.
 4. Re-read the quoted statement beside the theorem you refuted, clause by
-   clause. Same hypotheses? Same quantifier order? Same domain?
-5. Confirm every `\cite{key}` in your blocks has an entry in the bibtex block.
+   clause. Same hypotheses? Same quantifier order? Same domain? Then read the
+   half-page around it in the source and ask whether it states a hypothesis the
+   display leaves implicit.
+5. Confirm every `\cite{key}` in your blocks has an entry in the bibtex block,
+   **and that every cited work exists**: resolve each `url` and arXiv id, and
+   check the title and authors match what you wrote. This applies to works you
+   cite as prior art just as much as to the source of the statement.
+6. Reopen the source at the recorded `url` one last time and find the exact
+   item number you claim. If it is not there, nothing else in the bundle
+   matters.
+7. Ask yourself what your witness does *not* refute — a second clause of the
+   question, a stronger asymptotic form, a neighbouring statement — and write
+   it into a `\begin{remark}[Scope]` in the refutation. Overclaiming is the
+   failure this archive can least afford.
 
 Then tell the user, in plain words: what was refuted, what the witness is, how
 it was certified, and **every field you left as `TODO`**.

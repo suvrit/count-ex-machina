@@ -1,0 +1,37 @@
+{
+  "id": "sdd-nystrom-diminishing-returns",
+  "title": "Strict diagonal dominance does not ensure diminishing Nyström error reductions",
+  "status": "refuted",
+  "prose": "case.tex",
+  "bib_keys": [
+    "AmselEtAl2026",
+    "Colbrook2026"
+  ],
+  "results": [
+    {
+      "id": "sdd-nystrom-diminishing-returns",
+      "uid": "XMH9AHRY",
+      "class": "external formal problem",
+      "certificate_level": "exact",
+      "theorem_label": "thm:sdd-nystrom-diminishing-returns",
+      "provenance": {
+        "url": "https://arxiv.org/html/2602.05394v2",
+        "retrieved": "2026-08-04",
+        "fidelity": "verbatim"
+      }
+    }
+  ],
+  "verify": {
+    "python": "verify.py",
+    "sage": [],
+    "requires": []
+  },
+  "artifacts": [
+    {
+      "file": "artifacts/certificate.json",
+      "description": "Exact matrix, diagonal-dominance margins, principal inverse traces, marginal reductions, and positive violation gap"
+    }
+  ],
+  "order": 12,
+  "group": "amsel"
+}

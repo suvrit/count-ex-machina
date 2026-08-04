@@ -1,0 +1,131 @@
+\cxtitle{An oblivious subspace injection need not give relative-error sketch-and-solve}
+
+\begin{cxcredits}
+\posedby{Amsel et al. \citeyearpar{AmselEtAl2026}}
+\foundby{OpenAI Codex}{2026-08}
+\formalizedby{OpenAI Codex}
+\auditedby{OpenAI Codex}
+\contributedby{Suvrit Sra}
+\end{cxcredits}
+
+\begin{cxcontext}
+For a random matrix $\Omega\in\mathbb R^{n\times k}$ and a fixed
+$r$-dimensional subspace $\mathcal V\subseteq\mathbb R^n$, the source calls
+$\Omega$ a subspace injection with injectivity $\alpha$ on $\mathcal V$ when
+$\mathbb E\|\Omega^Tx\|_2^2=\|x\|_2^2$ for every $x\in\mathbb R^n$ and
+$\|\Omega^Tx\|_2^2\geq\alpha\|x\|_2^2$ for every $x\in\mathcal V$.
+It is oblivious with failure probability $\delta$ if this lower inequality
+holds on every fixed $r$-dimensional subspace with probability at least
+$1-\delta$.  When no failure probability is displayed, the source fixes a
+small constant, specifically $\delta=0.01$ as its example.  The discussion
+immediately following Problems~5.1--5.2 asks whether constant OSI failure
+probability suffices and then separately asks whether reducing it to
+$\operatorname{poly}(\varepsilon)$ rescues the result.  Thus the probabilistic
+claim tested here is the natural one in that context: the relative-error event
+should hold with at least the OSI success probability.  Townsend and Wang
+subsequently gave related counterexamples and resolved the question negatively
+\cite{TownsendWang2026}.
+\end{cxcontext}
+
+\begin{cxsource}{osi-sketch-and-solve}
+Problem~5.1 of the Simons workshop report of Amsel et al.
+\cite{AmselEtAl2026}, scribed for Section~5 by Raphael A. Meyer.  Townsend and
+Wang \cite{TownsendWang2026} had already resolved the general question; this
+witness is independent and claims no priority.
+\end{cxsource}
+
+\begin{cxstatement}{osi-sketch-and-solve}
+Let $A\in\mathbb{R}^{n\times d}$ be a full-rank matrix,
+$B\in\mathbb{R}^{n\times p}$ be a matrix, and let
+$\Omega\in\mathbb{R}^{n\times k}$ be an oblivious subspace injection with
+dimension $d$ and injectivity $1-\varepsilon$. Let
+$\widetilde{X}=(\Omega^{\top}A)^{+}(\Omega^{\top}B)\in\mathbb{R}^{d\times p}$
+be the sketch-and-solve approximation to the ordinary least-squares solution
+$X=A^{+}B$. (Here, ${}^{+}$ denotes the Moore--Penrose pseudoinverse.) Prove
+or disprove: Does it necessarily hold that
+\[
+\|A\widetilde{X}-B\|_{\rm F}\leq(1+\mathcal{O}(\varepsilon))
+\min_{X\in\mathbb{R}^{d\times p}}\|AX-B\|_{\rm F}?
+\]
+\end{cxstatement}
+
+\begin{cxsummary}{osi-sketch-and-solve}
+A one-dimensional oblivious subspace injection with injectivity $1$ can make
+sketch-and-solve incur the fixed factor $\sqrt2$ with probability $1/50$.
+\end{cxsummary}
+
+\begin{cxcertificate}{osi-sketch-and-solve}
+Three exact rationally weighted $2\times2$ sketch atoms, with exact isotropy,
+an exact $99/100$ injection guarantee, and exact squared residual ratios.
+\end{cxcertificate}
+
+\begin{cxrefutation}
+Problem~5.1 asks whether one-sided injectivity near $1$ yields the usual
+relative-error guarantee for sketch-and-solve \cite{AmselEtAl2026}.  The
+following three-atom distribution gives a negative answer under the failure
+probability convention fixed in the source.
+
+\begin{theorem}[\statusfalse: OSI relative error for sketch-and-solve]
+\label{thm:osi-sketch-and-solve}
+There is a $(1,1,1/100)$ oblivious subspace injection for which the claimed
+relative-error inequality fails with probability $1/50$.  Consequently no
+$1+O(\varepsilon)$ factor can hold with the OSI success probability, even
+though the injectivity is exactly $1$.
+\end{theorem}
+\begin{proof}
+Put $\rho=1/100$ and define
+\[
+ I=\begin{pmatrix}1&0\\0&1\end{pmatrix},\qquad
+ B_+=\begin{pmatrix}1&0\\1&0\end{pmatrix},\qquad
+ B_-=\begin{pmatrix}1&0\\-1&0\end{pmatrix}.
+\]
+Let $\Omega$ equal $I,B_+,B_-$ with respective probabilities
+$1-2\rho,\rho,\rho$.  Its isotropy is exact:
+\[
+ \mathbb E[\Omega\Omega^T]
+ =(1-2\rho)I+\rho
+ \begin{pmatrix}1&1\\1&1\end{pmatrix}
+ +\rho\begin{pmatrix}1&-1\\-1&1\end{pmatrix}=I.
+\]
+For $v=(x,y)^T$, the three possible values of
+$\|\Omega^Tv\|_2^2$ are
+\[
+ x^2+y^2,\qquad (x+y)^2,\qquad (x-y)^2.
+\]
+The identity
+$(x+y)^2+(x-y)^2=2(x^2+y^2)$ shows that at least one of the
+last two values is at least $x^2+y^2$.  Hence, on every fixed line, the
+injectivity-$1$ inequality can fail on at most one of the two atoms $B_+$ and
+$B_-$, each of probability $\rho$.  Thus $\Omega$ is a
+$(1,1,\rho)$-OSI, and in particular a $(1,1-\varepsilon,\rho)$-OSI for every
+$\varepsilon\in(0,1)$.
+
+Now take the single-response problem
+\[
+ A=\begin{pmatrix}1\\0\end{pmatrix},\qquad
+ b=\begin{pmatrix}0\\1\end{pmatrix}.
+\]
+The unsketched optimum is $x_\star=0$ and its residual norm is $1$.  On the
+identity atom, $\widetilde x=0$.  On the other atoms,
+\[
+ B_+^TA=\begin{pmatrix}1\\0\end{pmatrix},\quad
+ B_+^Tb=\begin{pmatrix}1\\0\end{pmatrix},\qquad
+ B_-^TA=\begin{pmatrix}1\\0\end{pmatrix},\quad
+ B_-^Tb=\begin{pmatrix}-1\\0\end{pmatrix}.
+\]
+Therefore $\widetilde x=1$ on $B_+$ and $\widetilde x=-1$ on $B_-$, and in
+both cases
+\[
+ \|A\widetilde x-b\|_2^2=\widetilde x^2+1=2.
+\]
+The fixed loss $\sqrt2$ occurs with total probability $2\rho=1/50$, whereas
+the OSI failure probability is only $\rho=1/100$.
+
+Finally, this is genuinely an asymptotic refutation of $1+O(\varepsilon)$.
+If a universal constant $C>0$ supplied the hidden constant, choose
+$\varepsilon>0$ so small that $C\varepsilon\leq1/4$.  The same sketch still
+has injectivity at least $1-\varepsilon$, while on an event of probability
+$1/50$ its ratio is $\sqrt2>5/4\geq1+C\varepsilon$.  No rounding or numerical
+approximation is used.
+\end{proof}
+\end{cxrefutation}

@@ -1,0 +1,132 @@
+\cxtitle{Exact QRCP can miss the orthonormal-row conditioning bound}
+
+\begin{cxcredits}
+\posedby{Anil Damle and Daniel Kressner \citeyearpar{AmselEtAl2026}}
+\foundby{OpenAI Codex}{2026-08}
+\formalizedby{OpenAI Codex}
+\auditedby{OpenAI Codex}
+\contributedby{Suvrit Sra}
+\end{cxcredits}
+
+\begin{cxcontext}
+Let $Q\in\mathbb R^{n\times k}$ have orthonormal columns.  Exact
+Businger--Golub QR with column pivoting (QRCP) applied to $Q^T$ repeatedly
+chooses a remaining column with largest squared residual after orthogonal
+projection away from the previously chosen columns.  If $P=QQ^T$ and the
+previously chosen indices form $S$, the squared residual of index $i$ is the
+Schur complement
+\[
+ \rho_S(i)=P_{ii}-P_{iS}P_{SS}^{-1}P_{Si}.
+\]
+Thus the exact pivot path depends only on the orthogonal projector $P$.
+
+Chen, Liu, He, and Dong first answered Problem~4.3 negatively by an
+asymptotic low-coherence family \cite{ChenLiuHeDong2026}.  Their construction
+prescribes a long upper-triangular selected block and then completes the
+identity with several blocks of extra columns.  The finite witness below was
+found later and independently.  It instead specifies a small rational point
+in a Grassmann chart, takes its projector directly, and has only $k=3$ and
+$n=8$.  No priority over Chen--Liu--He--Dong is claimed.
+\end{cxcontext}
+
+\begin{cxsource}{qrcp-orthonormal-greedy}
+Problem~4.3 of Amsel et al. \cite{AmselEtAl2026}, sourced there to Anil Damle
+and Daniel Kressner.  Chen, Liu, He, and Dong \cite{ChenLiuHeDong2026} were
+the first to publish a negative resolution.
+\end{cxsource}
+
+\begin{cxstatement}{qrcp-orthonormal-greedy}
+``It is known that there exists $I$ such that
+$\|Q(I,:)^{-1}\|_2\leq\sqrt{k(n-k+1)}$ [HP92] and there is a fairly efficient
+$O(nk^2)$ algorithm that satisfies this bound [Osi25].''  Problem~4.3 then
+asks: ``Does the QRCP algorithm typically used in practice satisfy the above,
+or a similar, bound.''
+\end{cxstatement}
+
+\begin{cxsummary}{qrcp-orthonormal-greedy}
+For an exact rational rank-three projector on eight coordinates, QRCP has
+strict pivots $I=(1,2,3)$ but the resulting inverse norm exceeds $\sqrt{18}$.
+\end{cxsummary}
+
+\begin{cxcertificate}{qrcp-orthonormal-greedy}
+An exact rational $8\times3$ Grassmann-chart matrix, three positive rational
+pivot gaps, and the Rayleigh gap $192051/250000$.
+\end{cxcertificate}
+
+\begin{cxrefutation}
+Problem~4.3 asks whether classical QRCP itself attains the conditioning scale
+known to be achievable by a suitable subset-selection algorithm
+\cite{AmselEtAl2026}.  The full question was first answered negatively by
+Chen, Liu, He, and Dong \cite{ChenLiuHeDong2026}.  Here is a different,
+small, exact counterexample to the displayed bound.
+
+\begin{theorem}[\statusfalse: QRCP orthonormal-row bound]
+\label{thm:qrcp-orthonormal-greedy}
+There are $n=8$, $k=3$, and $Q\in\mathbb R^{8\times3}$ with $Q^TQ=I_3$
+such that exact Businger--Golub QRCP applied to $Q^T$ makes three strict
+pivot choices $I=(1,2,3)$, while
+\[
+ \|Q(I,:)^{-1}\|_2>\sqrt{k(n-k+1)}=\sqrt{18}.
+\]
+\end{theorem}
+\begin{proof}
+Put $V=\binom{I_3}{W}$, where
+\[
+ W=\frac1{1000}\begin{pmatrix}
+ 707&-23&-985\\
+ 1639&1259&-985\\
+ 1639&1259&-985\\
+ -707&23&985\\
+ 1639&1259&-985
+ \end{pmatrix},
+ \qquad H=V^TV=I_3+W^TW,
+\]
+and define $Q=VH^{-1/2}$ using the positive-definite square root.  Then
+$Q^TQ=I_3$, and its projector is the rational matrix
+$P=QQ^T=VH^{-1}V^T$.  Hence all QRCP decisions can be certified using
+rational arithmetic alone.
+
+For completeness, exact Schur-complement evaluation gives the following
+pivot residual and runner-up residual at each step:
+\[
+\begin{array}{c|c|c|c|c}
+ S & \text{pivot} & \rho_S(\text{pivot}) &
+ \max_{i\notin S\cup\{\text{pivot}\}}\rho_S(i)&\text{gap}\\ \hline
+ \varnothing&1&\dfrac{100874772187}{197275840682}&
+ \dfrac{99899751883}{197275840682}&
+ \dfrac{487510152}{98637920341}\\[5pt]
+ \{1\}&2&\dfrac{4179375000}{14410681741}&
+ \dfrac{28781505000}{100874772187}&
+ \dfrac{474120000}{100874772187}\\[5pt]
+ \{1,2\}&3&\dfrac{8000}{46809}&
+ \dfrac{38809}{234045}&
+ \dfrac{397}{78015}
+\end{array}
+\]
+Every gap is positive, so tie handling is irrelevant and QRCP selects
+$I=(1,2,3)$.
+
+The selected matrix is $Q(I,:)=H^{-1/2}$, so
+\[
+ \|Q(I,:)^{-1}\|_2^2=\lambda_{\max}(H)
+ =1+\lambda_{\max}(W^TW).
+\]
+For the integer vector $x=(2,1,-1)^T$, direct exact arithmetic gives
+\[
+ \|Wx\|_2^2-17\|x\|_2^2=\frac{192051}{250000}>0.
+\]
+Consequently $\lambda_{\max}(W^TW)>17$, whence
+$\|Q(I,:)^{-1}\|_2^2>18=k(n-k+1)$.  This is the claimed strict
+counterexample.
+\end{proof}
+
+\begin{remark}[Scope]
+Problem~4.3 asks whether QRCP satisfies ``the above, or a similar, bound''.
+What falls here is the first half: the displayed bound $\sqrt{k(n-k+1)}$ is
+violated outright at $n=8$, $k=3$.  A single finite witness says nothing about
+the second half, since a ``similar'' bound loose enough to admit this instance
+is not excluded by it.  The asymptotic family of Chen, Liu, He, and Dong
+\cite{ChenLiuHeDong2026} is what settles the broader reading; this witness is
+smaller and exactly rational, not stronger.
+\end{remark}
+\end{cxrefutation}

@@ -1,0 +1,37 @@
+{
+  "id": "qrcp-orthonormal-greedy",
+  "title": "Exact QRCP can miss the orthonormal-row conditioning bound",
+  "status": "refuted",
+  "prose": "case.tex",
+  "bib_keys": [
+    "AmselEtAl2026",
+    "ChenLiuHeDong2026"
+  ],
+  "results": [
+    {
+      "id": "qrcp-orthonormal-greedy",
+      "uid": "BG0YN3VJ",
+      "class": "external formal problem",
+      "certificate_level": "exact",
+      "theorem_label": "thm:qrcp-orthonormal-greedy",
+      "provenance": {
+        "url": "https://arxiv.org/html/2602.05394v2",
+        "retrieved": "2026-08-04",
+        "fidelity": "verbatim"
+      }
+    }
+  ],
+  "verify": {
+    "python": "verify.py",
+    "sage": [],
+    "requires": []
+  },
+  "artifacts": [
+    {
+      "file": "artifacts/certificate.json",
+      "description": "Exact rational Grassmann-chart witness, projector, QRCP residual table and strict pivot gaps, and a rational Rayleigh certificate for failure of the conditioning bound"
+    }
+  ],
+  "order": 15,
+  "group": "amsel"
+}

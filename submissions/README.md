@@ -10,3 +10,7 @@ checks apply.
 
 If you have not cloned the repository, you do not need to: paste the bundle
 into an issue instead, using the *Submit a counterexample* template.
+
+[`not-admitted/`](not-admitted/) keeps bundles that were screened and declined,
+each with the reason written out. They are worth reading before packaging
+something similar: both were arithmetically correct and still did not qualify.

@@ -1,0 +1,36 @@
+{
+  "id": "hamiltonian-nepv-identity",
+  "title": "Failure of the proposed Hamiltonian NEPv Rayleigh identity",
+  "status": "refuted",
+  "prose": "case.tex",
+  "bib_keys": [
+    "AmselEtAl2026"
+  ],
+  "results": [
+    {
+      "id": "hamiltonian-nepv-identity",
+      "uid": "0AR0V0FD",
+      "class": "published theorem",
+      "certificate_level": "exact",
+      "theorem_label": "thm:hamiltonian-nepv-identity",
+      "provenance": {
+        "url": "https://arxiv.org/abs/2602.05394v2",
+        "retrieved": "2026-08-04",
+        "fidelity": "verbatim"
+      }
+    }
+  ],
+  "verify": {
+    "python": "verify.py",
+    "sage": [],
+    "requires": []
+  },
+  "artifacts": [
+    {
+      "file": "artifacts/certificate.json",
+      "description": "Exact rational Hermitian matrices and vector, with the two unequal Rayleigh quotients"
+    }
+  ],
+  "order": 14,
+  "group": "amsel"
+}

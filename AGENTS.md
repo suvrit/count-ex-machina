@@ -9,7 +9,7 @@ points here, and `counterexamples/`, `tex/`, and `tools/` each carry a shorter
 An archive of AI-found counterexamples to publicly posed mathematical
 statements, companion to the paper *“GPT: The Counterexample Machine”*
 (Suvrit Sra, TU Munich). It is not a software project that happens to contain
-mathematics: the artifact being shipped is **twelve refuted statements, each
+mathematics: the artifact being shipped is **seventeen refuted statements, each
 with a certificate a stranger can recompute**.
 
 One invariant governs everything:
@@ -44,7 +44,7 @@ Python. Judge the evidence, never the pedigree.
 | `tools/` | `build.py`, `verify_all.py`, `new_case.py`, `unpack_submission.py`, `exactcert.py` | yes, but see `tools/AGENTS.md` |
 | `verification_report.json` | last run of `verify_all.py` | no — regenerable, gitignored |
 
-A case **directory** is not a case **result**. Twelve results live in nine
+A case **directory** is not a case **result**. Seventeen results live in fourteen
 directories (`stable-schur` holds `aim-problem-35` and `aim-problem-38`;
 `aim-problem-36` holds `aim-problem-36` and `aim-problem-37`;
 `lorentzian-jensen` holds `lorentzian-jensen` and `log-volume-distance`).
@@ -74,14 +74,15 @@ has no Sage, so every case must stand on its pure-Python certificate alone).
 
 As of the current commit, on a clean tree:
 
-- `make verify` → **passes**, `ALL 9 CASES PASS` (two Sage cross-checks pass
+- `make verify` → **passes**, `ALL 14 CASES PASS` (two Sage cross-checks pass
   too, if Sage is installed). Keep it that way; this is the gate you can hold
   yourself to.
 - `make check` → **fails with 12 pre-existing errors**: one
-  `credits.found_by` TODO for each of the twelve results except
-  `quantum-coupon-collector`, plus a missing `provenance` for
-  `rank-two-mixed-norm`. These are the maintainer's to fill in — they are facts
-  about real sessions that nobody can reconstruct from the repository.
+  `credits.found_by` TODO for each of the seventeen results except
+  `quantum-coupon-collector` and `odonnell-matrix-conjecture`, plus a missing
+  `provenance` for `rank-two-mixed-norm`. These are the maintainer's to fill in
+  — they are facts about real sessions that nobody can reconstruct from the
+  repository.
 - Generated files are nevertheless **current**: `tools/build.py --allow-todo`
   reproduces them byte-for-byte. Because plain `build.py` refuses to write
   while errors stand, use `--allow-todo` to regenerate today, and diff the

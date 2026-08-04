@@ -1,0 +1,37 @@
+{
+  "id": "osi-sketch-and-solve",
+  "title": "An oblivious subspace injection need not give relative-error sketch-and-solve",
+  "status": "refuted",
+  "prose": "case.tex",
+  "bib_keys": [
+    "AmselEtAl2026",
+    "TownsendWang2026"
+  ],
+  "results": [
+    {
+      "id": "osi-sketch-and-solve",
+      "uid": "43W158R5",
+      "class": "external formal problem",
+      "certificate_level": "exact",
+      "theorem_label": "thm:osi-sketch-and-solve",
+      "provenance": {
+        "url": "https://arxiv.org/html/2602.05394v2",
+        "retrieved": "2026-08-04",
+        "fidelity": "verbatim"
+      }
+    }
+  ],
+  "verify": {
+    "python": "verify.py",
+    "sage": [],
+    "requires": []
+  },
+  "artifacts": [
+    {
+      "file": "artifacts/certificate.json",
+      "description": "Exact sketch atoms, probabilities, isotropy matrix, least-squares solutions, and residual ratios"
+    }
+  ],
+  "order": 13,
+  "group": "amsel"
+}

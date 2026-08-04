@@ -1,0 +1,35 @@
+{
+  "id": "odonnell-matrix-conjecture",
+  "title": "No dimension-free constant in O'Donnell's matrix conjecture",
+  "status": "refuted",
+  "prose": "case.tex",
+  "bib_keys": [
+    "ODonnell2015AlmostDiagonal"
+  ],
+  "results": [
+    {
+      "id": "odonnell-matrix-conjecture",
+      "uid": "XQB6RV2P",
+      "class": "external conjecture",
+      "certificate_level": "exact",
+      "theorem_label": "thm:odonnell-matrix-conjecture",
+      "provenance": {
+        "url": "https://mathoverflow.net/a/212759",
+        "retrieved": "2026-08-04",
+        "fidelity": "paraphrase"
+      }
+    }
+  ],
+  "verify": {
+    "python": "verify.py",
+    "sage": [],
+    "requires": []
+  },
+  "artifacts": [
+    {
+      "file": "artifacts/certificate.json",
+      "description": "Exact algebraic family parameters, a symbolic unboundedness certificate, and a finite exact-arithmetic audit."
+    }
+  ],
+  "order": 11
+}
