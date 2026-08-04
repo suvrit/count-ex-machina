@@ -55,8 +55,11 @@ FIDELITIES = {"verbatim", "paraphrase"}
 # instead of one section each; their 'order' values must be consecutive.
 GROUPS = {
     "aim": "Borcea--Br\\\"and\\'en AIM problems",
-    "amsel": "Open questions from the Simons workshop of Amsel et al.",
+    "amsel": "Simons workshop open questions",
 }
+# Cases carrying "appendix": true are typeset here instead of in the body, under
+# one shared heading, and collapse to a single ledger row per source.
+APPENDIX_TITLE = "Additional counterexamples"
 DATE_RE = re.compile(r"^\d{4}-\d{2}(-\d{2})?$")
 # Immutable per-result identity, and the primary key of registry.json.  The
 # alphabet is Crockford base32 -- no I, L, O or U -- so a uid survives being
@@ -377,6 +380,19 @@ def validate(cases, allow_todo, errors):
             group = c.get("group")
             if group is not None and group not in GROUPS:
                 err(f"group {group!r} not one of {sorted(GROUPS)}")
+            appendix = c.get("appendix")
+            if appendix is not None and not isinstance(appendix, bool):
+                err(f"'appendix' must be true or false, not {appendix!r}")
+            if appendix:
+                # The collapsed ledger row names the items it stands for, and
+                # nothing else in the case records an item number in plain text.
+                for r in c.get("results") or []:
+                    if is_todo(r.get("ledger_label")):
+                        err(
+                            f"result {r.get('id')}: an appendix case needs a plain-text "
+                            f"'ledger_label' such as 'Problem 4.6', naming the item it "
+                            f"refutes in the collapsed ledger row"
+                        )
             ctx = c.get("context_tex")
             if ctx is not None and (is_todo(ctx) or not balanced_braces(ctx)):
                 err("the cxcontext region is TODO, empty, or has unbalanced braces")
@@ -550,7 +566,41 @@ def validate(cases, allow_todo, errors):
 
 
 def refuted_in_order(cases):
-    return sorted((c for c in cases if c["status"] == "refuted"), key=lambda c: c["order"])
+    """Every refuted case, body first and appendix last, each by ledger order.
+
+    The appendix collects cases the archive keeps but does not foreground --
+    statements too slight to carry a section of their own, or ones whose public
+    resolution belongs to someone else.  They are admitted on exactly the same
+    evidence as any other case; only their presentation differs.
+    """
+    refuted = [c for c in cases if c["status"] == "refuted"]
+    return sorted(refuted, key=lambda c: (bool(c.get("appendix")), c["order"]))
+
+
+def body_in_order(cases):
+    return [c for c in refuted_in_order(cases) if not c.get("appendix")]
+
+
+def appendix_in_order(cases):
+    return [c for c in refuted_in_order(cases) if c.get("appendix")]
+
+
+def appendix_batches(cases):
+    """Appendix cases collapsed to one ledger row each, keyed by group.
+
+    A batch drawn from one source earns a single row naming that source and the
+    items refuted inside it, rather than one row per statement: the ledger still
+    counts statements, but the table stops spending four rows on them.  An
+    ungrouped appendix case is its own batch.
+    """
+    batches = []
+    for c in appendix_in_order(cases):
+        key = c.get("group") or f"__{c['id']}"
+        if batches and batches[-1][0] == key:
+            batches[-1][1].append(c)
+        else:
+            batches.append((key, [c]))
+    return batches
 
 
 def withheld_sorted(cases):
@@ -592,13 +642,22 @@ def gen_cases(cases):
     """
     lines = [GENERATED_HEADER.rstrip("\n")]
     open_group = None
+    opened_appendix = False
     for c in refuted_in_order(cases):
+        in_appendix = bool(c.get("appendix"))
+        if in_appendix and not opened_appendix:
+            # One appendix section holds every de-emphasised case, whatever its
+            # source, so group headings are not reissued inside it.
+            lines.append("")
+            lines.append(f"\\cxappendix{{{APPENDIX_TITLE}}}")
+            opened_appendix = True
+            open_group = None
         group = c.get("group")
-        if group is not None and group != open_group:
+        if not in_appendix and group is not None and group != open_group:
             lines.append(f"\\cxgroup{{{GROUPS[group]}}}")
         open_group = group
         lines.append("")
-        lines.append(f"\\cxlevel{{{'subsection' if group else 'section'}}}")
+        lines.append(f"\\cxlevel{{{'subsection' if (group or in_appendix) else 'section'}}}")
         for r in c["results"]:
             if r.get("theorem_label"):
                 lines.append(f"\\cxtheorem{{{r['id']}}}{{{r['theorem_label']}}}")
@@ -633,6 +692,8 @@ def gen_registry(cases):
                 "title": c["title"],
                 "status": c["status"],
                 "ledger_no": ledger_no,
+                "appendix": bool(c.get("appendix")),
+                "ledger_label": r.get("ledger_label"),
                 "withheld_reason": c.get("withheld_reason"),
                 "class": r["class"],
                 "certificate_level": r["certificate_level"],
@@ -708,7 +769,7 @@ def gen_readme_table(cases, errors):
         "|---|---|---|---|---|---|",
     ]
     n = 0
-    for c in refuted_in_order(cases):
+    for c in body_in_order(cases):
         for r in c["results"]:
             n += 1
             lines.append(
@@ -716,6 +777,28 @@ def gen_readme_table(cases, errors):
                 f"| {source_cell(c, r, errors)} | {r['certificate_level']} "
                 f"| {found_by_str(effective_credits(c, r))} |"
             )
+    for key, batch in appendix_batches(cases):
+        labels = [r.get("ledger_label") for c in batch for r in c["results"]]
+        # The row collapses, the count does not: it spans as many ledger numbers
+        # as it has statements, so registry.json's ledger_no still resolves here.
+        first, n = n + 1, n + len(labels)
+        span = str(first) if first == n else f"{first}–{n}"
+        levels = sorted({r["certificate_level"] for c in batch for r in c["results"]})
+        finders = sorted({found_by_str(effective_credits(c, r))
+                          for c in batch for r in c["results"]})
+        title = GROUPS[key] if key in GROUPS else batch[0]["title"]
+        url = next(
+            ((r.get("provenance") or {}).get("url")
+             for c in batch for r in c["results"] if (r.get("provenance") or {}).get("url")),
+            None,
+        )
+        where = f"{title} — {', '.join(labels)}"
+        cell = f"[{where}]({url})" if url else where
+        links = ", ".join(f"[{c['id']}](counterexamples/{c['id']}/)" for c in batch)
+        lines.append(
+            f"| {span} | {links} | refuted by explicit construction "
+            f"| {cell} | {', '.join(levels)} | {', '.join(finders)} |"
+        )
     for c in withheld_sorted(cases):
         for r in c["results"]:
             lines.append(
@@ -735,11 +818,17 @@ def badge_url(label, message):
 def gen_count_badges(cases):
     """The front-page counts, taken from the ledger rather than from memory."""
     results = [r for c in refuted_in_order(cases) for r in c["results"]]
+    body = [r for c in body_in_order(cases) for r in c["results"]]
+    extra = [r for c in appendix_in_order(cases) for r in c["results"]]
     levels = Counter(r["certificate_level"] for r in results)
     mix = f"{levels['exact']} exact, {levels['computer-assisted']} interval"
+    # Appendix statements are refuted on the same evidence, so they stay in the
+    # certificate mix; the headline splits them out only to say which ones the
+    # archive foregrounds.
+    count = f"{len(body)} refuted" + (f", {len(extra)} additional" if extra else "")
     return "\n".join(
         [
-            f"[![counterexamples]({badge_url('counterexamples', f'{len(results)} refuted')})]"
+            f"[![counterexamples]({badge_url('counterexamples', count)})]"
             "(#the-cases)",
             f"[![certificates]({badge_url('certificates', mix)})](#the-cases)",
         ]

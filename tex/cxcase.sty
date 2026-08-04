@@ -100,6 +100,12 @@
 % \cxgroup{Heading} -- opens the shared section a group of cases lives under.
 \newcommand{\cxgroup}[1]{\section{#1}}
 
+% \cxappendix{Heading} -- switches to appendix numbering and opens the single
+% section holding every de-emphasised case.  Issued at most once, by the
+% generator, immediately before the first case marked "appendix" in its
+% case.json; those cases are then typeset as subsections of it.
+\newcommand{\cxappendix}[1]{\appendix\section{#1}\label{sec:additional}}
+
 % ---------------------------------------------------------------------------
 % Title and credits.
 % ---------------------------------------------------------------------------

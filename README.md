@@ -6,7 +6,7 @@
 
 [![verify](https://github.com/suvrit/count-ex-machina/actions/workflows/verify.yml/badge.svg?branch=main)](https://github.com/suvrit/count-ex-machina/actions/workflows/verify.yml)
 <!-- BEGIN COUNT BADGES -->
-[![counterexamples](https://img.shields.io/badge/counterexamples-17%20refuted-0b7285)](#the-cases)
+[![counterexamples](https://img.shields.io/badge/counterexamples-13%20refuted%2C%204%20additional-0b7285)](#the-cases)
 [![certificates](https://img.shields.io/badge/certificates-15%20exact%2C%202%20interval-0b7285)](#the-cases)
 <!-- END COUNT BADGES -->
 [![Python](https://img.shields.io/badge/Python-3.14-3776AB?logo=python&logoColor=white)](requirements.txt)
@@ -206,10 +206,7 @@ an immutable `uid` in `registry.json`; that is a database key, not a citation.
 | 11 | [lorentzian-jensen](counterexamples/lorentzian-jensen/) | refuted | [S. Sra, standalone problem; formulation as recorded in §1 of the case's `paper.tex`](counterexamples/lorentzian-jensen/paper.tex) | exact | TODO (TODO) |
 | 12 | [log-volume-distance](counterexamples/lorentzian-jensen/) | refuted | [S. Sra, standalone problem (geometric specialization of the same principle); formulation as recorded in §1 of the case's `paper.tex`](counterexamples/lorentzian-jensen/paper.tex) | exact | TODO (TODO) |
 | 13 | [odonnell-matrix-conjecture](counterexamples/odonnell-matrix-conjecture/) | refuted | [R. O'Donnell, answering a question of Nengkun Yu on MathOverflow, reports that he and J. Wright had been considering the problem in connection with quantum tomography, and closes by conjecturing the unit-trace case. The same conjecture was put to S. Sra by O'Donnell in personal communication, a fact the public answer itself records.](https://mathoverflow.net/a/212759) | exact | GPT-5.6 Pro (2026-08) |
-| 14 | [sdd-nystrom-diminishing-returns](counterexamples/sdd-nystrom-diminishing-returns/) | refuted | [Problem 4.6 of Amsel et al., posed there by Mark Fornace. Colbrook subsequently completed the answer before this independent witness was found.](https://arxiv.org/html/2602.05394v2) | exact | OpenAI Codex (2026-08) |
-| 15 | [osi-sketch-and-solve](counterexamples/osi-sketch-and-solve/) | refuted | [Problem 5.1 of the Simons workshop report of Amsel et al., scribed for Section 5 by Raphael A. Meyer. Townsend and Wang had already resolved the general question; this witness is independent and claims no priority.](https://arxiv.org/html/2602.05394v2) | exact | OpenAI Codex (2026-08) |
-| 16 | [hamiltonian-nepv-identity](counterexamples/hamiltonian-nepv-identity/) | refuted | [The assertion appears immediately after equation (20) in Section 6.2 of the Simons workshop report. That section is scribed by Edgar Solomonik and records discussion with Elias Jarlebring, Florian Schafer, Maryam Dehghan, Tamara Kolda, and Chris Camaño; it says the question is based on a pre-workshop question of Elias Jarlebring.](https://arxiv.org/abs/2602.05394v2) | exact | OpenAI Codex (2026-08) |
-| 17 | [qrcp-orthonormal-greedy](counterexamples/qrcp-orthonormal-greedy/) | refuted | [Problem 4.3 of Amsel et al., sourced there to Anil Damle and Daniel Kressner. Chen, Liu, He, and Dong were the first to publish a negative resolution.](https://arxiv.org/html/2602.05394v2) | exact | OpenAI Codex (2026-08) |
+| 14–17 | [sdd-nystrom-diminishing-returns](counterexamples/sdd-nystrom-diminishing-returns/), [osi-sketch-and-solve](counterexamples/osi-sketch-and-solve/), [hamiltonian-nepv-identity](counterexamples/hamiltonian-nepv-identity/), [qrcp-orthonormal-greedy](counterexamples/qrcp-orthonormal-greedy/) | refuted by explicit construction | [Simons workshop open questions — Problem 4.6(b), Problem 5.1, the identity after eq. (20) in §6.2, Problem 4.3](https://arxiv.org/html/2602.05394v2) | exact | OpenAI Codex (2026-08) |
 <!-- END CASE TABLE -->
 
 Withheld cases are documented but excluded from the paper's admitted ledger;

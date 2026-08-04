@@ -18,7 +18,8 @@
         "url": "https://arxiv.org/html/2602.05394v2",
         "retrieved": "2026-08-04",
         "fidelity": "verbatim"
-      }
+      },
+      "ledger_label": "Problem 5.1"
     }
   ],
   "verify": {
@@ -33,5 +34,6 @@
     }
   ],
   "order": 13,
-  "group": "amsel"
+  "group": "amsel",
+  "appendix": true
 }

@@ -17,7 +17,8 @@
         "url": "https://arxiv.org/abs/2602.05394v2",
         "retrieved": "2026-08-04",
         "fidelity": "verbatim"
-      }
+      },
+      "ledger_label": "the identity after eq. (20) in §6.2"
     }
   ],
   "verify": {
@@ -32,5 +33,6 @@
     }
   ],
   "order": 14,
-  "group": "amsel"
+  "group": "amsel",
+  "appendix": true
 }

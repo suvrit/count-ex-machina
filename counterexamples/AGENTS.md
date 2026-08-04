@@ -96,9 +96,18 @@ Enums are enforced; the exact spellings are in `tools/build.py`.
   `paper.tex`).
 - `order` — positive int, unique, presentation order only. **Not stable, not a
   citation.** Take the next free integer; renumber nothing.
-- `group` — optional, currently only `"aim"`. Members must be **contiguous** in
-  `order`, so joining a group renumbers cases you do not own: do it explicitly
-  and say so in the PR, never silently.
+- `group` — optional, currently `"aim"` or `"amsel"`. Members must be
+  **contiguous** in `order`, so joining a group renumbers cases you do not own:
+  do it explicitly and say so in the PR, never silently.
+- `appendix` — optional bool, default false, and a **maintainer's disposition,
+  not a submitter's**. `true` typesets the case as a subsection of the paper's
+  shared "Additional counterexamples" appendix instead of a body section, and
+  collapses its ledger row in with the rest of its `group`. It changes
+  presentation only: an appendix case clears exactly the same three admission
+  conditions, keeps its `uid`, and is still counted by statement. Use it for a
+  statement too slight to carry a section of its own, or one whose public
+  resolution belongs to someone else. The headline badge reports these
+  separately, as "N refuted, M additional".
 - `prose` — the LaTeX file, `case.tex`.
 - `bib_keys` — every key must exist in `tex/references.bib`.
 - `results[]` — one entry per refuted statement:
@@ -111,6 +120,11 @@ Enums are enforced; the exact spellings are in `tools/build.py`.
     `external conjecture` | `external formal problem` | `user formal problem`.
   - `certificate_level` — `exact` | `computer-assisted`.
   - `theorem_label` — must appear verbatim as `\label{...}` in `cxrefutation`.
+  - `ledger_label` — plain text, required only when the case sets
+    `appendix: true`. Names the item this result refutes, as the source numbers
+    it (`"Problem 4.6(b)"`), because the collapsed ledger row has to say which
+    statements it stands for and nothing else in the case records that in plain
+    text. No LaTeX: it is spliced straight into `README.md`.
   - `provenance` — `url` and `retrieved` (the copy consulted; `url` may be a
     repo-relative path when the statement was posed in a file here) and
     `fidelity` (`verbatim` **only** if transcribed from the source's own text,
