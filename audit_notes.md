@@ -50,13 +50,18 @@ Withheld or withdrawn:
 
 Appendix placement, set in August 2026:
 
-The four Simons-workshop results (`sdd-nystrom-diminishing-returns`, `osi-sketch-and-solve`,
-`hamiltonian-nepv-identity`, `qrcp-orthonormal-greedy`) carry `"appendix": true` and are
-typeset as subsections of "Additional counterexamples" rather than as body sections.  Two
-reasons, neither evidential: the statements are slight, and three of the four were already
-resolved publicly by others -- Colbrook on Problem 4.6(b), Townsend and Wang on Problem 5.1,
-Chen-Liu-He-Dong on Problem 4.3 -- with each dossier crediting the prior work and claiming
-no priority.  They clear the same three admission conditions as every other case, keep their
+Five results carry `"appendix": true` and are typeset as subsections of "Additional
+counterexamples" rather than as body sections.  Four are the Simons-workshop batch
+(`sdd-nystrom-diminishing-returns`, `osi-sketch-and-solve`, `hamiltonian-nepv-identity`,
+`qrcp-orthonormal-greedy`); two reasons, neither evidential: the statements are slight, and
+three of the four were already resolved publicly by others -- Colbrook on Problem 4.6(b),
+Townsend and Wang on Problem 5.1, Chen-Liu-He-Dong on Problem 4.3 -- with each dossier
+crediting the prior work and claiming no priority.
+
+The fifth is `dpp-feasible-step`, the Mariet-Sra feasible-step Picard ascent claim, moved
+there in August 2026 at the maintainer's direction.  No reason beyond editorial emphasis is
+recorded, and none should be inferred: the case is unchanged, its certificate still passes,
+and it keeps uid 7X8N5PV5 and its place in the count.  They clear the same three admission conditions as every other case, keep their
 uids, and are still counted by statement; the ledger row is collapsed to one line spanning
 their four ledger numbers so the table does not spend four rows on them, and the headline
 badge reports them as "additional" rather than folding them into the count.

@@ -242,51 +242,12 @@
     }
   },
   {
-    "uid": "7X8N5PV5",
-    "result_id": "dpp-feasible-step",
-    "case": "dpp-feasible-step",
-    "title": "Feasible Picard steps for DPP likelihood",
-    "status": "refuted",
-    "ledger_no": 7,
-    "appendix": false,
-    "ledger_label": null,
-    "withheld_reason": null,
-    "class": "published conjecture",
-    "certificate_level": "exact",
-    "certificate_tex": "Exact rational $2\\times2$ feasible update with lower likelihood.",
-    "theorem_label": "thm:dpp",
-    "provenance": {
-      "source_tex": "Z.~Mariet and S.~Sra \\citeyearpar{MarietSra2015}, \\S2 (unnumbered)",
-      "url": "https://proceedings.mlr.press/v37/mariet15.pdf",
-      "retrieved": "2026-08-01",
-      "fidelity": "verbatim",
-      "statement_tex": "Above we showed that for $a=1$ ascent is guaranteed.  Empirically, $a>1$ often works well; Prop.~A.1 presents an easily computable upper bound on feasible $a$.  We conjecture that for all feasible values $a\\ge1$, iteration (2.5) is guaranteed to increase the log-likelihood.\n\nThe iteration carrying the step size is $L_{k+1}=L_k+aL_k\\Delta_kL_k$, displayed as (2.7) in the source; feasibility is the bound $a\\le1/(1-\\gamma)$ of Prop.~A.1."
-    },
-    "credits": {
-      "posed_by": "Mariet and Sra \\citeyearpar{MarietSra2015}",
-      "found_by": [
-        {
-          "model": "TODO",
-          "date": "TODO"
-        }
-      ],
-      "formalized_by": "S.~Sra",
-      "audited_by": "S.~Sra",
-      "contributed_by": "S.~Sra"
-    },
-    "verify": {
-      "python": "verify.py",
-      "sage": [],
-      "requires": []
-    }
-  },
-  {
     "uid": "Z32YZNA5",
     "result_id": "variance-only-matrix-discrepancy",
     "case": "variance-only-matrix-discrepancy",
     "title": "Variance-sensitive Matrix Spencer",
     "status": "refuted",
-    "ledger_no": 8,
+    "ledger_no": 7,
     "appendix": false,
     "ledger_label": null,
     "withheld_reason": null,
@@ -325,7 +286,7 @@
     "case": "rank-two-mixed-norm",
     "title": "A rank-two completely-positive mixed-norm inequality",
     "status": "refuted",
-    "ledger_no": 9,
+    "ledger_no": 8,
     "appendix": false,
     "ledger_label": null,
     "withheld_reason": null,
@@ -368,7 +329,7 @@
     "case": "quantum-coupon-collector",
     "title": "Quantum coupon collection: positivity of an alternating sum of inverses",
     "status": "refuted",
-    "ledger_no": 10,
+    "ledger_no": 9,
     "appendix": false,
     "ledger_label": null,
     "withheld_reason": null,
@@ -407,7 +368,7 @@
     "case": "lorentzian-jensen",
     "title": "Lorentzian Jensen-Bregman metric principle",
     "status": "refuted",
-    "ledger_no": 11,
+    "ledger_no": 10,
     "appendix": false,
     "ledger_label": null,
     "withheld_reason": null,
@@ -446,7 +407,7 @@
     "case": "lorentzian-jensen",
     "title": "Lorentzian Jensen-Bregman metric principle",
     "status": "refuted",
-    "ledger_no": 12,
+    "ledger_no": 11,
     "appendix": false,
     "ledger_label": null,
     "withheld_reason": null,
@@ -485,7 +446,7 @@
     "case": "odonnell-matrix-conjecture",
     "title": "No dimension-free constant in O'Donnell's matrix conjecture",
     "status": "refuted",
-    "ledger_no": 13,
+    "ledger_no": 12,
     "appendix": false,
     "ledger_label": null,
     "withheld_reason": null,
@@ -511,6 +472,45 @@
       "formalized_by": "GPT-5.6 Pro",
       "audited_by": "GPT-5.6 Pro",
       "contributed_by": "Suvrit Sra"
+    },
+    "verify": {
+      "python": "verify.py",
+      "sage": [],
+      "requires": []
+    }
+  },
+  {
+    "uid": "7X8N5PV5",
+    "result_id": "dpp-feasible-step",
+    "case": "dpp-feasible-step",
+    "title": "Feasible Picard steps for DPP likelihood",
+    "status": "refuted",
+    "ledger_no": 13,
+    "appendix": true,
+    "ledger_label": "the unnumbered claim in §2",
+    "withheld_reason": null,
+    "class": "published conjecture",
+    "certificate_level": "exact",
+    "certificate_tex": "Exact rational $2\\times2$ feasible update with lower likelihood.",
+    "theorem_label": "thm:dpp",
+    "provenance": {
+      "source_tex": "Z.~Mariet and S.~Sra \\citeyearpar{MarietSra2015}, \\S2 (unnumbered)",
+      "url": "https://proceedings.mlr.press/v37/mariet15.pdf",
+      "retrieved": "2026-08-01",
+      "fidelity": "verbatim",
+      "statement_tex": "Above we showed that for $a=1$ ascent is guaranteed.  Empirically, $a>1$ often works well; Prop.~A.1 presents an easily computable upper bound on feasible $a$.  We conjecture that for all feasible values $a\\ge1$, iteration (2.5) is guaranteed to increase the log-likelihood.\n\nThe iteration carrying the step size is $L_{k+1}=L_k+aL_k\\Delta_kL_k$, displayed as (2.7) in the source; feasibility is the bound $a\\le1/(1-\\gamma)$ of Prop.~A.1."
+    },
+    "credits": {
+      "posed_by": "Mariet and Sra \\citeyearpar{MarietSra2015}",
+      "found_by": [
+        {
+          "model": "TODO",
+          "date": "TODO"
+        }
+      ],
+      "formalized_by": "S.~Sra",
+      "audited_by": "S.~Sra",
+      "contributed_by": "S.~Sra"
     },
     "verify": {
       "python": "verify.py",

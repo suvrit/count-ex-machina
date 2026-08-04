@@ -10,7 +10,7 @@
 [![verify](https://github.com/suvrit/count-ex-machina/actions/workflows/verify.yml/badge.svg?branch=main)](https://github.com/suvrit/count-ex-machina/actions/workflows/verify.yml)
 -->
 <!-- BEGIN COUNT BADGES -->
-[![counterexamples](https://img.shields.io/badge/counterexamples-13%20refuted%2C%204%20additional-0b7285)](#the-cases)
+[![counterexamples](https://img.shields.io/badge/counterexamples-12%20refuted%2C%205%20additional-0b7285)](#the-cases)
 [![certificates](https://img.shields.io/badge/certificates-15%20exact%2C%202%20interval-0b7285)](#the-cases)
 <!-- END COUNT BADGES -->
 [![Python](https://img.shields.io/badge/Python-3.14-3776AB?logo=python&logoColor=white)](requirements.txt)
@@ -203,13 +203,13 @@ an immutable `uid` in `registry.json`; that is a database key, not a citation.
 | 4 | [aim-problem-37](counterexamples/aim-problem-36/) | refuted | [Borcea–Brändén, AIM problem list, Problem 37](https://www.aimath.org/pastworkshops/polyaschurlaxrep.pdf) | exact | TODO (TODO) |
 | 5 | [macdonald-schur-convexity](counterexamples/macdonald-schur-convexity/) | refuted | [C. McSwiggen and S. Sahi, Theorem 2.1](https://arxiv.org/abs/2605.12680v2) | exact | TODO (TODO) |
 | 6 | [theta-derivative-log-concavity](counterexamples/theta-derivative-log-concavity/) | refuted | [G. Csordas, Open Problem 4.13, restating Coffey–Csordas Conjecture 2.5](https://arxiv.org/abs/1309.0055v2) | computer-assisted | TODO (TODO) |
-| 7 | [dpp-feasible-step](counterexamples/dpp-feasible-step/) | refuted | [Z. Mariet and S. Sra, §2 (unnumbered)](https://proceedings.mlr.press/v37/mariet15.pdf) | exact | TODO (TODO) |
-| 8 | [variance-only-matrix-discrepancy](counterexamples/variance-only-matrix-discrepancy/) | refuted | [Remark 4.25 of A. S. Bandeira's problem collection, quoted here from its restatement as Conjecture 1.2 of E. Akbaş and S. Sra](https://arxiv.org/abs/2606.16005) | exact | GPT-5.5 (Pro) (TODO) |
-| 9 | [rank-two-mixed-norm](counterexamples/rank-two-mixed-norm/) | refuted | S. Sra — statement TODO | computer-assisted | TODO (TODO) |
-| 10 | [quantum-coupon-collector](counterexamples/quantum-coupon-collector/) | refuted | [S. Sra, MathOverflow question 263833](https://mathoverflow.net/questions/263833/quantum-coupon-collection-positivity-of-an-alternating-sum-of-matrices) | exact | GPT Pro (2026-02-16) |
-| 11 | [lorentzian-jensen](counterexamples/lorentzian-jensen/) | refuted | [S. Sra, standalone problem; formulation as recorded in §1 of the case's `paper.tex`](counterexamples/lorentzian-jensen/paper.tex) | exact | TODO (TODO) |
-| 12 | [log-volume-distance](counterexamples/lorentzian-jensen/) | refuted | [S. Sra, standalone problem (geometric specialization of the same principle); formulation as recorded in §1 of the case's `paper.tex`](counterexamples/lorentzian-jensen/paper.tex) | exact | TODO (TODO) |
-| 13 | [odonnell-matrix-conjecture](counterexamples/odonnell-matrix-conjecture/) | refuted | [R. O'Donnell, answering a question of Nengkun Yu on MathOverflow, reports that he and J. Wright had been considering the problem in connection with quantum tomography, and closes by conjecturing the unit-trace case. The same conjecture was put to S. Sra by O'Donnell in personal communication, a fact the public answer itself records.](https://mathoverflow.net/a/212759) | exact | GPT-5.6 Pro (2026-08) |
+| 7 | [variance-only-matrix-discrepancy](counterexamples/variance-only-matrix-discrepancy/) | refuted | [Remark 4.25 of A. S. Bandeira's problem collection, quoted here from its restatement as Conjecture 1.2 of E. Akbaş and S. Sra](https://arxiv.org/abs/2606.16005) | exact | GPT-5.5 (Pro) (TODO) |
+| 8 | [rank-two-mixed-norm](counterexamples/rank-two-mixed-norm/) | refuted | S. Sra — statement TODO | computer-assisted | TODO (TODO) |
+| 9 | [quantum-coupon-collector](counterexamples/quantum-coupon-collector/) | refuted | [S. Sra, MathOverflow question 263833](https://mathoverflow.net/questions/263833/quantum-coupon-collection-positivity-of-an-alternating-sum-of-matrices) | exact | GPT Pro (2026-02-16) |
+| 10 | [lorentzian-jensen](counterexamples/lorentzian-jensen/) | refuted | [S. Sra, standalone problem; formulation as recorded in §1 of the case's `paper.tex`](counterexamples/lorentzian-jensen/paper.tex) | exact | TODO (TODO) |
+| 11 | [log-volume-distance](counterexamples/lorentzian-jensen/) | refuted | [S. Sra, standalone problem (geometric specialization of the same principle); formulation as recorded in §1 of the case's `paper.tex`](counterexamples/lorentzian-jensen/paper.tex) | exact | TODO (TODO) |
+| 12 | [odonnell-matrix-conjecture](counterexamples/odonnell-matrix-conjecture/) | refuted | [R. O'Donnell, answering a question of Nengkun Yu on MathOverflow, reports that he and J. Wright had been considering the problem in connection with quantum tomography, and closes by conjecturing the unit-trace case. The same conjecture was put to S. Sra by O'Donnell in personal communication, a fact the public answer itself records.](https://mathoverflow.net/a/212759) | exact | GPT-5.6 Pro (2026-08) |
+| 13 | [dpp-feasible-step](counterexamples/dpp-feasible-step/) | refuted by explicit construction | [Feasible Picard steps for DPP likelihood — the unnumbered claim in §2](https://proceedings.mlr.press/v37/mariet15.pdf) | exact | TODO (TODO) |
 | 14–17 | [sdd-nystrom-diminishing-returns](counterexamples/sdd-nystrom-diminishing-returns/), [osi-sketch-and-solve](counterexamples/osi-sketch-and-solve/), [hamiltonian-nepv-identity](counterexamples/hamiltonian-nepv-identity/), [qrcp-orthonormal-greedy](counterexamples/qrcp-orthonormal-greedy/) | refuted by explicit construction | [Simons workshop open questions — Problem 4.6(b), Problem 5.1, the identity after eq. (20) in §6.2, Problem 4.3](https://arxiv.org/html/2602.05394v2) | exact | OpenAI Codex (2026-08) |
 <!-- END CASE TABLE -->
 

@@ -18,7 +18,8 @@
         "url": "https://proceedings.mlr.press/v37/mariet15.pdf",
         "retrieved": "2026-08-01",
         "fidelity": "verbatim"
-      }
+      },
+      "ledger_label": "the unnumbered claim in §2"
     }
   ],
   "verify": {
@@ -31,5 +32,6 @@
       "file": "artifacts/certificate.json",
       "description": "Exact rational kernels $L_0,L_1$ and the positive rational likelihood gap."
     }
-  ]
+  ],
+  "appendix": true
 }
