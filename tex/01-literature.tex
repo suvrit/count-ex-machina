@@ -1,74 +1,91 @@
-\section{AI-assisted counterexamples}
+\section{Introduction}
+AI assisted mathematics is on a steep rise; as of writing this document, the website \href{https://aimath.robertj1.com}{[AIMath]} lists 424 proofs and disproofs of a broad variety of questions. The focus of our manuscript is on counterexamples that refute some conjecture explicitly or provide a disproof of some problem via a relatively short, machine-supported argument. 
 
-Proving a universally quantified claim and refuting one are not symmetric
-tasks. A proof must cover every instance; a refutation needs one witness, and
-once that witness is written down the verification collapses to checking
-finitely many hypotheses and a single strict inequality or collision. That
-asymmetry is the operative advantage of counterexample search, and it explains
-why the 2026 wave of AI-assisted mathematics has been so much more visible in
-refutations than in proofs of comparable standing.
-
-Three of them fix the scale. \citet{Zhou2026} refutes Connes's group-factor
-rigidity conjecture --- that countable ICC groups with property~(T) are
-determined up to isomorphism by their group von Neumann algebras --- by
-exhibiting infinitely many pairwise nonisomorphic, mutually commensurable,
-finitely generated such groups with isomorphic group factors; the abstract
-records that the result ``was obtained with assistance from GPT-5.6~Sol,
-independently of and concurrently with work by OpenAI.'' \citet{DaiEtAl2026}
-refutes Carlson's conjecture that the depth of a finite-group cohomology ring
-is realized by the dimension of one of its associated primes, and the entire
-witness is a single finite group: over $\overline{\mathbb F}_2$ the cohomology
-ring of $G=\mathrm{SmallGroup}(128,859)$ has depth two while every
-associated-prime quotient has dimension at least three.\footnote{The table row
-this replaces said ``no associated prime has dimension two''; the wording here
-follows the index, which is strictly stronger. Worth one look at the paper
-before it ships.} There the AI role is division of labour rather than
-authorship --- the TARS agent system located the group by autonomous search,
-and the human author reconstructed the argument and rechecked the finite
-computations independently.  \citet{ChenDeDiosEtAl2026} show that the
-exponent~$2$ in Carbery's many-function almost-orthogonality inequality fails
-for every $p>2$; Grok supplied the structural counterexample, and the
-refutation was productive rather than merely negative, since locating the
-failure identified the critical exponent and yielded the corrected inequality
-for every integer $p\ge2$.
-
-The same year produced at least ten more, spanning
+The key motivation behind our focus is the typical asymmetry between proving a claim (universal quantification) versus disproving (existence of one bad example suffices). This asymmetry makes it particularly attractive to prioritize search for counterexamples via AI, and might explain the rising wave of AI-assisted refutations. Some recent, high-to-mid visibility examples include:
 \begin{enumerate*}[label=(\roman*)]
-\item the Jacobian conjecture in dimension three, by an explicit Keller map
-  $\C^3\to\C^3$ of constant Jacobian $-2$ \cite{TaoJacobian2026,Shaska2026};
-\item the Erd\H{o}s unit-distance conjecture \cite{UnitDistanceRemarks2026};
-\item the Gaussian completely monotone conjecture \cite{GuSellke2026};
-\item log-convexity of Fisher information along heat flow \cite{ZouEtAl2026};
-\item Litvak's Gaussian-minima conjecture \cite{Kunisky2026};
-\item the pairwise-independent correlation gap \cite{RamachandraNatarajan2026};
-\item near-quadratic Elekes--R\'onyai expansion \cite{Liu2026};
-\item the Gaussian moments conjecture \cite{LongGaussian2026};
-\item the $xz$- and Mathieu conjectures for $SU(2)$ \cite{LongSU22026}; and
+\item disproof of the Jacobian conjecture in dimension three, by an explicit Keller map found by Fable~\citep{Alpoge2026}; % ( out and generalized to every dimension above two by \citet{Gao2026}; see \citet{TaoJacobian2026} for an exposition;
+\item the Erd\H{o}s unit-distance conjecture, disproved at OpenAI~\citep{OpenAIUnitDistance2026}; explicit exponent by \citet{Sawin2026}, human-verified digest by \citet{UnitDistanceRemarks2026};
+\item the Gaussian completely monotone conjecture \citep{GuSellke2026};
+\item log-convexity of Fisher information along heat flow \citep{ZouEtAl2026};
+\item Litvak's Gaussian-minima conjecture \citep{Kunisky2026};
+\item the pairwise-independent correlation gap \citep{RamachandraNatarajan2026};
+\item near-quadratic Elekes--R\'onyai expansion \citep{Liu2026};
+\item the Gaussian moments conjecture \citep{LongGaussian2026};
+\item the $xz$- and Mathieu conjectures for $SU(2)$ \citep{LongSU22026}; and
 \item Schur positivity of claw-free chromatic symmetric functions
-  \cite{MatherneMorales2026}.
+  \citep{MatherneMorales2026}.
 \end{enumerate*}
-The list is illustrative, not a census. The census exists: \citet{AIMathIndex}
-is a source-first index of claims that open problems were solved, disproved, or
-advanced with AI, running to 424 entries across thirteen fields as of
-4~August~2026, of which 89 are recorded as disproofs and a further five as
-mixed outcomes.
 
-That index is also the sharpest available statement of what this archive is
-for. Its verification field is a label describing what somebody else did
-elsewhere --- ``Lean checked,'' ``author checked,'' ``independent specialist
-review: pending'' --- and it links to artifacts in third-party repositories
-without holding or running them. To its credit it says so: Lean-checked means
-the encoded proposition was accepted by Lean's kernel in the cited environment,
-and statement fidelity, the comparison of that proposition with the intended
-informal problem, is a separate question left open. Nothing there recomputes.
-What follows is the opposite trade: many fewer statements, each of them
-recomputed from source by \texttt{make verify} before it is admitted.
+Refutation is not the only thing the models have been doing well, and it would
+be misleading to leave the impression that it is. The most substantial single
+document of the year is \citet{OpenAITenAdvances2026}, ten chapters of results
+obtained by OpenAI's Astra model, several accompanied by machine-checked Lean
+certificates. The
+headline entries are genuinely hard: the exact exponential rate of the
+Cohn--Elkies sphere-packing linear program, the first improvement on the
+Kabatianskii--Levenshtein exponent since 1978; and the explicit construction of
+a non-sofic group, settling whether every countable group admits finite
+permutation approximations. Two caveats belong with the citation. The document
+is authored corporately --- no individual mathematician is named, and what role
+humans played in obtaining, checking, or writing the results is nowhere
+described --- and independent specialist review of the Lean certificates was
+still pending at the time of writing. Also, despite the informal name, these
+are not ten proofs: Chapter~4 is the Connes rigidity counterexample already
+listed above, and Chapter~10 disproves two further conjectures of Erd\H{o}s and
+Simonovits.
 
-The examples above differ sharply in proof technology, but their certificate
-profiles are uniform: a finite object is proposed, the defining hypotheses are
-checked, and one strict inequality or collision is verified. That is precisely
-the profile a build system can be made to re-execute, which is the observation
-the rest of this paper acts on.
+The contrast with \citet{Letwin2026} is instructive, and is the reason we
+belabour provenance. That paper proves the Kannan--Lov\'asz--Simonovits
+conjecture for quadratic forms and derives $\psi_n \le C\log^{1/4} n$; its
+disclosure section states precisely who did what, recording that ``ChatGPT 5.6
+Pro then drew the authors attention to a variant of Theorem 2.5 with $B=Id$
+after experimenting with the Monge--Amp\`ere equation, from which the author
+noticed that the proof would hold for general symmetric matrices $B$,'' and
+that the model ``also wrote all of the regularity arguments appearing in the
+appendix.'' That is a division of labour a reader can audit. A corporate author
+line is not.
+
+% Three of them fix the scale. \citet{Zhou2026} refutes Connes's group-factor rigidity conjecture --- that countable ICC groups with property~(T) are determined up to isomorphism by their group von Neumann algebras --- by exhibiting  infinitely many pairwise nonisomorphic, mutually commensurable, finitely generated such groups with isomorphic group factors; the abstract records that the result ``was obtained with assistance from GPT-5.6~Sol,
+% independently of and concurrently with work by OpenAI.'' \citet{DaiEtAl2026}
+% refutes Carlson's conjecture that the depth of a finite-group cohomology ring
+% is realized by the dimension of one of its associated primes, and the entire
+% witness is a single finite group: over $\overline{\mathbb F}_2$ the cohomology
+% ring of $G=\mathrm{SmallGroup}(128,859)$ has depth two while every
+% associated-prime quotient has dimension at least three.\footnote{The table row
+% this replaces said ``no associated prime has dimension two''; the wording here
+% follows the index, which is strictly stronger. Worth one look at the paper
+% before it ships.} There the AI role is division of labour rather than
+% authorship --- the TARS agent system located the group by autonomous search,
+% and the human author reconstructed the argument and rechecked the finite
+% computations independently.  \citet{ChenDeDiosEtAl2026} show that the
+% exponent~$2$ in Carbery's many-function almost-orthogonality inequality fails
+% for every $p>2$; Grok supplied the structural counterexample, and the
+% refutation was productive rather than merely negative, since locating the
+% failure identified the critical exponent and yielded the corrected inequality
+% for every integer $p\ge2$.
+
+% . The census exists: \citet{AIMathIndex}
+% is a source-first index of claims that open problems were solved, disproved, or
+% advanced with AI, running to 424 entries across thirteen fields as of
+% 4~August~2026, of which 89 are recorded as disproofs and a further five as
+% mixed outcomes.
+
+% That index is also the sharpest available statement of what this archive is
+% for. Its verification field is a label describing what somebody else did
+% elsewhere --- ``Lean checked,'' ``author checked,'' ``independent specialist
+% review: pending'' --- and it links to artifacts in third-party repositories
+% without holding or running them. To its credit it says so: Lean-checked means
+% the encoded proposition was accepted by Lean's kernel in the cited environment,
+% and statement fidelity, the comparison of that proposition with the intended
+% informal problem, is a separate question left open. Nothing there recomputes.
+% What follows is the opposite trade: many fewer statements, each of them
+% recomputed from source by \texttt{make verify} before it is admitted.
+
+% The examples above differ sharply in proof technology, but their certificate
+% profiles are uniform: a finite object is proposed, the defining hypotheses are
+% checked, and one strict inequality or collision is verified. That is precisely
+% the profile a build system can be made to re-execute, which is the observation
+% the rest of this paper acts on.
 
 % TODO (no source): the "double zero-shot" observation from the previous draft
 % --- that joke prompts sometimes succeed, doubly zero-shot because neither the
