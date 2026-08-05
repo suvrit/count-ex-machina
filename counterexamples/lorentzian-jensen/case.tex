@@ -2,7 +2,7 @@
 % environment that tools/build.py extracts; machine facts (ids, uid, dates,
 % urls, enums) live in case.json.  See counterexamples/AGENTS.md.
 
-\cxtitle{Lorentzian Jensen--Bregman metric principle}
+\cxtitle{Log-volume midpoint gap and its Lorentzian generalization}
 
 \begin{cxcredits}
 \posedby{S.~Sra}
@@ -13,33 +13,13 @@
 \end{cxcredits}
 
 \begin{cxcontext}
-A homogeneous polynomial with nonnegative coefficients is \emph{Lorentzian} in the sense of Br\"and\'en and Huh \citeyearpar{BrandenHuh} if all its second-order directional derivatives, taken at positive arguments, are quadratic forms of Lorentzian signature $(+,-,\ldots,-)$; in two variables, a form $\sum_{k}a_kx^ky^{d-k}$ is strictly Lorentzian exactly when the normalized coefficients $a_k/\binom dk$ are strictly log-concave, which is the criterion used below.  Lorentzian polynomials are log-concave on the positive orthant, so $F=-\log G$ is convex there and every midpoint Jensen gap $\J_G$ is nonnegative.  Recall that $d$ is a \emph{semimetric} when it is symmetric, nonnegative, vanishes only on equal arguments, and satisfies the triangle inequality; the triangle inequality is the property that fails below.  In the geometric statement, $K+L=\{k+\ell:k\in K,\ \ell\in L\}$ is the Minkowski sum of convex bodies and $\Vol$ is Lebesgue volume.
+For convex bodies, $K+L=\{k+\ell:k\in K,\ \ell\in L\}$ is the Minkowski sum and $\Vol$ is Lebesgue volume.  Recall that $d$ is a \emph{semimetric} when it is symmetric, nonnegative, vanishes only on equal arguments, and satisfies the triangle inequality; the triangle inequality is the property that fails below.  A homogeneous polynomial with nonnegative coefficients is \emph{Lorentzian} in the sense of Br\"and\'en and Huh \citeyearpar{BrandenHuh} if all its second-order directional derivatives, taken at positive arguments, are quadratic forms of Lorentzian signature $(+,-,\ldots,-)$; in two variables, a form $\sum_{k}a_kx^ky^{d-k}$ is strictly Lorentzian exactly when the normalized coefficients $a_k/\binom dk$ are strictly log-concave, which is the criterion used below.  Lorentzian polynomials are log-concave on the positive orthant, so $F=-\log G$ is convex there and every midpoint Jensen gap $\J_G$ is nonnegative.
 \end{cxcontext}
-
-% ---------------- result: lorentzian-jensen ----------------
-
-\begin{cxsource}{lorentzian-jensen}
-S.~Sra, standalone problem; formulation as recorded in \S1 of the case's \path{paper.tex}
-\end{cxsource}
-
-\begin{cxstatement}{lorentzian-jensen}
-Let $\mathcal C\subset\R^m$ be an open convex cone, let $G:\mathcal C\to(0,\infty)$, and put $F=-\log G$ and
-\[\J_G(x,y):=\frac{F(x)+F(y)}2-F\!\left(\frac{x+y}{2}\right).\]
-If $G$ is homogeneous and Lorentzian, then $d_G:=\sqrt{\J_G}$ is a semimetric.
-\end{cxstatement}
-
-\begin{cxsummary}{lorentzian-jensen}
-Lorentzian Jensen--Bregman metric principle: $\sqrt{\J_G}$ a semimetric for every homogeneous Lorentzian $G$
-\end{cxsummary}
-
-\begin{cxcertificate}{lorentzian-jensen}
-Strictly Lorentzian rational cubic and three rational points; exact rational triangle-violation bound $>7.15\times10^{-3}$.
-\end{cxcertificate}
 
 % ---------------- result: log-volume-distance ----------------
 
 \begin{cxsource}{log-volume-distance}
-S.~Sra, standalone problem (geometric specialization of the same principle); formulation as recorded in \S1 of the case's \path{paper.tex}
+S.~Sra, standalone problem posed in 2012; formulation as recorded in \S1 of the case's \path{paper.tex}
 \end{cxsource}
 
 \begin{cxstatement}{log-volume-distance}
@@ -53,19 +33,46 @@ Log-volume midpoint gap as a squared distance on convex bodies \cite{Shephard}
 \end{cxsummary}
 
 \begin{cxcertificate}{log-volume-distance}
-Shephard realization of the same cubic as a Steiner polynomial in $\R^3$; the violation transfers verbatim.
+Strictly Lorentzian rational cubic realized as a Steiner polynomial in $\R^3$; exact rational triangle-violation bound $>7.15\times10^{-3}$.
+\end{cxcertificate}
+
+% ---------------- result: lorentzian-jensen ----------------
+
+\begin{cxsource}{lorentzian-jensen}
+S.~Sra, standalone problem posed in 2019 as a Lorentzian generalization of the log-volume statement; formulation as recorded in \S1 of the case's \path{paper.tex}
+\end{cxsource}
+
+\begin{cxstatement}{lorentzian-jensen}
+Let $\mathcal C\subset\R^m$ be an open convex cone, let $G:\mathcal C\to(0,\infty)$, and put $F=-\log G$ and
+\[\J_G(x,y):=\frac{F(x)+F(y)}2-F\!\left(\frac{x+y}{2}\right).\]
+If $G$ is homogeneous and Lorentzian, then $d_G:=\sqrt{\J_G}$ is a semimetric.
+\end{cxstatement}
+
+\begin{cxsummary}{lorentzian-jensen}
+Lorentzian Jensen--Bregman metric principle: $\sqrt{\J_G}$ a semimetric for every homogeneous Lorentzian $G$
+\end{cxsummary}
+
+\begin{cxcertificate}{lorentzian-jensen}
+The same cubic read as a homogeneous Lorentzian polynomial; the violation transfers verbatim.
 \end{cxcertificate}
 
 \begin{cxrefutation}
-Both statements fall to a single witness: a strictly Lorentzian bivariate cubic, carried to convex bodies by Shephard's realization theorem.  Throughout, $\J_G(x,y)=\log G(\frac{x+y}2)-\frac12\log G(x)-\frac12\log G(y)$ is the midpoint Jensen gap of $F=-\log G$, and $d_G=\sqrt{\J_G}$.
+Both statements fall to a single witness: a strictly Lorentzian bivariate cubic, carried to convex bodies by Shephard's realization theorem.  Throughout, $\J_G(x,y)=\log G(\frac{x+y}2)-\frac12\log G(x)-\frac12\log G(y)$ is the midpoint Jensen gap of $F=-\log G$, and $d_G=\sqrt{\J_G}$.  The witness is isolated first, so that each of the two statements below is a reading of the same three numbers.
 
-\begin{theorem}[\statusfalse: Lorentzian Jensen--Bregman metricity]\label{thm:lorentzian}
-For
+\begin{lemma}[The witness]\label{lem:lorentzian-cubic}
+Let
 \begin{equation}\label{eq:lorentzian-cubic}
 G(x,y)=y^3+\tfrac{11}5xy^2+\tfrac32x^2y+\tfrac1{10}x^3,\qquad(x,y)\in\R_{>0}^2,
 \end{equation}
-the polynomial $G$ is strictly Lorentzian, yet $d_G=\sqrt{\J_G}$ violates the triangle inequality on $\R_{>0}^2$.
-\end{theorem}
+and take the rational points
+\begin{equation}\label{eq:lorentzian-points}
+p=(35,2),\qquad q=\left(\tfrac{11}2,\tfrac{23}2\right),\qquad r=\left(\tfrac1{500},15\right).
+\end{equation}
+Then $G$ is strictly Lorentzian, and
+\begin{equation}\label{eq:lorentzian-gap}
+d_G(p,r)-d_G(p,q)-d_G(q,r)>\frac{7156704176613847159228106087505875849130467}{10^{45}}>0.
+\end{equation}
+\end{lemma}
 \begin{proof}
 Writing $G=\sum_{k=0}^3a_kx^ky^{3-k}$ gives $(a_0,a_1,a_2,a_3)=(1,\frac{11}5,\frac32,\frac1{10})$.  By the bivariate criterion \cite[Example~2.3]{BrandenHuh}, strict Lorentzianity is strict log-concavity of $a_k/\binom3k$, and
 \[
@@ -74,21 +81,13 @@ Writing $G=\sum_{k=0}^3a_kx^ky^{3-k}$ gives $(a_0,a_1,a_2,a_3)=(1,\frac{11}5,\fr
 \left(\tfrac{11}{15}\right)^2=\tfrac{121}{225}>\tfrac12,\qquad
 \left(\tfrac12\right)^2=\tfrac14>\tfrac{11}{150}.
 \]
-So $G$ is strictly Lorentzian; in particular $F=-\log G$ is convex, and every Jensen gap below is nonnegative.  Take the rational points
-\begin{equation}\label{eq:lorentzian-points}
-p=(35,2),\qquad q=\left(\tfrac{11}2,\tfrac{23}2\right),\qquad r=\left(\tfrac1{500},15\right).
-\end{equation}
-With $R_{ab}:=G((a+b)/2)^2/(G(a)G(b))$ and $\J_G(a,b)=\frac12\log R_{ab}$, exact evaluation gives
+So $G$ is strictly Lorentzian; in particular $F=-\log G$ is convex, and every Jensen gap below is nonnegative.  With $R_{ab}:=G((a+b)/2)^2/(G(a)G(b))$ and $\J_G(a,b)=\frac12\log R_{ab}$, exact evaluation at \eqref{eq:lorentzian-points} gives
 \[
 R_{pq}=\frac{609584616081}{344696430080},\quad
 R_{qr}=\frac{1254036986210090216149539001}{1235460453386242764000000000},\quad
 R_{pr}=\frac{6141969899088096806341860001}{2794813396007162280000000000}.
 \]
-Outward-rounded rational enclosures for the three logarithms and their square roots---no floating point---then certify
-\[
-d_G(p,r)-d_G(p,q)-d_G(q,r)>\frac{7156704176613847159228106087505875849130467}{10^{45}}>0,
-\]
-so the triangle inequality fails.
+Outward-rounded rational enclosures for the three logarithms and their square roots---no floating point---then certify \eqref{eq:lorentzian-gap}.
 \end{proof}
 
 \begin{theorem}[\statusfalse: log-volume distance on convex bodies]\label{thm:volume-distance}
@@ -115,7 +114,14 @@ d_{\Vol}(A,B)^2=\J_G(p,q),\qquad
 d_{\Vol}(B,C)^2=\J_G(q,r),\qquad
 d_{\Vol}(A,C)^2=\J_G(p,r),
 \]
-and the violation of Theorem~\ref{thm:lorentzian} transfers verbatim.
+and the gap \eqref{eq:lorentzian-gap} of Lemma~\ref{lem:lorentzian-cubic} transfers verbatim.
+\end{proof}
+
+\begin{corollary}[\statusfalse: Lorentzian Jensen--Bregman metricity]\label{thm:lorentzian}
+The cubic \eqref{eq:lorentzian-cubic} is a homogeneous strictly Lorentzian polynomial for which $d_G=\sqrt{\J_G}$ violates the triangle inequality on $\R_{>0}^2$.  Hence $\sqrt{\J_G}$ is not a semimetric for every homogeneous Lorentzian $G$.
+\end{corollary}
+\begin{proof}
+Immediate from Lemma~\ref{lem:lorentzian-cubic}: the cubic \eqref{eq:lorentzian-cubic} is homogeneous of degree three and strictly Lorentzian, while \eqref{eq:lorentzian-gap} is exactly the failure of the triangle inequality for $d_G$ at the three points \eqref{eq:lorentzian-points}.
 \end{proof}
 
 \begin{remark}[What the audit leaves standing]

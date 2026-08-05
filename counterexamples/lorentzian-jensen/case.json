@@ -1,6 +1,6 @@
 {
   "id": "lorentzian-jensen",
-  "title": "Lorentzian Jensen-Bregman metric principle",
+  "title": "Log-volume midpoint gap and its Lorentzian generalization",
   "status": "refuted",
   "order": 10,
   "prose": "case.tex",
@@ -11,11 +11,11 @@
   "paper": "paper.tex",
   "results": [
     {
-      "id": "lorentzian-jensen",
-      "uid": "VRP253K2",
+      "id": "log-volume-distance",
+      "uid": "22S7HJGF",
       "class": "user formal problem",
       "certificate_level": "exact",
-      "theorem_label": "thm:lorentzian",
+      "theorem_label": "thm:volume-distance",
       "provenance": {
         "url": "counterexamples/lorentzian-jensen/paper.tex",
         "retrieved": null,
@@ -23,11 +23,11 @@
       }
     },
     {
-      "id": "log-volume-distance",
-      "uid": "22S7HJGF",
+      "id": "lorentzian-jensen",
+      "uid": "VRP253K2",
       "class": "user formal problem",
       "certificate_level": "exact",
-      "theorem_label": "thm:volume-distance",
+      "theorem_label": "thm:lorentzian",
       "provenance": {
         "url": "counterexamples/lorentzian-jensen/paper.tex",
         "retrieved": null,

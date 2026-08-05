@@ -35,7 +35,7 @@
 
 \begin{document}
 \begin{abstract}
-  This document reports 17 counterexamples found using GPT (Pro versions) over the course of the past 12 months, spanning combinatorics, number theory, convexity, functional analysis, among other areas. The counterexamples concern  both (reasonably) well-known problems as well as lesser known ones. Our counterexample collection is accompanied by: \href{https://github.com/suvrit/count-ex-machina}{\fontfamily{ppl}\selectfont\itshape https://github.com/suvrit/count-ex-machina}, and we warmly welcome new contributions to this repository, hoping to help build an \emph{``open-source database of counterexamples.''}
+  This document reports 18 counterexamples found using frontier language models---predominantly GPT (Pro versions), with one explicit certificate due to Opus 5---over the course of the past 12 months, spanning problems in combinatorics, number theory, convexity, functional analysis, and more. The counterexamples concern  both (reasonably) well-known problems as well as lesser known ones. Our counterexample collection is accompanied by: \href{https://github.com/suvrit/count-ex-machina}{\fontfamily{ppl}\selectfont\itshape https://github.com/suvrit/count-ex-machina}, and we warmly welcome new contributions to this repository, hoping to help build an \emph{``open-source database of counterexamples.''}
 \end{abstract}
 \maketitle
 
@@ -65,6 +65,10 @@ The author acknowledges generous support from the Alexander von Humboldt (AvH) f
 % opinion about where in the document the appendix sits.  It issues \appendix
 % itself, so anything after this line is numbered as appendix material.
 \input{generated/appendix}
+% Hand-written second appendix.  generated/appendix.tex has already issued
+% \appendix, so this file only opens a \section and is numbered B.
+\input{03-proof-details}
+\cxendrule   % closes the last section; the others are closed by the next heading
 \vskip 12pt
 
 \end{document}

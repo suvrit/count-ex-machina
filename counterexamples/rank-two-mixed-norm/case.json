@@ -1,21 +1,37 @@
 {
   "id": "rank-two-mixed-norm",
-  "title": "A rank-two completely-positive mixed-norm inequality",
+  "title": "A mixed-norm Cauchy-Schwarz question of Sah, Sawhney, Stoner and Zhao",
   "status": "refuted",
   "order": 8,
   "prose": "case.tex",
-  "bib_keys": [],
+  "bib_keys": [
+    "SahSawhneyStonerZhao2020",
+    "FitzGeraldHorn1977",
+    "HornMathias1990"
+  ],
   "results": [
+    {
+      "id": "mixed-norm-general-s",
+      "uid": "PBBV5T5S",
+      "class": "external formal problem",
+      "certificate_level": "exact",
+      "theorem_label": "thm:mixed-general",
+      "provenance": {
+        "url": "https://arxiv.org/abs/1809.09462",
+        "retrieved": "2026-08-05",
+        "fidelity": "verbatim"
+      }
+    },
     {
       "id": "rank-two-mixed-norm",
       "uid": "WY47E30H",
-      "class": "user formal problem",
+      "class": "external formal problem",
       "certificate_level": "computer-assisted",
       "theorem_label": "thm:mixed",
       "provenance": {
-        "url": null,
-        "retrieved": null,
-        "fidelity": "TODO: verbatim or paraphrase"
+        "url": "https://arxiv.org/abs/1809.09462",
+        "retrieved": "2026-08-05",
+        "fidelity": "paraphrase"
       }
     }
   ],

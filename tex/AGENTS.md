@@ -57,14 +57,26 @@ whole repository and set the main document to `tex/main.tex`.
 
 One case on its own, while writing it: `make preview CASE=<id>`. That wraps the
 case file in a minimal preamble (`tools/preview_case.py`) and leaves
-`tex/preview-<id>.pdf`. A preview has no metadata, so every quoted statement is
-labelled a paraphrase there; `make paper` is the real thing.
+`tex/preview/preview-<id>.pdf`. A preview has no metadata, so every quoted
+statement is labelled a paraphrase there; `make paper` is the real thing.
+
+Everything a preview produces stays in `tex/preview/`, which is gitignored
+whole, so `tex/*.tex` is exactly the files a person writes. The wrapper
+compiles from inside that directory with `TEXINPUTS`/`BIBINPUTS` pointing one
+level up, which is how `cxcase.sty` and `references.bib` are still found.
+Deleting the directory at any time is safe.
 
 ## Preamble facts worth knowing before you write LaTeX
 
 - Bare `\cite` is `\citep` (`\AtBeginDocument{\let\cite\citep}`); use `\citet`
   where the authors are read as prose, and `\citeyearpar{...}` after a name
   already spelled out.
+- **`\section` and `\subsection` are hooked.** `cxcase.sty` prepends a rule to
+  each, so every section is visually closed by the one that follows it; the
+  first heading is skipped, and `\cxendrule` in `main.tex` closes the last.
+  Do not add rules by hand — you will get two. Tune `\cxsecruleabove`,
+  `\cxsecrulebelow`, `\cxsecrulewidth`; setting the width to `0pt` turns them
+  off everywhere.
 - `cleveref` is loaded: `\Cref{thm:...}`.
 - Status macros: `\statusfalse`, `\statusproved`, `\statusnumeric`,
   `\statusconditional`, `\statusspeculative`. A refutation's theorem uses

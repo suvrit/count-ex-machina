@@ -154,7 +154,11 @@ def balanced_braces(s):
 CASE_ENVS = {"cxcontext", "cxrefutation"}
 RESULT_ENVS = {"cxsource", "cxstatement", "cxsummary", "cxcertificate"}
 ALL_ENVS = CASE_ENVS | RESULT_ENVS | {"cxcredits"}
-BEGIN_RE = re.compile(r"^\s*\\begin\{(cx[a-z]+)\}(?:\{([^}]*)\})?\s*$")
+# The RESULT_ENVS take their result id as a mandatory {arg}; cxcredits takes it
+# as LaTeX's optional [arg], because a bare \begin{cxcredits} has to stay legal
+# for the common case of one attribution per case.  Accept either spelling here
+# so the per-result form documented in _template/case.tex actually parses.
+BEGIN_RE = re.compile(r"^\s*\\begin\{(cx[a-z]+)\}(?:\{([^}]*)\}|\[([^\]]*)\])?\s*$")
 END_RE = re.compile(r"^\s*\\end\{(cx[a-z]+)\}\s*$")
 # Credit roles as they are written in case.tex.  \foundby takes two arguments
 # and may repeat; a witness can take more than one model or more than one
@@ -263,7 +267,7 @@ def parse_case_tex(text, errors, where):
                 return regions
             if name not in ALL_ENVS:
                 errors.append(f"{where}: line {lineno}: unknown region {name}; expected one of {sorted(ALL_ENVS)}")
-            open_env, arg, body = name, begin.group(2) or "", []
+            open_env, arg, body = name, begin.group(2) or begin.group(3) or "", []
         elif end:
             name = end.group(1)
             if name != open_env:

@@ -1,14 +1,19 @@
 #!/usr/bin/env python3
-"""High-precision audit of the rank-two mixed-norm counterexample.
+"""Audits of the two mixed-norm counterexamples in this dossier.
 
-Builds the 21-vector Gram matrix and evaluates the interpolation ratio at
-100 digits with mpmath.  The companion Sage script verify_mixed_norm.sage
-provides the outward-rounded interval certificate.
+rank-two-mixed-norm: builds the 21-vector Gram matrix and evaluates the
+interpolation ratio at 100 digits with mpmath.  The companion Sage script
+verify_mixed_norm.sage provides the outward-rounded interval certificate.
+
+mixed-norm-general-s: at s = 3/2 the deficit is a Z-linear combination of
+square roots of integers, so SymPy decides its sign exactly -- no floating
+point and no interval enclosure enter the assertion.
 """
 from __future__ import annotations
 import json
 import pathlib
 import mpmath as mp
+import sympy as sp
 
 
 def mixed_norm(A, p, q):
@@ -19,7 +24,57 @@ def mixed_norm(A, p, q):
     return mp.power(mp.fsum(c ** q for c in columns), 1 / q)
 
 
+# --- mixed-norm-general-s -------------------------------------------------
+# A, B are nonnegative integer matrices, so this refutes the conjecture under
+# its own hypothesis (A, B >= 0), not merely under the weaker "products are
+# nonnegative" variant.  At p = q the mixed norm is the entrywise l_p norm, so
+# the row/column convention of the two sources cannot matter here.
+A_GEN = [[2, 4], [5, 0], [1, 0]]
+B_GEN = [[0, 5], [4, 2], [1, 0]]
+
+
+def _gram(X, W):
+    return [[sum(X[r][i] * W[r][j] for r in range(len(X))) for j in range(len(W[0]))]
+            for i in range(len(X[0]))]
+
+
+def verify_general_s() -> dict:
+    """Exact refutation at s = q = 3/2, via a negative FitzGerald--Horn deficit."""
+    AtA, BtB, AtB = _gram(A_GEN, A_GEN), _gram(B_GEN, B_GEN), _gram(A_GEN, B_GEN)
+    three_halves = sp.Rational(3, 2)
+    deficit = sp.simplify(
+        sum(sp.Integer(v) ** three_halves for row in AtA for v in row)
+        + sum(sp.Integer(v) ** three_halves for row in BtB for v in row)
+        - 2 * sum(sp.Integer(v) ** three_halves for row in AtB for v in row)
+    )
+    # Sign of an algebraic number, decided exactly by SymPy.
+    assert deficit.is_negative is True, deficit
+    # The deficit being negative is, by AM-GM, exactly the failure of
+    # ||A^T B||_{s,s} <= ||A^T A||_{s,s}^{1/2} ||B^T B||_{s,s}^{1/2}.
+    mp.mp.dps = 60
+    s = mp.mpf(3) / 2
+
+    def ss(M):
+        return mp.power(mp.fsum(mp.power(abs(v), s) for row in M for v in row), 1 / s)
+
+    ratio = ss(AtB) / mp.sqrt(ss(AtA) * ss(BtB))
+    assert ratio > 1
+    return {
+        "A": A_GEN,
+        "B": B_GEN,
+        "AtA": AtA,
+        "BtB": BtB,
+        "AtB": AtB,
+        "s_q": ["3/2", "3/2"],
+        "deficit_exact": sp.sstr(deficit),
+        "deficit_decimal": sp.sstr(sp.N(deficit, 50)),
+        "deficit_is_negative": True,
+        "ratio": mp.nstr(ratio, 50),
+    }
+
+
 def verify() -> dict:
+    general = verify_general_s()
     mp.mp.dps = 100
     mult = [1, 18, 1, 1]
     weights = [46, 17, 42, 1]
@@ -35,8 +90,13 @@ def verify() -> dict:
     return {
         "id": "rank-two-mixed-norm",
         "ok": True,
-        "summary": "100-digit ratio = " + mp.nstr(ratio, 80),
+        "summary": (
+            "100-digit ratio = " + mp.nstr(ratio, 80)
+            + "; general-s exact deficit = " + general["deficit_decimal"]
+            + " < 0 (s=q=3/2), ratio = " + general["ratio"]
+        ),
         "witness": {
+            "mixed_norm_general_s": general,
             "s_q": ["6/5", "6"],
             "multiplicities": [1, 18, 1, 1],
             "weights": [46, 17, 42, 1],

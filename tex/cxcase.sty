@@ -30,6 +30,7 @@
 \ProvidesPackage{cxcase}[2026/08/02 v1.0 count-ex-machina case format]
 
 \RequirePackage{environ}
+\RequirePackage{etoolbox}
 \RequirePackage{amsmath,amssymb,amsthm,mathtools}
 \RequirePackage{booktabs,longtable,array}
 \RequirePackage{xcolor}
@@ -112,6 +113,42 @@
 \newcommand{\cxtheorem}[2]{\@namedef{cx@theorem@#1}{#2}}
 \newcommand{\cx@theorem}[1]{%
   \@ifundefined{cx@theorem@#1}{thm:#1}{\@nameuse{cx@theorem@#1}}}
+% ---------------------------------------------------------------------------
+% Section separators.
+% ---------------------------------------------------------------------------
+% A rule closing each section, so a reader scanning the paper can see where one
+% case stops and the next begins.  It is emitted *before* each heading rather
+% than after each section's text, because "after" has no hook: a section ends
+% wherever the next one starts.  \cxendrule closes the last one.
+%
+% Tune these three; set \cxsecrulewidth to 0pt to switch the rules off without
+% touching anything else.
+\newlength{\cxsecruleabove}\setlength{\cxsecruleabove}{16pt}
+\newlength{\cxsecrulebelow}\setlength{\cxsecrulebelow}{0pt}
+\newlength{\cxsecrulewidth}\setlength{\cxsecrulewidth}{0.4pt}
+\newcommand{\cx@rule}{%
+  \par
+  % Keep the rule with the text it closes: a lone rule at the top of a page
+  % reads as a mistake.  \addvspace rather than \vspace so consecutive skips
+  % (the rule's, then the heading's own) collapse instead of accumulating.
+  \penalty-40
+  \addvspace{\cxsecruleabove}%
+  \hrule height \cxsecrulewidth\relax
+  \nobreak
+  \addvspace{\cxsecrulebelow}%
+}
+% The first heading has no section before it to close.
+\newif\ifcx@seenheading
+\newcommand{\cx@headingrule}{%
+  \ifcx@seenheading\cx@rule\else\global\cx@seenheadingtrue\fi}
+\pretocmd{\section}{\cx@headingrule}{}{%
+  \PackageWarning{cxcase}{Could not hook \string\section; section rules are off}}
+\pretocmd{\subsection}{\cx@headingrule}{}{%
+  \PackageWarning{cxcase}{Could not hook \string\subsection; section rules are off}}
+% \cxendrule -- closes the final section, wherever the author wants it to end
+% (before the acknowledgments, say, rather than after the bibliography).
+\newcommand{\cxendrule}{\cx@rule}
+
 % \cxgroup{Heading} -- opens the shared section a group of cases lives under.
 \newcommand{\cxgroup}[1]{\section{#1}}
 
@@ -141,7 +178,19 @@
 \newcommand{\formalizedby}[1]{\def\cx@formalized{#1}}
 \newcommand{\auditedby}[1]{\def\cx@audited{#1}}
 \newcommand{\contributedby}[1]{\def\cx@contributed{#1}}
+% \foundby accumulates *within* a block, but a per-result block that restates it
+% replaces the case-level value rather than appending to it -- "roles not
+% restated are inherited" means a restated role overrides.  Without this, a
+% result whose finder differs from the case default reads as having been found
+% by both, and tools/build.py (which merges key by key) would disagree with the
+% typeset line.  \cx@inherited is true exactly while a block still carries the
+% inherited default untouched.
+\newif\ifcx@inherited
 \newcommand{\foundby}[2]{%
+  \ifcx@inherited
+    \cx@inheritedfalse
+    \let\cx@found\@empty
+  \fi
   \ifx\cx@found\@empty
     \def\cx@found{#1 (#2)}%
   \else
@@ -151,6 +200,7 @@
 % A case-level block starts from nothing -- roles do not leak from the case
 % before it -- and then becomes the default its own per-result blocks build on.
 \newcommand{\cx@resetroles}{%
+  \cx@inheritedfalse
   \global\let\cx@posed\@empty        \global\let\cx@found\@empty
   \global\let\cx@formalized\@empty   \global\let\cx@audited\@empty
   \global\let\cx@contributed\@empty}
@@ -160,6 +210,7 @@
   \global\let\cx@d@formalized\cx@formalized \global\let\cx@d@audited\cx@audited
   \global\let\cx@d@contributed\cx@contributed}
 \newcommand{\cx@loadroles}{%
+  \cx@inheritedtrue
   \let\cx@posed\cx@d@posed              \let\cx@found\cx@d@found
   \let\cx@formalized\cx@d@formalized    \let\cx@audited\cx@d@audited
   \let\cx@contributed\cx@d@contributed}
