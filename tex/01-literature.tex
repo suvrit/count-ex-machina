@@ -1,60 +1,54 @@
 \section{Introduction}
-AI assisted mathematics is on a steep rise; as of writing this document, the website \href{https://aimath.robertj1.com}{[AIMath]} lists 424 proofs and disproofs of a broad variety of questions. The focus of our manuscript is on counterexamples that refute some conjecture explicitly or provide a disproof of some problem via a relatively short, machine-supported argument. 
+\noindent AI assisted mathematics has literally exploded; as of writing this document, the website \href{https://aimath.robertj1.com}{[AIMath]} lists 424 proofs and disproofs of a variety of mathematical questions. Our focus in this manuscript is on counterexamples that refute a conjecture or provide a disproof of some problem, providing both a human friendly proof and a machine-verifiable certificate. 
 
-The key motivation behind our focus is the typical asymmetry between proving a claim (universal quantification) versus disproving (existence of one bad example suffices). This asymmetry makes it particularly attractive to prioritize search for counterexamples via AI, and might explain the rising wave of AI-assisted refutations. Some recent, high-to-mid visibility examples include:
-\begin{enumerate*}[label=(\roman*)]
-\item disproof of the Jacobian conjecture in dimension three, by an explicit Keller map found by Fable~\citep{Alpoge2026}; % ( out and generalized to every dimension above two by \citet{Gao2026}; see \citet{TaoJacobian2026} for an exposition;
-\item the Erd\H{o}s unit-distance conjecture, disproved at OpenAI~\citep{OpenAIUnitDistance2026}; explicit exponent by \citet{Sawin2026}, human-verified digest by \citet{UnitDistanceRemarks2026};
-\item the Gaussian completely monotone conjecture \citep{GuSellke2026};
-\item log-convexity of Fisher information along heat flow \citep{ZouEtAl2026};
-\item Litvak's Gaussian-minima conjecture \citep{Kunisky2026};
-\item the pairwise-independent correlation gap \citep{RamachandraNatarajan2026};
-\item near-quadratic Elekes--R\'onyai expansion \citep{Liu2026};
-\item the Gaussian moments conjecture \citep{LongGaussian2026};
-\item the $xz$- and Mathieu conjectures for $SU(2)$ \citep{LongSU22026}; and
-\item Schur positivity of claw-free chromatic symmetric functions
-  \citep{MatherneMorales2026}.
-\end{enumerate*}
+\vskip5pt
+\noindent\textbf{\emph{Why counterxamples?}} The typical asymmetry between proving a claim (universal quantification) versus disproving (existence of one counterexample) makes it particularly attractive to prioritize AI-assisted search. And available AI assistants have been strikingly successful in 2026 at constructing counterexample. Ten noteworthy conjectured disproved by AI in 2026 include:
+\vskip5pt
+\begin{small}
+  \begin{enumerate}[label=(\roman*),itemsep=0pt]
+  \item the Jacobian conjecture in 3 dimensions by an explicit Keller map~\citep{Alpoge2026}; % ( out and generalized to every dimension above two by \citet{Gao2026}; see \citet{TaoJacobian2026} for an exposition;
+  \item the Erd\H{o}s unit-distance conjecture, disproved at~\citet{OpenAIUnitDistance2026}; with an explicit exponent by \citet{Sawin2026}, and a human-verified digest by \citet{UnitDistanceRemarks2026};
+  \item the Gaussian completely monotone conjecture \citep{GuSellke2026};
+  \item conjectured log-convexity of Fisher information along heat flow \citep{ZouEtAl2026};
+  \item Litvak's Gaussian-minima conjecture \citep{Kunisky2026};
+  \item the pairwise-independent correlation gap \citep{RamachandraNatarajan2026};
+  \item near-quadratic Elekes--R\'onyai expansion \citep{Liu2026};
+  \item the Gaussian moments conjecture \citep{LongGaussian2026};
+  \item the $xz$- and Mathieu conjectures for $SU(2)$ \citep{LongSU22026}; and
+  \item conjectured Schur positivity of claw-free chromatic symmetric functions
+    \citep{MatherneMorales2026}.
+  \end{enumerate}
+\end{small}
 
-Refutation is not the only thing the models have been doing well, and it would
-be misleading to leave the impression that it is. The most substantial single
-document of the year is \citet{OpenAITenAdvances2026}, ten chapters of results
-obtained by OpenAI's Astra model, several accompanied by machine-checked Lean
-certificates.\footnote{Though as of this writing, the claimed disproof of Connes rigidity conjecture seems to be invalid, because the AI system silently went down a path that uses a group with an infinite center, which violates the setup and invalidates the disproof---interestingly, this type of invalidation precisely violates Rule 2 in our definition of an acceptable disproof.} The headline entries are genuinely hard: the exact exponential rate of the
-Cohn--Elkies sphere-packing linear program, the first improvement on the
-Kabatianskii--Levenshtein exponent since 1978; and the explicit construction of
-a non-sofic group, settling whether every countable group admits finite
-permutation approximations. Two caveats belong with the citation. The document
-is authored corporately --- no individual mathematician is named, and what role
-humans played in obtaining, checking, or writing the results is nowhere
-described --- and independent specialist review of the Lean certificates was
-still pending at the time of writing. Also, despite the informal name, these
-are not ten proofs: Chapter~4 is the Connes rigidity counterexample already
-listed above, and Chapter~10 disproves two further conjectures of Erd\H{o}s and
-Simonovits.
+\vskip5pt
+However, refutation is not the only aspect the models have been exemplary at. An impressive recent achievement can be seen in the document~\citep{OpenAITenAdvances2026} that includes 10 results obtained by OpenAI's internal Astra model, with several results accompanied by machine-checkable Lean certificates.\footnote{Allegedly, as of this writing, the claimed disproof of the Connes rigidity conjecture is invalid, because the AI system silently used a group with an infinite center, which violates the conjecture's framing and is thus invalid.} A more mixed set of results corresponds to the ``First Proof'' \citep{abouzaid2026proof} project, where it seems so that AI models have not yet managed to make a breakthrough. Continuing in the line of conjectures and their mechanical verification, this new project seems like a wonderful resource~\citep{FormalConjecturesPaper2026}.
 
-The contrast with \citet{Letwin2026} is instructive, and is the reason we
-belabour provenance. That paper proves the Kannan--Lov\'asz--Simonovits
-conjecture for quadratic forms and derives $\psi_n \le C\log^{1/4} n$; its
-disclosure section states precisely who did what, recording that ``ChatGPT 5.6
-Pro then drew the authors attention to a variant of Theorem 2.5 with $B=Id$
-after experimenting with the Monge--Amp\`ere equation, from which the author
-noticed that the proof would hold for general symmetric matrices $B$,'' and
-that the model ``also wrote all of the regularity arguments appearing in the
-appendix.'' That is a division of labour a reader can audit. A corporate author
-line is not.
+% The headline entries are genuinely hard: the exact exponential rate of the
+% Cohn--Elkies sphere-packing linear program, the first improvement on the
+% Kabatianskii--Levenshtein exponent since 1978; and the explicit construction of
+% a non-sofic group, settling whether every countable group admits finite
+% permutation approximations. Two caveats belong with the citation. The document
+% is authored corporately --- no individual mathematician is named, and what role
+% humans played in obtaining, checking, or writing the results is nowhere
+% described --- and independent specialist review of the Lean certificates was
+% still pending at the time of writing. Also, despite the informal name, these
+% are not ten proofs: Chapter~4 is the Connes rigidity counterexample already
+% listed above, and Chapter~10 disproves two further conjectures of Erd\H{o}s and
+% Simonovits.
 
-Finally, a word on what this document and its accompanying repository are
-trying to be.  Our explicit goal is that the exposition be human-readable and
-human-verifiable: each statement is quoted as it was posed, each witness is
-exhibited explicitly, and each refutation is a short argument that a reader can
-follow and check by hand.  That exposition is then \emph{accompanied} by
-verification steps a machine can carry out---exact arithmetic or rigorous
-interval enclosures, rerunnable from the repository by a stranger---and the
-ordering of the two matters to us.  For us, the joy of understanding
-mathematics, of proving and disproving, and of communicating that understanding
-to other humans is the primary ideal we aspire towards; the machine-checkable
-certificates exist to serve that ideal, not to stand in for it.
+% The contrast with \citet{Letwin2026} is instructive, and is the reason we
+% belabor provenance. That paper proves the Kannan--Lov\'asz--Simonovits
+% conjecture for quadratic forms and derives $\psi_n \le C\log^{1/4} n$; its
+% disclosure section states precisely who did what, recording that ``ChatGPT 5.6
+% Pro then drew the authors attention to a variant of Theorem 2.5 with $B=Id$
+% after experimenting with the Monge--Amp\`ere equation, from which the author
+% noticed that the proof would hold for general symmetric matrices $B$,'' and
+% that the model ``also wrote all of the regularity arguments appearing in the
+% appendix.'' That is a division of labour a reader can audit. A corporate author
+% line is not.
+
+\noindent
+\textbf{\textcolor{darkblue}{Our Philosophy.}} First, a short word on our \emph{raison d'être}. This work started with the author's effort in collecting some of the AI-assisted disproofs found over roughly the past 12 months. While doing so, we expressly wanted to ensure that the exposition is human-readable and human-verifiable: each problem statement is quoted as it was posed, and each disproof or witness is exhibited explicitly. In some cases, we share additional results or refinements that refine and enrich the discussion. We supplement our exposition with source code that can be used to machine-verify counterexamples---using exact arithmetic or rigorous interval enclosures. But ultimately, it is for the joy of understanding mathematics, of proving and disproving, and of sharing that progress with others that is our defining motivation; the machine-checkable component supports that ideal, hopefully even beyond its pedantic necessity. 
 
 % Three of them fix the scale. \citet{Zhou2026} refutes Connes's group-factor rigidity conjecture --- that countable ICC groups with property~(T) are determined up to isomorphism by their group von Neumann algebras --- by exhibiting  infinitely many pairwise nonisomorphic, mutually commensurable, finitely generated such groups with isomorphic group factors; the abstract records that the result ``was obtained with assistance from GPT-5.6~Sol,
 % independently of and concurrently with work by OpenAI.'' \citet{DaiEtAl2026}
