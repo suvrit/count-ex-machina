@@ -43,10 +43,15 @@
 \makeatother
 
 
-\title{\textit{Count-ex-machina}: GPT, the Counterexample Machine}
-\author{Suvrit Sra}
-\email{s.sra@tum.de}
-\address{TU Munich, Dept.\ of Mathematics, School of CIT; Garching, Germany}
+\title{GPT, the Counterexample Machine}
+% amsart forbids \thanks inside \author, and its title-block footnotes are
+% unmarked (amsart.cls l.655 \let\@thefnmark\relax), so the * that ties the note
+% to the author name is placed by hand at both ends.  The optional argument
+% keeps the star out of the running head.
+\author[Count ex Machina]{Count ex Machina\textsuperscript{\normalfont*}}
+\thanks{*\,Project name used to future proof for possible multiple contributors. The first version is authored by Suvrit Sra (\texttt{s.sra@tum.de}; TU Munich, Dept.~of Math, School of CIT.)}
+%\email{s.sra@tum.de}
+%\address{TU Munich, Dept.\ of Mathematics, School of CIT; Garching, Germany}
 \date{Draft of \today}
 \subjclass[2020]{Primary 68T01, 00A30; Secondary 05E05, 15A42, 26D10, 60E15, 68W40}
 \keywords{AI-assisted mathematics, counterexamples, real stable polynomials, Schur positivity, matrix inequalities, determinantal point processes, reproducible mathematics}

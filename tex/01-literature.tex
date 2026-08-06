@@ -20,7 +20,7 @@ Refutation is not the only thing the models have been doing well, and it would
 be misleading to leave the impression that it is. The most substantial single
 document of the year is \citet{OpenAITenAdvances2026}, ten chapters of results
 obtained by OpenAI's Astra model, several accompanied by machine-checked Lean
-certificates.\footnote{Though as of this writing, the claimed disproof of Connes rigidity conjecture is false, because the AI system silently went down a path that uses a group with an infinite center, which violates the setup and invalidates the disproof---interestingly, this type of invalidation precisely violates Rule 2 in our definition of an acceptable disproof.} The headline entries are genuinely hard: the exact exponential rate of the
+certificates.\footnote{Though as of this writing, the claimed disproof of Connes rigidity conjecture seems to be invalid, because the AI system silently went down a path that uses a group with an infinite center, which violates the setup and invalidates the disproof---interestingly, this type of invalidation precisely violates Rule 2 in our definition of an acceptable disproof.} The headline entries are genuinely hard: the exact exponential rate of the
 Cohn--Elkies sphere-packing linear program, the first improvement on the
 Kabatianskii--Levenshtein exponent since 1978; and the explicit construction of
 a non-sofic group, settling whether every countable group admits finite
@@ -43,6 +43,18 @@ noticed that the proof would hold for general symmetric matrices $B$,'' and
 that the model ``also wrote all of the regularity arguments appearing in the
 appendix.'' That is a division of labour a reader can audit. A corporate author
 line is not.
+
+Finally, a word on what this document and its accompanying repository are
+trying to be.  Our explicit goal is that the exposition be human-readable and
+human-verifiable: each statement is quoted as it was posed, each witness is
+exhibited explicitly, and each refutation is a short argument that a reader can
+follow and check by hand.  That exposition is then \emph{accompanied} by
+verification steps a machine can carry out---exact arithmetic or rigorous
+interval enclosures, rerunnable from the repository by a stranger---and the
+ordering of the two matters to us.  For us, the joy of understanding
+mathematics, of proving and disproving, and of communicating that understanding
+to other humans is the primary ideal we aspire towards; the machine-checkable
+certificates exist to serve that ideal, not to stand in for it.
 
 % Three of them fix the scale. \citet{Zhou2026} refutes Connes's group-factor rigidity conjecture --- that countable ICC groups with property~(T) are determined up to isomorphism by their group von Neumann algebras --- by exhibiting  infinitely many pairwise nonisomorphic, mutually commensurable, finitely generated such groups with isomorphic group factors; the abstract records that the result ``was obtained with assistance from GPT-5.6~Sol,
 % independently of and concurrently with work by OpenAI.'' \citet{DaiEtAl2026}

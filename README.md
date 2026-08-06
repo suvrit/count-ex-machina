@@ -34,6 +34,17 @@ The archive is **broad by design**. A refuted statement does not have to be
 famous, and you do not have to be a professional mathematician to send one in.
 What is not negotiable is the certificate — see [Scope](#scope).
 
+**Read first, run second.** The explicit goal of both the paper and this
+repository is that the exposition be human-readable and human-verifiable: every
+statement is quoted as it was posed, every witness is written out, and every
+refutation is an argument you can follow and check on paper. The
+machine-checkable part — `verify.py`, exact arithmetic, interval enclosures —
+*accompanies* that reading rather than replacing it. For us the joy of
+understanding mathematics, of proving and disproving, and of communicating that
+understanding to other humans is the primary ideal we aspire towards; the
+certificates exist to serve it, so that nobody has to take our word for
+anything.
+
 ## Contribute one in a single paste
 
 You have a counterexample and an AI agent open. That is the whole prerequisite
