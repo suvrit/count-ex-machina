@@ -119,7 +119,8 @@
 % A rule closing each section, so a reader scanning the paper can see where one
 % case stops and the next begins.  It is emitted *before* each heading rather
 % than after each section's text, because "after" has no hook: a section ends
-% wherever the next one starts.  \cxendrule closes the last one.
+% wherever the next one starts.  \cxendrule closes the last one.  Sections only
+% -- see the \pretocmd below for why subsections are left alone.
 %
 % Tune these three; set \cxsecrulewidth to 0pt to switch the rules off without
 % touching anything else.
@@ -141,10 +142,12 @@
 \newif\ifcx@seenheading
 \newcommand{\cx@headingrule}{%
   \ifcx@seenheading\cx@rule\else\global\cx@seenheadingtrue\fi}
+% Only \section is hooked.  \subsection deliberately is not: a rule directly
+% between a section heading and its first subsection, with no text between them,
+% reads as a mistake.  Cases grouped as subsections are therefore separated by
+% their headings alone.
 \pretocmd{\section}{\cx@headingrule}{}{%
   \PackageWarning{cxcase}{Could not hook \string\section; section rules are off}}
-\pretocmd{\subsection}{\cx@headingrule}{}{%
-  \PackageWarning{cxcase}{Could not hook \string\subsection; section rules are off}}
 % \cxendrule -- closes the final section, wherever the author wants it to end
 % (before the acknowledgments, say, rather than after the bibliography).
 \newcommand{\cxendrule}{\cx@rule}

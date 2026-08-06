@@ -24,6 +24,24 @@
 \setlist{nosep,leftmargin=*}
 \lstset{basicstyle=\ttfamily\small,breaklines=true,frame=single,columns=fullflexible}
 
+% Bold the small-caps section titles.  amsart sets them {\normalfont\scshape
+% \centering} (amsart.cls l.1112); we insert \bfseries surgically rather than
+% redefining \section, because cxcase.sty has already \pretocmd'd the section
+% rule onto it and a redefinition here would silently throw that hook away.
+%
+% The \fontfamily{ppl} is the actual hack, and it is not optional: Latin Modern
+% ships NO bold small caps in any family -- t1lmr.fd declares sc only in series
+% m, and cfr-lm's t1clm.fd "provides" T1/clm/bx/sc as <->ssub*clm/bx/n, i.e. it
+% silently gives you bold upright with no warning and no small caps.  Palatino
+% has the real thing (t1ppl.fd l.26 declares T1/ppl/b/sc, and bx/sc ssubs to
+% it), and ppl is already in the document -- the abstract's repo URL uses it.
+% Headings are therefore Palatino while the body stays Latin Modern.
+% \subsection is untouched: amsart already sets it \bfseries, and not in caps.
+\makeatletter
+\patchcmd{\section}{\scshape}{\fontfamily{ppl}\bfseries\scshape\selectfont}{}{%
+  \PackageWarning{main}{Could not bold the section font; amsart may have changed}}
+\makeatother
+
 
 \title{\textit{Count-ex-machina}: GPT, the Counterexample Machine}
 \author{Suvrit Sra}
@@ -53,7 +71,7 @@
 
 
 \subsection*{Acknowledgments}
-The author acknowledges generous support from the Alexander von Humboldt (AvH) foundation via an AvH Professorship in AI.
+The author acknowledges generous support from the Alexander von Humboldt (AvH) foundation via an AvH Professorship in AI. I'd like to also thank Apoorva Khare (IISC) for suggesting that I write up all the counterexamples in one document, thus helping me overcome the ``writer's block'' of not wanting to write 10 separate arXiv preprints!
 
 
 \bibliographystyle{abbrvnat}
