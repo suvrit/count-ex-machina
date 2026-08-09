@@ -10,7 +10,7 @@
 [![verify](https://github.com/suvrit/count-ex-machina/actions/workflows/verify.yml/badge.svg?branch=main)](https://github.com/suvrit/count-ex-machina/actions/workflows/verify.yml)
 -->
 <!-- BEGIN COUNT BADGES -->
-[![counterexamples](https://img.shields.io/badge/counterexamples-13%20refuted%2C%205%20additional-0b7285)](#the-cases)
+[![counterexamples](https://img.shields.io/badge/counterexamples-11%20refuted%2C%207%20additional-0b7285)](#the-cases)
 [![certificates](https://img.shields.io/badge/certificates-16%20exact%2C%202%20interval-0b7285)](#the-cases)
 <!-- END COUNT BADGES -->
 [![Python](https://img.shields.io/badge/Python-3.14-3776AB?logo=python&logoColor=white)](requirements.txt)
@@ -218,10 +218,9 @@ an immutable `uid` in `registry.json`; that is a database key, not a citation.
 | 8 | [mixed-norm-general-s](counterexamples/rank-two-mixed-norm/) | refuted | [A. Sah, M. Sawhney, D. Stoner and Y. Zhao, the open question stated immediately after inequality (3.1) in §3](https://arxiv.org/abs/1809.09462) | exact | Opus 5 (2026-08) |
 | 9 | [rank-two-mixed-norm](counterexamples/rank-two-mixed-norm/) | refuted | [A. Sah, M. Sawhney, D. Stoner and Y. Zhao, the same open question at $B=A$; put to S. Sra by Y. Zhao in private communication, May 2018](https://arxiv.org/abs/1809.09462) | computer-assisted | GPT-5.6 Sol (Pro) (2026-07-13) |
 | 10 | [quantum-coupon-collector](counterexamples/quantum-coupon-collector/) | refuted | [S. Sra, MathOverflow question 263833](https://mathoverflow.net/questions/263833/quantum-coupon-collection-positivity-of-an-alternating-sum-of-matrices) | exact | GPT Pro (2026-02-16) |
-| 11 | [log-volume-distance](counterexamples/lorentzian-jensen/) | refuted | [S. Sra, standalone problem posed in 2012; formulation as recorded in §1 of the case's `paper.tex`](counterexamples/lorentzian-jensen/paper.tex) | exact | TODO (TODO) |
-| 12 | [lorentzian-jensen](counterexamples/lorentzian-jensen/) | refuted | [S. Sra, standalone problem posed in 2019 as a Lorentzian generalization of the log-volume statement; formulation as recorded in §1 of the case's `paper.tex`](counterexamples/lorentzian-jensen/paper.tex) | exact | TODO (TODO) |
-| 13 | [odonnell-matrix-conjecture](counterexamples/odonnell-matrix-conjecture/) | refuted | [R. O'Donnell, answering a question of Nengkun Yu on MathOverflow, reports that he and J. Wright had been considering the problem in connection with quantum tomography, and closes by conjecturing the unit-trace case. The same conjecture was put to S. Sra by O'Donnell in personal communication, a fact the public answer itself records.](https://mathoverflow.net/a/212759) | exact | GPT-5.6 Pro (2026-08) |
-| 14 | [dpp-feasible-step](counterexamples/dpp-feasible-step/) | refuted by explicit construction | [Feasible Picard steps for DPP likelihood — the unnumbered claim in §2](https://proceedings.mlr.press/v37/mariet15.pdf) | exact | TODO (TODO) |
+| 11 | [odonnell-matrix-conjecture](counterexamples/odonnell-matrix-conjecture/) | refuted | [R. O'Donnell, answering a question of Nengkun Yu on MathOverflow, reports that he and J. Wright had been considering the problem in connection with quantum tomography, and closes by conjecturing the unit-trace case. The same conjecture was put to S. Sra by O'Donnell in personal communication, a fact the public answer itself records.](https://mathoverflow.net/a/212759) | exact | GPT-5.6 Pro (2026-08) |
+| 12 | [dpp-feasible-step](counterexamples/dpp-feasible-step/) | refuted by explicit construction | [Feasible Picard steps for DPP likelihood — the unnumbered claim in §2](https://proceedings.mlr.press/v37/mariet15.pdf) | exact | TODO (TODO) |
+| 13–14 | [lorentzian-jensen](counterexamples/lorentzian-jensen/) | refuted by explicit construction | [Log-volume midpoint gap and its Lorentzian generalization — the geometric specialization in §1, the proposed master theorem in §1](counterexamples/lorentzian-jensen/paper.tex) | exact | TODO (TODO) |
 | 15–18 | [sdd-nystrom-diminishing-returns](counterexamples/sdd-nystrom-diminishing-returns/), [osi-sketch-and-solve](counterexamples/osi-sketch-and-solve/), [hamiltonian-nepv-identity](counterexamples/hamiltonian-nepv-identity/), [qrcp-orthonormal-greedy](counterexamples/qrcp-orthonormal-greedy/) | refuted by explicit construction | [Simons workshop open questions — Problem 4.6(b), Problem 5.1, the identity after eq. (20) in §6.2, Problem 4.3](https://arxiv.org/html/2602.05394v2) | exact | OpenAI Codex (2026-08) |
 <!-- END CASE TABLE -->
 

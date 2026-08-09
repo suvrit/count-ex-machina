@@ -3,6 +3,7 @@
   "title": "Log-volume midpoint gap and its Lorentzian generalization",
   "status": "refuted",
   "order": 10,
+  "appendix": true,
   "prose": "case.tex",
   "bib_keys": [
     "BrandenHuh",
@@ -20,7 +21,8 @@
         "url": "counterexamples/lorentzian-jensen/paper.tex",
         "retrieved": null,
         "fidelity": "paraphrase"
-      }
+      },
+      "ledger_label": "the geometric specialization in §1"
     },
     {
       "id": "lorentzian-jensen",
@@ -32,7 +34,8 @@
         "url": "counterexamples/lorentzian-jensen/paper.tex",
         "retrieved": null,
         "fidelity": "paraphrase"
-      }
+      },
+      "ledger_label": "the proposed master theorem in §1"
     }
   ],
   "verify": {

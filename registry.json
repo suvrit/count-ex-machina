@@ -406,90 +406,12 @@
     }
   },
   {
-    "uid": "22S7HJGF",
-    "result_id": "log-volume-distance",
-    "case": "lorentzian-jensen",
-    "title": "Log-volume midpoint gap and its Lorentzian generalization",
-    "status": "refuted",
-    "ledger_no": 11,
-    "appendix": false,
-    "ledger_label": null,
-    "withheld_reason": null,
-    "class": "user formal problem",
-    "certificate_level": "exact",
-    "certificate_tex": "Strictly Lorentzian rational cubic realized as a Steiner polynomial in $\\R^3$; exact rational triangle-violation bound $>7.15\\times10^{-3}$.",
-    "theorem_label": "thm:volume-distance",
-    "provenance": {
-      "source_tex": "S.~Sra, standalone problem posed in 2012; formulation as recorded in \\S1 of the case's \\path{paper.tex}",
-      "url": "counterexamples/lorentzian-jensen/paper.tex",
-      "retrieved": null,
-      "fidelity": "paraphrase",
-      "statement_tex": "The log-volume midpoint gap is the square of a distance on convex bodies: that is,\n\\[d_{\\Vol}(K,L):=\\left[\\log\\Vol\\!\\left(\\frac{K+L}{2}\\right)-\\tfrac12\\log\\Vol(K)-\\tfrac12\\log\\Vol(L)\\right]^{1/2}\\]\nis a semimetric on convex bodies."
-    },
-    "credits": {
-      "posed_by": "S.~Sra",
-      "found_by": [
-        {
-          "model": "TODO",
-          "date": "TODO"
-        }
-      ],
-      "formalized_by": "S.~Sra",
-      "audited_by": "S.~Sra",
-      "contributed_by": "S.~Sra"
-    },
-    "verify": {
-      "python": "verify.py",
-      "sage": [],
-      "requires": []
-    }
-  },
-  {
-    "uid": "VRP253K2",
-    "result_id": "lorentzian-jensen",
-    "case": "lorentzian-jensen",
-    "title": "Log-volume midpoint gap and its Lorentzian generalization",
-    "status": "refuted",
-    "ledger_no": 12,
-    "appendix": false,
-    "ledger_label": null,
-    "withheld_reason": null,
-    "class": "user formal problem",
-    "certificate_level": "exact",
-    "certificate_tex": "The same cubic read as a homogeneous Lorentzian polynomial; the violation transfers verbatim.",
-    "theorem_label": "thm:lorentzian",
-    "provenance": {
-      "source_tex": "S.~Sra, standalone problem posed in 2019 as a Lorentzian generalization of the log-volume statement; formulation as recorded in \\S1 of the case's \\path{paper.tex}",
-      "url": "counterexamples/lorentzian-jensen/paper.tex",
-      "retrieved": null,
-      "fidelity": "paraphrase",
-      "statement_tex": "Let $\\mathcal C\\subset\\R^m$ be an open convex cone, let $G:\\mathcal C\\to(0,\\infty)$, and put $F=-\\log G$ and\n\\[\\J_G(x,y):=\\frac{F(x)+F(y)}2-F\\!\\left(\\frac{x+y}{2}\\right).\\]\nIf $G$ is homogeneous and Lorentzian, then $d_G:=\\sqrt{\\J_G}$ is a semimetric."
-    },
-    "credits": {
-      "posed_by": "S.~Sra",
-      "found_by": [
-        {
-          "model": "TODO",
-          "date": "TODO"
-        }
-      ],
-      "formalized_by": "S.~Sra",
-      "audited_by": "S.~Sra",
-      "contributed_by": "S.~Sra"
-    },
-    "verify": {
-      "python": "verify.py",
-      "sage": [],
-      "requires": []
-    }
-  },
-  {
     "uid": "XQB6RV2P",
     "result_id": "odonnell-matrix-conjecture",
     "case": "odonnell-matrix-conjecture",
     "title": "No dimension-free constant in O'Donnell's matrix conjecture",
     "status": "refuted",
-    "ledger_no": 13,
+    "ledger_no": 11,
     "appendix": false,
     "ledger_label": null,
     "withheld_reason": null,
@@ -528,7 +450,7 @@
     "case": "dpp-feasible-step",
     "title": "Feasible Picard steps for DPP likelihood",
     "status": "refuted",
-    "ledger_no": 14,
+    "ledger_no": 12,
     "appendix": true,
     "ledger_label": "the unnumbered claim in §2",
     "withheld_reason": null,
@@ -545,6 +467,84 @@
     },
     "credits": {
       "posed_by": "Mariet and Sra \\citeyearpar{MarietSra2015}",
+      "found_by": [
+        {
+          "model": "TODO",
+          "date": "TODO"
+        }
+      ],
+      "formalized_by": "S.~Sra",
+      "audited_by": "S.~Sra",
+      "contributed_by": "S.~Sra"
+    },
+    "verify": {
+      "python": "verify.py",
+      "sage": [],
+      "requires": []
+    }
+  },
+  {
+    "uid": "22S7HJGF",
+    "result_id": "log-volume-distance",
+    "case": "lorentzian-jensen",
+    "title": "Log-volume midpoint gap and its Lorentzian generalization",
+    "status": "refuted",
+    "ledger_no": 13,
+    "appendix": true,
+    "ledger_label": "the geometric specialization in §1",
+    "withheld_reason": null,
+    "class": "user formal problem",
+    "certificate_level": "exact",
+    "certificate_tex": "Strictly Lorentzian rational cubic realized as a Steiner polynomial in $\\R^3$; exact rational triangle-violation bound $>7.15\\times10^{-3}$.",
+    "theorem_label": "thm:volume-distance",
+    "provenance": {
+      "source_tex": "S.~Sra, standalone problem posed in 2012; formulation as recorded in \\S1 of the case's \\path{paper.tex}",
+      "url": "counterexamples/lorentzian-jensen/paper.tex",
+      "retrieved": null,
+      "fidelity": "paraphrase",
+      "statement_tex": "The log-volume midpoint gap is the square of a distance on convex bodies: that is,\n\\[d_{\\Vol}(K,L):=\\left[\\log\\Vol\\!\\left(\\frac{K+L}{2}\\right)-\\tfrac12\\log\\Vol(K)-\\tfrac12\\log\\Vol(L)\\right]^{1/2}\\]\nis a semimetric on convex bodies."
+    },
+    "credits": {
+      "posed_by": "S.~Sra",
+      "found_by": [
+        {
+          "model": "TODO",
+          "date": "TODO"
+        }
+      ],
+      "formalized_by": "S.~Sra",
+      "audited_by": "S.~Sra",
+      "contributed_by": "S.~Sra"
+    },
+    "verify": {
+      "python": "verify.py",
+      "sage": [],
+      "requires": []
+    }
+  },
+  {
+    "uid": "VRP253K2",
+    "result_id": "lorentzian-jensen",
+    "case": "lorentzian-jensen",
+    "title": "Log-volume midpoint gap and its Lorentzian generalization",
+    "status": "refuted",
+    "ledger_no": 14,
+    "appendix": true,
+    "ledger_label": "the proposed master theorem in §1",
+    "withheld_reason": null,
+    "class": "user formal problem",
+    "certificate_level": "exact",
+    "certificate_tex": "The same cubic read as a homogeneous Lorentzian polynomial; the violation transfers verbatim.",
+    "theorem_label": "thm:lorentzian",
+    "provenance": {
+      "source_tex": "S.~Sra, standalone problem posed in 2019 as a Lorentzian generalization of the log-volume statement; formulation as recorded in \\S1 of the case's \\path{paper.tex}",
+      "url": "counterexamples/lorentzian-jensen/paper.tex",
+      "retrieved": null,
+      "fidelity": "paraphrase",
+      "statement_tex": "Let $\\mathcal C\\subset\\R^m$ be an open convex cone, let $G:\\mathcal C\\to(0,\\infty)$, and put $F=-\\log G$ and\n\\[\\J_G(x,y):=\\frac{F(x)+F(y)}2-F\\!\\left(\\frac{x+y}{2}\\right).\\]\nIf $G$ is homogeneous and Lorentzian, then $d_G:=\\sqrt{\\J_G}$ is a semimetric."
+    },
+    "credits": {
+      "posed_by": "S.~Sra",
       "found_by": [
         {
           "model": "TODO",
