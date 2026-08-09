@@ -192,8 +192,14 @@
 \newcommand{\cxtitle}[1]{\csname\cx@level\endcsname{#1}}
 
 % One macro per role, so that a per-result block can override a role and
-% inherit the others.  \foundby accumulates: a witness may have taken more than
-% one model or more than one session, and those read as one clause.
+% inherit the others.  Every role but one takes a single argument -- a person
+% or a source.  \foundby takes two, {model}{date}, because it is the only role
+% that is a claim about a machine's capability at a point in time: "Opus 5"
+% says little without "2026-08".  The date is YYYY-MM, or YYYY-MM-DD when the
+% day is worth recording; tools/build.py rejects any other spelling, and
+% rejects a TODO in either argument unless run with --allow-todo.  \foundby
+% accumulates: a witness may have taken more than one model or more than one
+% session, and those read as one clause.
 \let\cx@posed\@empty
 \let\cx@found\@empty
 \let\cx@formalized\@empty
