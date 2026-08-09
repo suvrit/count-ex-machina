@@ -34,5 +34,6 @@
   ],
   "order": 14,
   "group": "amsel",
-  "appendix": true
+  "appendix": true,
+  "brief": true
 }

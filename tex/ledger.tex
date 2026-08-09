@@ -100,14 +100,10 @@
   % sdd-nystrom-diminishing-returns (appendix)
   \cxn & An SDD-$4\times4$ signed matrix has a marginal Nystr\"om error reduction that increases after an additional index is selected. & An exact integer $4\times4$ matrix.\ \emph{Exact certificate}; human proof Thm.~\ref{thm:sdd-nystrom-diminishing-returns}.\\
 %
-  % osi-sketch-and-solve (appendix)
-  \cxn & A one-dimensional oblivious subspace injection with injectivity $1$ can make sketch-and-solve incur the fixed factor $\sqrt2$ with probability $1/50$. & Three exact rationally weighted $2\times2$ sketch atoms, with exact isotropy, an exact $99/100$ injection guarantee, and exact squared residual ratios.\ \emph{Exact certificate}; human proof Thm.~\ref{thm:osi-sketch-and-solve}.\\
-%
-  % hamiltonian-nepv-identity (appendix)
-  \cxn & The proposed NEPv matrix does not reproduce the product-state Rayleigh quotient when the Hamiltonian sum includes a same-site term with $i=j$. & The certificate consists of exact $2\times2$ integer matrices and the integer vector $(1,2)^T$, for which the two assertedly equal values are $0$ and $-4/25$.\ \emph{Exact certificate}; human proof Thm.~\ref{thm:hamiltonian-nepv-identity}.\\
-%
-  % qrcp-orthonormal-greedy (appendix)
-  \cxn & For an exact rational rank-three projector on eight coordinates, QRCP has strict pivots $I=(1,2,3)$ but the resulting inverse norm exceeds $\sqrt{18}$. & An exact rational $8\times3$ Grassmann-chart matrix, three positive rational pivot gaps, and the Rayleigh gap $192051/250000$.\ \emph{Exact certificate}; human proof Thm.~\ref{thm:qrcp-orthonormal-greedy}.\\
+  % osi-sketch-and-solve, hamiltonian-nepv-identity and qrcp-orthonormal-greedy
+  % are marked "brief" in their case.json: they are listed in the appendix by
+  % \cxbrieflist instead of carrying a row here.  build.py errors if a row for
+  % one of them reappears.
 %
   \cmidrule[\heavyrulewidth]{2-3}
 \end{longtable}

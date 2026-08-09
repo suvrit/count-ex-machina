@@ -9,8 +9,10 @@ the paper's structure genuinely changes.
 - **`build.py`** — validates every case (`case.json` + `case.tex`) and writes
   four generated artifacts: `tex/generated/cases.tex` (body sections),
   `tex/generated/appendix.tex` (cases marked `"appendix": true`, under one
-  shared heading; written even when empty so `main.tex`'s `\input` never
-  dangles), `registry.json`, and two spliced regions of
+  shared heading, with those also marked `"brief": true` reduced to one bullet
+  each inside `cxbrieflist` instead of a dossier; written even when empty so
+  `main.tex`'s `\input` never dangles), `registry.json`, and two spliced
+  regions of
   `README.md` — the case table (`<!-- BEGIN/END CASE TABLE -->`) and the
   headline count badges (`<!-- BEGIN/END COUNT BADGES -->`). Everything else in
   `README.md`, the rest of the header block included, is hand-written and is
@@ -22,7 +24,9 @@ the paper's structure genuinely changes.
   It also **checks, but never writes, `tex/ledger.tex`**: that table is
   hand-written, and `check_ledger()` only confirms that every refuted result's
   `theorem_label` appears in a `\ref` there and that no row names a result that
-  does not exist, printing a paste-ready row for anything missing. It runs
+  does not exist, printing a paste-ready row for anything missing. A `"brief"`
+  result inverts that check: it must have *no* row, and a leftover one is an
+  error rather than a silent duplicate of its appendix bullet. It runs
   unconditionally rather than only when the rest of validation passes —
   otherwise it would be dead code for as long as the baseline carries errors,
   which is exactly when a missing row would slip through.

@@ -408,6 +408,23 @@ def validate(cases, allow_todo, errors):
             appendix = c.get("appendix")
             if appendix is not None and not isinstance(appendix, bool):
                 err(f"'appendix' must be true or false, not {appendix!r}")
+            brief = c.get("brief")
+            if brief is not None and not isinstance(brief, bool):
+                err(f"'brief' must be true or false, not {brief!r}")
+            if brief and not appendix:
+                err("'brief' is only meaningful on a case that is also \"appendix\": true")
+            if brief:
+                # A brief case's ledger_label is typeset by \cxbriefitem, not
+                # just spliced into README.md, so plain text now has to mean
+                # plain text: an unescaped & or % would break the paper build
+                # with an error pointing at a generated file.
+                for r in c.get("results") or []:
+                    bad = set(r.get("ledger_label") or "") & set("&%#_$}{~^\\")
+                    if bad:
+                        err(
+                            f"result {r.get('id')}: ledger_label of a brief case is typeset "
+                            f"as LaTeX; remove {''.join(sorted(bad))}"
+                        )
             if appendix:
                 # The collapsed ledger row names the items it stands for, and
                 # nothing else in the case records an item number in plain text.
@@ -610,6 +627,23 @@ def appendix_in_order(cases):
     return [c for c in refuted_in_order(cases) if c.get("appendix")]
 
 
+def appendix_full_in_order(cases):
+    """Appendix cases that still earn a dossier of their own."""
+    return [c for c in appendix_in_order(cases) if not c.get("brief")]
+
+
+def brief_in_order(cases):
+    """Appendix cases recorded as a one-line entry instead of a dossier.
+
+    A brief case is admitted, verified and registered exactly like any other --
+    the same certificate runs in the same `make verify` -- but the paper spends
+    a bullet on it rather than a section and a ledger row.  The distinction is
+    editorial weight only, which is why nothing here touches registry.json's
+    numbering or the README table: those index the archive, not the paper.
+    """
+    return [c for c in appendix_in_order(cases) if c.get("brief")]
+
+
 def appendix_batches(cases):
     """Appendix cases collapsed to one ledger row each, keyed by group.
 
@@ -690,10 +724,15 @@ def emit_cases(selected, lines, grouped=True):
     return lines
 
 
+def squash(tex):
+    """A case region folded onto one line, for a table row or a list item."""
+    return " ".join((tex or "").split())
+
+
 def ledger_row(c, r, n):
     """The row a maintainer can paste into tex/ledger.tex for a new result."""
-    statement = " ".join((r.get("statement_tex") or "").split())
-    certificate = " ".join((r.get("certificate_tex") or "").split())
+    statement = squash(r.get("statement_tex"))
+    certificate = squash(r.get("certificate_tex"))
     label = r.get("theorem_label") or f"thm:{r['id']}"
     where = "appendix" if c.get("appendix") else "body"
     # \cxn rather than a literal number: the ledger numbers itself, so a pasted
@@ -724,6 +763,17 @@ def check_ledger(cases, errors):
             n += 1
             label = r.get("theorem_label") or f"thm:{r['id']}"
             known[label] = (c, r, n)
+            if c.get("brief"):
+                # A brief case is listed in the appendix instead of the table,
+                # so the row must be absent -- and a leftover one is an error
+                # rather than a silent duplicate of the bullet.
+                if label in referenced:
+                    errors.append(
+                        f"tex/ledger.tex still has a row for brief result {r['id']}: "
+                        f"delete the row referencing \\ref{{{label}}}, or drop "
+                        f'"brief" from {c["id"]}/case.json'
+                    )
+                continue
             if label not in referenced:
                 errors.append(
                     f"tex/ledger.tex has no row for result {r['id']}: add one "
@@ -750,15 +800,30 @@ def gen_appendix(cases):
     without the generator having an opinion about where in the document it goes.
     """
     lines = [GENERATED_HEADER.rstrip("\n")]
-    selected = appendix_in_order(cases)
-    if not selected:
+    full, brief = appendix_full_in_order(cases), brief_in_order(cases)
+    if not full and not brief:
         # Still written, so main.tex's \input never dangles when the archive
         # happens to have no de-emphasised cases.
         lines.append("% No cases are currently marked \"appendix\": true.")
         return "\n".join(lines) + "\n"
     lines.append("")
     lines.append(f"\\cxappendix{{{APPENDIX_TITLE}}}")
-    return "\n".join(emit_cases(selected, lines, grouped=False)) + "\n"
+    emit_cases(full, lines, grouped=False)
+    if brief:
+        # Only the items; the lead-in wording lives in cxcase.sty's cxbrieflist
+        # so that no prose enters a generated file.
+        lines.append("")
+        lines.append("\\begin{cxbrieflist}")
+        for c in brief:
+            for r in c["results"]:
+                lines.append(
+                    f"\\cxbriefitem{{{r['ledger_label']}}}"
+                    f"{{{squash(r.get('statement_tex'))}}}"
+                    f"{{{squash(r.get('certificate_tex'))}}}"
+                    f"{{counterexamples/{c['id']}/}}"
+                )
+        lines.append("\\end{cxbrieflist}")
+    return "\n".join(lines) + "\n"
 
 
 def gen_registry(cases):
@@ -782,6 +847,7 @@ def gen_registry(cases):
                 "status": c["status"],
                 "ledger_no": ledger_no,
                 "appendix": bool(c.get("appendix")),
+                "brief": bool(c.get("brief")),
                 "ledger_label": r.get("ledger_label"),
                 "withheld_reason": c.get("withheld_reason"),
                 "class": r["class"],

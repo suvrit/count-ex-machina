@@ -161,6 +161,28 @@
 % case.json; those cases are then typeset as subsections of it.
 \newcommand{\cxappendix}[1]{\appendix\section{#1}\label{sec:additional}}
 
+% cxbrieflist -- the run of statements the archive records without a dossier.
+% The generator emits only the \cxbriefitem lines; the heading and the lead-in
+% sentence live here so that no prose ever enters tex/generated/.  Reword them
+% freely, and note that emptying the environment is not how you remove an
+% entry: drop "brief" from the case's case.json and it goes back to a full
+% subsection and a ledger row.
+\newenvironment{cxbrieflist}
+  {\subsection{Statements recorded without a dossier}%
+   \noindent These fell to the same standard of evidence as every case above --
+   each carries a certificate in the repository that recomputes in exact
+   arithmetic -- but the statements are slight enough that the archive records
+   them here rather than spending a section and a ledger row on each.\par
+   \medskip\begin{itemize}\setlength{\itemsep}{0.4em}}
+  {\end{itemize}}
+
+% \cxbriefitem{item}{statement}{certificate}{path} -- one entry of the above.
+% The source item trails the statement rather than leading it: a ledger_label
+% is free text ("Problem 5.1", but also "the identity after eq. (20) in 6.2"),
+% so it cannot be relied on to read as a heading.
+\newcommand{\cxbriefitem}[4]{%
+  \item #2\ #3\ \emph{Source:} #1.\ \emph{Certificate:} \path{#4}.}
+
 % ---------------------------------------------------------------------------
 % Title and credits.
 % ---------------------------------------------------------------------------

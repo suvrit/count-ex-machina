@@ -108,6 +108,16 @@ Enums are enforced; the exact spellings are in `tools/build.py`.
   statement too slight to carry a section of its own, or one whose public
   resolution belongs to someone else. The headline badge reports these
   separately, as "N refuted, M additional".
+- `brief` — optional bool, default false, and only legal alongside
+  `appendix: true`. One step further down: the case is listed as a single
+  bullet in the appendix's "Statements recorded without a dossier" and carries
+  **no ledger row at all**, so its statement, refutation and proof are not
+  typeset in the paper. Nothing else changes — the certificate still runs in
+  `make verify`, the `uid` and the `registry.json` entry stay, and the README
+  case table still lists it, because those index the archive rather than the
+  paper. `build.py` errors if a brief result still has a row in
+  `tex/ledger.tex`, and the bullet's wording comes from the case's own
+  `cxsummary` and `cxcertificate` regions, so edit those and `make regen`.
 - `prose` — the LaTeX file, `case.tex`.
 - `bib_keys` — every key must exist in `tex/references.bib`.
 - `results[]` — one entry per refuted statement:
@@ -124,7 +134,8 @@ Enums are enforced; the exact spellings are in `tools/build.py`.
     `appendix: true`. Names the item this result refutes, as the source numbers
     it (`"Problem 4.6(b)"`), because the collapsed ledger row has to say which
     statements it stands for and nothing else in the case records that in plain
-    text. No LaTeX: it is spliced straight into `README.md`.
+    text. No LaTeX: it is spliced straight into `README.md`, and on a `brief`
+    case it is typeset as well, so the build rejects TeX specials there.
   - `provenance` — `url` and `retrieved` (the copy consulted; `url` may be a
     repo-relative path when the statement was posed in a file here) and
     `fidelity` (`verbatim` **only** if transcribed from the source's own text,
