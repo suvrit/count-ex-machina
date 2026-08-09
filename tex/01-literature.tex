@@ -1,8 +1,8 @@
 \section{Introduction}
-\noindent AI assisted mathematics has literally exploded; as of writing this document, the website \href{https://aimath.robertj1.com}{[AIMath]} lists 424 proofs and disproofs of a variety of mathematical questions. Our focus in this manuscript is on counterexamples that refute a conjecture or provide a disproof of some problem, providing both a human friendly proof and a machine-verifiable certificate. 
+\noindent AI assisted mathematics has literally exploded; as of writing this document, the website \href{https://aimath.robertj1.com}{[AIMath]} lists 438 (as of: Aug.~9, 2026) proofs and disproofs of a variety of mathematical questions. Our focus in this manuscript is on counterexamples that refute a conjecture or provide a disproof of some problem, providing both a human friendly proof and a machine-verifiable certificate. 
 
 \vskip5pt
-\noindent\textbf{\emph{Why counterxamples?}} The typical asymmetry between proving a claim (universal quantification) versus disproving (existence of one counterexample) makes it particularly attractive to prioritize AI-assisted search. And available AI assistants have been strikingly successful in 2026 at constructing counterexample. Ten noteworthy conjectured disproved by AI in 2026 include:
+\noindent\textbf{\emph{Why counterxamples?}} The typical asymmetry between proving a claim (universal quantification) versus disproving (existence of one counterexample) makes it particularly attractive to prioritize AI-assisted search. And available AI assistants have been strikingly successful in 2026 at constructing counterexample. Ten noteworthy conjectured claimed to be disproved by AI in 2026 include:
 \vskip5pt
 \begin{small}
   \begin{enumerate}[label=(\roman*),itemsep=0pt]
@@ -21,7 +21,8 @@
 \end{small}
 
 \vskip5pt
-However, refutation is not the only aspect the models have been exemplary at. An impressive recent achievement can be seen in the document~\citep{OpenAITenAdvances2026} that includes 10 results obtained by OpenAI's internal Astra model, with several results accompanied by machine-checkable Lean certificates.\footnote{Allegedly, as of this writing, the claimed disproof of the Connes rigidity conjecture is invalid, because the AI system silently used a group with an infinite center, which violates the conjecture's framing and is thus invalid.} A more mixed set of results corresponds to the ``First Proof'' \citep{abouzaid2026proof} project, where it seems so that AI models have not yet managed to make a breakthrough. Continuing in the line of conjectures and their mechanical verification, this new project seems like a wonderful resource~\citep{FormalConjecturesPaper2026}.
+But refutation is not the only aspect the models have been exemplary at: the document~\citep{OpenAITenAdvances2026}  includes 10 results obtained by OpenAI's internal Astra model, with several results accompanied by machine-checkable Lean certificates.\footnote{Allegedly, as of this writing, the claimed disproof of the Connes rigidity conjecture is invalid, because the AI system silently used a group with an infinite center, which violates the conjecture's framing.}
+And the noted collection \href{https://aimath.robertj1.com}{[AIMath]} lists several successful proofs. Though a more mixed set of results from problems designed to challenge AI approaches is in the  ``First Proof'' \citep{abouzaid2026proof} project, where it seems so that AI has not yet managed to make breakthroughs. Continuing the topic of conjectures and their mechanical verification, this new project seems like a wonderful resource~\citep{FormalConjecturesPaper2026}.
 
 % The headline entries are genuinely hard: the exact exponential rate of the
 % Cohn--Elkies sphere-packing linear program, the first improvement on the
@@ -47,8 +48,9 @@ However, refutation is not the only aspect the models have been exemplary at. An
 % appendix.'' That is a division of labour a reader can audit. A corporate author
 % line is not.
 
-\noindent
-\textbf{\textcolor{darkblue}{Our Philosophy.}} First, a short word on our \emph{raison d'être}. This work started with the author's effort in collecting some of the AI-assisted disproofs found over roughly the past 12 months. While doing so, we expressly wanted to ensure that the exposition is human-readable and human-verifiable: each problem statement is quoted as it was posed, and each disproof or witness is exhibited explicitly. In some cases, we share additional results or refinements that refine and enrich the discussion. We supplement our exposition with source code that can be used to machine-verify counterexamples---using exact arithmetic or rigorous interval enclosures. But ultimately, it is for the joy of understanding mathematics, of proving and disproving, and of sharing that progress with others that is our defining motivation; the machine-checkable component supports that ideal, hopefully even beyond its pedantic necessity. 
+
+\vskip5pt
+\noindent\emph{\textbf{\textcolor{darkblue}{Our Philosophy.}}} First, a short word on our \emph{raison d'être}. This work started with the author's effort in collecting some of the AI-assisted disproofs we found over the past 12 months. Importantly, we  wanted our exposition of the collected results to be human-readable and human-verifiable; each problem statement is quoted as it was posed, and each disproof is exhibited explicitly. In some cases, we share refinements that further enrich the discussion. We supplement the exposition with source code that can be used to machine-verify counterexamples. Though ultimately, it is for the joy of understanding mathematics, of proving and disproving claims, and of sharing progress with others that underscores our motivation; the machine-checkable component is there to support this ideal, beyond mere pedantic necessity. 
 
 % Three of them fix the scale. \citet{Zhou2026} refutes Connes's group-factor rigidity conjecture --- that countable ICC groups with property~(T) are determined up to isomorphism by their group von Neumann algebras --- by exhibiting  infinitely many pairwise nonisomorphic, mutually commensurable, finitely generated such groups with isomorphic group factors; the abstract records that the result ``was obtained with assistance from GPT-5.6~Sol,
 % independently of and concurrently with work by OpenAI.'' \citet{DaiEtAl2026}
