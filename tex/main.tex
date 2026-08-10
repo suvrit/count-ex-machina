@@ -92,9 +92,11 @@ I used Claude Code (Opus 5) to architect the document and the repo. Initial draf
 % opinion about where in the document the appendix sits.  It issues \appendix
 % itself, so anything after this line is numbered as appendix material.
 \input{generated/appendix}
-% Hand-written second appendix.  generated/appendix.tex has already issued
-% \appendix, so this file only opens a \section and is numbered B.
+% Hand-written appendices.  generated/appendix.tex has already issued \appendix,
+% so each of these only opens a \section and is numbered B, C, ...; reorder the
+% two lines freely, everything points at them with \Cref.
 \input{03-proof-details}
+\input{04-aim36-pencil}
 \cxendrule   % closes the last section; the others are closed by the next heading
 \vskip 12pt
 

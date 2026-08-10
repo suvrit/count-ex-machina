@@ -1,0 +1,218 @@
+% Hand-written appendix.  Nothing generates this file.  It is \input after
+% generated/appendix.tex, which has already issued \appendix, so the \section
+% below is numbered as appendix material.  It carries the long form of the
+% construction behind the pencil of \Cref{thm:aim36}; the case directory holds
+% the certificate that recomputes it, and no separate write-up of its own.
+\section{Origin of the AIM Problem 36 pencil}
+\label{sec:aim36pencil}
+
+The integer matrices of \Cref{thm:aim36,thm:aim37} are not a numerical accident,
+and this appendix says where they come from.  They are the $t=5$ and $t=4$
+members of one family of pencils built equivariantly on the Specht module
+$S^{(3,2)}$, whose $s_{(1^5)}$ coefficient is a fixed quintic in $t$ that turns
+negative once $t$ is large enough.  Both problems are refuted by that single
+coefficient, but at different values of $t$, and the appendix ends by locating
+the two thresholds.
+
+\subsection*{The module and its projections}
+
+Let $M$ be the real permutation module with orthonormal basis
+$\{e_{ab}:1\le a<b\le5\}$ indexed by the $2$-subsets of $[5]$, and let
+\[
+B:M\longrightarrow\R^5,\qquad B(e_{ab})=e_a+e_b
+\]
+be the $\mathfrak S_5$-equivariant map that forgets which pair produced which
+points.  Row $i$ of $B$ has a $1$ in the four columns $ab$ with $i\in\{a,b\}$,
+and two rows share exactly one such column, so
+\[
+BB^{\mathsf T}=3I_5+\mathbf 1\mathbf 1^{\mathsf T},
+\]
+which is nonsingular.  Hence $B$ is surjective and $V:=\ker B$ has dimension
+$10-5=5$.  Young's rule for the permutation module on $2$-subsets gives
+$M\cong S^{(5)}\oplus S^{(4,1)}\oplus S^{(3,2)}$, while the point-permutation
+module $\R^5$ is $S^{(5)}\oplus S^{(4,1)}$, so
+\[
+V\cong S^{(3,2)}.
+\]
+Write $\rho$ for the representation of $\mathfrak S_5$ on $V$, orthogonal for
+the inner product $V$ inherits from $M$.  For $i\in[5]$ set
+\begin{equation}\label{eq:aim36-Pi}
+P_i:=\frac12\sum_{\substack{1\le a<b\le5\\a,b\ne i}}\rho((ab)),
+\end{equation}
+half the sum of the transpositions fixing $i$.
+
+\begin{lemma}\label{lem:aim36-proj}
+Each $P_i$ is an orthogonal projection of rank three,
+$\rho(\sigma)P_i\rho(\sigma)^{-1}=P_{\sigma(i)}$ for every
+$\sigma\in\mathfrak S_5$, and $\sum_{i=1}^5P_i=3I_V$.
+\end{lemma}
+\begin{proof}
+The transpositions in \eqref{eq:aim36-Pi} are exactly those of the point
+stabilizer $H_i\cong\mathfrak S_4$, and their sum is the class sum of
+transpositions, which is central in $\R[\mathfrak S_4]$ and therefore acts on an
+irreducible Specht module $S^\mu$ by the sum of the contents of $\mu$.  By
+branching,
+\[
+S^{(3,2)}\!\downarrow_{\mathfrak S_4}\cong S^{(3,1)}\oplus S^{(2,2)},
+\]
+and the content sums are $0+1+2-1=2$ for $(3,1)$ and $0+1-1+0=0$ for $(2,2)$.
+So the operator in \eqref{eq:aim36-Pi} is the identity on the three-dimensional
+$S^{(3,1)}$ summand and zero on the two-dimensional $S^{(2,2)}$ summand: an
+orthogonal projection of rank three.  Covariance follows by conjugating the
+class sum, since conjugation by $\rho(\sigma)$ carries the transpositions
+fixing $i$ to those fixing $\sigma(i)$.  Finally $\sum_iP_i$ commutes with
+$\rho(\mathfrak S_5)$, so Schur's lemma makes it a scalar on the irreducible
+$V$; its trace is $5\cdot3=15$, hence it is $3I_V$.
+\end{proof}
+
+\subsection*{The one-parameter family}
+
+For $t\ge0$ put
+\[
+A_i(t):=I_V+tP_i,\qquad
+p_t(x):=\det\Bigl(\nlsum_{i=1}^5x_iA_i(t)\Bigr),
+\]
+the determinant taken on $V$.  By Lemma~\ref{lem:aim36-proj} each $A_i(t)$ is
+symmetric positive definite with eigenvalues $1+t$ of multiplicity three and
+$1$ of multiplicity two.
+
+\begin{proposition}\label{prop:aim36-family}
+For every $t\ge0$ the polynomial $p_t$ is symmetric, homogeneous of degree five,
+real stable, and has nonnegative coefficients in the monomial basis.  Its Schur
+coefficients are
+\begin{align*}
+[s_{(5)}]p_t&=(t+1)^3,\\
+[s_{(4,1)}]p_t&=\tfrac12(t+1)^2(3t^2+8t+8),\\
+[s_{(3,2)}]p_t&=\tfrac1{16}(t+1)(9t^4+48t^3+128t^2+160t+80),\\
+[s_{(3,1,1)}]p_t&=\tfrac1{16}(t+1)(9t^4+64t^3+168t^2+192t+96),\\
+[s_{(2,2,1)}]p_t&=\tfrac18(6t^5+41t^4+108t^3+156t^2+120t+40),\\
+[s_{(2,1,1,1)}]p_t&=\tfrac18(6t^5+35t^4+96t^3+132t^2+96t+32),\\
+[s_{(1^5)}]p_t&=-\tfrac1{16}(9t^5-21t^4-56t^3-72t^2-48t-16).
+\end{align*}
+In particular $[s_{(1^5)}]p_5=-743/2<0$.
+\end{proposition}
+\begin{proof}
+Symmetry is the covariance of Lemma~\ref{lem:aim36-proj}: relabelling the variables
+by $\sigma$ conjugates the pencil by $\rho(\sigma)$, which leaves its
+determinant alone.  For real stability, suppose $z_1,\ldots,z_5$ lie in the open
+upper half-plane and $\bigl(\sum_iz_iA_i(t)\bigr)v=0$ for some $v\ne0$.  Then
+\[
+0=\operatorname{Im}\Bigl\langle v,\Bigl(\nlsum_iz_iA_i(t)\Bigr)v\Bigr\rangle
+ =\nlsum_i\operatorname{Im}(z_i)\,\langle v,A_i(t)v\rangle>0,
+\]
+because each $A_i(t)$ is positive definite --- a contradiction.  Homogeneity of
+degree five is immediate.  The coefficient of $x_1^{\alpha_1}\cdots
+x_5^{\alpha_5}$ is a positive multiple of the mixed discriminant of the multiset
+holding $\alpha_i$ copies of $A_i(t)$, and mixed discriminants of positive
+semidefinite matrices are nonnegative, so the monomial coefficients are
+nonnegative --- here in fact strictly positive.
+
+For the coefficients themselves, expanding the determinant exactly gives
+$p_t=\sum_{\mu\vdash5}c_\mu(t)m_\mu$ with
+\begin{align*}
+c_{(5)}(t)&=(t+1)^3,\\
+c_{(4,1)}(t)&=\tfrac12(t+1)^2(3t^2+10t+10),\\
+c_{(3,2)}(t)&=\tfrac1{16}(t+1)(9t^4+72t^3+232t^2+320t+160),\\
+c_{(3,1,1)}(t)&=\tfrac18(t+1)(t+2)(9t^3+62t^2+120t+80),\\
+c_{(2,2,1)}(t)&=\tfrac1{16}(39t^5+317t^4+1040t^3+1728t^2+1440t+480),\\
+c_{(2,1,1,1)}(t)&=\tfrac18(45t^5+348t^4+1100t^3+1764t^2+1440t+480),\\
+c_{(1^5)}(t)&=\tfrac18(99t^5+765t^4+2320t^3+3600t^2+2880t+960),
+\end{align*}
+every numerator having positive coefficients, which is the promised positivity
+again.  In the partition order
+$(5),(4,1),(3,2),(3,1,1),(2,2,1),(2,1,1,1),(1^5)$ the Kostka matrix of
+$s_\lambda=\sum_\mu K_{\lambda\mu}m_\mu$ is
+\[
+K=\begin{pmatrix}
+1&1&1&1&1&1&1\\
+0&1&1&2&2&3&4\\
+0&0&1&1&2&3&5\\
+0&0&0&1&1&3&6\\
+0&0&0&0&1&2&5\\
+0&0&0&0&0&1&4\\
+0&0&0&0&0&0&1
+\end{pmatrix},
+\]
+and if $c$ and $a$ are the row vectors of monomial-symmetric and Schur
+coefficients then $c=aK$.  Applying $K^{-1}$ to the $c_\mu(t)$ gives the table
+above.  The last line needs only the final column of $K^{-1}$,
+$(1,-2,-2,3,3,-4,1)^{\mathsf T}$:
+\begin{align*}
+[s_{(1^5)}]p_t&=c_{(5)}-2c_{(4,1)}-2c_{(3,2)}+3c_{(3,1,1)}+3c_{(2,2,1)}
+  -4c_{(2,1,1,1)}+c_{(1^5)}\\
+&=-\tfrac1{16}(9t^5-21t^4-56t^3-72t^2-48t-16).
+\end{align*}
+At $t=5$ this is $-(28125-13125-7000-1800-240-16)/16=-5944/16=-743/2$.
+\end{proof}
+
+\begin{remark}[Two thresholds]
+The family crosses the two problems at different places, and the gap between
+them is where \Cref{thm:aim37} lives.  Schur positivity survives exactly as long
+as $[s_{(1^5)}]p_t\ge0$, that is until the single positive real zero
+$t_2\approx4.2907656153$ of $9t^5-21t^4-56t^3-72t^2-48t-16$; past $t_2$ the
+family refutes Problem~\ref{ctx:aim-problem-36}.  The lower endpoint of
+Problem~\ref{ctx:aim-problem-37} goes earlier.  Since $f^{(1^5)}=1$ and
+$[s_{(5)}]p_t=(t+1)^3$, its margin at $\lambda=(1^5)$ is
+\[
+(t+1)^3-[s_{(1^5)}]p_t=\frac{t^2\bigl(9t^3-21t^2-40t-24\bigr)}{16},
+\]
+so the endpoint fails exactly past the cubic's single positive zero
+$t_1\approx3.7205453558$.  On $(t_1,t_2)$ the family is therefore still Schur
+positive and already short of the endpoint --- the substantive refutation of
+Problem~\ref{ctx:aim-problem-37} --- and $t=4$ is the only integer there, which
+is why \Cref{thm:aim37} is stated at it.  Beyond $t_2$ the two failures merge and
+stop being distinguishable, which is the reason $q$ at $t=5$ cannot serve as a
+witness for the endpoint.  Both decimals are stated for orientation only: no step
+of the proof, and no assertion in the certificate, uses a floating-point value.
+\end{remark}
+
+\subsection*{Back to the integer pencil}
+
+What remains is bookkeeping.  Choose a rational basis of $V=\ker B$, assemble it
+as the columns of a matrix $U$, and let $G=U^{\mathsf T}U$ be its Gram matrix.
+In that basis $P_i$ is no longer symmetric but $G$-self-adjoint,
+$P_i^{\mathsf T}G=GP_i$, so with
+\[
+J_i(t):=2G\bigl(I+tP_i\bigr)
+\]
+we get $J_i(t)^{\mathsf T}=2(I+tP_i)^{\mathsf T}G=2G(I+tP_i)=J_i(t)$: an ordinary
+symmetric matrix, positive definite because $A_i(t)$ is, and at $t=4$ and $t=5$
+an integer one in the basis the certificate picks.  Since $\det(G)=162$ there,
+\[
+\det\Bigl(\nlsum_ix_iJ_i(t)\Bigr)=2^5\det(G)\,p_t(x)=5184\,p_t(x).
+\]
+At $t=5$, writing $J_i:=J_i(5)$ and dividing by $648$ leaves
+\[
+q(x)=\frac1{648}\det\Bigl(\nlsum_ix_iJ_i\Bigr)=8\,p_5(x),
+\]
+which is the normalization in \eqref{eq:aim36-q}, and
+$[s_{(1^5)}]q=8\cdot(-743/2)=-2972$, the coefficient of \Cref{thm:aim36}.  The
+factor $8$ is what clears the denominators of
+Proposition~\ref{prop:aim36-family} and leaves that whole Schur expansion
+integral.  At $t=4$ no such factor is needed --- $p_4$ is already integral --- so
+$\widetilde J_i:=J_i(4)$ and
+\[
+\widetilde q(x)=\frac1{5184}\det\Bigl(\nlsum_ix_i\widetilde J_i\Bigr)=p_4(x),
+\]
+the witness of \Cref{thm:aim37}, with $[s_{(1^5)}]\widetilde q=69$ against
+$[s_{(5)}]\widetilde q=(4+1)^3=125$.  The two pencils are related by
+$\widetilde J_i=(4J_i+2G)/5$, which is how \eqref{eq:aim36-qtilde} can be
+written down from the $J_i$ and $G$ alone.
+
+The certificate \path{counterexamples/aim-problem-36/verify.py} recomputes all
+of this in exact rational arithmetic: it builds $V$ and the $P_i$ and checks
+idempotence, $G$-self-adjointness, rank, covariance and $\sum_iP_i=3I$; forms
+both pencils and certifies positive definiteness by exact leading principal
+minors; expands each determinant into all $126$ monomials; derives $K$ by
+enumerating semistandard Young tableaux rather than quoting it, and reads
+$f^\lambda$ off its last column rather than quoting that either; inverts to get
+the Schur expansions and re-extracts every coefficient independently by the
+bialternant formula; verifies the closed formulas of
+Proposition~\ref{prop:aim36-family} as identities in $t$; and checks that
+$\widetilde q$ is Schur positive, that its lower endpoint fails at $(1^5)$ and
+nowhere else, and that $t=4$ lies strictly between the two thresholds above.
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: "main"
+%%% End:

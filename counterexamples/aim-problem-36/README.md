@@ -11,6 +11,13 @@ Borcea–Bränden AIM Problem 36: stable Schur positivity.
 
 An exact det-pencil construction whose degree-five form has strictly positive monomial coefficients yet a negative Schur coefficient [s₍₁⁵₎] q = −2972, verified two independent ways (Kostka inversion and bialternant extraction).
 
+Problem 37 (the lower endpoint) gets a separate witness from the same
+one-parameter family, at t = 4 rather than t = 5: it *is* Schur positive, and
+still has [s₍₁⁵₎] q̃ = 69 < 125 = f^(1⁵)·[s₍₅₎] q̃. A non-Schur-positive witness
+would not do, because under the problem's own hypotheses `a_λ ≥ f^λ a_(d)`
+implies Schur positivity, so any counterexample to Problem 36 refutes Problem 37
+for free and says nothing more.
+
 ## How to verify
 
 ```sh
@@ -27,8 +34,8 @@ prints a `PASS` line and (re)generates the artifacts below.
 
 ## Write-up and credits
 
-The `cxrefutation` region of `case.tex` is the condensed write-up the main
-paper emits; the rest of `case.tex` holds the title, credits, context, and the
-statements as posed. `paper.tex` is the self-contained long form, including the
-Specht-module origin of the pencil (compile with `latexmk -pdf paper`).
+The `cxrefutation` region of `case.tex` is the write-up the main paper emits;
+the rest of `case.tex` holds the title, credits, context, and the statements as
+posed. The Specht-module origin of the pencil is developed in the paper's own
+appendix, `tex/04-aim36-pencil.tex`; this case carries no separate write-up.
 Attribution roles live in the `cxcredits` region.

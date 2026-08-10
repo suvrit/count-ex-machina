@@ -208,8 +208,8 @@ an immutable `uid` in `registry.json`; that is a database key, not a citation.
 <!-- BEGIN CASE TABLE -->
 | No. | Case | Status | Posed in | Certificate | Found by |
 |---|---|---|---|---|---|
-| 1 | [aim-problem-35](counterexamples/stable-schur/) | refuted | [Borcea–Brändén, AIM problem list, Problem 35](https://www.aimath.org/pastworkshops/polyaschurlaxrep.pdf) | exact | TODO (TODO) |
-| 2 | [aim-problem-38](counterexamples/stable-schur/) | refuted | [Borcea–Brändén, AIM problem list, Problem 38](https://www.aimath.org/pastworkshops/polyaschurlaxrep.pdf) | exact | TODO (TODO) |
+| 1 | [aim-problem-35](counterexamples/stable-schur/) | refuted | [Borcea–Brändén, AIM problem list, Problem 35](https://www.aimath.org/pastworkshops/polyaschurlaxrep.pdf) | exact | GPT-5 (Pro) (2026-01-10) |
+| 2 | [aim-problem-38](counterexamples/stable-schur/) | refuted | [Borcea–Brändén, AIM problem list, Problem 38](https://www.aimath.org/pastworkshops/polyaschurlaxrep.pdf) | exact | GPT-5 (Pro) (2026-01-10) |
 | 3 | [aim-problem-36](counterexamples/aim-problem-36/) | refuted | [Borcea–Brändén, AIM problem list, Problem 36](https://www.aimath.org/pastworkshops/polyaschurlaxrep.pdf) | exact | TODO (TODO) |
 | 4 | [aim-problem-37](counterexamples/aim-problem-36/) | refuted | [Borcea–Brändén, AIM problem list, Problem 37](https://www.aimath.org/pastworkshops/polyaschurlaxrep.pdf) | exact | TODO (TODO) |
 | 5 | [macdonald-schur-convexity](counterexamples/macdonald-schur-convexity/) | refuted | [C. McSwiggen and S. Sahi, Theorem 2.1](https://arxiv.org/abs/2605.12680v2) | exact | TODO (TODO) |

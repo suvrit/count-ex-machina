@@ -18,6 +18,11 @@ calculation is used in any assertion.  It performs the following independent che
   6. Independently re-extracts every Schur coefficient by the bialternant formula.
   7. Verifies the closed one-parameter formulas for
          p_t(x) = det(sum_i x_i (I + t P_i)).
+  8. Builds the t=4 member of the same family and checks that it is Schur
+     POSITIVE and still violates the Problem 37 lower endpoint at lam=(1^5).
+     This is the witness Problem 37 actually needs: q at t=5 breaks that
+     endpoint only because it is not Schur positive at all, which makes it a
+     restatement of the Problem 36 refutation rather than a separate one.
 
 Usage:
     python verify.py                # run all checks, write artifacts/certificate.json
@@ -348,6 +353,100 @@ def build_certificate(verbose: bool = False):
         (1, 1, 1, 1, 1): -2972,
     }
 
+    # ------------------------------------------------------------------
+    # The lower endpoint (Problem 37) needs a SCHUR-POSITIVE witness.
+    #
+    # q above is not Schur positive, so it refutes Problem 37 only in the
+    # reading where that problem inherits nothing but Problem 36's hypotheses
+    # -- and in that reading the refutation is a formal corollary of the
+    # Problem 36 one, since a_(d) is the coefficient of x_1^d and hence
+    # nonnegative, making "a_lam >= f^lam a_(d)" imply Schur positivity.  The
+    # t=4 member of the same family settles the substantive reading: it IS
+    # Schur positive and still breaks the endpoint at lam=(1^5).
+    #
+    # f^lam is not hard-coded either: the number of standard Young tableaux of
+    # shape lam is K_{lam,(1^d)}, the last column of the Kostka matrix already
+    # built above by enumerating semistandard tableaux.
+    # ------------------------------------------------------------------
+    f_lambda = {lam: Kmat[i, len(PARTS) - 1] for i, lam in enumerate(PARTS)}
+    assert f_lambda == {
+        (5,): 1, (4, 1): 4, (3, 2): 5, (3, 1, 1): 6,
+        (2, 2, 1): 5, (2, 1, 1, 1): 4, (1, 1, 1, 1, 1): 1,
+    }
+
+    Jt = [sp.simplify(2 * G * (sp.eye(5) + 4 * Pi)) for Pi in P]
+    leading_minors_t = []
+    for i, Jti in enumerate(Jt):
+        assert Jti == Jti.T
+        assert all(e.is_Integer for e in Jti)
+        # The body states the second pencil as (4 J_i + 2 G) / 5, so that only
+        # G has to be displayed alongside the J_i already given.
+        assert Jti == sp.simplify((4 * J[i] + 2 * G) / 5)
+        minors = [sp.factor(Jti[:k, :k].det()) for k in range(1, 6)]
+        assert all(m > 0 for m in minors)
+        leading_minors_t.append(minors)
+
+    pencil_t = sum((x[i] * Jt[i] for i in range(N)), sp.zeros(5))
+    Qt = sp.Poly(sp.expand(pencil_t.det(method="berkowitz")), *x)
+    assert len(Qt.terms()) == 126
+
+    # det(sum x_i Jt_i) = 2^5 det(G) p_4 = 5184 p_4, and p_4 is already integral.
+    monomial_Qt = {mu: coefficient_by_partition(Qt, mu, x) for mu in PARTS}
+    for alpha, coeff in Qt.terms():
+        mu = tuple(sorted((a for a in alpha if a), reverse=True))
+        assert coeff == monomial_Qt[mu]
+    assert all(v > 0 for v in monomial_Qt.values())
+
+    schur_Qt = schur_coefficients_from_monomial(monomial_Qt, PARTS, Kmat)
+    for lam in PARTS:
+        assert bialternant_extract(Qt, lam, x) == schur_Qt[lam]
+
+    monomial_qt_exact = {mu: sp.cancel(monomial_Qt[mu] / 5184) for mu in PARTS}
+    schur_qt_exact = {lam: sp.cancel(schur_Qt[lam] / 5184) for lam in PARTS}
+    assert all(v.is_Integer for v in monomial_qt_exact.values())
+    assert all(v.is_Integer for v in schur_qt_exact.values())
+    monomial_qt = {mu: int(monomial_qt_exact[mu]) for mu in PARTS}
+    schur_qt = {lam: int(schur_qt_exact[lam]) for lam in PARTS}
+    assert monomial_qt == {
+        (5,): 125,
+        (4, 1): 1225,
+        (3, 2): 3770,
+        (3, 1, 1): 7980,
+        (2, 2, 1): 13846,
+        (2, 1, 1, 1): 30004,
+        (1, 1, 1, 1, 1): 64472,
+    }
+    assert schur_qt == {
+        (5,): 125,
+        (4, 1): 1100,
+        (3, 2): 2545,
+        (3, 1, 1): 3110,
+        (2, 2, 1): 3321,
+        (2, 1, 1, 1): 2972,
+        (1, 1, 1, 1, 1): 69,
+    }
+
+    # This is the whole point: Schur POSITIVE, hence a witness under either
+    # reading of Problem 37 -- and still short of the lower endpoint, at
+    # exactly one partition.
+    assert all(v > 0 for v in schur_qt.values())
+    violated = [lam for lam in PARTS if schur_qt[lam] < f_lambda[lam] * schur_qt[(5,)]]
+    assert violated == [(1, 1, 1, 1, 1)]
+    assert schur_qt[(1, 1, 1, 1, 1)] == 69 < 125 == f_lambda[(1, 1, 1, 1, 1)] * schur_qt[(5,)]
+    # q itself is not Schur positive, which is why it cannot serve here.
+    assert schur_q[(1, 1, 1, 1, 1)] < 0
+
+    # Where the two regimes sit: (t+1)^3 - [s_(1^5)]p_t = t^2(9t^3-21t^2-40t-24)/16,
+    # so the lower endpoint fails past the cubic's root while Schur positivity
+    # survives until the quintic's, and t=4 lies strictly between them.
+    endpoint_gap = sp.factor(sp.expand((t + 1) ** 3 - schur_t[(1, 1, 1, 1, 1)]))
+    assert endpoint_gap == sp.factor(t**2 * (9 * t**3 - 21 * t**2 - 40 * t - 24) / 16)
+    cubic = lambda u: 9 * u**3 - 21 * u**2 - 40 * u - 24
+    quintic = lambda u: 9 * u**5 - 21 * u**4 - 56 * u**3 - 72 * u**2 - 48 * u - 16
+    assert cubic(4) == 56 > 0 and quintic(4) == -1104 < 0   # t=4: endpoint broken, Schur positive
+    assert cubic(3) < 0                                     # t=3: endpoint still holds
+    assert quintic(5) == 5944 > 0                           # t=5: Schur positivity already gone
+
     result = {
         "basis_K": [[int(v) for v in row] for row in Kbasis.tolist()],
         "gram_G": [[int(v) for v in row] for row in G.tolist()],
@@ -357,12 +456,29 @@ def build_certificate(verbose: bool = False):
         "monomial_symmetric_coefficients_q": {str(mu): int(monomial_q[mu]) for mu in PARTS},
         "schur_coefficients_q": {str(lam): int(schur_q[lam]) for lam in PARTS},
         "negative_coefficient": {"partition": "(1,1,1,1,1)", "value": -2972},
+        "standard_young_tableaux": {str(lam): int(f_lambda[lam]) for lam in PARTS},
+        "lower_endpoint_witness": {
+            "J_matrices": [[[int(v) for v in row] for row in Jti.tolist()] for Jti in Jt],
+            "leading_principal_minors": [[int(v) for v in row] for row in leading_minors_t],
+            "normalization": "qtilde(x) = det(sum_i x_i Jtilde_i) / 5184 = p_4(x)",
+            "monomial_symmetric_coefficients": {str(mu): monomial_qt[mu] for mu in PARTS},
+            "schur_coefficients": {str(lam): schur_qt[lam] for lam in PARTS},
+            "schur_positive": True,
+            "violated_partition": "(1,1,1,1,1)",
+            "violation": "a_(1^5) = 69 < 125 = f^(1^5) a_(5)",
+        },
     }
 
     print("All exact checks passed.")
     print("Counterexample: q(x)=det(sum_i x_i J_i)/648.")
     print("Schur coefficient [s_(1^5)] q = -2972.")
+    print("Lower endpoint: qtilde(x)=det(sum_i x_i Jtilde_i)/5184 is Schur positive,")
+    print("with [s_(1^5)] qtilde = 69 < 125 = f^(1^5) [s_(5)] qtilde.")
     if verbose:
+        print("\nJtilde_i matrices (t=4):")
+        for i, Jti in enumerate(Jt, 1):
+            print(f"Jtilde_{i} =")
+            print(Jti)
         print("\nJ_i matrices:")
         for i, Ji in enumerate(J, 1):
             print(f"J_{i} =")
@@ -389,7 +505,8 @@ def verify() -> dict:
         "ok": True,
         "summary": (
             f"exact det-pencil Schur expansion, "
-            f"[s_{negative['partition']}] q = {negative['value']}"
+            f"[s_{negative['partition']}] q = {negative['value']}; "
+            f"Schur-positive t=4 witness with {certificate['lower_endpoint_witness']['violation']}"
         ),
         "witness": certificate,
     }
