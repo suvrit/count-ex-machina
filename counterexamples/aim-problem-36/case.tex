@@ -6,7 +6,7 @@
 
 \begin{cxcredits}
 \posedby{Borcea and Br\"and\'en \citeyearpar{AIMStableProblems}}
-\foundby{TODO}{TODO}
+\foundby{GPT-5.6 (Pro)}{2026-07-30}
 \formalizedby{S.~Sra}
 \auditedby{S.~Sra}
 \contributedby{S.~Sra}
@@ -158,6 +158,15 @@ Borcea--Br\"and\'en Problem 37: stable Schur inequality (lower endpoint) \citeye
 Schur-positive member of the same family; $a_{(1^5)}=69<125=f^{(1^5)}a_{(5)}$.
 \end{cxcertificate}
 
+% This result's witness has a different history from the case's: the pencil is
+% the same GPT construction, but the Schur-positive member the lower endpoint
+% actually needs was specialized out of it later.  Both are restated, because a
+% per-result block replaces the inherited \foundby rather than appending to it.
+\begin{cxcredits}[aim-problem-37]
+\foundby{GPT-5.6 (Pro)}{2026-07-30}
+\foundby{Opus 5}{2026-08-10}
+\end{cxcredits}
+
 \begin{cxrefutation}
 The lower endpoint needs a different member of the same family, because it needs a witness that is Schur \emph{positive}.  Let $G$ be the Gram matrix of the basis of $V$ that produced the $J_i$,
 \[
@@ -178,8 +187,7 @@ which is $p_4$ in the notation of that appendix.
 \begin{theorem}[\statusfalse: lower endpoint, AIM Problem 37]\label{thm:aim37}
 The polynomial \eqref{eq:aim36-qtilde} satisfies every hypothesis of Problem~\ref{ctx:aim-problem-37} and is moreover Schur positive,
 \begin{align*}
-\widetilde q={}&125s_{(5)}+1100s_{(4,1)}+2545s_{(3,2)}+3110s_{(3,1,1)}\\
-&+3321s_{(2,2,1)}+2972s_{(2,1,1,1)}+69s_{(1^5)},
+\widetilde q={}&125s_{(5)}+1100s_{(4,1)}+2545s_{(3,2)}+3110s_{(3,1,1)}+3321s_{(2,2,1)}+2972s_{(2,1,1,1)}+69s_{(1^5)},
 \end{align*}
 yet it violates the lower endpoint inequality $a_\lambda\ge f^\lambda a_{(d)}$: at $\lambda=(1^5)$, where $f^{(1^5)}=1$,
 \[
