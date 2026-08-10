@@ -235,8 +235,8 @@
       "posed_by": "Coffey and Csordas \\citeyearpar{Csordas2014}",
       "found_by": [
         {
-          "model": "TODO",
-          "date": "TODO"
+          "model": "GPT-5.5 (Pro)",
+          "date": "2026-02-22"
         }
       ],
       "formalized_by": "S.~Sra",
@@ -269,7 +269,7 @@
     "certificate_tex": "Exact $d=n$ diagonal family: $\\disc=(m-1)/\\sqrt m$ against variance $1+1/m$, a ratio of $\\Theta(\\sqrt{\\log n})$.",
     "theorem_label": "thm:discrepancy",
     "provenance": {
-      "source_tex": "Remark 4.25 of A.~S.~Bandeira's problem collection \\citeyearpar{Bandeira2016}, quoted here from its restatement as Conjecture 1.2 of E.~Akba\\c{s} and S.~Sra \\citeyearpar{AkbasSra2026}",
+      "source_tex": "Remark 4.25 of A.~S.~Bandeira's problem collection \\citeyearpar{Bandeira2016}.",
       "url": "https://arxiv.org/abs/2606.16005",
       "retrieved": "2026-08-01",
       "fidelity": "verbatim",
@@ -280,7 +280,7 @@
       "found_by": [
         {
           "model": "GPT-5.5 (Pro)",
-          "date": "TODO"
+          "date": "2026-05-24"
         }
       ],
       "formalized_by": "E.~Akba\\c{s} and S.~Sra \\citeyearpar{AkbasSra2026}",
@@ -316,7 +316,7 @@
       "statement_tex": "We do not know if the inequality can be extended to $\\|A^{\\mathsf T}B\\|_{L_{p,q}}^2\\le\\|A^{\\mathsf T}A\\|_{L_{q,q}}\\|B^{\\mathsf T}B\\|_{L_{p,p}}$ for all reals $1\\le p\\le q$ (this is true for positive integer $p$ by a tensor-power argument)."
     },
     "credits": {
-      "posed_by": "A.~Sah, M.~Sawhney, D.~Stoner and Y.~Zhao \\citeyearpar{SahSawhneyStonerZhao2020}",
+      "posed_by": "A.~Sah, M.~Sawhney, D.~Stoner and Y.~Zhao \\citeyearpar{SahSawhneyStonerZhao2020}, and put to S.~Sra by Y.~Zhao in private communication, May 2018",
       "found_by": [
         {
           "model": "Opus 5",
@@ -360,7 +360,7 @@
       "statement_tex": "Taking $B=A$ in the question above and writing $Z=A^{\\mathsf T}A$ for the resulting completely positive matrix: for all reals $1\\le s\\le q$ and every completely positive $Z$,\n\\[\\|Z\\|_{s,q}^2\\le\\|Z\\|_{s,s}\\|Z\\|_{q,q}.\\]"
     },
     "credits": {
-      "posed_by": "A.~Sah, M.~Sawhney, D.~Stoner and Y.~Zhao \\citeyearpar{SahSawhneyStonerZhao2020}",
+      "posed_by": "A.~Sah, M.~Sawhney, D.~Stoner and Y.~Zhao \\citeyearpar{SahSawhneyStonerZhao2020}, and put to S.~Sra by Y.~Zhao in private communication, May 2018",
       "found_by": [
         {
           "model": "GPT-5.6 Sol (Pro)",
