@@ -22,7 +22,7 @@ $\lVert R-D\rVert_1^2\leq c\,\epsilon$, which is the form refuted below.
 % Neither $\epsilon$ nor the source's conclusion specifies how the diagonal
 % entries are to be ordered against the sorted spectrum.  In the family below
 % both $(\lambda_i)$ and $(d_i)$ are strictly decreasing in the displayed index
-% order, and the common sorted order minimises $\sum_i|\lambda_i-d_{\sigma(i)}|$
+% order, and the common sorted order minimizes $\sum_i|\lambda_i-d_{\sigma(i)}|$
 % over permutations $\sigma$; the witness therefore makes $\epsilon$ as small
 % as any matching allows, and the refutation does not rely on a favorable
 % pairing.
@@ -69,17 +69,13 @@ An exact algebraic Givens-rotation family with a rational dyadic lower bound, ac
 \end{cxcertificate}
 
 \begin{cxrefutation}
-The conjecture \cite{ODonnell2015AlmostDiagonal} asks whether the off-diagonal
-trace norm of a density matrix can be controlled, up to an absolute constant,
-by the square root of the $\ell_1$ displacement between its spectrum and its
-diagonal.  The following exact family shows logarithmic divergence.
+% The conjecture \cite{ODonnell2015AlmostDiagonal} asks whether the off-diagonal
+% trace norm of a density matrix can be controlled, up to an absolute constant,
+% by the square root of the $\ell_1$ displacement between its spectrum and its
+% diagonal. The following exact family shows logarithmic divergence.
 
 \begin{theorem}[\statusfalse: O'Donnell's matrix conjecture]\label{thm:odonnell-matrix-conjecture}
-For every $C>0$ there exist an integer $n$ and a real symmetric positive
-semidefinite matrix $R\in\mathbb R^{n\times n}$ with
-$\operatorname{tr}R=1$ such that, writing
-$D=\operatorname{Diag}(R)=\operatorname{diag}(d_1,\ldots,d_n)$ and listing the
-eigenvalues $\lambda_1\geq\cdots\geq\lambda_n$,
+For every $C>0$ there exist an integer $n$ and a real symmetric positive semidefinite matrix $R\in\mathbb R^{n\times n}$ with $\operatorname{tr}R=1$ such that, writing $D=\operatorname{Diag}(R)=\operatorname{diag}(d_1,\ldots,d_n)$ and listing the eigenvalues $\lambda_1\geq\cdots\geq\lambda_n$, 
 \[
   \frac{\lVert R-D\rVert_1^2}
        {\sum_{i=1}^n |\lambda_i-d_i|}>C.
@@ -88,23 +84,9 @@ Moreover, both $(\lambda_i)$ and $(d_i)$ are strictly decreasing.
 \end{theorem}
 
 \begin{proof}
-Fix an integer $m\geq2$ and put
-\[
-  n=2^m,\qquad q=n,\qquad
-  H=H_{n-1}=\sum_{i=1}^{n-1}\frac1i,
-\]
-\[
-  B=1+q^2H,\qquad
-  \delta=\frac1{2B},\qquad
-  \eta=\frac1{2n}.
-\]
-Define positive spectral gaps by
-\[
-  g_1=\delta(1+q^2),
-  \qquad
-  g_i=\delta\frac{q^2}{i^2}
-  \quad (2\leq i\leq n-1),
-\]
+Fix an integer $m\geq2$ and put $n=2^m$, $q=n$, and $H=H_{n-1}=\sum_{i=1}^{n-1}\frac1i$.  Then, set
+$B=1+q^2H$, $\delta=\frac1{2B}$, and $\eta=\frac1{2n}$, and define positive spectral gaps by
+$g_1=\delta(1+q^2)$, $g_i=\delta\frac{q^2}{i^2} \quad (2\leq i\leq n-1)$, 
 and set
 \[
   \lambda_n=\eta,
@@ -257,9 +239,9 @@ exist.
 \begin{remark}[Scope]
 What falls is the unit-trace conjecture of \cite{ODonnell2015AlmostDiagonal},
 namely $\lVert R-\operatorname{Diag}(R)\rVert_1=O(\sqrt\epsilon)$ with an
-absolute implied constant.  Two neighbouring statements are untouched.  The
+absolute implied constant.  Two neighboring statements are untouched.  The
 question originally posed there, whether such an $M$ lies within $2\epsilon$ of
-\emph{some} diagonal matrix, is not the target; nor is the unnormalised variant,
+\emph{some} diagonal matrix, is not the target; nor is the unnormalized variant,
 which the same answer already resolves in the negative by a perturbative
 argument.  The witness happens to settle the own-diagonal form of both, since
 $\lVert R-D\rVert_1/\epsilon$ diverges along the family, but only the unit-trace
