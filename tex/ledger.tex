@@ -38,7 +38,7 @@
 \setlength{\LTright}{\fill}
 \setcounter{cxrow}{0}   % rows number themselves; see \cxn in cxcase.sty
 \begin{longtable}{@{}>{\raggedleft\arraybackslash}p{\cxnumwd}@{\hspace{\cxnumsep}}p{0.46\textwidth}p{0.50\textwidth}@{}}
-  \caption{Summary of our counterexamples}\label{tab:ledger}\\
+  \caption{Summary of our counterexamples\\ \phantom{table 1::} (listed in no specific order)}\label{tab:ledger}\\
   \cmidrule[\heavyrulewidth]{2-3}
   & Formal statement & Certificate \\
   \cmidrule{2-3}
@@ -71,7 +71,7 @@
   \cxn & Variance-sensitive Matrix Spencer~\cite[Prob.~4.25]{Bandeira2016} & Diagonal family with discrepancy $\Theta(\sqrt{\log n})$.\ \emph{Exact certificate}; human proof Thm.~\ref{thm:discrepancy}.\\
 %
   % mixed-norm-general-s (body)
-  \cxn & Mixed-norm $\|A^TB\|_{p,q}^2\le \|A^TA\|_{p,p}\|BB^T\|_{q,q}$ for $1\le p\le q$~\citep{SahSawhneyStonerZhao2020} & Explicit disproof via exact algebra; \emph{exact certificate}; human proof Thm.~\ref{thm:mixed-general}.\\
+  \cxn & Mixed-norm $\|A^TB\|_{p,q}^2\le \|A^TA\|_{p,p}\|B^TB\|_{q,q}$ for $1\le p\le q$~\citep{SahSawhneyStonerZhao2020} & Explicit disproof via exact algebra; \emph{exact certificate}; human proof Thm.~\ref{thm:mixed-general}.\\
 %
   % rank-two-mixed-norm (body)
   \cxn & The same question at $B=A$: $\|Z\|_{s,q}^2\le\|Z\|_{s,s}\|Z\|_{q,q}$ for completely positive $Z$ & Explicit disproof via a rank-2 $21\times 21$ PSD matrix;\ \emph{Interval certificate}; no closed-form proof;~\ref{thm:mixed}).\\
