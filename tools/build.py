@@ -154,6 +154,13 @@ def balanced_braces(s):
 CASE_ENVS = {"cxcontext", "cxrefutation"}
 RESULT_ENVS = {"cxsource", "cxstatement", "cxsummary", "cxcertificate"}
 ALL_ENVS = CASE_ENVS | RESULT_ENVS | {"cxcredits"}
+# cxrefutation may be split into several regions, whose bodies are one region in
+# file order.  A case refuting more than one statement reads better with each
+# quote box standing next to the theorem that answers it, and a quote box is a
+# cxstatement -- a region, which may not nest.  So the refutation closes before
+# the next statement and reopens after it.  Every other region stays once-only:
+# two cxsummary{r} are a mistake, two halves of a refutation are a layout.
+REPEATABLE_ENVS = {"cxrefutation"}
 # The RESULT_ENVS take their result id as a mandatory {arg}; cxcredits takes it
 # as LaTeX's optional [arg], because a bare \begin{cxcredits} has to stay legal
 # for the common case of one attribution per case.  Accept either spelling here
@@ -274,10 +281,14 @@ def parse_case_tex(text, errors, where):
                 errors.append(f"{where}: line {lineno}: \\end{{{name}}} does not close {open_env or 'anything'}")
                 return regions
             key = (open_env, arg)
+            chunk = "\n".join(body).strip("\n")
             if key in regions:
-                label = f"{open_env}{{{arg}}}" if arg else open_env
-                errors.append(f"{where}: {label} appears twice")
-            regions[key] = "\n".join(body).strip("\n")
+                if open_env in REPEATABLE_ENVS:
+                    chunk = f"{regions[key]}\n\n{chunk}"
+                else:
+                    label = f"{open_env}{{{arg}}}" if arg else open_env
+                    errors.append(f"{where}: {label} appears twice")
+            regions[key] = chunk
             open_env = None
         elif open_env and not line.lstrip().startswith("%"):
             body.append(line)

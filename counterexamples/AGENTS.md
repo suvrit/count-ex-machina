@@ -50,7 +50,7 @@ unfilled TODO.
 | `cxstatement{rid}` | per result | the statement **as originally posed**, and nothing else: the box is labelled `ctx:rid` for you, so point at it with `Problem~\ref{ctx:rid}` rather than putting a `\label` inside the source's words — and never by the source's own number, which resolves to nothing |
 | `cxsummary{rid}` | per result | one line: the ledger's statement column |
 | `cxcertificate{rid}` | per result | one line: the ledger's certificate column |
-| `cxrefutation` | once | the conjecture in prose, the theorem, the proof |
+| `cxrefutation` | once, or split | the conjecture in prose, the theorem, the proof. A case refuting several statements may **close it before the next `cxstatement` and reopen after**, so each quote box stands with the theorem that answers it; the pieces are read as one region, in file order. Regions may not nest, so this is the only way to interleave them |
 
 `\foundby` may repeat when a witness took more than one model or session. A
 `cxcredits[rid]` merges over the case block role by role, so a result that
