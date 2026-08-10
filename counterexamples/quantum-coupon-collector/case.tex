@@ -8,7 +8,7 @@
 \posedby{S.~Sra \citeyearpar{Sra2017QuantumCoupon}}
 \foundby{GPT Pro}{2026-02-16}
 \formalizedby{GPT-5.6 Pro, which re-derived the exact witnesses in 2026-08}
-\auditedby{GPT-5.6 Pro, using exact rational arithmetic}
+\auditedby{GPT-5.6 Pro}
 \contributedby{S.~Sra}
 \end{cxcredits}
 
@@ -19,15 +19,16 @@ $x_1,\ldots,x_n>0$, the expected waiting time is the alternating sum
 T_n(x_1,\ldots,x_n)=\sum_{k=1}^n(-1)^{k+1}
 \sum_{1\le i_1<\cdots<i_k\le n}\frac{1}{x_{i_1}+\cdots+x_{i_k}},
 \]
-which is positive for a reason having nothing to do with waiting times: $t\mapsto1/t$ is completely monotone on $(0,\infty)$, so the Laplace-transform representation makes the alternating sum an integral of a nonnegative quantity \cite{FlajoletGardyThimonier1992}.  The statement quoted below asks whether the same holds with the positive numbers replaced by positive definite matrices and the reciprocal by the matrix inverse.
+whose positivity can be seen through a nice trick using the fact that $t\mapsto1/t$ is completely monotone on $(0,\infty)$, so the Laplace-transform representation makes the alternating sum an integral of a nonnegative quantity \cite{FlajoletGardyThimonier1992}.  The statement quoted below asks whether the same holds with the positive numbers replaced by positive definite matrices. % and the reciprocal by the matrix inverse.
 
-Throughout, $\mathbf{S}_{++}^{d}$ is the cone of real symmetric positive definite $d\times d$ matrices, and for a nonempty $S\subseteq[n]$ we abbreviate $X_S:=\sum_{i\in S}X_i$, so that the source's double sum is
-\[
-Q_n(X_1,\ldots,X_n)=\sum_{\emptyset\ne S\subseteq[n]}(-1)^{|S|-1}X_S^{-1}.
-\]
-We also write $\Delta_n:=\tr Q_n$ for its scalar trace transform; since a positive definite matrix has positive trace, the conjecture implies $\Delta_n>0$.
+Let $\mathbf{S}_{++}^{d}$ be the cone of real symmetric positive definite $d\times d$ matrices.
+% For a nonempty $S\subseteq[n]$ we abbreviate $X_S:=\sum_{i\in S}X_i$, so that the source's double sum is
+% \[
+% Q_n(X_1,\ldots,X_n)=\sum_{\emptyset\ne S\subseteq[n]}(-1)^{|S|-1}X_S^{-1}.
+% \]
+% We also write $\Delta_n:=\tr Q_n$ for its scalar trace transform; since a positive definite matrix has positive trace, the conjecture implies $\Delta_n>0$.
 
-The cone-valued form of the scalar mechanism is available: Theorem~7 of Niculescu and Sra \cite{NiculescuSra2023} states that every completely monotone $f$ on a cone $\mathcal C$ satisfies the inclusion--exclusion inequality $\sum_i f(x_i)-\sum_{i<j}f(x_i+x_j)+\cdots\ge0$ for all $x_1,\ldots,x_n\in\mathcal C$.  Applying it to $\mathcal C=\mathbf{S}_{++}^{d}$ and $f_v(X)=v^{\mathsf T}X^{-1}v$ would settle the conjecture for every $v$, and applying it to $X\mapsto\tr(X^{-1})$ would settle the trace form.  The refutation below therefore also shows that neither function is completely monotone on $\mathbf{S}_{++}^{d}$ for $d\ge3$ --- for $d=1$ both reduce to $1/t$, which is.
+% The cone-valued form of the scalar mechanism is available: Theorem~7 of Niculescu and Sra \cite{NiculescuSra2023} states that every completely monotone $f$ on a cone $\mathcal C$ satisfies the inclusion--exclusion inequality $\sum_i f(x_i)-\sum_{i<j}f(x_i+x_j)+\cdots\ge0$ for all $x_1,\ldots,x_n\in\mathcal C$.  Applying it to $\mathcal C=\mathbf{S}_{++}^{d}$ and $f_v(X)=v^{\mathsf T}X^{-1}v$ would settle the conjecture for every $v$, and applying it to $X\mapsto\tr(X^{-1})$ would settle the trace form.  The refutation below therefore also shows that neither function is completely monotone on $\mathbf{S}_{++}^{d}$ for $d\ge3$ --- for $d=1$ both reduce to $1/t$, which is.
 \end{cxcontext}
 
 % ---------------- result: quantum-coupon-collector ----------------
@@ -45,7 +46,7 @@ Q_n(X_1,\ldots,X_n):=\sum_{k=1}^n(-1)^{k+1}
 
 \textbf{Conjecture.} For $n\ge1$, and $X_1,\ldots,X_n\in\mathbf{S}_{++}^d$, we have $Q_n(X_1,\ldots,X_n)\succ0$.
 
-\emph{Note.} The cases $n=1,2,3$ are trivially true.  I've tried $n=4$ numerically, and it seems to hold.  (Also, by CCP, positivity immediately holds for a tuple of simultaneously diagonalizable matrices.)
+\emph{Note.} The cases $n=1,2,3$ are trivially true.  I've tried $n=4$ numerically, and it seems to hold.  (Also, by CCP, positivity immediately holds for simultaneously diagonalizable matrices.)
 \end{cxstatement}
 
 \begin{cxsummary}{quantum-coupon-collector}
@@ -59,18 +60,14 @@ Exact rational $3\times3$ matrices with $n=6$ and the integer vector $(4,1,3)^{\
 \begin{cxrefutation}
 The conjecture holds for a tuple of simultaneously diagonalizable matrices, where it is the classical identity coordinate by coordinate, and the source records that $n\le3$ is trivial and that $n=4$ was checked numerically.  Lemma~\ref{lem:qcc-facet} and Theorem~\ref{thm:qcc-positive-five} below upgrade that record: the conjecture is a theorem for every $d$ and every $n\le5$.  It fails at $n=6$.
 
-\begin{lemma}[Facet averaging for inversion]\label{lem:qcc-facet}
+\begin{lemma}[Facet averaging]\label{lem:qcc-facet}
 Let $A_1,\ldots,A_m\in\mathbf{S}_{++}^{d}$, where $m\ge2$, and put $A=\sum_{j=1}^{m}A_j$.  Then
 \[
 A^{-1}\preceq\frac{m-1}{m^2}\sum_{j=1}^{m}(A-A_j)^{-1}.
 \]
 \end{lemma}
 \begin{proof}
-Set $B_j=A-A_j$, which is positive definite because it is a sum of the remaining $A_i$.  Since
-\[
-\frac1m\sum_{j=1}^{m}B_j=\frac{m-1}{m}A
-\]
-and the inversion map is operator convex on $\mathbf{S}_{++}^{d}$,
+Set $B_j=A-A_j$, which is positive definite because it is a sum of the remaining $A_i$.  Since $\frac1m\sum_{j=1}^{m}B_j=\frac{m-1}{m}A$ and the inversion map is operator convex on $\mathbf{S}_{++}^{d}$,
 \[
 \frac{m}{m-1}A^{-1}
 =\Bigl(\frac1m\sum_{j=1}^{m}B_j\Bigr)^{-1}
@@ -79,7 +76,7 @@ and the inversion map is operator convex on $\mathbf{S}_{++}^{d}$,
 Rearranging gives the claim.
 \end{proof}
 
-For fixed $n$, introduce the layer sums
+For a nonempty $S\subseteq[n]$ we abbreviate $X_S:=\sum_{i\in S}X_i$; then, for fixed $n$, introduce the layer sums
 \[
 E_k:=\sum_{\substack{S\subseteq[n]\\|S|=k}}X_S^{-1},\qquad1\le k\le n,
 \]
@@ -89,10 +86,10 @@ E_{k+1}\preceq\frac{k(n-k)}{(k+1)^2}E_k,\qquad1\le k<n.
 \end{equation}
 
 \begin{theorem}[\statusproved: positivity through five variables]\label{thm:qcc-positive-five}
-For every $d\ge1$, every $1\le n\le5$, and every $X_1,\ldots,X_n\in\mathbf{S}_{++}^{d}$, one has $Q_n(X_1,\ldots,X_n)\succ0$, and consequently $\Delta_n(X_1,\ldots,X_n)>0$.
+For every $d\ge1$, every $1\le n\le5$, and every $X_1,\ldots,X_n\in\mathbf{S}_{++}^{d}$, one has $Q_n(X_1,\ldots,X_n)\succ0$.
 \end{theorem}
 \begin{proof}
-The case $n=1$ is immediate.  For the rest, write $Q_n=E_1-E_2+E_3-\cdots+(-1)^{n-1}E_n$ and apply \eqref{eq:qcc-layer}:
+$n=1$ is immediate.  Write $Q_n=E_1-E_2+E_3-\cdots+(-1)^{n-1}E_n$ and apply \eqref{eq:qcc-layer} to obtain:
 \[
 \begin{array}{rcl}
 n=2:&E_2\preceq\frac14E_1,&Q_2\succeq\frac34E_1,\\[0.35em]
@@ -103,7 +100,7 @@ n=5:&E_2\preceq E_1,\quad E_4\preceq\frac38E_3,
 &Q_5\succeq\frac58E_3+E_5.
 \end{array}
 \]
-Each displayed lower bound is a positive combination of layer sums of odd index, hence positive definite.
+Each displayed lower bound is clearly positive definite.
 \end{proof}
 
 \begin{theorem}[\statusfalse: quantum coupon collection]\label{thm:quantum-coupon-collector}
@@ -130,37 +127,18 @@ Each $X_i$ is strictly positive definite because $X_i\succeq\varepsilon I_3\succ
 \[
 -96<v^{\mathsf T}Q_6(X_1,\ldots,X_6)v<-95.
 \]
-The supplied verifier performs this computation using only \texttt{fractions.Fraction}.  Thus $Q_6$ has a negative quadratic form and is not positive semidefinite, let alone positive definite.
+The accompanying verifier performs this computation using only rational arithmetic. Thus, $Q_6$ has a negative quadratic form and is not positive semidefinite, let alone positive definite.
 \end{proof}
 
-The failure is not confined to the matrix ordering: the scalar consequence $\Delta_n>0$ fails too, and for a reason one can see in closed form.  Let $u_1,\ldots,u_n\in\R^3$ be such that every pair is linearly independent and every triple spans $\R^3$, and put
-\[
-X_i(\varepsilon):=u_iu_i^{\mathsf T}+\varepsilon I_3,\qquad\varepsilon>0,
-\]
-so that $X_S(\varepsilon)=\sum_{i\in S}u_iu_i^{\mathsf T}+k\varepsilon I_3$ for $|S|=k$.  A singleton leaves two regularized null directions, so $\tr X_S(\varepsilon)^{-1}=2/\varepsilon+O(1)$; a pair leaves one, so $\tr X_S(\varepsilon)^{-1}=1/(2\varepsilon)+O(1)$; and for $k\ge3$ the unregularized matrix is already positive definite, so the trace of the inverse is $O(1)$.  Only finitely many subsets occur, so the remainders sum uniformly and
-\begin{equation}\label{eq:qcc-asymptotic}
-\Delta_n\bigl(X_1(\varepsilon),\ldots,X_n(\varepsilon)\bigr)
-=\frac1\varepsilon\Bigl(2n-\tfrac12\binom n2\Bigr)+O(1)
-=\frac{n(9-n)}{4\varepsilon}+O(1).
-\end{equation}
-The coefficient is negative exactly for $n\ge10$, which the next theorem realizes with an exact witness.
+The failure is not confined to the matrix ordering: the weaker scalar consequence $\tr Q_n>0$ fails as well; see  \Cref{sec:qcctrace} for more details and commentary.
 
-\begin{theorem}[\statusfalse: the trace consequence]\label{thm:quantum-coupon-collector-trace}
-There are $d=3$, $n=10$ and $X_1,\ldots,X_{10}\in\mathbf{S}_{++}^{3}$ with $\Delta_{10}(X_1,\ldots,X_{10})<0$.  A fortiori $Q_{10}\succ0$ fails.
-\end{theorem}
-\begin{proof}
-Take $d=3$, $n=10$, $\varepsilon=1/10000$, and, for $t=0,1,\ldots,9$,
-\[
-u_t=(1,t,t^2)^{\mathsf T},\qquad X_{t+1}=u_tu_t^{\mathsf T}+\varepsilon I_3.
-\]
-Every $X_i$ is strictly positive definite, and every three of the $u_t$ are independent because their determinant is a nonzero Vandermonde product; the matrices are noncommuting, the $(1,2)$ entry of $[X_1,X_2]$ being $1$.  Exact rational evaluation of all $2^{10}-1=1023$ nonempty-subset terms gives
-\[
--13901<\Delta_{10}(X_1,\ldots,X_{10})<-13900.
-\]
-The supplied verifier computes this with exact rational arithmetic and records the full numerator and denominator in \texttt{artifacts/certificate.json}.
-\end{proof}
-
-\begin{remark}[Scope]
-What is refuted is the conjecture as posed, universally quantified over $n$ and $d$.  The exact record is now: for every $d$, the conjecture is true for $n\le5$ (Theorem~\ref{thm:qcc-positive-five}) and false at $n=6$ (Theorem~\ref{thm:quantum-coupon-collector}).  For the weaker trace form the record is coarser --- true for $n\le5$, false at $n=10$ --- and \eqref{eq:qcc-asymptotic}, whose coefficient vanishes at $n=9$, says nothing about $6\le n\le9$, since that construction is only one family.  Nothing here contradicts the simultaneously diagonalizable case, which remains an identity.
-\end{remark}
+% \begin{remark}[Scope]
+% What is refuted is the conjecture as posed, universally quantified over $n$ and $d$.  The exact record is now: for every $d$, the conjecture is true for $n\le5$ (Theorem~\ref{thm:qcc-positive-five}) and false at $n=6$ (Theorem~\ref{thm:quantum-coupon-collector}).  For the trace form the record is coarser --- true for $n\le5$, false at $n=10$, undecided in between; see \Cref{sec:qcctrace}.  Nothing here contradicts the simultaneously diagonalizable case, which remains an identity.
+% \end{remark}
 \end{cxrefutation}
+
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: "../../tex/main"
+%%% End:

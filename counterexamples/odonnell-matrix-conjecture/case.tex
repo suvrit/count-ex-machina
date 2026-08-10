@@ -5,33 +5,27 @@
 \foundby{GPT-5.6 Pro}{2026-08}
 \formalizedby{GPT-5.6 Pro}
 \auditedby{GPT-5.6 Pro}
-\contributedby{Suvrit Sra}
+\contributedby{S.~Sra}
 \end{cxcredits}
 
 \begin{cxcontext}
-For a Hermitian matrix $X$, write
-\[
-  \lVert X\rVert_1=\operatorname{tr}|X|
-\]
-for its trace norm.  For $R\in\mathbb C^{n\times n}$, let
-$D=\operatorname{Diag}(R)=\operatorname{diag}(d_1,\ldots,d_n)$ be its diagonal
+For a Hermitian matrix $X$ write $\lVert X\rVert_1=\operatorname{tr}|X|$ for its trace norm.  For $R\in\mathbb C^{n\times n}$, let $D=\operatorname{Diag}(R)=\operatorname{diag}(d_1,\ldots,d_n)$ be its diagonal
 part, and let $\Lambda(R)$ be the diagonal matrix carrying the eigenvalues
 $\lambda_1\geq\cdots\geq\lambda_n$ in sorted order, so that
 \[
-  \epsilon:=\lVert D-\Lambda(R)\rVert_1=\sum_i|\lambda_i-d_{ii}|
+  \epsilon:=\lVert D-\Lambda(R)\rVert_1=\nlsum_i|\lambda_i-d_{ii}|.
 \]
-measures how far the diagonal sits from the spectrum.  The source states its
-conclusion asymptotically, as $\lVert R-D\rVert_1=O(\sqrt\epsilon)$; an
+The source states its conclusion asymptotically, as $\lVert R-D\rVert_1=O(\sqrt\epsilon)$; an
 absolute constant in that $O(\cdot)$ is exactly an absolute $c$ with
 $\lVert R-D\rVert_1^2\leq c\,\epsilon$, which is the form refuted below.
 
-Neither $\epsilon$ nor the source's conclusion specifies how the diagonal
-entries are to be ordered against the sorted spectrum.  In the family below
-both $(\lambda_i)$ and $(d_i)$ are strictly decreasing in the displayed index
-order, and the common sorted order minimises $\sum_i|\lambda_i-d_{\sigma(i)}|$
-over permutations $\sigma$; the witness therefore makes $\epsilon$ as small
-as any matching allows, and the refutation does not rely on a favorable
-pairing.
+% Neither $\epsilon$ nor the source's conclusion specifies how the diagonal
+% entries are to be ordered against the sorted spectrum.  In the family below
+% both $(\lambda_i)$ and $(d_i)$ are strictly decreasing in the displayed index
+% order, and the common sorted order minimises $\sum_i|\lambda_i-d_{\sigma(i)}|$
+% over permutations $\sigma$; the witness therefore makes $\epsilon$ as small
+% as any matching allows, and the refutation does not rely on a favorable
+% pairing.
 \end{cxcontext}
 
 \begin{cxsource}{odonnell-matrix-conjecture}
@@ -39,15 +33,16 @@ R.~O'Donnell, answering a question of Nengkun Yu on MathOverflow
 \cite{ODonnell2015AlmostDiagonal}, reports that he and J.~Wright had been
 considering the problem in connection with quantum tomography, and closes by
 conjecturing the unit-trace case.  The same conjecture was put to S.~Sra by
-O'Donnell in personal communication, a fact the public answer itself records.
+O'Donnell in personal communication.
 \end{cxsource}
 
 \begin{cxstatement}{odonnell-matrix-conjecture}
 The question answered was whether a positive semidefinite $M$ with
 $\lVert D(M)-\Lambda(M)\rVert_1\leq\epsilon$ must lie within $2\epsilon$ of
-some diagonal matrix.  O'Donnell observes that for the variant he and Wright
-cared about --- $M$ close to \emph{its own} diagonal --- the answer is no in
-general, and then conjectures the normalised case:
+% some diagonal matrix.  O'Donnell observes that for the variant he and Wright
+% cared about --- $M$ close to \emph{its own} diagonal --- the answer is no in
+% general, and then
+conjectures the normalized case:
 
 \begin{quote}
 ``If you restrict $M$ to have trace $1$, then we felt the desired result was
@@ -60,7 +55,7 @@ positive semidefinite $R$ with eigenvalues $\lambda_i$ and diagonal entries
 $d_{ii}$,
 \[
   \lVert R-\operatorname{Diag}(R)\rVert_1^2
-  \leq c\sum_i |\lambda_i-d_{ii}|
+  \leq c\nlsum_i |\lambda_i-d_{ii}|
 \]
 for some absolute constant $c$ independent of $n$.
 \end{cxstatement}
@@ -271,3 +266,9 @@ $\lVert R-D\rVert_1/\epsilon$ diverges along the family, but only the unit-trace
 conjecture was posed as plausible and only it is claimed here.
 \end{remark}
 \end{cxrefutation}
+
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: "../../tex/main"
+%%% End:
