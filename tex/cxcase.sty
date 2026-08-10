@@ -162,7 +162,39 @@
 % section holding every de-emphasised case.  Issued at most once, by the
 % generator, immediately before the first case marked "appendix" in its
 % case.json; those cases are then typeset as subsections of it.
-\newcommand{\cxappendix}[1]{\appendix\section{#1}\label{sec:additional}}
+\newcommand{\cxappendix}[1]{%
+  \appendix\section{#1}\label{sec:additional}\cx@apxline{#1}}
+
+% ---------------------------------------------------------------------------
+% The list of appendices.
+% ---------------------------------------------------------------------------
+% There are now enough appendices that a reader cannot find one by paging, so
+% each registers itself in a private contents file (\jobname.apx) which
+% \cxappendixtoc prints.  A file of its own rather than the document's .toc
+% because the paper has no table of contents and wants none: this lists the
+% appendices and nothing else.  Entries come from \cxappendix and
+% \cxappendixsection, so an appendix title is spelled once, in its own file,
+% and the list cannot drift from the headings.
+%
+% \@starttoc opens the write stream where it is called, so \cxappendixtoc must
+% come before the first appendix -- anything registered earlier is dropped on
+% the floor.  Like any contents list it needs two LaTeX passes to settle.
+\newcommand{\cx@apxline}[1]{%
+  \addcontentsline{apx}{section}{\protect\numberline{\thesection}#1}}
+% \cxappendixsection{Title} -- \section for a hand-written appendix, listed.
+% Use this rather than \section in an appendix file, or it will not appear.
+\newcommand{\cxappendixsection}[1]{\section{#1}\cx@apxline{#1}}
+% \cxappendixtoc -- the list.  Issued while the document is still in the body,
+% so it needs no \appendix of its own; \cxendrule closes the last body section
+% by hand, since what follows is not a \section.
+%
+% amsart's \@starttoc takes TWO arguments -- the extension and the heading,
+% which it sets itself in the contents font (amsart.cls l.1147).  That is why
+% the heading is not a \section* here: the class wants to place it, and
+% \section* would not survive this document's patching of \section in any case.
+\newcommand{\cxappendixtoc}{%
+  \cxendrule
+  \@starttoc{apx}{Appendices}}
 
 % cxbrieflist -- the run of statements the archive records without a dossier.
 % The generator emits only the \cxbriefitem lines; the heading and the lead-in

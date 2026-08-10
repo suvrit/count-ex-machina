@@ -95,6 +95,15 @@ Deleting the directory at any time is safe.
   Do not put our own restatement inside a `problem`.
 - `\casecredits{...}` is emitted by the build from the case's `cxcredits`
   region. Do not write it by hand.
+- **A hand-written appendix opens with `\cxappendixsection{...}`, not
+  `\section{...}`.** That is what registers it in the list of appendices that
+  `\cxappendixtoc` prints (`main.tex`, just before the first appendix); a plain
+  `\section` still typesets, but silently never appears in the list. The list
+  lives in its own `main.apx` file rather than the document's `.toc`, because
+  the paper has no table of contents and wants none, and `tex/latexmkrc` is
+  what makes latexmk rerun when it changes. Title the appendix for the
+  main-text result it supports — "Additional results for ..." — since that is
+  all the list shows.
 - The `cx...` environments are defined in `cxcase.sty`, so LaTeX itself
   catches an unclosed or misspelled one. `tools/build.py` reads the same regions
   for `registry.json` and the README table — the two artifacts LaTeX cannot
