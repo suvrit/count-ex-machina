@@ -2,11 +2,11 @@
 % environment that tools/build.py extracts; machine facts (ids, uid, dates,
 % urls, enums) live in case.json.  See counterexamples/AGENTS.md.
 
-\cxtitle{Derivatives of the Jacobi-theta kernel}
+\cxtitle{Log-concavity of all Derivatives of the Jacobi-theta kernel}
 
 \begin{cxcredits}
 \posedby{Coffey and Csordas \citeyearpar{Csordas2014}}
-\foundby{TODO}{TODO}
+\foundby{GPT-5.5 (Pro)}{2026-02-22}
 \formalizedby{S.~Sra}
 \auditedby{S.~Sra}
 \contributedby{S.~Sra}
@@ -59,6 +59,16 @@ and an interval for $J_9(1/50)$ contained strictly in the negative half-line, ce
 \[
 -2.61006208371358922\cdot10^{19}.
 \]
-The source package contains both a high-precision independent evaluator and a Sage \texttt{RealIntervalField} certificate.  The negative margin is many orders of magnitude larger than the certified truncation error.
+The source package contains a high-precision evaluator and a Sage \texttt{RealIntervalField} certificate.  The negative margin is many orders of magnitude larger than the certified truncation error.
 \end{proof}
+
+\begin{remark}
+  GPT-5.5 managed to prove the Tur\'an inequalities for $\Phi^{(n)}$ for $n=2$ and $n=3$; while attempting an inductive proof to generalize those proofs to all $n$ is when the counterexample popped up. We have, however, not yet verified whether the Tur\'an inequalities hold for all $n \le 8$.
+\end{remark}
 \end{cxrefutation}
+
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: "../../tex/main"
+%%% End:

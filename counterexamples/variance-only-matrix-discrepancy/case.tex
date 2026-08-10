@@ -6,20 +6,20 @@
 
 \begin{cxcredits}
 \posedby{A.~S.~Bandeira \citeyearpar{Bandeira2016}}
-\foundby{GPT-5.5 (Pro)}{TODO}
+\foundby{GPT-5.5 (Pro)}{2026-05-24}
 \formalizedby{E.~Akba\c{s} and S.~Sra \citeyearpar{AkbasSra2026}}
 \auditedby{S.~Sra}
 \contributedby{S.~Sra}
 \end{cxcredits}
 
 \begin{cxcontext}
-For symmetric matrices $A_1,\ldots,A_n$ the \emph{discrepancy} is $\disc(A_1,\ldots,A_n)=\min_{x\in\{\pm1\}^n}\|\sum_{i=1}^nx_iA_i\|_{\rm op}$.  Spencer's theorem gives an $O(\sqrt n)$ bound in the scalar case, and the Matrix Spencer conjecture asks for the same $O(\sqrt n)$ bound for $n$ symmetric contractions of size $n\times n$.  The variance-sensitive strengthening below replaces the ambient scale $\sqrt n$ by the intrinsic variance parameter $\|\sum_{i=1}^nA_i^2\|_{\rm op}^{1/2}$, which never exceeds $\sqrt n$ and is often far smaller; it is the parameter that controls the norm of a random signing in matrix concentration, and Kyng, Luh and Song established the strengthened bound in the rank-one case.  The dimension regime is the whole point: the conjecture concerns $n$ matrices of size $n\times n$, so a family whose dimension grows faster than the number of summands says nothing about it.
+For symmetric matrices $A_1,\ldots,A_n$ the \emph{discrepancy} is $\disc(A_1,\ldots,A_n)=\min_{x\in\{\pm1\}^n}\|\sum_{i=1}^nx_iA_i\|_{\rm op}$.  Spencer's theorem gives an $O(\sqrt n)$ bound in the scalar case (and thus also for the commuting matrix case); the Matrix Spencer conjecture asks for the same $O(\sqrt n)$ bound for $n$ symmetric contractions of size $n\times n$.  The variance-sensitive strengthening replaces the ambient scale $\sqrt n$ by the intrinsic variance parameter $\|\sum_{i=1}^nA_i^2\|_{\rm op}^{1/2}$, which never exceeds $\sqrt n$ and is often far smaller; it is the parameter that controls the norm of a random signing in matrix concentration, and \citet{kyng2020four} establish the strengthened bound in the rank-one case.  
 \end{cxcontext}
 
 % ---------------- result: variance-only-matrix-discrepancy ----------------
 
 \begin{cxsource}{variance-only-matrix-discrepancy}
-Remark 4.25 of A.~S.~Bandeira's problem collection \citeyearpar{Bandeira2016}, quoted here from its restatement as Conjecture 1.2 of E.~Akba\c{s} and S.~Sra \citeyearpar{AkbasSra2026}
+Remark 4.25 of A.~S.~Bandeira's problem collection \citeyearpar{Bandeira2016}.
 \end{cxsource}
 
 \begin{cxstatement}{variance-only-matrix-discrepancy}
@@ -36,7 +36,7 @@ Exact $d=n$ diagonal family: $\disc=(m-1)/\sqrt m$ against variance $1+1/m$, a r
 \end{cxcertificate}
 
 \begin{cxrefutation}
-The disproof recorded here is not ours: the family below is Theorem A.1 of \citet{AkbasSra2026}, the first refutation of the conjecture, and this entry reproduces it.
+The disproof recorded here is not a new contribution of the present manuscript: the family reported below is taken from Theorem A.1 of \citet{AkbasSra2026}, the first refutation of the conjecture; but we couldn't resist including it here as an illustration.
 
 Fix an integer $m\ge2$ and set $n=2^m$, so that the matrices below are $n\times n$ and there are $n$ of them: the dimension is not inflated relative to the number of summands.  Index coordinates by $s=(s_1,\ldots,s_m)\in S:=\{\pm1\}^m$, so $|S|=n$.  Write $p=(1,\ldots,1)$ and $q=(-1,\ldots,-1)$, choose any $U\subseteq S\setminus\{p,q\}$ with $|U|=m$, put $F=S\setminus U$, and fix a bijection $\pi:\{m+1,\ldots,n\}\to F$; note that $p,q\in F$.  Define diagonal matrices
 \begin{equation}\label{eq:disc-family}
@@ -75,9 +75,15 @@ This bound is attained.  Take $x_1=\cdots=x_m=1$ and $x_{k_p}=-1$, $x_{k_q}=1$, 
 Dividing the two displayed quantities gives $(m-1)/\sqrt{m+1}$, which grows without bound as $m=\log_2n\to\infty$.
 \end{proof}
 
-\begin{remark}[Why the dimension regime matters]
-An earlier version of this entry used $n$ matrices of size $2^n\times2^n$.  That is the trivial regime: once the dimension is exponential in the number of summands the failure says nothing about Matrix Spencer, whose whole content lies in $d$ comparable to $n$.  The family above is the informative one, with $d=n$.
+% \begin{remark}[Why the dimension regime matters]
+% An earlier version of this entry used $n$ matrices of size $2^n\times2^n$.  That is the trivial regime: once the dimension is exponential in the number of summands the failure says nothing about Matrix Spencer, whose whole content lies in $d$ comparable to $n$.  The family above is the informative one, with $d=n$.
 
-The family is commutative, and the growth rate $\sqrt{\log n}$ is exactly what the sharp noncommutative Khintchine inequalities predict in the commutative case, so the logarithmic factor is genuine rather than an artifact of the construction.  This leaves open the possibility raised in \citet{AkbasSra2026} that the variance-sensitive bound survives for sufficiently noncommutative families.  The original Matrix Spencer conjecture is untouched: bounding $\|\sum_iA_i^2\|_{\rm op}^{1/2}\le\sqrt n$ recovers only the weaker $O(\sqrt n)$ target, which this family satisfies comfortably.
-\end{remark}
+% The family is commutative, and the growth rate $\sqrt{\log n}$ is exactly what the sharp noncommutative Khintchine inequalities predict in the commutative case, so the logarithmic factor is genuine rather than an artifact of the construction.  This leaves open the possibility raised in \citet{AkbasSra2026} that the variance-sensitive bound survives for sufficiently noncommutative families.  The original Matrix Spencer conjecture is untouched: bounding $\|\sum_iA_i^2\|_{\rm op}^{1/2}\le\sqrt n$ recovers only the weaker $O(\sqrt n)$ target, which this family satisfies comfortably.
+% \end{remark}
 \end{cxrefutation}
+
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: "../../tex/main"
+%%% End:
