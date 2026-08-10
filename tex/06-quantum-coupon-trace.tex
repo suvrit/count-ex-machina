@@ -1,0 +1,60 @@
+% Hand-written appendix.  Nothing generates this file.  It is \input after
+% generated/appendix.tex, which has already issued \appendix, so the \section
+% below is numbered as appendix material.  It carries the scalar trace form of
+% the case in Theorem~\ref{thm:quantum-coupon-collector}, which is weaker than the
+% conjecture and refuted separately: the asymptotic that says why the trace
+% turns negative, and the exact $n=10$ witness realizing it.
+\cxappendixsection{Additional results for the quantum coupon collection conjecture}
+\label{sec:qcctrace}
+
+Theorem~\ref{thm:quantum-coupon-collector} refutes the conjecture in the Loewner order,
+which is what was asked.  The failure is not confined to that ordering.  Write
+\[
+\Delta_n(X_1,\ldots,X_n):=\tr Q_n(X_1,\ldots,X_n)
+=\sum_{\emptyset\ne S\subseteq[n]}(-1)^{|S|-1}\tr X_S^{-1},
+\]
+with $X_S:=\sum_{i\in S}X_i$ as in the case.  A positive definite matrix has
+positive trace, so the conjecture implies $\Delta_n>0$, and
+Theorem~\ref{thm:qcc-positive-five} gives $\Delta_n>0$ for every $d$ and every $n\le5$.
+This scalar consequence fails too, and for a reason one can see in closed form.
+
+Let $u_1,\ldots,u_n\in\R^3$ be such that every pair is linearly independent and every triple spans $\R^3$, and put
+\[
+X_i(\varepsilon):=u_iu_i^{\mathsf T}+\varepsilon I_3,\qquad\varepsilon>0,
+\]
+so that $X_S(\varepsilon)=\sum_{i\in S}u_iu_i^{\mathsf T}+k\varepsilon I_3$ for $|S|=k$.  A singleton leaves two regularized null directions, so $\tr X_S(\varepsilon)^{-1}=2/\varepsilon+O(1)$; a pair leaves one, so $\tr X_S(\varepsilon)^{-1}=1/(2\varepsilon)+O(1)$; and for $k\ge3$ the unregularized matrix is already positive definite, so the trace of the inverse is $O(1)$.  Only finitely many subsets occur, so the remainders sum uniformly and
+\begin{equation}\label{eq:qcc-asymptotic}
+\Delta_n\bigl(X_1(\varepsilon),\ldots,X_n(\varepsilon)\bigr)
+=\frac1\varepsilon\Bigl(2n-\tfrac12\binom n2\Bigr)+O(1)
+=\frac{n(9-n)}{4\varepsilon}+O(1).
+\end{equation}
+The coefficient is negative exactly for $n\ge10$, which the next theorem realizes with an exact witness.
+
+\begin{theorem}[\statusfalse: the trace consequence]\label{thm:quantum-coupon-collector-trace}
+There are $d=3$, $n=10$ and $X_1,\ldots,X_{10}\in\mathbf{S}_{++}^{3}$ with $\Delta_{10}(X_1,\ldots,X_{10})<0$.  A fortiori $Q_{10}\succ0$ fails.
+\end{theorem}
+\begin{proof}
+Take $d=3$, $n=10$, $\varepsilon=1/10000$, and, for $t=0,1,\ldots,9$,
+\[
+u_t=(1,t,t^2)^{\mathsf T},\qquad X_{t+1}=u_tu_t^{\mathsf T}+\varepsilon I_3.
+\]
+Every $X_i$ is strictly positive definite, and every three of the $u_t$ are independent because their determinant is a nonzero Vandermonde product; the matrices are noncommuting, the $(1,2)$ entry of $[X_1,X_2]$ being $1$.  Exact rational evaluation of all $2^{10}-1=1023$ nonempty-subset terms gives
+\[
+-13901<\Delta_{10}(X_1,\ldots,X_{10})<-13900.
+\]
+The supplied verifier computes this with exact rational arithmetic and records the full numerator and denominator in \texttt{artifacts/certificate.json}.
+\end{proof}
+
+\begin{remark}[Scope]
+The record for the trace form is coarser than for the conjecture itself: true
+for $n\le5$ by Theorem~\ref{thm:qcc-positive-five}, false at $n=10$, and undecided for
+$6\le n\le9$.  Equation \eqref{eq:qcc-asymptotic}, whose coefficient vanishes at
+$n=9$, says nothing there, since that construction is only one family; and a
+$Q_n$ that is not positive semidefinite, such as the one of
+Theorem~\ref{thm:quantum-coupon-collector}, can still have positive trace.
+\end{remark}
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: "main"
+%%% End:

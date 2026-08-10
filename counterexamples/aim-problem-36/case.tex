@@ -133,7 +133,7 @@ The accompanying source package recomputes the Schur expansion in a second, inde
 \end{proof}
 
 \begin{remark}[Origin of the pencil]
-The matrices are not a numerical accident.  Let $V=\ker B\cong S^{(3,2)}$, where $B$ maps the permutation module on $2$-subsets of $[5]$ to $\mathbb R^5$ by $e_{ab}\mapsto e_a+e_b$, let $P_i$ be the rank-three projection attached to the point stabilizer of $i$, and let $G$ be the Gram matrix of the chosen basis of $V$.  Then $J_i=2G(I+5P_i)$, and the whole one-parameter family $\det(\sum_ix_i(I+tP_i))$ has a closed Schur expansion whose $s_{(1^5)}$ coefficient turns negative for $t$ large; $t=5$ clears denominators.  \Cref{sec:aim36pencil} develops this construction in full.
+The matrices are not a numerical accident.  Let $V=\ker B\cong S^{(3,2)}$, where $B$ maps the permutation module on $2$-subsets of $[5]$ to $\mathbb R^5$ by $e_{ab}\mapsto e_a+e_b$, let $P_i$ be the rank-three projection attached to the point stabilizer of $i$, and let $G$ be the Gram matrix of the chosen basis of $V$.  Then $J_i=2G(I+5P_i)$, and the whole one-parameter family $\det(\sum_ix_i(I+tP_i))$ has a closed Schur expansion whose $s_{(1^5)}$ coefficient turns negative for $t$ large; $t=5$ clears denominators.  Appendix~\ref{sec:aim36pencil} develops this construction in full.
 \end{remark}
 
 \end{cxrefutation}
@@ -178,7 +178,7 @@ G=\begin{pmatrix}
 3&3&3&3&6
 \end{pmatrix},
 \]
-put $\widetilde J_i:=(4J_i+2G)/5$, again a symmetric positive-definite \emph{integer} matrix, %, and in the notation of \Cref{sec:aim36pencil} equal to $2G(I+4P_i)$ ---
+put $\widetilde J_i:=(4J_i+2G)/5$, again a symmetric positive-definite \emph{integer} matrix, %, and in the notation of Appendix~\ref{sec:aim36pencil} equal to $2G(I+4P_i)$ ---
 and define
 \begin{equation}\label{eq:aim36-qtilde}
 \widetilde q(x_1,\ldots,x_5)=\frac1{5184}\det\Bigl(\nlsum_{i=1}^5x_i\widetilde J_i\Bigr),
@@ -216,7 +216,7 @@ from which upon inverting the Kostka matrix in the same partition order yields~\
 \end{proof}
 
 % \begin{remark}
-% Problem~\ref{ctx:aim-problem-37} takes its hypotheses from Problem~\ref{ctx:aim-problem-36}, so $q$ satisfies them, and $[s_{(1^5)}]q=-2972<1728$ violates its conclusion; read literally, \Cref{thm:aim36} therefore refutes the lower endpoint as a corollary.  That corollary is empty.  Under those hypotheses $a_{(d)}$ coincides with the coefficient of $m_{(d)}$, hence with that of $x_1^d$, which is nonnegative --- so $a_\lambda\ge f^\lambda a_{(d)}$ forces $a_\lambda\ge0$, and Problem~\ref{ctx:aim-problem-37} as posed \emph{contains} Problem~\ref{ctx:aim-problem-36}.  Every counterexample to the latter is automatically one to the former, and says nothing further.  What the problem is asking, being the announced stable analogue of Schur's inequality $\Imm_\lambda(A)\ge f^\lambda\det(A)$ --- whose coefficients are immanants of a positive semidefinite matrix and so nonnegative by construction --- is whether the dominance survives among polynomials that \emph{are} Schur positive.  That is the reading \Cref{thm:aim37} answers, and because $\widetilde q$ is Schur positive it answers the literal reading too; nothing here turns on which was meant.
+% Problem~\ref{ctx:aim-problem-37} takes its hypotheses from Problem~\ref{ctx:aim-problem-36}, so $q$ satisfies them, and $[s_{(1^5)}]q=-2972<1728$ violates its conclusion; read literally, Theorem~\ref{thm:aim36} therefore refutes the lower endpoint as a corollary.  That corollary is empty.  Under those hypotheses $a_{(d)}$ coincides with the coefficient of $m_{(d)}$, hence with that of $x_1^d$, which is nonnegative --- so $a_\lambda\ge f^\lambda a_{(d)}$ forces $a_\lambda\ge0$, and Problem~\ref{ctx:aim-problem-37} as posed \emph{contains} Problem~\ref{ctx:aim-problem-36}.  Every counterexample to the latter is automatically one to the former, and says nothing further.  What the problem is asking, being the announced stable analogue of Schur's inequality $\Imm_\lambda(A)\ge f^\lambda\det(A)$ --- whose coefficients are immanants of a positive semidefinite matrix and so nonnegative by construction --- is whether the dominance survives among polynomials that \emph{are} Schur positive.  That is the reading Theorem~\ref{thm:aim37} answers, and because $\widetilde q$ is Schur positive it answers the literal reading too; nothing here turns on which was meant.
 % \end{remark}
 
 % \begin{remark}[Relation to Problem~\ref{ctx:aim-problem-38}]

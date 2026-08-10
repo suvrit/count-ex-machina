@@ -5,7 +5,7 @@
 \label{sec:proofdetails}
 
 This appendix collects the positive results that bound where the mixed-norm
-counterexamples of \Cref{thm:mixed-general,thm:mixed} can live.  None of them is
+counterexamples of Theorems~\ref{thm:mixed-general} and~\ref{thm:mixed} can live.  None of them is
 new; they are recorded because together they show that the two counterexamples
 sit in the only region left open.
 
@@ -46,7 +46,7 @@ As $A^{\mathsf T}B\ge0$ entrywise, $\|A^{\mathsf T}Be_i\|_1=\mathbf 1^{\mathsf T
 \]
 by Cauchy--Schwarz.  Now $\|A\mathbf 1\|_2=(\mathbf 1^{\mathsf T}A^{\mathsf T}A\mathbf 1)^{1/2}=\|A^{\mathsf T}A\|_{L_{1,1}}^{1/2}$, while
 $\sup_{\|u\|_{q'}\le1}\|Bu\|_2=\sup_{\|u\|_{q'}\le1}(u^{\mathsf T}B^{\mathsf T}Bu)^{1/2}\le\|B^{\mathsf T}B\|_{L_{q,q}}^{1/2}$
-by \Cref{lem:dualitybound}.
+by Lemma~\ref{lem:dualitybound}.
 \end{proof}
 
 This is Lemma~3.1 of \citet{SahSawhneyStonerZhao2020}; the duality proof recorded
@@ -63,7 +63,7 @@ The block matrix $\begin{bsmallmatrix}A^{\mathsf T}A&A^{\mathsf T}B\\B^{\mathsf 
 =\|C^{\mathsf T}D\|_{L_{1,r}}^{1/p}
 \le\bigl(\|C^{\mathsf T}C\|_{L_{1,1}}^{1/2}\|D^{\mathsf T}D\|_{L_{r,r}}^{1/2}\bigr)^{1/p},
 \]
-by \Cref{prop:pone}, and the right-hand side is $\|A^{\mathsf T}A\|_{L_{p,p}}^{1/2}\|B^{\mathsf T}B\|_{L_{q,q}}^{1/2}$.
+by Proposition~\ref{prop:pone}, and the right-hand side is $\|A^{\mathsf T}A\|_{L_{p,p}}^{1/2}\|B^{\mathsf T}B\|_{L_{q,q}}^{1/2}$.
 \end{proof}
 
 \begin{proposition}[$q=\infty$]\label{prop:qinf}
@@ -77,7 +77,7 @@ By duality and Cauchy--Schwarz,
 \|A^*B\|_{L_{p,\infty}}^2=\max_i\max_{\|z_i\|_{p'}\le1}|z_i^*A^*Be_i|^2
 \le\max_i\max_{\|z_i\|_{p'}\le1}(z_i^*A^*Az_i)\,(B^*B)_{ii},
 \]
-and \Cref{lem:dualitybound} bounds the first factor by $\|A^*A\|_{L_{p,p}}$ and the second by $\|B^*B\|_{L_{\infty,\infty}}$.
+and Lemma~\ref{lem:dualitybound} bounds the first factor by $\|A^*A\|_{L_{p,p}}$ and the second by $\|B^*B\|_{L_{\infty,\infty}}$.
 \end{proof}
 
 The next two statements concern the specialization $B=A$, i.e.\ the inequality
@@ -87,20 +87,20 @@ $\|Z\|_{L_{p,q}}^2\le\|Z\|_{L_{p,p}}\|Z\|_{L_{q,q}}$ for completely positive $Z$
 Let $Z\in\R_{\ge0}^{n\times n}$ be positive semidefinite and suppose the Hadamard power $Z^{\odot p}=[z_{ij}^p]$ is positive semidefinite for some $p\ge1$.  Then $\|Z\|_{L_{p,q}}^2\le\|Z\|_{L_{p,p}}\|Z\|_{L_{q,q}}$ for every $q\ge p$.
 \end{proposition}
 \begin{proof}
-Write $Z^{\odot p}=X^{\mathsf T}X$.  Then $\|Z\|_{L_{p,q}}=\|X^{\mathsf T}X\|_{L_{1,q/p}}^{1/p}$, and \Cref{prop:pone} bounds this by $\bigl(\|X^{\mathsf T}X\|_{L_{1,1}}\|X^{\mathsf T}X\|_{L_{q/p,q/p}}\bigr)^{1/2p}=\|Z\|_{L_{p,p}}^{1/2}\|Z\|_{L_{q,q}}^{1/2}$.
+Write $Z^{\odot p}=X^{\mathsf T}X$.  Then $\|Z\|_{L_{p,q}}=\|X^{\mathsf T}X\|_{L_{1,q/p}}^{1/p}$, and Proposition~\ref{prop:pone} bounds this by $\bigl(\|X^{\mathsf T}X\|_{L_{1,1}}\|X^{\mathsf T}X\|_{L_{q/p,q/p}}\bigr)^{1/2p}=\|Z\|_{L_{p,p}}^{1/2}\|Z\|_{L_{q,q}}^{1/2}$.
 \end{proof}
 
 \begin{corollary}[order at most three]\label{cor:smalln}
 Let $Z\in\R^{n\times n}$ be positive semidefinite with $n\le3$, with no assumption that its entries are nonnegative.  Then $\|Z\|_{L_{p,q}}^2\le\|Z\|_{L_{p,p}}\|Z\|_{L_{q,q}}$ for all $1\le p\le q$.
 \end{corollary}
 \begin{proof}
-For $n\le3$ a positive semidefinite $Z$ has $|Z|:=[|z_{ij}|]$ positive semidefinite as well.\footnote{This is a classical fact about small Hermitian matrices; the source manuscript for this case attributes it to Marcus and Watkins (1969), a reference the present text has not independently checked.}  Since $p\ge1\ge n-2$, the FitzGerald--Horn theorem \citep{FitzGeraldHorn1977} makes $|Z|^{\odot p}$ positive semidefinite, so \Cref{prop:infdiv} applies to $|Z|$.  The mixed norms depend only on $|z_{ij}|$, so the bound transfers to $Z$.
+For $n\le3$ a positive semidefinite $Z$ has $|Z|:=[|z_{ij}|]$ positive semidefinite as well.\footnote{This is a classical fact about small Hermitian matrices; the source manuscript for this case attributes it to Marcus and Watkins (1969), a reference the present text has not independently checked.}  Since $p\ge1\ge n-2$, the FitzGerald--Horn theorem \citep{FitzGeraldHorn1977} makes $|Z|^{\odot p}$ positive semidefinite, so Proposition~\ref{prop:infdiv} applies to $|Z|$.  The mixed norms depend only on $|z_{ij}|$, so the bound transfers to $Z$.
 \end{proof}
 
-Together, \Cref{prop:pone,prop:intp,prop:qinf,cor:smalln} confine any counterexample
-to non-integer $p$, finite $q$, and order at least four.  \Cref{thm:mixed-general}
+Together, Propositions~\ref{prop:pone}, \ref{prop:intp}, \ref{prop:qinf} and Corollary~\ref{cor:smalln} confine any counterexample
+to non-integer $p$, finite $q$, and order at least four.  Theorem~\ref{thm:mixed-general}
 lives at $p=q=3/2$ and order four (as a Gram matrix of two $3\times2$ blocks), and
-\Cref{thm:mixed} at $(6/5,6)$ and order $21$ --- in each case the smallest region the
+Theorem~\ref{thm:mixed} at $(6/5,6)$ and order $21$ --- in each case the smallest region the
 positive results leave open.
 
 \begin{remark}[A correction to the reduction]
@@ -108,7 +108,7 @@ The reduction sketched in the source manuscript normalizes a negative direction
 $x$ for $Z^{\odot s}$ by replacing $Z$ with $D_{|x|}ZD_{|x|}$, which does not have
 the intended effect: $(D_uZD_u)^{\odot s}=D_{u^s}Z^{\odot s}D_{u^s}$, so the
 rescaling that turns $x$ into a $\pm1$ vector is $D_{|x|^{1/s}}$, not $D_{|x|}$.
-The construction of \Cref{thm:mixed-general} sidesteps the point by exhibiting a
+The construction of Theorem~\ref{thm:mixed-general} sidesteps the point by exhibiting a
 $\pm1$ direction outright, so nothing downstream depends on the correction.
 \end{remark}
 

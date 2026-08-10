@@ -85,28 +85,18 @@ Moreover, both $(\lambda_i)$ and $(d_i)$ are strictly decreasing.
 
 \begin{proof}
 Fix an integer $m\geq2$ and put $n=2^m$, $q=n$, and $H=H_{n-1}=\sum_{i=1}^{n-1}\frac1i$.  Then, set
-$B=1+q^2H$, $\delta=\frac1{2B}$, and $\eta=\frac1{2n}$, and define positive spectral gaps by
-$g_1=\delta(1+q^2)$, $g_i=\delta\frac{q^2}{i^2} \quad (2\leq i\leq n-1)$, 
-and set
+$B=1+q^2H$, $\delta=\frac1{2B}$, and $\eta=\frac1{2n}$, and define positive spectral gaps 
+$g_1=\delta(1+q^2)$, $g_i=\delta q^2/i^2$ for $(2\leq i\leq n-1)$. Then set the eigenvalues as
 \[
   \lambda_n=\eta,
   \qquad
   \lambda_i=\eta+\sum_{k=i}^{n-1}g_k
   \quad (1\leq i\leq n-1).
 \]
-Then $\lambda_1>\cdots>\lambda_n>0$, and
-\[
-\begin{aligned}
-  \sum_{i=1}^n\lambda_i
-  &=n\eta+\sum_{i=1}^{n-1}i g_i \\
-  &=\frac12+\delta\left(1+q^2+q^2\sum_{i=2}^{n-1}\frac1i\right)
-    =\frac12+\delta B=1.
-\end{aligned}
-\]
-Thus $\Lambda=\operatorname{diag}(\lambda_1,\ldots,\lambda_n)$ is a density
-matrix.
+Clearly, $\lambda_1>\cdots>\lambda_n>0$, and $\sum_{i=1}^n\lambda_i =n\eta+\sum_{i=1}^{n-1}i g_i =\frac12+\delta\left(1+q^2+q^2\sum_{i=2}^{n-1}\frac1i\right) =\frac12+\delta B=1$.
+%Thus, $\Lambda=\operatorname{diag}(\lambda_1,\ldots,\lambda_n)$ is a density matrix.
 
-For $1\leq i\leq n-1$, put
+Now for $1\leq i\leq n-1$, put
 \[
   r_i=\frac qi,
   \qquad
@@ -145,11 +135,7 @@ $2\times2$ principal block is diagonal and its diagonal gap is
   =g_i+\delta
   =\delta(1+r_i^2).
 \]
-In both cases,
-\[
-  s_i^2\,\delta(1+r_i^2)=\delta.
-\]
-Consequently, $G_i$ transfers exactly $\delta$ from diagonal position $i$ to
+In both cases, $s_i^2\,\delta(1+r_i^2)=\delta$. Consequently, $G_i$ transfers exactly $\delta$ from diagonal position $i$ to
 position $i+1$.  Induction gives
 \[
   d_1=\lambda_1-\delta,
@@ -165,17 +151,9 @@ last edge it is
   g_{n-1}-\delta
   =\delta\left(\frac{q^2}{(n-1)^2}-1\right)>0
 \]
-because $q=n$.  Therefore
-\[
-  \sum_{i=1}^n|\lambda_i-d_i|=2\delta.
-\]
-
-The same rotation calculation gives useful exact off-diagonal entries.  At
-step $i$, the newly created $(i,i+1)$ entry has magnitude
-\[
-  c_is_i\,\delta(1+r_i^2)=\delta r_i.
-\]
-For $i\leq n-2$, the next rotation multiplies this entry by $c_{i+1}$; all
+because $q=n$.  Therefore $\sum_{i=1}^n|\lambda_i-d_i|=2\delta$.
+The same rotation calculation gives useful off-diagonal entries.  At
+step $i$, the newly created $(i,i+1)$ entry has magnitude $c_is_i\,\delta(1+r_i^2)=\delta r_i$. For $i\leq n-2$, the next rotation multiplies this entry by $c_{i+1}$; all
 later rotations leave it unchanged.  Hence
 \[
   |R_{i,i+1}|=
@@ -191,12 +169,7 @@ of its off-diagonal entry.  If
 \[
   O=\sum_{\substack{1\leq i\leq n-1\\ i\ \mathrm{odd}}}\frac1i,
 \]
-then $q=n$ implies
-\[
-  c_j^2=\frac{q^2}{q^2+j^2}>\frac12
-  \qquad(1\leq j\leq n-1).
-\]
-Using the multiplier $1>1/\sqrt2$ for the final edge as well, we obtain
+then $q=n$ implies $c_j^2=\frac{q^2}{q^2+j^2}>\frac12 \qquad(1\leq j\leq n-1)$. Using the multiplier $1>1/\sqrt2$ for the final edge as well, we obtain
 \[
   \lVert A\rVert_1
   \geq 2\sum_{\substack{1\leq i\leq n-1\\ i\ \mathrm{odd}}}|R_{i,i+1}|
@@ -209,22 +182,13 @@ It follows that
        {\sum_i|\lambda_i-d_i|}
   &>\frac{2\delta^2q^2O^2}{2\delta}
     =\delta q^2O^2
-    =\frac{q^2O^2}{2(1+q^2H)}\\
-  &>\frac{O^2}{2(H+1)}.
+    =\frac{q^2O^2}{2(1+q^2H)}\quad>\quad\frac{O^2}{2(H+1)}.
 \end{aligned}
 \]
 
 It remains only to estimate the two harmonic sums.  In each dyadic block
 $[2^k,2^{k+1})$, for $1\leq k\leq m-1$, there are $2^{k-1}$ odd integers,
-each contributing more than $2^{-(k+1)}$.  Therefore
-\[
-  O>1+\frac{m-1}{4}=\frac{m+3}{4}.
-\]
-Also
-\[
-  H_{n-1}<1+\log(n-1)<m+1.
-\]
-Consequently,
+each contributing more than $2^{-(k+1)}$.  Therefore, $O>1+\frac{m-1}{4}=\frac{m+3}{4}$, and also $ H_{n-1}<1+\log(n-1)<m+1$. Consequently,
 \[
   \frac{\lVert R-D\rVert_1^2}
        {\sum_i|\lambda_i-d_i|}
@@ -236,17 +200,17 @@ has ratio greater than $C$, proving that no dimension-independent constant can
 exist.
 \end{proof}
 
-\begin{remark}[Scope]
-What falls is the unit-trace conjecture of \cite{ODonnell2015AlmostDiagonal},
-namely $\lVert R-\operatorname{Diag}(R)\rVert_1=O(\sqrt\epsilon)$ with an
-absolute implied constant.  Two neighboring statements are untouched.  The
-question originally posed there, whether such an $M$ lies within $2\epsilon$ of
-\emph{some} diagonal matrix, is not the target; nor is the unnormalized variant,
-which the same answer already resolves in the negative by a perturbative
-argument.  The witness happens to settle the own-diagonal form of both, since
-$\lVert R-D\rVert_1/\epsilon$ diverges along the family, but only the unit-trace
-conjecture was posed as plausible and only it is claimed here.
-\end{remark}
+% \begin{remark}[Scope]
+% What falls is the unit-trace conjecture of \cite{ODonnell2015AlmostDiagonal},
+% namely $\lVert R-\operatorname{Diag}(R)\rVert_1=O(\sqrt\epsilon)$ with an
+% absolute implied constant.  Two neighboring statements are untouched.  The
+% question originally posed there, whether such an $M$ lies within $2\epsilon$ of
+% \emph{some} diagonal matrix, is not the target; nor is the unnormalized variant,
+% which the same answer already resolves in the negative by a perturbative
+% argument.  The witness happens to settle the own-diagonal form of both, since
+% $\lVert R-D\rVert_1/\epsilon$ diverges along the family, but only the unit-trace
+% conjecture was posed as plausible and only it is claimed here.
+% \end{remark}
 \end{cxrefutation}
 
 

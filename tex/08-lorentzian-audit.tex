@@ -1,0 +1,400 @@
+% Hand-written appendix.  Nothing generates this file.  It is \input after
+% generated/appendix.tex, which has already issued \appendix, so the \section
+% below is numbered as appendix material.  It carries the audit that used to
+% live in counterexamples/lorentzian-jensen/paper.tex: the formulation the two
+% statements were posed in, which steps of the proposed proof survive, the
+% parity obstruction that kills the rest, and the enclosure procedure behind
+% the witness of Theorem~\ref{thm:volume-distance} / Corollary~\ref{thm:lorentzian}.  Notation is
+% spelled out rather than abbreviated: cxcase.sty binds \C to \mathbb C, so the
+% cone is written \mathcal C, and \D, \Q, \T of the source file are written
+% \mathrm D, \mathcal Q, \mathcal T here.
+\cxappendixsection{Additional results for the Lorentzian Jensen--Bregman principle}
+\label{sec:lorentzianaudit}
+
+Theorem~\ref{thm:volume-distance} and Corollary~\ref{thm:lorentzian} refute two statements by exhibiting a
+single witness.  Both statements, however, had been posed together with a
+proposed proof, and a witness alone does not say which step of that proof is
+wrong.  This appendix records the audit: the formulation as posed, the parts of
+the argument that are correct, the identity that is not, an elementary
+two-dimensional contradiction to it, and the enclosure procedure that certifies
+the witness in exact arithmetic.  A final subsection gives the positive
+counterpart: on hyperbolic polynomials the refuted principle is a theorem, and
+the witness is not hyperbolic.
+
+\subsection*{The formulation, and the verdict}
+
+Let $\mathcal C\subset\R^m$ be an open convex cone, let $G:\mathcal C\to(0,\infty)$, and put
+\[
+F=-\log G,\qquad
+\J_G(x,y):=\frac{F(x)+F(y)}2-F\!\left(\frac{x+y}2\right)
+=\log G\!\left(\frac{x+y}2\right)-\frac{\log G(x)+\log G(y)}2 .
+\]
+The proposed master theorem asserted that if $G$ is homogeneous and Lorentzian
+then $d_G:=\sqrt{\J_G}$ is a semimetric; the geometric specialization asserted
+that $d_{\Vol}(K,L):=\bigl[\log\Vol(\frac{K+L}2)-\frac12\log\Vol(K)-\frac12\log\Vol(L)\bigr]^{1/2}$
+is a semimetric on convex bodies.  The audit finds:
+
+\begin{enumerate}[label=\textup{(\roman*)},leftmargin=2.1em]
+\item the midpoint integral identity and the homogeneous primitive decomposition
+      used in the proposed proof are correct;
+\item the claimed Gram-determinant identity for the derivative of a Hessian
+      Rayleigh quotient is false --- its two sides have incompatible homogeneity
+      in the line direction;
+\item the implication ``$G$ Lorentzian $\Rightarrow\sqrt{\J_G}$ a semimetric''
+      is false already for a strictly Lorentzian bivariate cubic
+      (Corollary~\ref{thm:lorentzian});
+\item the convex-body specialization is false as well, since by Shephard's
+      theorem that cubic is the volume polynomial of two bodies in $\R^3$
+      (Theorem~\ref{thm:volume-distance});
+\item consequently the proposed proof cannot be repaired by supplying the
+      omitted Gram-determinant calculation: the omission conceals a false
+      identity, not a technical gap.
+\end{enumerate}
+
+\subsection*{What the proposed proof gets right}
+
+\begin{lemma}[Midpoint Green-kernel identity]\label{lem:lor-midpoint}
+Let $F\in C^2(\mathcal C)$ be convex and $x,y\in\mathcal C$.  With $m=(x+y)/2$ and $h=y-x$,
+\begin{equation}\label{eq:lor-midpoint}
+\frac{F(x)+F(y)}2-F(m)
+=\frac18\int_{-1}^{1}(1-|t|)\,\mathrm D^2F\!\left(m+\tfrac t2h\right)[h,h]\,dt .
+\end{equation}
+\end{lemma}
+\begin{proof}
+Put $\varphi(s)=F(m+sh)$.  Taylor's formula with integral remainder gives, for $a\ge0$,
+$\varphi(\pm a)=\varphi(0)\pm a\varphi'(0)+\int_0^a(a-u)\varphi''(\pm u)\,du$.
+Taking $a=1/2$, adding and halving,
+\[
+\frac{\varphi(1/2)+\varphi(-1/2)}2-\varphi(0)
+=\frac12\int_0^{1/2}\Bigl(\frac12-u\Bigr)\bigl(\varphi''(u)+\varphi''(-u)\bigr)du,
+\]
+and $\varphi''(u)=\mathrm D^2F(m+uh)[h,h]$ with $t=\pm2u$ gives \eqref{eq:lor-midpoint}.
+\end{proof}
+
+For fixed $u$ write $q_u(r):=\mathrm D^2F(r)[u,u]$ for the Hessian Rayleigh quotient;
+the monotonicity argument in the proposed proof is an argument about
+$\delta\mapsto\mathrm D_\delta q_u(r)$.
+
+\begin{proposition}[Exact third-order derivative]\label{prop:lor-derivative}
+Let $G\in C^3(\mathcal C)$ be positive.  For all $r\in\mathcal C$ and $u,\delta\in\R^m$,
+\begin{equation}\label{eq:lor-derivative}
+\mathrm D_\delta q_u(r)=-\mathrm D^3(\log G)(r)[u,u,\delta]
+=\frac{2G_uG_{u\delta}}{G^2}-\frac{2G_u^2G_\delta}{G^3}
+ -\frac{G_{uu\delta}}{G}+\frac{G_{uu}G_\delta}{G^2},
+\end{equation}
+all derivatives being evaluated at $r$.  In particular $\delta\mapsto\mathrm D_\delta q_u(r)$
+is linear, hence odd and homogeneous of degree one in $\delta$.
+\end{proposition}
+\begin{proof}
+Directional derivatives commute, so
+$\mathrm D_\delta q_u=-\mathrm D_\delta\mathrm D_u^2\log G=-\mathrm D_u^2\mathrm D_\delta\log G$,
+which is the first equality.  For the second, $q_u=G_u^2/G^2-G_{uu}/G$; differentiating
+the two terms along $\delta$ gives $2G_uG_{u\delta}/G^2-2G_u^2G_\delta/G^3$ and
+$-G_{uu\delta}/G+G_{uu}G_\delta/G^2$ respectively.  Linearity is visible in
+$\mathrm D^3(\log G)(r)[u,u,\cdot]$.
+\end{proof}
+
+Now let $G$ be homogeneous of degree $d\ge2$ and set
+\[
+\mathcal Q_r(v,w):=\frac{\mathrm D^2G(r)[v,w]}{d(d-1)},\qquad
+\mathcal T_r(v,w,z):=\frac{\mathrm D^3G(r)[v,w,z]}{d(d-1)},
+\]
+so that Euler's identities read $\mathcal Q_r(r,r)=G(r)$, $\mathcal Q_r(v,r)=G_v(r)/d$ and
+$\mathcal T_r(v,w,r)=(d-2)\mathcal Q_r(v,w)$.  With
+$\alpha=\mathcal Q_r(u,r)/G(r)$ and $U=u-\alpha r$ --- so that $\mathcal Q_r(U,r)=0$ ---
+the decomposition into primitive coordinates is the following.
+
+\begin{lemma}[Primitive decomposition]\label{lem:lor-primitive}
+$\displaystyle q_u(r)=\frac1d\left(\frac{G_u(r)}{G(r)}\right)^2-\frac{d(d-1)}{G(r)}\mathcal Q_r(U,U).$
+\end{lemma}
+\begin{proof}
+By Euler, $\alpha=G_u/(dG)$, so
+$\mathcal Q_r(U,U)=\mathcal Q_r(u,u)-2\alpha\mathcal Q_r(u,r)+\alpha^2\mathcal Q_r(r,r)
+=\mathcal Q_r(u,u)-G_u^2/(d^2G)$.  Hence
+$\mathrm D^2G[u,u]=d(d-1)\mathcal Q_r(U,U)+\frac{d-1}d\frac{G_u^2}G$, and substituting
+into $q_u=G_u^2/G^2-\mathrm D^2G[u,u]/G$ gives the claim.
+\end{proof}
+
+Writing $\beta=\mathcal Q_r(\delta,r)/G(r)$ and $V=\delta-\beta r$, expanding
+\eqref{eq:lor-derivative} in these coordinates produces an exact four-term
+expression in $\mathcal Q_r$ and $\mathcal T_r$, whose leading term is
+$-d(d-1)\mathcal T_r(U,U,V)/G(r)$.  Only one feature of it is needed below: like
+\eqref{eq:lor-derivative} itself, it is odd and degree-one in $\delta$.
+
+\subsection*{Where the proposed proof fails}
+
+The step that was omitted asserted a formula of the schematic shape
+\begin{equation}\label{eq:lor-gram}
+\mathrm D_\delta q_u(r)=C(r)\det
+\begin{pmatrix}
+\langle U,U\rangle_r&\langle U,V\rangle_r\\
+\langle V,U\rangle_r&\langle V,V\rangle_r
+\end{pmatrix},
+\end{equation}
+with $V$ the primitive projection of $\delta$, the inner product derived from
+$-\mathcal Q_r$, and $C(r)$ independent of $\delta$.  No such formula exists.
+
+\begin{proposition}[Homogeneity obstruction]\label{prop:lor-obstruction}
+No identity of the form \eqref{eq:lor-gram} with $C(r)$ independent of $\delta$
+can hold for all line directions $\delta$, except where both sides vanish
+identically.
+\end{proposition}
+\begin{proof}
+By Proposition~\ref{prop:lor-derivative} the left side is odd and homogeneous of degree one
+in $\delta$.  The projection $V$ is linear in $\delta$, so the Gram determinant
+on the right is even and homogeneous of degree two.  Replacing $\delta$ by
+$c\delta$ multiplies the two sides by $c$ and $c^2$; replacing $\delta$ by
+$-\delta$ changes the sign of the left side only.  Both are possible together
+only if each side vanishes.
+\end{proof}
+
+\begin{remark}[The same parity kills the shortcut]\label{rem:lor-parity}
+The proposed one-sided bound $\mathcal T_r(U,U,V)\le0$ for every line direction
+fails for the same reason: replacing $\delta$ by $-\delta$ replaces $V$ by $-V$
+and flips the sign, so a bound valid for both orientations forces
+$\mathcal T_r(U,U,V)\equiv0$.  Likewise $\mathrm D_\delta q_u(r)\ge0$ for every
+$\delta$ would force every directional derivative to vanish.  A monotonicity
+statement here must select an oriented cone of directions; it cannot come from
+an even Gram determinant.
+\end{remark}
+
+The failure is not confined to exotic $G$.  Take axis-aligned rectangles
+$X_a=X_c=[0,1]^2$ and $X_b=[0,2]\times[0,3]$, fix $\theta=1/2$, and for
+$0<s<1/2$ put $r(s)=(1-\theta)e_a+se_b+(\theta-s)e_c$.  Since $X_a=X_c$,
+\[
+M(s)=\nlsum_ir_i(s)X_i=(1-s)X_a+sX_b=[0,1+s]\times[0,1+2s],
+\qquad G(r(s))=\Vol(M(s))=(1+s)(1+2s).
+\]
+For $u=e_b-e_a$ the two side lengths have directional increments $1$ and $2$, so
+with $F=-\log G$,
+\[
+q_u(r(s))=\frac1{(1+s)^2}+\frac4{(1+2s)^2},
+\qquad
+\frac{d}{ds}q_u(r(s))=-\frac2{(1+s)^3}-\frac{16}{(1+2s)^3}<0 .
+\]
+The proposed mixed-volume version of \eqref{eq:lor-gram} carried a prefactor
+$n(n-1)(n-2)$, which vanishes at $n=2$ and so predicts a zero derivative.  The
+stated mixed-volume calculation is therefore already false for two rectangles in
+the plane.
+
+\subsection*{The exact enclosure}
+
+The witness of Lemma~\ref{lem:lorentzian-cubic} is three logarithms and three square
+roots, none of them rational.  The separation is nevertheless certified without
+a floating-point step, through the following enclosure.
+
+\begin{lemma}[Rational enclosure for the logarithm]\label{lem:lor-log}
+Let $x>1$ be rational, put $z=(x-1)/(x+1)\in(0,1)$ and let $N\ge1$.  Then
+\[
+L_N(x):=2\sum_{k=0}^{N-1}\frac{z^{2k+1}}{2k+1}
+\;<\;\log x\;<\;
+L_N(x)+\frac{2z^{2N+1}}{(2N+1)(1-z^2)},
+\]
+and every quantity displayed is rational.
+\end{lemma}
+\begin{proof}
+Since $x=(1+z)/(1-z)$ we have $\log x=2\operatorname{artanh}z=2\sum_{k\ge0}z^{2k+1}/(2k+1)$,
+all terms positive, which gives the lower bound.  For $k\ge N$ we have
+$(2k+1)^{-1}\le(2N+1)^{-1}$, so the tail is at most
+$\frac2{2N+1}\sum_{k\ge N}z^{2k+1}=\frac{2z^{2N+1}}{(2N+1)(1-z^2)}$.
+\end{proof}
+
+For the square roots, a positive rational $q$ and a decimal scale $S=10^P$ give
+the exact two-sided bound $m/S\le\sqrt q<(m+1)/S$ with
+$m=\lfloor\sqrt{qS^2}\rfloor$ computed by integer square root.  Combining the
+two, with a lower enclosure for $\sqrt{\J_G(p,r)}$ and upper enclosures for
+$\sqrt{\J_G(p,q)}$ and $\sqrt{\J_G(q,r)}$, at $N=100$ series terms and $P=45$
+digits, yields the bound quoted in \eqref{eq:lorentzian-gap},
+\[
+d_G(p,r)-d_G(p,q)-d_G(q,r)>\frac{7156704176613847159228106087505875849130467}{10^{45}} .
+\]
+This is what \path{counterexamples/lorentzian-jensen/verify.py} recomputes: it
+forms the three ratios $R_{pq},R_{qr},R_{pr}$ as exact fractions, bounds each
+logarithm by Lemma~\ref{lem:lor-log}, encloses the three square roots on the
+$10^{-45}$ grid by integer square root, and asserts that the resulting
+difference is positive.  Only \texttt{Fraction} and \texttt{isqrt} are used, so
+the final assertion is a statement about integers.  The strict Lorentzianity of
+$G$ and the Shephard inequalities are not part of that computation; both are
+finite rational comparisons, carried out in the proofs of
+Lemma~\ref{lem:lorentzian-cubic} and Theorem~\ref{thm:volume-distance}.
+
+\subsection*{What survives}
+
+The counterexample leaves the following untouched.  In one dimension,
+\citet{ChenChenRao} characterize metricity of $\sqrt{\J_F}$ by convexity of
+$\log F''$, and that result extends to separable sums and, more generally, to
+nonnegative superpositions of one-dimensional generators.  The Jensen--Bregman
+log-determinant divergence is the S-divergence, whose square root is a metric
+\citep{SraSdiv} --- a fact that does not follow from Lorentzianity and is not
+touched by the witness.  What the witness does remove is the hope that
+Lorentzianity of $G=e^{-F}$ is by itself the higher-dimensional criterion.
+
+\begin{proposition}[Nonnegative superposition]\label{prop:lor-superposition}
+Let $(\Omega,\mu)$ be a measure space; for each $\omega$ let $I_\omega\subset\R$
+be an interval, $f_\omega:I_\omega\to\R$ convex with
+$\sqrt{\J_{f_\omega}}$ a semimetric on $I_\omega$, and
+$\ell_\omega:\mathcal C\to I_\omega$ affine.  If
+$F(x):=\int_\Omega f_\omega(\ell_\omega(x))\,d\mu(\omega)$ is finite, then
+$\sqrt{\J_F}$ is a semimetric on $\mathcal C$.
+\end{proposition}
+\begin{proof}
+Affineness of $\ell_\omega$ and linearity of the Jensen gap in $F$ give
+$\J_F(x,y)=\int_\Omega d_\omega(\ell_\omega(x),\ell_\omega(y))^2d\mu$ with
+$d_\omega=\sqrt{\J_{f_\omega}}$.  For $x,y,z$, the pointwise triangle inequality
+followed by Minkowski's inequality in $L^2(\mu)$ gives
+$\sqrt{\J_F(x,z)}\le\sqrt{\J_F(x,y)}+\sqrt{\J_F(y,z)}$.
+\end{proof}
+
+\begin{proposition}[Linewise necessary condition]\label{prop:lor-linewise}
+Let $F\in C^4(\mathcal C)$ be strictly convex with $\sqrt{\J_F}$ a metric on $\mathcal C$.
+Then for every $x\in\mathcal C$ and every $h\ne0$ with $x+th\in\mathcal C$ on an interval $I$,
+the map $t\mapsto\log\bigl(\mathrm D^2F(x+th)[h,h]\bigr)$ is convex on $I$.
+\end{proposition}
+\begin{proof}
+The restriction $f(t)=F(x+th)$ inherits the metric, so the one-dimensional
+necessity theorem of \citet{ChenChenRao} gives convexity of $\log f''$, and
+$f''(t)=\mathrm D^2F(x+th)[h,h]$.
+\end{proof}
+
+Linewise log-convexity is thus necessary, and Proposition~\ref{prop:lor-superposition} is a
+sufficient condition of a different kind; what is missing --- and what the
+witness shows Lorentzianity does not supply --- is a genuinely nonseparable
+condition that controls arbitrary triangles.  The next subsection supplies one.
+
+\subsection*{The hyperbolic transfer principle}
+
+Replacing ``Lorentzian'' by ``hyperbolic'' turns the refuted principle into a
+theorem.  Let $p:\R^n\to\R$ be homogeneous of degree $m\ge1$ and hyperbolic with
+respect to $e$, normalized so that $p(e)>0$, and let $\Lambda_{++}$ be the open
+hyperbolicity cone containing $e$.  By \citet{Garding1959},
+$\Lambda_{++}$ is an open convex cone, $p$ is hyperbolic with respect to each of
+its points, and $F:=p^{1/m}$ is positive, homogeneous of degree one and concave
+on it.  The other external input is the Helton--Vinnikov theorem
+\citep{HeltonVinnikov2007,LewisParriloRamana2005}, in the normalized form: a
+ternary form $q$ of degree $m$, hyperbolic with respect to $\mathbf 1=(1,1,1)$
+with $q(\mathbf 1)>0$, admits real symmetric $A_1,A_2,A_3$ with
+$A_1+A_2+A_3=I_m$ and $q(r)=q(\mathbf 1)\det(r_1A_1+r_2A_2+r_3A_3)$.  Three
+points at a time is exactly what a triangle inequality needs.
+
+\begin{lemma}[Ternary restriction]\label{lem:lor-ternary}
+Fix $x_1,x_2,x_3\in\Lambda_{++}$, put $T(r):=r_1x_1+r_2x_2+r_3x_3$ and
+$q:=p\circ T$.  Then $q$ is homogeneous of degree $m$ and hyperbolic with
+respect to $\mathbf 1$, and each coordinate vector $\varepsilon_i\in\R^3$ lies in
+the hyperbolicity cone of $q$ containing $\mathbf 1$.
+\end{lemma}
+\begin{proof}
+Homogeneity is immediate, and $w:=T(\mathbf 1)=x_1+x_2+x_3\in\Lambda_{++}$
+because the cone is convex.  So $p$ is hyperbolic with respect to $w$, and for
+every $r\in\R^3$ the univariate $\lambda\mapsto q(r+\lambda\mathbf 1)
+=p(T(r)+\lambda w)$ has only real zeros; that is hyperbolicity with respect to
+$\mathbf 1$.  For the second claim, the path
+$\gamma_i(t)=(1-t)\varepsilon_i+t\mathbf 1$ satisfies
+$T(\gamma_i(t))=x_i+t\sum_{j\ne i}x_j\in\Lambda_{++}$, so $q(\gamma_i(t))>0$ on
+$[0,1]$: it joins $\varepsilon_i$ to $\mathbf 1$ inside the positive component.
+\end{proof}
+
+\begin{lemma}[Positive definite representatives]\label{lem:lor-pdrep}
+In that setting the matrices $A_1,A_2,A_3$ supplied by Helton--Vinnikov are
+positive definite, and for all $i,j$,
+\[
+p(x_i)=q(\mathbf 1)\det A_i,\qquad
+p\Bigl(\frac{x_i+x_j}2\Bigr)=q(\mathbf 1)\det\Bigl(\frac{A_i+A_j}2\Bigr).
+\]
+\end{lemma}
+\begin{proof}
+Along the path of Lemma~\ref{lem:lor-ternary},
+$L_i(t):=\sum_k\gamma_i(t)_kA_k$ satisfies
+$q(\gamma_i(t))=q(\mathbf 1)\det L_i(t)>0$, so $L_i(t)$ is nonsingular on
+$[0,1]$; the eigenvalues of a continuous path of nonsingular real symmetric
+matrices cannot change sign, so the inertia is constant.  At $t=1$,
+$L_i(1)=A_1+A_2+A_3=I_m\succ0$, hence $A_i=L_i(0)\succ0$.  The two identities
+are the determinantal representation evaluated at $\varepsilon_i$ and at
+$(\varepsilon_i+\varepsilon_j)/2$.
+\end{proof}
+
+\begin{theorem}[\statusproved: hyperbolic Jensen--Stein pseudometric]\label{thm:lor-hyperbolic}
+Let $p$ be hyperbolic as above.  Then $\sqrt{\J_p}$, with
+$\J_p(x,y)=\log p\bigl(\frac{x+y}2\bigr)-\frac12\log p(x)-\frac12\log p(y)$, is a
+pseudometric on $\Lambda_{++}$.
+\end{theorem}
+\begin{proof}
+Concavity of $F=p^{1/m}$ gives
+$F(\frac{x+y}2)\ge\frac{F(x)+F(y)}2\ge\sqrt{F(x)F(y)}$, which after raising to
+the $m$th power makes $\J_p\ge0$; symmetry and vanishing on the diagonal are
+immediate.  For the triangle inequality fix $x_1,x_2,x_3\in\Lambda_{++}$ and take
+$A_1,A_2,A_3\succ0$ from Lemma~\ref{lem:lor-pdrep}.  The factor $q(\mathbf 1)$
+cancels, leaving
+\[
+\J_p(x_i,x_j)
+=\log\frac{\det\bigl((A_i+A_j)/2\bigr)}{\sqrt{\det A_i\det A_j}}
+=\delta_{\mathrm S}^2(A_i,A_j),
+\]
+the squared Stein divergence, whose square root is a metric on the positive
+definite cone \citep{SraSdiv}.  Applying that triangle inequality to
+$A_1,A_2,A_3$ gives the claim, and the triple was arbitrary.
+\end{proof}
+
+The conclusion is a pseudometric rather than a metric because degenerate $p$
+collapse distances: for $p=\ell^m$ with $\ell$ linear, $\J_p(x,y)$ depends only on
+$\ell(x)$ and $\ell(y)$.  The same restriction principle transfers a determinant
+inequality to the cone.
+
+\begin{theorem}[\statusproved: hyperbolic four-point inequality]\label{thm:lor-fourpoint}
+With $F=p^{1/m}$, for all $a,b,c$ in the closed hyperbolicity cone,
+\[
+F(a+b)\,F(a+c)\;\ge\;F(a)\,F(a+b+c)+F(b)\,F(c).
+\]
+\end{theorem}
+\begin{proof}
+Write $\mathcal D(M)=\det(M)^{1/m}$.  We first prove the matrix form
+$\mathcal D(A+B)\mathcal D(A+C)\ge\mathcal D(A)\mathcal D(A+B+C)+\mathcal D(B)\mathcal D(C)$
+for $A,B,C\succeq0$.  For $A\succ0$, put $X=A^{-1/2}BA^{-1/2}$ and
+$Y=A^{-1/2}CA^{-1/2}$; every term carries $\mathcal D(A)^2$, so it suffices to
+show $\mathcal D(I+X)\mathcal D(I+Y)\ge\mathcal D(I+X+Y)+\mathcal D(X)\mathcal D(Y)$.
+Order the eigenvalues of $X$ decreasingly and those of $Y$ increasingly.  Since a
+product does not depend on the ordering,
+$\mathcal D(I+X)\mathcal D(I+Y)=\bigl(\prod_i[(1+x_i+y_i)+x_iy_i]\bigr)^{1/m}$, and
+Minkowski's determinant inequality
+$\det(R+S)^{1/m}\ge\det R^{1/m}+\det S^{1/m}$ --- itself Jensen's inequality for
+$t\mapsto\log(1+e^t)$ applied to the eigenvalues of $R^{-1/2}SR^{-1/2}$ ---
+applied to the diagonal matrices $R=\diag(1+x_i+y_i)$ and $S=\diag(x_iy_i)$
+gives
+\[
+\mathcal D(I+X)\mathcal D(I+Y)\ \ge\ \Bigl(\prod_i(1+x_i+y_i)\Bigr)^{1/m}
++\Bigl(\prod_ix_iy_i\Bigr)^{1/m}.
+\]
+Fiedler's upper bound \citep{Fiedler1971}, which pairs one decreasing spectrum
+with the other increasing one, gives $\det(I+X+Y)\le\prod_i(1+x_i+y_i)$, while
+the second term is $\mathcal D(X)\mathcal D(Y)$; a limit $\varepsilon\downarrow0$
+in $A+\varepsilon I$ covers singular $A$.  For the cone statement, apply
+Lemmas~\ref{lem:lor-ternary} and~\ref{lem:lor-pdrep} to $a,b,c\in\Lambda_{++}$ to
+get $A,B,C\succ0$ with $p(ra+sb+tc)=q(\mathbf 1)\det(rA+sB+tC)$; then
+$F(ra+sb+tc)=q(\mathbf 1)^{1/m}\mathcal D(rA+sB+tC)$ for $r,s,t\ge0$, and the
+displayed inequality is the matrix one times $q(\mathbf 1)^{2/m}$.  Points of the
+closed cone are handled by $u\mapsto u+\varepsilon e$, which lies in
+$\Lambda_{++}$, and continuity.
+\end{proof}
+
+Nothing here collides with Theorem~\ref{thm:volume-distance} and
+Corollary~\ref{thm:lorentzian}, and it is worth saying why not.  The witness
+\eqref{eq:lorentzian-cubic} is strictly Lorentzian but \emph{not} hyperbolic:
+$G(x,1)=\frac1{10}x^3+\frac32x^2+\frac{11}5x+1$ has discriminant
+\[
+18abcd-4b^3d+b^2c^2-4ac^3-27a^2d^2=-\frac{1499}{1250}<0
+\qquad
+\Bigl(a,b,c,d=\tfrac1{10},\tfrac32,\tfrac{11}5,1\Bigr),
+\]
+so it has one real and two complex conjugate roots.  A binary form is hyperbolic
+with respect to some direction only if it splits into real linear factors --- each
+factor $\ell_i$ contributes the root $-\ell_i(x)/\ell_i(e)$, which is real for
+every real $x$ only when $\ell_i$ is real up to scale --- so $G$ is hyperbolic
+with respect to no direction at all.  In two variables hyperbolicity is therefore
+strictly stronger than strict Lorentzianity, and the witness lives in the gap.
+That gap is the content of both results together: what makes the midpoint Jensen
+gap a squared distance is the determinantal representation that hyperbolicity
+buys through Helton--Vinnikov, and not log-concavity of the coefficients.
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: "main"
+%%% End:

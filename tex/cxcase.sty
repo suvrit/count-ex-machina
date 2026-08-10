@@ -284,7 +284,10 @@
 
 \newcommand{\cx@printcredits}[1]{%
   \par\noindent{\small\itshape
-    \if\relax\detokenize{#1}\relax\else\Cref{\cx@theorem{#1}}: \fi
+    % The type word is written out because every theorem-like environment here
+    % shares the theorem counter; a result whose \cxtheorem names a corollary or
+    % a lemma needs this word changed by hand.  Every current one is a theorem.
+    \if\relax\detokenize{#1}\relax\else Theorem~\ref{\cx@theorem{#1}}: \fi
     Posed by \cx@posed; counterexample found by \cx@found;
     formalized by \cx@formalized; audited by \cx@audited
     % Naming the same person twice in one line reads as a mistake, so a
@@ -344,25 +347,19 @@
 % own words.  A pending result gets no label -- its box is discarded, so there
 % is nothing to point at.
 %
-% The [problem] below is a guard, not the house style.  problem shares the
-% theorem counter, and cleveref names a reference after the counter that was
-% stepped, not the environment that stepped it, so a bare \Cref{ctx:...} would
-% call a quote box "Theorem 3.1" -- silently, and wrongly.  These three lines
-% make that spelling tell the truth too; delete them if the document ever drops
-% cleveref, and \ref keeps working untouched.  They wait for \AtBeginDocument
-% because the document loads cleveref after this package (it insists on being
-% last), and until it does neither \crefname nor \label's optional argument
-% exists.
-\AtBeginDocument{%
-  \crefname{problem}{Problem}{Problems}%
-  \Crefname{problem}{Problem}{Problems}}
+% The label is a plain \label: the document uses no cleveref, so a reference to
+% a quote box is written "Problem~\ref{ctx:...}" with the word spelled out, as
+% every other cross-reference here is.  (There used to be a \label[problem] and
+% a pair of \crefname lines guarding against cleveref naming a box after the
+% counter it steps -- the theorem counter -- and so calling it "Theorem 3.1".
+% Without cleveref that hazard is gone, and \label takes no optional argument.)
 \newenvironment{cxstatement}[1]{%
   % A pending result has no recorded source, so its placeholder is typeset into
   % a box that is then dropped -- nothing reaches the paper.
   \@ifundefined{cx@pending@#1}{%
     \begin{problem}[As posed\@ifundefined{cx@para@#1}{}{, paraphrased}:
         \cx@source{#1}]%
-    \label[problem]{ctx:#1}%
+    \label{ctx:#1}%
   }{\cx@pendingtrue\setbox\@tempboxa\vbox\bgroup}%
 }{%
   \ifcx@pending\egroup\cx@pendingfalse\else\end{problem}\fi}

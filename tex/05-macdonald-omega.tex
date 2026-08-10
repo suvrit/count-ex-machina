@@ -1,13 +1,13 @@
 % Hand-written appendix.  Nothing generates this file.  It is \input after
 % generated/appendix.tex, which has already issued \appendix, so the \section
 % below is numbered as appendix material.  It develops the long form of the
-% case in \Cref{thm:macdonald}: the general $(q,t)$ statement, the lattice
+% case in Theorem~\ref{thm:macdonald}: the general $(q,t)$ statement, the lattice
 % membership that makes the evaluation point admissible, the identity that
 % explains the failure, and what the witness does not touch.
 \cxappendixsection{Additional results for McSwiggen--Sahi Theorem 2.1}
 \label{sec:macdonaldomega}
 
-\Cref{thm:macdonald} refutes Schur-convexity at $q=t$, where Macdonald
+Theorem~\ref{thm:macdonald} refutes Schur-convexity at $q=t$, where Macdonald
 polynomials are Schur polynomials and the arithmetic is smallest.  Nothing about
 the failure needs that specialization.  This appendix records the reversal for
 all $q,t\in(0,1)$, identifies the lattice points at which it is admissible,
@@ -79,7 +79,7 @@ each of $(1-t)^2$, $1-qt$, $t$, $1+t$ and $1-qt^2$ is strictly positive.
 \end{proof}
 
 At $q=t=r$ this is $\tfrac1r-\tfrac3{1+r+r^2}=\tfrac{(1-r)^2}{r(1+r+r^2)}$, the
-computation carried in \Cref{thm:macdonald}.
+computation carried in Theorem~\ref{thm:macdonald}.
 
 \subsection*{Where the point is admissible}
 
@@ -98,7 +98,7 @@ $q^{-\mu_i}t^{n-i}=q^{-k(n-i)}q^{k(n-i)}=1$.
 
 So for every positive integer $k$ the pair $\lambda=(2,0)\succeq\mu=(1,1)$ at
 $x=(1,1)$ refutes Schur-convexity for the parameters $(q,q^k)$, and
-\Cref{thm:macdonald} is the case $k=1$.  For an instance away from the Schur
+Theorem~\ref{thm:macdonald} is the case $k=1$.  For an instance away from the Schur
 locus take $k=2$, $q=1/2$, $t=1/4$: then $A=9/7$ and
 \[
 \Omega_{(2,0)}(1,1;\tfrac12,\tfrac14)=\frac{368}{155}<4=\Omega_{(1,1)}(1,1;\tfrac12,\tfrac14),
@@ -147,7 +147,7 @@ W_{(2,0)}(x_1,x_2;q,t)-W_{(1,1)}(x_1,x_2;q,t)
 =\frac{x_1^2+x_2^2+Ax_1x_2-(2+A)x_1x_2}{2+A}
 =\frac{(x_1-x_2)^2}{2+A}\;\ge\;0 .
 \]
-\Cref{thm:macdonald} is thus a statement about the normalization, not about
+Theorem~\ref{thm:macdonald} is thus a statement about the normalization, not about
 Macdonald polynomials on the lattice: what it refutes is Schur-convexity of
 $\lambda\mapsto\Omega_\lambda$, and any corresponding claim for $W_\lambda$ is
 untouched.

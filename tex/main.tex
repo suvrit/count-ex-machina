@@ -11,7 +11,6 @@
 % The case format: the cx... environments each counterexamples/<id>/case.tex is
 % written in, plus the theorem environments, status tags and notation they use.
 \usepackage{cxcase}
-\usepackage{cleveref}
 \usepackage{listings}
 \usepackage{graphicx}
 \usepackage{url}
@@ -75,7 +74,12 @@
 
 \input{generated/cases}
 
+% The closing section.  Hand-written; its \section closes the rule opened by
+% the last case, which is why it sits before the acknowledgments rather than
+% after them.
+\input{07-conclusion}
 
+\vspace*{1cm}
 \subsection*{Acknowledgments}
 The author acknowledges generous support from the Alexander von Humboldt (AvH) foundation via an AvH Professorship in AI. I'd like to also thank Apoorva Khare (IISC) for suggesting that I write up all the progress in one document, which was instrumental in helping me overcome the \emph{``writer's block''} from not wanting to write 10+ separate preprints!
 
@@ -98,11 +102,12 @@ I used Claude Code (Opus 5) to architect the document and the repo. Initial draf
 \input{generated/appendix}
 % Hand-written appendices.  generated/appendix.tex has already issued \appendix,
 % so each of these only opens a \section and is numbered B, C, ...; reorder the
-% two lines freely, everything points at them with \Cref.
+% two lines freely, everything points at them with Appendix~\ref.
 \input{03-proof-details}
 \input{04-aim36-pencil}
 \input{05-macdonald-omega}
 \input{06-quantum-coupon-trace}
+\input{08-lorentzian-audit}
 \cxendrule   % closes the last section; the others are closed by the next heading
 \vskip 12pt
 

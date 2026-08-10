@@ -1,12 +1,12 @@
 % Hand-written appendix.  Nothing generates this file.  It is \input after
 % generated/appendix.tex, which has already issued \appendix, so the \section
 % below is numbered as appendix material.  It carries the long form of the
-% construction behind the pencil of \Cref{thm:aim36}; the case directory holds
+% construction behind the pencil of Theorem~\ref{thm:aim36}; the case directory holds
 % the certificate that recomputes it, and no separate write-up of its own.
 \cxappendixsection{Additional results for Borcea--Br\"and\'en Problems 36 and 37}
 \label{sec:aim36pencil}
 
-The integer matrices of \Cref{thm:aim36,thm:aim37} are not a numerical accident,
+The integer matrices of Theorems~\ref{thm:aim36} and~\ref{thm:aim37} are not a numerical accident,
 and this appendix says where they come from.  They are the $t=5$ and $t=4$
 members of one family of pencils built equivariantly on the Specht module
 $S^{(3,2)}$, whose $s_{(1^5)}$ coefficient is a fixed quintic in $t$ that turns
@@ -147,7 +147,7 @@ At $t=5$ this is $-(28125-13125-7000-1800-240-16)/16=-5944/16=-743/2$.
 
 \begin{remark}[Two thresholds]
 The family crosses the two problems at different places, and the gap between
-them is where \Cref{thm:aim37} lives.  Schur positivity survives exactly as long
+them is where Theorem~\ref{thm:aim37} lives.  Schur positivity survives exactly as long
 as $[s_{(1^5)}]p_t\ge0$, that is until the single positive real zero
 $t_2\approx4.2907656153$ of $9t^5-21t^4-56t^3-72t^2-48t-16$; past $t_2$ the
 family refutes Problem~\ref{ctx:aim-problem-36}.  The lower endpoint of
@@ -160,7 +160,7 @@ so the endpoint fails exactly past the cubic's single positive zero
 $t_1\approx3.7205453558$.  On $(t_1,t_2)$ the family is therefore still Schur
 positive and already short of the endpoint --- the substantive refutation of
 Problem~\ref{ctx:aim-problem-37} --- and $t=4$ is the only integer there, which
-is why \Cref{thm:aim37} is stated at it.  Beyond $t_2$ the two failures merge and
+is why Theorem~\ref{thm:aim37} is stated at it.  Beyond $t_2$ the two failures merge and
 stop being distinguishable, which is the reason $q$ at $t=5$ cannot serve as a
 witness for the endpoint.  Both decimals are stated for orientation only: no step
 of the proof, and no assertion in the certificate, uses a floating-point value.
@@ -186,7 +186,7 @@ At $t=5$, writing $J_i:=J_i(5)$ and dividing by $648$ leaves
 q(x)=\frac1{648}\det\Bigl(\nlsum_ix_iJ_i\Bigr)=8\,p_5(x),
 \]
 which is the normalization in \eqref{eq:aim36-q}, and
-$[s_{(1^5)}]q=8\cdot(-743/2)=-2972$, the coefficient of \Cref{thm:aim36}.  The
+$[s_{(1^5)}]q=8\cdot(-743/2)=-2972$, the coefficient of Theorem~\ref{thm:aim36}.  The
 factor $8$ is what clears the denominators of
 Proposition~\ref{prop:aim36-family} and leaves that whole Schur expansion
 integral.  At $t=4$ no such factor is needed --- $p_4$ is already integral --- so
@@ -194,7 +194,7 @@ $\widetilde J_i:=J_i(4)$ and
 \[
 \widetilde q(x)=\frac1{5184}\det\Bigl(\nlsum_ix_i\widetilde J_i\Bigr)=p_4(x),
 \]
-the witness of \Cref{thm:aim37}, with $[s_{(1^5)}]\widetilde q=69$ against
+the witness of Theorem~\ref{thm:aim37}, with $[s_{(1^5)}]\widetilde q=69$ against
 $[s_{(5)}]\widetilde q=(4+1)^3=125$.  The two pencils are related by
 $\widetilde J_i=(4J_i+2G)/5$, which is how \eqref{eq:aim36-qtilde} can be
 written down from the $J_i$ and $G$ alone.

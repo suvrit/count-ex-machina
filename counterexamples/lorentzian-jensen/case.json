@@ -9,7 +9,6 @@
     "BrandenHuh",
     "Shephard"
   ],
-  "paper": "paper.tex",
   "results": [
     {
       "id": "log-volume-distance",
@@ -18,11 +17,10 @@
       "certificate_level": "exact",
       "theorem_label": "thm:volume-distance",
       "provenance": {
-        "url": "counterexamples/lorentzian-jensen/paper.tex",
         "retrieved": null,
         "fidelity": "paraphrase"
       },
-      "ledger_label": "the geometric specialization in §1"
+      "ledger_label": "the geometric specialization, as posed"
     },
     {
       "id": "lorentzian-jensen",
@@ -31,11 +29,10 @@
       "certificate_level": "exact",
       "theorem_label": "thm:lorentzian",
       "provenance": {
-        "url": "counterexamples/lorentzian-jensen/paper.tex",
         "retrieved": null,
         "fidelity": "paraphrase"
       },
-      "ledger_label": "the proposed master theorem in §1"
+      "ledger_label": "the proposed master theorem, as posed"
     }
   ],
   "verify": {
