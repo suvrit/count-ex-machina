@@ -47,7 +47,7 @@ unfilled TODO.
 | `cxcredits` | once, `[result-id]` to override | `\posedby` `\foundby{model}{YYYY-MM}` `\formalizedby` `\auditedby` `\contributedby` |
 | `cxcontext` | optional | our setup prose: notation the quoted statement needs, rendered outside the quote boxes so our words are never mistaken for the source's |
 | `cxsource{rid}` | per result | who posed it and where, with `\cite{...}` |
-| `cxstatement{rid}` | per result | the statement **as originally posed** |
+| `cxstatement{rid}` | per result | the statement **as originally posed**, and nothing else: the box is labelled `ctx:rid` for you, so point at it with `Problem~\ref{ctx:rid}` rather than putting a `\label` inside the source's words — and never by the source's own number, which resolves to nothing |
 | `cxsummary{rid}` | per result | one line: the ledger's statement column |
 | `cxcertificate{rid}` | per result | one line: the ledger's certificate column |
 | `cxrefutation` | once | the conjecture in prose, the theorem, the proof |

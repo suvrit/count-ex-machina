@@ -78,6 +78,10 @@ Deleting the directory at any time is safe.
   `\cxsecrulebelow`, `\cxsecrulewidth`; setting the width to `0pt` turns them
   off everywhere.
 - `cleveref` is loaded: `\Cref{thm:...}`.
+- **Every quote box is labelled `ctx:<result-id>`** by `cxstatement` itself.
+  Point at one with `Problem~\ref{ctx:aim-problem-35}` — never with the
+  source's own numbering ("Problem 35"), which resolves to nothing here. The
+  source's number stays visible in the box's heading.
 - Status macros: `\statusfalse`, `\statusproved`, `\statusnumeric`,
   `\statusconditional`, `\statusspeculative`. A refutation's theorem uses
   `\begin{theorem}[\statusfalse: ...]`.

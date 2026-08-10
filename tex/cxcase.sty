@@ -6,7 +6,8 @@
 %   \begin{cxcredits}  ... \end{cxcredits}      \posedby \foundby \formalizedby ...
 %   \begin{cxcontext}  ... \end{cxcontext}      our setup prose (optional)
 %   \begin{cxsource}{r}... \end{cxsource}       who posed result r, and where
-%   \begin{cxstatement}{r} ... \end{cxstatement}  r as originally posed (boxed)
+%   \begin{cxstatement}{r} ... \end{cxstatement}  r as originally posed (boxed,
+%                                                 and labelled \label{ctx:r})
 %   \begin{cxsummary}{r}   ... \end{cxsummary}    r's ledger statement cell
 %   \begin{cxcertificate}{r} ... \end{cxcertificate}  r's ledger certificate cell
 %   \begin{cxrefutation} ... \end{cxrefutation}   the theorem and its proof
@@ -295,12 +296,41 @@
 % omitted rather than printing a TODO into the paper; the missing source is
 % reported by tools/build.py, which is where an unfilled field belongs.
 \newcommand{\cxpending}[1]{\@namedef{cx@pending@#1}{}}
+% Every quote box carries \label{ctx:<result id>}, so the prose says
+% "Problem~\ref{ctx:aim-problem-35}" and gets the number of the box the reader
+% is looking at.  Write that and never the source's own numbering ("Problem
+% 35"): the source's number resolves to nothing here, and once two numbering
+% schemes are loose in one document neither can be trusted.  The source's
+% number is not lost -- it is in the box's heading, which cxsource sets.
+% Result ids are unique across the archive (tools/build.py enforces it), so the
+% id alone identifies the box.
+%
+% Emitted here rather than written into the case.tex files because a
+% cxstatement body is the statement as posed and nothing else: tools/build.py
+% copies it verbatim into registry.json as provenance.statement_tex, and a
+% \label of ours sitting inside it would be recorded as part of the source's
+% own words.  A pending result gets no label -- its box is discarded, so there
+% is nothing to point at.
+%
+% The [problem] below is a guard, not the house style.  problem shares the
+% theorem counter, and cleveref names a reference after the counter that was
+% stepped, not the environment that stepped it, so a bare \Cref{ctx:...} would
+% call a quote box "Theorem 3.1" -- silently, and wrongly.  These three lines
+% make that spelling tell the truth too; delete them if the document ever drops
+% cleveref, and \ref keeps working untouched.  They wait for \AtBeginDocument
+% because the document loads cleveref after this package (it insists on being
+% last), and until it does neither \crefname nor \label's optional argument
+% exists.
+\AtBeginDocument{%
+  \crefname{problem}{Problem}{Problems}%
+  \Crefname{problem}{Problem}{Problems}}
 \newenvironment{cxstatement}[1]{%
   % A pending result has no recorded source, so its placeholder is typeset into
   % a box that is then dropped -- nothing reaches the paper.
   \@ifundefined{cx@pending@#1}{%
     \begin{problem}[As posed\@ifundefined{cx@para@#1}{}{, paraphrased}:
         \cx@source{#1}]%
+    \label[problem]{ctx:#1}%
   }{\cx@pendingtrue\setbox\@tempboxa\vbox\bgroup}%
 }{%
   \ifcx@pending\egroup\cx@pendingfalse\else\end{problem}\fi}

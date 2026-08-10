@@ -20,8 +20,9 @@ Schur complement
 \]
 Thus the exact pivot path depends only on the orthogonal projector $P$.
 
-Chen, Liu, He, and Dong first answered Problem~4.3 negatively by an
-asymptotic low-coherence family \cite{ChenLiuHeDong2026}.  Their construction
+Chen, Liu, He, and Dong first answered
+Problem~\ref{ctx:qrcp-orthonormal-greedy} negatively by an asymptotic
+low-coherence family \cite{ChenLiuHeDong2026}.  Their construction
 prescribes a long upper-triangular selected block and then completes the
 identity with several blocks of extra columns.  The finite witness below was
 found later and independently.  It instead specifies a small rational point
@@ -54,9 +55,9 @@ pivot gaps, and the Rayleigh gap $192051/250000$.
 \end{cxcertificate}
 
 \begin{cxrefutation}
-Problem~4.3 asks whether classical QRCP itself attains the conditioning scale
-known to be achievable by a suitable subset-selection algorithm
-\cite{AmselEtAl2026}.  The full question was first answered negatively by
+Problem~\ref{ctx:qrcp-orthonormal-greedy} asks whether classical QRCP itself
+attains the conditioning scale known to be achievable by a suitable
+subset-selection algorithm \cite{AmselEtAl2026}.  The full question was first answered negatively by
 Chen, Liu, He, and Dong \cite{ChenLiuHeDong2026}.  Here is a different,
 small, exact counterexample to the displayed bound.
 
@@ -121,7 +122,8 @@ counterexample.
 \end{proof}
 
 \begin{remark}[Scope]
-Problem~4.3 asks whether QRCP satisfies ``the above, or a similar, bound''.
+Problem~\ref{ctx:qrcp-orthonormal-greedy} asks whether QRCP satisfies ``the
+above, or a similar, bound''.
 What falls here is the first half: the displayed bound $\sqrt{k(n-k+1)}$ is
 violated outright at $n=8$, $k=3$.  A single finite witness says nothing about
 the second half, since a ``similar'' bound loose enough to admit this instance
