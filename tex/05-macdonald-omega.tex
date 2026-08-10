@@ -1,0 +1,167 @@
+% Hand-written appendix.  Nothing generates this file.  It is \input after
+% generated/appendix.tex, which has already issued \appendix, so the \section
+% below is numbered as appendix material.  It develops the long form of the
+% case in \Cref{thm:macdonald}: the general $(q,t)$ statement, the lattice
+% membership that makes the evaluation point admissible, the identity that
+% explains the failure, and what the witness does not touch.
+\section{The Macdonald ratio at the principal specialization}
+\label{sec:macdonaldomega}
+
+\Cref{thm:macdonald} refutes Schur-convexity at $q=t$, where Macdonald
+polynomials are Schur polynomials and the arithmetic is smallest.  Nothing about
+the failure needs that specialization.  This appendix records the reversal for
+all $q,t\in(0,1)$, identifies the lattice points at which it is admissible,
+locates the step at which the claim goes wrong, and says what survives.
+
+Throughout, $n=2$, $\lambda=(2,0)$ and $\mu=(1,1)$, so that $\lambda\succeq\mu$,
+and the evaluation point is $x=(1,1)$.  Write $t^\delta=(t,1)$.
+
+\subsection*{The rank-two ratio}
+
+Only two Macdonald polynomials are involved, and neither is quoted: in degree
+two the triangularity $P_\lambda=m_\lambda+\text{(lower terms)}$ leaves a single
+unknown, and orthogonality in the $(q,t)$ Hall inner product fixes it.
+
+\begin{lemma}\label{lem:macdonald-rank2}
+For $n=2$, $P_{(1,1)}(x_1,x_2;q,t)=x_1x_2$ and
+\[
+P_{(2,0)}(x_1,x_2;q,t)=x_1^2+x_2^2+A\,x_1x_2,
+\qquad
+A=\frac{(1+q)(1-t)}{1-qt}.
+\]
+At $q=t$ this is $A=1$, so $P_{(2,0)}=s_{(2)}$.
+\end{lemma}
+\begin{proof}
+$P_{(1,1)}=e_2=m_{(1,1)}$ is forced, being the lowest partition of $2$.  Write
+$P_{(2,0)}=m_{(2)}+A\,m_{(1,1)}$, and use coordinates in the power sums:
+$m_{(2)}=p_2$ and $m_{(1,1)}=e_2=(p_1^2-p_2)/2$.  With
+$\langle p_\lambda,p_\mu\rangle_{q,t}=\delta_{\lambda\mu}z_\lambda\prod_i(1-q^{\lambda_i})/(1-t^{\lambda_i})$
+we have $\langle p_2,p_2\rangle=2(1-q^2)/(1-t^2)$,
+$\langle p_1^2,p_1^2\rangle=2\bigl((1-q)/(1-t)\bigr)^2$ and
+$\langle p_2,p_1^2\rangle=0$, so $\langle P_{(2,0)},P_{(1,1)}\rangle=0$ reads
+\[
+A\,\frac{(1-q)^2}{(1-t)^2}=(2-A)\,\frac{1-q^2}{1-t^2},
+\qquad\text{i.e.}\qquad
+A\bigl[(1-q)(1+t)+(1+q)(1-t)\bigr]=2(1+q)(1-t).
+\]
+The bracket is $2(1-qt)$, which gives $A$.
+\end{proof}
+
+\begin{proposition}\label{prop:macdonald-general}
+For all $q,t\in(0,1)$,
+\[
+\Omega_{(2,0)}(1,1;q,t)=\frac{2+A}{1+t^2+At},
+\qquad
+\Omega_{(1,1)}(1,1;q,t)=\frac1t,
+\]
+and
+\begin{equation}\label{eq:macdonald-gap}
+\Omega_{(1,1)}(1,1;q,t)-\Omega_{(2,0)}(1,1;q,t)
+=\frac{(1-t)^2(1-qt)}{t\,(1+t)\,(1-qt^2)}\;>\;0 .
+\end{equation}
+\end{proposition}
+\begin{proof}
+By Lemma~\ref{lem:macdonald-rank2}, $P_{(2,0)}(1,1)=2+A$ and
+$P_{(2,0)}(t,1)=1+t^2+At$, while $P_{(1,1)}(1,1)=1$ and $P_{(1,1)}(t,1)=t$,
+which gives the two values.  Subtracting,
+\[
+\frac1t-\frac{2+A}{1+t^2+At}
+=\frac{1+t^2+At-t(2+A)}{t(1+t^2+At)}
+=\frac{(1-t)^2}{t(1+t^2+At)},
+\]
+the term $At$ cancelling --- so the gap does not depend on $A$ except through
+the denominator.  Substituting $A$ and clearing,
+\[
+1+t^2+At=\frac{(1+t)(1-qt^2)}{1-qt},
+\]
+which turns the previous display into \eqref{eq:macdonald-gap}.  On $q,t\in(0,1)$
+each of $(1-t)^2$, $1-qt$, $t$, $1+t$ and $1-qt^2$ is strictly positive.
+\end{proof}
+
+At $q=t=r$ this is $\tfrac1r-\tfrac3{1+r+r^2}=\tfrac{(1-r)^2}{r(1+r+r^2)}$, the
+computation carried in \Cref{thm:macdonald}.
+
+\subsection*{Where the point is admissible}
+
+The reversal above is an identity in $q$ and $t$, but it refutes the claim only
+where $x=(1,1)$ is a legal evaluation point, i.e.\ lies on $\mathcal L_n$.
+
+\begin{lemma}\label{lem:macdonald-lattice}
+Let $t=q^k$ with $k$ a positive integer and $a=1$.  Then
+$1^n\in\mathcal L_n^{q,q^k,1}$.
+\end{lemma}
+\begin{proof}
+Take $\mu_i=k(n-i)$, which is a partition: $\mu_i-\mu_{i+1}=k>0$.  The $i$-th
+coordinate of the corresponding lattice point is
+$q^{-\mu_i}t^{n-i}=q^{-k(n-i)}q^{k(n-i)}=1$.
+\end{proof}
+
+So for every positive integer $k$ the pair $\lambda=(2,0)\succeq\mu=(1,1)$ at
+$x=(1,1)$ refutes Schur-convexity for the parameters $(q,q^k)$, and
+\Cref{thm:macdonald} is the case $k=1$.  For an instance away from the Schur
+locus take $k=2$, $q=1/2$, $t=1/4$: then $A=9/7$ and
+\[
+\Omega_{(2,0)}(1,1;\tfrac12,\tfrac14)=\frac{368}{155}<4=\Omega_{(1,1)}(1,1;\tfrac12,\tfrac14),
+\]
+a gap of $252/155$.
+
+\subsection*{Where the claim goes wrong}
+
+The failure is not an accident of small rank: it is the principal-specialization
+normalization, which does not commute with the determinant shift.
+
+\begin{lemma}[Determinant shift for $\Omega$]\label{lem:macdonald-shift}
+Let $\lambda=(\lambda_1,\ldots,\lambda_N)$ and $c=\lambda_N$.  Then
+\[
+\Omega^{(N)}_\lambda(y;q,t)
+=\left(\frac{y_1\cdots y_N}{t^{N(N-1)/2}}\right)^{c}
+\Omega^{(N)}_{\lambda-c(1^N)}(y;q,t).
+\]
+\end{lemma}
+\begin{proof}
+From $P_\lambda(y)=(y_1\cdots y_N)^cP_{\lambda-c(1^N)}(y)$, evaluation at
+$t^\delta$ contributes $\bigl(\prod_{i=1}^Nt^{N-i}\bigr)^c=t^{cN(N-1)/2}$, since
+$\sum_{i=1}^N(N-i)=N(N-1)/2$.  Divide the two relations.
+\end{proof}
+
+The factor $t^{-cN(N-1)/2}$ is exactly what the argument for Schur-convexity
+drops.  Its effect is not a perturbation.  At $N=2$ and $\lambda=(1,1)$, where
+$c=1$ and $\lambda-c(1^2)=(0,0)$, the lemma gives
+$\Omega_{(1,1)}(y)=y_1y_2/t$, whereas the shift without the $t$-power would give
+$y_1y_2$; the two agree only at $t=1$.  Evaluated at $y=1^2$ this is the $1/t$
+of Proposition~\ref{prop:macdonald-general}, which diverges as $t\downarrow0$ while
+$\Omega_{(2,0)}(1,1;q,t)\to3+q$ stays bounded.  The reversal is therefore not
+delicate: past a point the two sides are not even the same order of magnitude.
+
+\subsection*{What is not refuted}
+
+Normalizing at $1^n$ instead of at $t^\delta$ removes the phenomenon entirely.
+Write $W_\lambda(x;q,t)=P_\lambda(x;q,t)/P_\lambda(1^n;q,t)$.  Since
+$P_\lambda(1^N)=P_{\lambda-c(1^N)}(1^N)$, the determinant shift for $W$ carries
+no extra factor at all, and $W_\lambda(1^n;q,t)=1$ for every $\lambda$ --- so the
+witness above says nothing whatever about $W$, both sides being $1$ at the
+evaluation point.  More than that, in the same rank-two case the $W$-inequality
+holds where the $\Omega$-inequality fails:
+\[
+W_{(2,0)}(x_1,x_2;q,t)-W_{(1,1)}(x_1,x_2;q,t)
+=\frac{x_1^2+x_2^2+Ax_1x_2-(2+A)x_1x_2}{2+A}
+=\frac{(x_1-x_2)^2}{2+A}\;\ge\;0 .
+\]
+\Cref{thm:macdonald} is thus a statement about the normalization, not about
+Macdonald polynomials on the lattice: what it refutes is Schur-convexity of
+$\lambda\mapsto\Omega_\lambda$, and any corresponding claim for $W_\lambda$ is
+untouched.
+
+The certificate \path{counterexamples/macdonald-schur-convexity/verify.py}
+recomputes all of this exactly: it recovers $A$ from the $(q,t)$ Hall inner
+product rather than quoting Lemma~\ref{lem:macdonald-rank2}, verifies
+\eqref{eq:macdonald-gap} as a rational-function identity in $q$ and $t$ together
+with the factorization of $1+t^2+At$ that makes each sign visible, checks the
+lattice membership of Lemma~\ref{lem:macdonald-lattice} symbolically in $q$, $k$ and
+$n$, checks the shift exponent and the $N=2$ instance where the naive shift
+fails, and confirms the $W$ identity above.
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: "main"
+%%% End:

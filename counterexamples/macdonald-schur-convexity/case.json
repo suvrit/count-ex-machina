@@ -24,12 +24,14 @@
   "verify": {
     "python": "verify.py",
     "sage": [],
-    "requires": []
+    "requires": [
+      "sympy"
+    ]
   },
   "artifacts": [
     {
       "file": "artifacts/certificate.json",
-      "description": "Exact rational reversal checked at sample parameters, with the algebraic identity behind the full one-parameter family."
+      "description": "Exact rank-two reversal at sample parameters, the general (q,t) gap identity, lattice membership, the determinant-shift diagnosis, and the 1^n-normalized scope check."
     }
   ]
 }

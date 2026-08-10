@@ -151,7 +151,7 @@
           "date": "2026-07-30"
         },
         {
-          "model": "Opus 5",
+          "model": "bugfixed by Opus 5",
           "date": "2026-08-10"
         }
       ],
@@ -193,8 +193,8 @@
       "posed_by": "McSwiggen and Sahi \\citeyearpar{McSwiggenSahi2026}",
       "found_by": [
         {
-          "model": "TODO",
-          "date": "TODO"
+          "model": "GPT-5.6 (Pro)",
+          "date": "2026-05-14"
         }
       ],
       "formalized_by": "S.~Sra",
@@ -204,7 +204,9 @@
     "verify": {
       "python": "verify.py",
       "sage": [],
-      "requires": []
+      "requires": [
+        "sympy"
+      ]
     }
   },
   {

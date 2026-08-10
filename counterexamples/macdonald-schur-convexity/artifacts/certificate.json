@@ -1,9 +1,19 @@
 {
+  "determinant_shift": "Omega_lambda(y) = ((y_1...y_N)/t^{N(N-1)/2})^c Omega_{lambda-c(1^N)}(y); the naive shift omits the t-power and is false already at N=2, lambda=(1,1)",
+  "general_gap": "Omega_(1,1)(1^2) - Omega_(2,0)(1^2) = (1-t)^2(1-qt)/(t(1+t)(1-qt^2))",
   "identity": "1+r+r^2-3r = (1-r)^2",
+  "lattice_membership": "1^n in L_n^{q,q^k,1} via mu_i = k(n-i)",
+  "lattice_samples": [
+    "q=1/2, t=q^1=1/2",
+    "q=1/2, t=q^2=1/4",
+    "q=2/3, t=q^3=8/27"
+  ],
+  "macdonald_coefficient": "A = (1+q)(1-t)/(1-qt), from the (q,t) Hall inner product",
   "reversal": "3/(1+r+r^2) < 1/r for all 0<r<1",
   "sample_r": [
     "1/2",
     "2/3",
     "9/10"
-  ]
+  ],
+  "scope": "W_(2,0)(x) - W_(1,1)(x) = (x_1-x_2)^2/(2+A) >= 0, so the 1^n normalization survives"
 }
