@@ -340,3 +340,10 @@ __pycache__/
 *.sage.py
 verification_report.json
 paper.pdf
+
+## Local scratch.  Drafts, retired writeups and one-off experiments that are
+## kept on disk but deliberately outside the archive.  Nothing in here is read
+## by `make check` or `make verify`, and -- since it is untracked -- nothing in
+## here is backed up by git.  Anything worth keeping belongs in the case bundle
+## it came from, not here.
+/local/

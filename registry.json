@@ -208,7 +208,9 @@
     },
     "verify": {
       "python": "verify.py",
-      "sage": [],
+      "sage": [
+        "verify_macdonald.sage"
+      ],
       "requires": [
         "sympy"
       ]
