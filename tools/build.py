@@ -60,9 +60,10 @@ GROUPS = {
     "aim": "Borcea--Br\\\"and\\'en AIM problems",
     "amsel": "Simons workshop open questions",
 }
-# Cases carrying "appendix": true are typeset here instead of in the body, under
-# one shared heading, and collapse to a single ledger row per source.
-APPENDIX_TITLE = "Additional counterexamples"
+# Cases carrying "appendix": true are typeset in the hand-written appendix
+# tex/09-additional.tex instead of in the body, and collapse to a single ledger
+# row per source.  That file owns the heading and every word of prose; what is
+# generated is only the two lists it \inputs.
 DATE_RE = re.compile(r"^\d{4}-\d{2}(-\d{2})?$")
 # Immutable per-result identity, and the primary key of registry.json.  The
 # alphabet is Crockford base32 -- no I, L, O or U -- so a uid survives being
@@ -383,6 +384,7 @@ def validate(cases, allow_todo, errors):
     seen_result_ids = {}
     seen_labels = {}
     seen_uids = {}
+    seen_former_ids = {}
     prior_uid = committed_uid_bindings()
     prior_result = {uid: rid for rid, uid in prior_uid.items()}
 
@@ -474,6 +476,38 @@ def validate(cases, allow_todo, errors):
             if rid in seen_result_ids:
                 err(f"result id {rid!r} already used by case {seen_result_ids[rid]}")
             seen_result_ids[rid] = cid
+            if rid in seen_former_ids:
+                err(
+                    f"result id {rid!r} is a former id of result {seen_former_ids[rid]}; "
+                    "a name a result was renamed away from is not reused"
+                )
+
+            # Every id this result has been known by, oldest first.  A rename is
+            # the one thing that would otherwise be indistinguishable from
+            # reusing a retired uid, so it is recorded rather than inferred: the
+            # uid follows the statement (which is what a uid is for), and the old
+            # name stays resolvable through registry.json.
+            former_ids = r.get("former_ids") or []
+            if not isinstance(former_ids, list) or not all(
+                isinstance(x, str) and x.strip() for x in former_ids
+            ):
+                err("'former_ids' must be a list of the result ids this one was renamed from")
+                former_ids = []
+            r["former_ids"] = former_ids
+            for old in former_ids:
+                if old == rid:
+                    err(f"result {rid}: lists its own id in 'former_ids'")
+                if old in seen_result_ids:
+                    err(
+                        f"result {rid}: former id {old!r} is the live id of a result in "
+                        f"case {seen_result_ids[old]}; a renamed-away name is not reused"
+                    )
+                if old in seen_former_ids:
+                    err(
+                        f"result {rid}: former id {old!r} is already claimed by result "
+                        f"{seen_former_ids[old]}"
+                    )
+                seen_former_ids[old] = rid
 
             uid = r.get("uid")
             if is_todo(uid):
@@ -497,10 +531,21 @@ def validate(cases, allow_todo, errors):
                         f"result {rid}: uid changed from {prior_uid[rid]} to {uid}; "
                         "uids are immutable once published"
                     )
-                if uid in prior_result and prior_result[uid] != rid:
+                # ... unless the result was renamed and says so.  Then the uid is
+                # not being reused, it is doing its job: the same statement under
+                # a new name.  Listing the old id is what separates the two cases,
+                # and it is deliberately an explicit claim by the author rather
+                # than something inferred from the diff.
+                if (
+                    uid in prior_result
+                    and prior_result[uid] != rid
+                    and prior_result[uid] not in former_ids
+                ):
                     err(
                         f"result {rid}: uid {uid} is already bound to result "
-                        f"{prior_result[uid]}; uids are never reused"
+                        f"{prior_result[uid]}; uids are never reused. If this is a "
+                        f"rename, add {prior_result[uid]!r} to this result's "
+                        "'former_ids' and the uid will follow the statement"
                     )
             # Name the thing an author edits: two of these are regions of
             # case.tex, two are enums in case.json.
@@ -803,37 +848,47 @@ def gen_cases(cases):
     return "\n".join(emit_cases(body_in_order(cases), [GENERATED_HEADER.rstrip("\n")])) + "\n"
 
 
-def gen_appendix(cases):
-    """The appendix, in its own file so main.tex decides where it sits.
+def gen_appendix_cases(cases):
+    """The dossiers of the appendix, as a bare list with no heading of its own.
 
-    Kept separate from cases.tex precisely so the appendix can be moved,
-    surrounded, or temporarily dropped by editing one \\input line by hand,
-    without the generator having an opinion about where in the document it goes.
+    Two files rather than one, and neither carrying the section heading, so that
+    tex/09-additional.tex can put prose before the dossiers, between them and the
+    brief list, and after -- which a single generated block would leave nowhere
+    to go.  Everything an author writes about the appendix lives there; this is
+    only the ordering and the per-case metadata, exactly as in cases.tex.
     """
     lines = [GENERATED_HEADER.rstrip("\n")]
-    full, brief = appendix_full_in_order(cases), brief_in_order(cases)
-    if not full and not brief:
-        # Still written, so main.tex's \input never dangles when the archive
-        # happens to have no de-emphasised cases.
-        lines.append("% No cases are currently marked \"appendix\": true.")
+    full = appendix_full_in_order(cases)
+    if not full:
+        # Still written, so the \input never dangles when the archive happens to
+        # have no de-emphasised case that earns a dossier.
+        lines.append("% No cases are currently \"appendix\": true without \"brief\": true.")
         return "\n".join(lines) + "\n"
-    lines.append("")
-    lines.append(f"\\cxappendix{{{APPENDIX_TITLE}}}")
     emit_cases(full, lines, grouped=False)
-    if brief:
-        # Only the items; the lead-in wording lives in cxcase.sty's cxbrieflist
-        # so that no prose enters a generated file.
-        lines.append("")
-        lines.append("\\begin{cxbrieflist}")
-        for c in brief:
-            for r in c["results"]:
-                lines.append(
-                    f"\\cxbriefitem{{{r['ledger_label']}}}"
-                    f"{{{squash(r.get('statement_tex'))}}}"
-                    f"{{{squash(r.get('certificate_tex'))}}}"
-                    f"{{counterexamples/{c['id']}/}}"
-                )
-        lines.append("\\end{cxbrieflist}")
+    return "\n".join(lines) + "\n"
+
+
+def gen_appendix_brief(cases):
+    """The \\cxbriefitem lines of the appendix's brief list, and nothing else.
+
+    No \\begin{itemize} and no lead-in sentence: both are prose decisions, so
+    both live in tex/09-additional.tex around the \\input.  Emptying this file is
+    not how an entry is removed -- drop "brief" from the case's case.json and it
+    goes back to a full subsection and a ledger row.
+    """
+    lines = [GENERATED_HEADER.rstrip("\n")]
+    brief = brief_in_order(cases)
+    if not brief:
+        lines.append("% No cases are currently marked \"brief\": true.")
+        return "\n".join(lines) + "\n"
+    for c in brief:
+        for r in c["results"]:
+            lines.append(
+                f"\\cxbriefitem{{{r['ledger_label']}}}"
+                f"{{{squash(r.get('statement_tex'))}}}"
+                f"{{{squash(r.get('certificate_tex'))}}}"
+                f"{{counterexamples/{c['id']}/}}"
+            )
     return "\n".join(lines) + "\n"
 
 
@@ -853,6 +908,9 @@ def gen_registry(cases):
             {
                 "uid": r.get("uid"),
                 "result_id": r["id"],
+                # Every id this result has answered to before, so a reference
+                # written against an older registry still resolves to the row.
+                "former_ids": r.get("former_ids") or [],
                 "case": c["id"],
                 "title": c["title"],
                 "status": c["status"],
@@ -1037,7 +1095,8 @@ def main():
 
     outputs = {
         GENERATED_DIR / "cases.tex": gen_cases(cases),
-        GENERATED_DIR / "appendix.tex": gen_appendix(cases),
+        GENERATED_DIR / "appendix-cases.tex": gen_appendix_cases(cases),
+        GENERATED_DIR / "appendix-brief.tex": gen_appendix_brief(cases),
         REGISTRY: gen_registry(cases),
         README: splice_readme(readme_table, gen_count_badges(cases)),
     }

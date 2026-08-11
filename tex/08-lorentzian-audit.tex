@@ -8,9 +8,10 @@
 % spelled out rather than abbreviated: cxcase.sty binds \C to \mathbb C, so the
 % cone is written \mathcal C, and \D, \Q, \T of the source file are written
 % \mathrm D, \mathcal Q, \mathcal T here.
-\cxappendixsection{Additional results for the Lorentzian Jensen--Bregman principle}
+\section{Two new three-point results for hyperbolic polynomials}
 \label{sec:lorentzianaudit}
 
+\iffalse %{
 Theorem~\ref{thm:volume-distance} and Corollary~\ref{thm:lorentzian} refute two statements by exhibiting a
 single witness.  Both statements, however, had been posed together with a
 proposed proof, and a witness alone does not say which step of that proof is
@@ -21,7 +22,7 @@ the witness in exact arithmetic.  A final subsection gives the positive
 counterpart: on hyperbolic polynomials the refuted principle is a theorem, and
 the witness is not hyperbolic.
 
-\subsection*{The formulation, and the verdict}
+\subsection{The formulation, and the verdict}
 
 Let $\mathcal C\subset\R^m$ be an open convex cone, let $G:\mathcal C\to(0,\infty)$, and put
 \[
@@ -51,7 +52,7 @@ is a semimetric on convex bodies.  The audit finds:
       identity, not a technical gap.
 \end{enumerate}
 
-\subsection*{What the proposed proof gets right}
+\subsection{What the proposed proof gets right}
 
 \begin{lemma}[Midpoint Green-kernel identity]\label{lem:lor-midpoint}
 Let $F\in C^2(\mathcal C)$ be convex and $x,y\in\mathcal C$.  With $m=(x+y)/2$ and $h=y-x$,
@@ -121,7 +122,7 @@ expression in $\mathcal Q_r$ and $\mathcal T_r$, whose leading term is
 $-d(d-1)\mathcal T_r(U,U,V)/G(r)$.  Only one feature of it is needed below: like
 \eqref{eq:lor-derivative} itself, it is odd and degree-one in $\delta$.
 
-\subsection*{Where the proposed proof fails}
+\subsection{Where the proposed proof fails}
 
 The step that was omitted asserted a formula of the schematic shape
 \begin{equation}\label{eq:lor-gram}
@@ -177,7 +178,7 @@ $n(n-1)(n-2)$, which vanishes at $n=2$ and so predicts a zero derivative.  The
 stated mixed-volume calculation is therefore already false for two rectangles in
 the plane.
 
-\subsection*{The exact enclosure}
+\subsection{The exact enclosure}
 
 The witness of Lemma~\ref{lem:lorentzian-cubic} is three logarithms and three square
 roots, none of them rational.  The separation is nevertheless certified without
@@ -218,7 +219,7 @@ $G$ and the Shephard inequalities are not part of that computation; both are
 finite rational comparisons, carried out in the proofs of
 Lemma~\ref{lem:lorentzian-cubic} and Theorem~\ref{thm:volume-distance}.
 
-\subsection*{What survives}
+\subsection{What survives}
 
 The counterexample leaves the following untouched.  In one dimension,
 \citet{ChenChenRao} characterize metricity of $\sqrt{\J_F}$ by convexity of
@@ -260,8 +261,7 @@ Linewise log-convexity is thus necessary, and Proposition~\ref{prop:lor-superpos
 sufficient condition of a different kind; what is missing --- and what the
 witness shows Lorentzianity does not supply --- is a genuinely nonseparable
 condition that controls arbitrary triangles.  The next subsection supplies one.
-
-\subsection*{The hyperbolic transfer principle}
+\fi %}
 
 Replacing ``Lorentzian'' by ``hyperbolic'' turns the refuted principle into a
 theorem.  Let $p:\R^n\to\R$ be homogeneous of degree $m\ge1$ and hyperbolic with
@@ -334,10 +334,10 @@ definite cone \citep{SraSdiv}.  Applying that triangle inequality to
 $A_1,A_2,A_3$ gives the claim, and the triple was arbitrary.
 \end{proof}
 
-The conclusion is a pseudometric rather than a metric because degenerate $p$
-collapse distances: for $p=\ell^m$ with $\ell$ linear, $\J_p(x,y)$ depends only on
-$\ell(x)$ and $\ell(y)$.  The same restriction principle transfers a determinant
-inequality to the cone.
+% The conclusion is a pseudometric rather than a metric because degenerate $p$
+% collapse distances: for $p=\ell^m$ with $\ell$ linear, $\J_p(x,y)$ depends only on
+% $\ell(x)$ and $\ell(y)$.  The same restriction principle transfers a determinant
+% inequality to the cone.
 
 \begin{theorem}[\statusproved: hyperbolic four-point inequality]\label{thm:lor-fourpoint}
 With $F=p^{1/m}$, for all $a,b,c$ in the closed hyperbolicity cone,

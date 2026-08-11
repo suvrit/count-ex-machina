@@ -91,18 +91,33 @@ I used Claude Code (Opus 5) to architect the document and the repo. Initial draf
 \bibliography{references}
 
 
-% The list of appendices.  Must precede the first one: it opens the stream the
-% appendices write themselves to.  Drop this line and nothing else breaks.
-\cxappendixtoc
+% The list of appendices, by hand: there are enough of them that a reader cannot
+% find one by paging.  Letters and pages come from \ref/\pageref so they cannot
+% go stale, but the titles are typed here -- shorten one, annotate it, or drop a
+% line, and only this list changes.  \cxendrule closes the last body section,
+% since what follows is not a \section.
+\cxendrule
+% Centered small caps with a line of air above and half a line below is exactly
+% what amsart gives a contents heading (\contentsnamefont is \scshape; see
+% amsart.cls l.1146-1151).  Spelled out rather than borrowed so it can be
+% restyled here without knowing that.
+\par\addvspace{\baselineskip}
+{\centering\scshape Appendices\par}
+\addvspace{.5\baselineskip}
+\begin{itemize}[label={},leftmargin=2.2em,itemsep=0.2em]
+\item[\ref{sec:additional}.] Additional counterexamples \dotfill \pageref{sec:additional}
+\item[\ref{sec:proofdetails}.] Positive results for the mixed-norm Cauchy--Schwarz inequality \dotfill \pageref{sec:proofdetails}
+\item[\ref{sec:aim36pencil}.] Specht modules and Borcea--Br\"and\'en's Problems 36, 37 \dotfill \pageref{sec:aim36pencil}
+\item[\ref{sec:macdonaldomega}.] Additional results for McSwiggen--Sahi Theorem 2.1 \dotfill \pageref{sec:macdonaldomega}
+\item[\ref{sec:qcctrace}.] Some refinements of the quantum coupon collection conjecture \dotfill \pageref{sec:qcctrace}
+\item[\ref{sec:lorentzianaudit}.] Two new three-point results for hyperbolic polynomials \dotfill \pageref{sec:lorentzianaudit}
+\end{itemize}
 
-% The appendix of de-emphasized cases.  Both files are generated, but this line
-% is not: move it, wrap it, or comment it out freely -- the generator has no
-% opinion about where in the document the appendix sits.  It issues \appendix
-% itself, so anything after this line is numbered as appendix material.
-\input{generated/appendix}
-% Hand-written appendices.  generated/appendix.tex has already issued \appendix,
-% so each of these only opens a \section and is numbered B, C, ...; reorder the
-% two lines freely, everything points at them with Appendix~\ref.
+% The appendices.  09-additional.tex issues the \appendix, so it must come
+% first; each file after it only opens a \section and is numbered B, C, ...
+% Reorder these lines freely -- everything points at them with Appendix~\ref,
+% and the list above renumbers itself to match.
+\input{09-additional}
 \input{03-proof-details}
 \input{04-aim36-pencil}
 \input{05-macdonald-omega}

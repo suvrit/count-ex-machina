@@ -23,8 +23,11 @@
       }
     },
     {
-      "id": "rank-two-mixed-norm",
+      "id": "yufei-psd",
       "uid": "WY47E30H",
+      "former_ids": [
+        "rank-two-mixed-norm"
+      ],
       "class": "external formal problem",
       "certificate_level": "computer-assisted",
       "theorem_label": "thm:mixed",

@@ -1,0 +1,37 @@
+% Appendix A -- the cases the archive keeps but does not foreground.
+%
+% Hand-written, and nothing regenerates it: this file owns the heading, every
+% word of prose, and the order of the parts.  The two \input lines below are the
+% only generated things in it -- a list of \cxlevel/\cxtheorem/\input metadata
+% for the dossiers, and a list of \cxbriefitem lines -- both driven by the
+% "appendix" and "brief" flags in each counterexamples/<id>/case.json.  Add
+% prose anywhere: before the dossiers, between them and the brief list, after.
+%
+% This \appendix is the document's only one, so every hand-written appendix
+% \input after this file in main.tex is numbered B, C, ... automatically.
+\appendix
+\section{Additional counterexamples}
+\label{sec:additional}
+
+The cases collected here clear the same three admission conditions as those in
+the body, and their certificates recompute under the same \texttt{make verify};
+their placement is editorial emphasis and never evidential standing.
+
+\input{generated/appendix-cases}
+
+\subsection{Statements recorded without a dossier}
+
+These fell to the same standard of evidence as every case above --- each carries
+a certificate in the repository that recomputes in exact arithmetic --- but the
+statements are slight enough that the archive records them here rather than
+spending a section and a ledger row on each.
+
+\medskip
+\begin{itemize}[itemsep=0.4em]
+\input{generated/appendix-brief}
+\end{itemize}
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: "main"
+%%% End:

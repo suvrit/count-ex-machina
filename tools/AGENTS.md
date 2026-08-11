@@ -7,12 +7,14 @@ the paper's structure genuinely changes.
 ## What each script owns
 
 - **`build.py`** — validates every case (`case.json` + `case.tex`) and writes
-  four generated artifacts: `tex/generated/cases.tex` (body sections),
-  `tex/generated/appendix.tex` (cases marked `"appendix": true`, under one
-  shared heading, with those also marked `"brief": true` reduced to one bullet
-  each inside `cxbrieflist` instead of a dossier; written even when empty so
-  `main.tex`'s `\input` never dangles), `registry.json`, and two spliced
-  regions of
+  five generated artifacts: `tex/generated/cases.tex` (body sections),
+  `tex/generated/appendix-cases.tex` (dossiers of cases marked
+  `"appendix": true`) and `tex/generated/appendix-brief.tex` (bare
+  `\cxbriefitem` lines for those also marked `"brief": true`) — both written
+  even when empty so the `\input`s never dangle, and **neither carrying a
+  heading, a list environment, or a word of prose**: those belong to the
+  hand-written `tex/09-additional.tex`, which wraps both. Then
+  `registry.json`, and two spliced regions of
   `README.md` — the case table (`<!-- BEGIN/END CASE TABLE -->`) and the
   headline count badges (`<!-- BEGIN/END COUNT BADGES -->`). Everything else in
   `README.md`, the rest of the header block included, is hand-written and is
@@ -68,7 +70,10 @@ the paper's structure genuinely changes.
 4. **uid immutability is enforced against the committed `registry.json`**
    (`committed_uid_bindings()`). That is the whole mechanism: deleting or
    truncating `registry.json` and regenerating would silently permit rebinding
-   a published uid. Never regenerate it from an empty file.
+   a published uid. Never regenerate it from an empty file. The one sanctioned
+   way past the reuse check is a result declaring the old id in `former_ids` —
+   a rename, where the uid is supposed to follow the statement. Keep that an
+   explicit claim in `case.json`; never infer it from the diff.
 5. **Generated output must be a pure function of the inputs.** No timestamps,
    no randomness, no environment dependence — CI runs `git diff --exit-code`
    after re-verifying, and `--check` compares byte-for-byte. (`mint_uid` is

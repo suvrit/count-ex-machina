@@ -126,6 +126,16 @@ Enums are enforced; the exact spellings are in `tools/build.py`.
   - `uid` — 8 chars of Crockford base32, minted by
     `python tools/new_case.py --mint-uid`. Immutable, never reused, never
     cited; the build compares against the committed `registry.json`.
+  - `former_ids` — optional list, omit it unless you renamed something. **To
+    rename a result, change `id` and add the old id here**; keep the `uid`,
+    which is precisely what it is for. Without this the build cannot tell a
+    rename from a retired uid being repointed at a new statement, so it refuses
+    the change — the error names the id to add. Every `cx...{rid}` region in
+    `case.tex` must be renamed too, including the optional `cxcredits[rid]`
+    override, which is **not** validated against `case.json` and will otherwise
+    be dropped in silence. A former id is dead: it can never become the live id
+    of any result again, and `registry.json` carries it so a reference written
+    against an older registry still resolves.
   - `class` — `published theorem` | `published conjecture` |
     `external conjecture` | `external formal problem` | `user formal problem`.
   - `certificate_level` — `exact` | `computer-assisted`.
@@ -189,7 +199,9 @@ Hard requirements:
 | `\begin{cxfoo} is never closed` / `inside cxbar; these regions may not nest` | one region at a time, each delimiter alone on its line |
 | `cxsummary{x} appears twice` | one region per result; delete the duplicate |
 | `missing 'uid'` | `python tools/new_case.py --mint-uid` — never invent one |
-| `uid changed from A to B` / `uid ... already bound` | restore the committed uid; it is immutable |
+| `uid changed from A to B` | restore the committed uid; it is immutable |
+| `uid ... is already bound to result R` | restore the committed uid — unless you renamed `R`, in which case keep the uid and add `R` to `former_ids` |
+| `former id 'x' is the live id of a result` / `is already claimed by` | a renamed-away name is dead; pick a different `id` |
 | `\label{thm:x} not found in the cxrefutation region` | make `theorem_label` and the `\label` identical |
 | `bib key 'k' not found` | add the entry to `tex/references.bib` |
 | `unbalanced braces in ...` | count `{}` in that region |

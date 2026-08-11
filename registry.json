@@ -2,6 +2,7 @@
   {
     "uid": "4NP5KD9H",
     "result_id": "aim-problem-35",
+    "former_ids": [],
     "case": "stable-schur",
     "title": "Two Borcea-Branden problems",
     "status": "refuted",
@@ -42,6 +43,7 @@
   {
     "uid": "4TWB5MZJ",
     "result_id": "aim-problem-38",
+    "former_ids": [],
     "case": "stable-schur",
     "title": "Two Borcea-Branden problems",
     "status": "refuted",
@@ -82,6 +84,7 @@
   {
     "uid": "KKYHCMH6",
     "result_id": "aim-problem-36",
+    "former_ids": [],
     "case": "aim-problem-36",
     "title": "AIM Problem 36: stable Schur positivity",
     "status": "refuted",
@@ -124,6 +127,7 @@
   {
     "uid": "VP22SYRW",
     "result_id": "aim-problem-37",
+    "former_ids": [],
     "case": "aim-problem-36",
     "title": "AIM Problem 36: stable Schur positivity",
     "status": "refuted",
@@ -170,6 +174,7 @@
   {
     "uid": "C4RWCJF1",
     "result_id": "macdonald-schur-convexity",
+    "former_ids": [],
     "case": "macdonald-schur-convexity",
     "title": "Macdonald lattice Schur-convexity",
     "status": "refuted",
@@ -212,6 +217,7 @@
   {
     "uid": "740DPSAS",
     "result_id": "theta-derivative-log-concavity",
+    "former_ids": [],
     "case": "theta-derivative-log-concavity",
     "title": "Derivatives of the Jacobi-theta kernel",
     "status": "refuted",
@@ -256,6 +262,7 @@
   {
     "uid": "Z32YZNA5",
     "result_id": "variance-only-matrix-discrepancy",
+    "former_ids": [],
     "case": "variance-only-matrix-discrepancy",
     "title": "Variance-sensitive Matrix Spencer",
     "status": "refuted",
@@ -296,6 +303,7 @@
   {
     "uid": "PBBV5T5S",
     "result_id": "mixed-norm-general-s",
+    "former_ids": [],
     "case": "rank-two-mixed-norm",
     "title": "A mixed-norm Cauchy-Schwarz question of Sah, Sawhney, Stoner and Zhao",
     "status": "refuted",
@@ -316,7 +324,7 @@
       "statement_tex": "We do not know if the inequality can be extended to $\\|A^{\\mathsf T}B\\|_{L_{p,q}}^2\\le\\|A^{\\mathsf T}A\\|_{L_{q,q}}\\|B^{\\mathsf T}B\\|_{L_{p,p}}$ for all reals $1\\le p\\le q$ (this is true for positive integer $p$ by a tensor-power argument)."
     },
     "credits": {
-      "posed_by": "A.~Sah, M.~Sawhney, D.~Stoner and Y.~Zhao \\citeyearpar{SahSawhneyStonerZhao2020}, and put to S.~Sra by Y.~Zhao in private communication, May 2018",
+      "posed_by": "A.~Sah et al~\\citeyearpar{SahSawhneyStonerZhao2020}, and put to S.~Sra by Y.~Zhao in private communication, May 2018",
       "found_by": [
         {
           "model": "Opus 5",
@@ -339,7 +347,10 @@
   },
   {
     "uid": "WY47E30H",
-    "result_id": "rank-two-mixed-norm",
+    "result_id": "yufei-psd",
+    "former_ids": [
+      "rank-two-mixed-norm"
+    ],
     "case": "rank-two-mixed-norm",
     "title": "A mixed-norm Cauchy-Schwarz question of Sah, Sawhney, Stoner and Zhao",
     "status": "refuted",
@@ -353,14 +364,14 @@
     "certificate_tex": "Explicit 21-vector Gram matrix and interval-separated ratio $>1$.",
     "theorem_label": "thm:mixed",
     "provenance": {
-      "source_tex": "A.~Sah, M.~Sawhney, D.~Stoner and Y.~Zhao, the same open question at $B=A$; put to S.~Sra by Y.~Zhao in private communication, May 2018",
+      "source_tex": "A.~Sah, M.~Sawhney, D.~Stoner and Y.~Zhao, the same open question at $B=A$; shared with S.~Sra by Y.~Zhao in private communication, May 2018",
       "url": "https://arxiv.org/abs/1809.09462",
       "retrieved": "2026-08-05",
       "fidelity": "paraphrase",
       "statement_tex": "Taking $B=A$ in the question above and writing $Z=A^{\\mathsf T}A$ for the resulting completely positive matrix: for all reals $1\\le s\\le q$ and every completely positive $Z$,\n\\[\\|Z\\|_{s,q}^2\\le\\|Z\\|_{s,s}\\|Z\\|_{q,q}.\\]"
     },
     "credits": {
-      "posed_by": "A.~Sah, M.~Sawhney, D.~Stoner and Y.~Zhao \\citeyearpar{SahSawhneyStonerZhao2020}, and put to S.~Sra by Y.~Zhao in private communication, May 2018",
+      "posed_by": "A.~Sah et al~\\citeyearpar{SahSawhneyStonerZhao2020}, and put to S.~Sra by Y.~Zhao in private communication, May 2018",
       "found_by": [
         {
           "model": "GPT-5.6 Sol (Pro)",
@@ -384,6 +395,7 @@
   {
     "uid": "Y1FNF1QR",
     "result_id": "quantum-coupon-collector",
+    "former_ids": [],
     "case": "quantum-coupon-collector",
     "title": "Quantum coupon collection: positivity of an alternating sum of inverses",
     "status": "refuted",
@@ -401,7 +413,7 @@
       "url": "https://mathoverflow.net/questions/263833/quantum-coupon-collection-positivity-of-an-alternating-sum-of-matrices",
       "retrieved": "2026-08-02",
       "fidelity": "verbatim",
-      "statement_tex": "Here we take symmetric positive definite matrices $X_1,\\ldots,X_n\\in\\mathbf{S}_{++}^d$, and consider the sum\n\\[\nQ_n(X_1,\\ldots,X_n):=\\sum_{k=1}^n(-1)^{k+1}\n\\sum_{1\\le i_1<\\cdots<i_k\\le n}\\left(X_{i_1}+\\cdots+X_{i_k}\\right)^{-1}.\n\\]\n\n\\textbf{Conjecture.} For $n\\ge1$, and $X_1,\\ldots,X_n\\in\\mathbf{S}_{++}^d$, we have $Q_n(X_1,\\ldots,X_n)\\succ0$.\n\n\\emph{Note.} The cases $n=1,2,3$ are trivially true.  I've tried $n=4$ numerically, and it seems to hold.  (Also, by CCP, positivity immediately holds for a tuple of simultaneously diagonalizable matrices.)"
+      "statement_tex": "Here we take symmetric positive definite matrices $X_1,\\ldots,X_n\\in\\mathbf{S}_{++}^d$, and consider the sum\n\\[\nQ_n(X_1,\\ldots,X_n):=\\sum_{k=1}^n(-1)^{k+1}\n\\sum_{1\\le i_1<\\cdots<i_k\\le n}\\left(X_{i_1}+\\cdots+X_{i_k}\\right)^{-1}.\n\\]\n\n\\textbf{Conjecture.} For $n\\ge1$, and $X_1,\\ldots,X_n\\in\\mathbf{S}_{++}^d$, we have $Q_n(X_1,\\ldots,X_n)\\succ0$.\n\n\\emph{Note.} The cases $n=1,2,3$ are trivially true.  I've tried $n=4$ numerically, and it seems to hold.  (Also, by CCP, positivity immediately holds for simultaneously diagonalizable matrices.)"
     },
     "credits": {
       "posed_by": "S.~Sra \\citeyearpar{Sra2017QuantumCoupon}",
@@ -412,7 +424,7 @@
         }
       ],
       "formalized_by": "GPT-5.6 Pro, which re-derived the exact witnesses in 2026-08",
-      "audited_by": "GPT-5.6 Pro, using exact rational arithmetic",
+      "audited_by": "GPT-5.6 Pro",
       "contributed_by": "S.~Sra"
     },
     "verify": {
@@ -424,6 +436,7 @@
   {
     "uid": "XQB6RV2P",
     "result_id": "odonnell-matrix-conjecture",
+    "former_ids": [],
     "case": "odonnell-matrix-conjecture",
     "title": "No dimension-free constant in O'Donnell's matrix conjecture",
     "status": "refuted",
@@ -437,11 +450,11 @@
     "certificate_tex": "An exact algebraic Givens-rotation family with a rational dyadic lower bound, accompanied by a standard-library exact-arithmetic verifier.",
     "theorem_label": "thm:odonnell-matrix-conjecture",
     "provenance": {
-      "source_tex": "R.~O'Donnell, answering a question of Nengkun Yu on MathOverflow\n\\cite{ODonnell2015AlmostDiagonal}, reports that he and J.~Wright had been\nconsidering the problem in connection with quantum tomography, and closes by\nconjecturing the unit-trace case.  The same conjecture was put to S.~Sra by\nO'Donnell in personal communication, a fact the public answer itself records.",
+      "source_tex": "R.~O'Donnell, answering a question of Nengkun Yu on MathOverflow\n\\cite{ODonnell2015AlmostDiagonal}, reports that he and J.~Wright had been\nconsidering the problem in connection with quantum tomography, and closes by\nconjecturing the unit-trace case.  The same conjecture was put to S.~Sra by\nO'Donnell in personal communication.",
       "url": "https://mathoverflow.net/a/212759",
       "retrieved": "2026-08-04",
       "fidelity": "paraphrase",
-      "statement_tex": "The question answered was whether a positive semidefinite $M$ with\n$\\lVert D(M)-\\Lambda(M)\\rVert_1\\leq\\epsilon$ must lie within $2\\epsilon$ of\nsome diagonal matrix.  O'Donnell observes that for the variant he and Wright\ncared about --- $M$ close to \\emph{its own} diagonal --- the answer is no in\ngeneral, and then conjectures the normalised case:\n\n\\begin{quote}\n``If you restrict $M$ to have trace $1$, then we felt the desired result was\ntrue but with a weaker conclusion of $O(\\sqrt\\epsilon)$ rather than\n$2\\epsilon$.''\n\\end{quote}\n\nWritten out, and with the implied constant absolute: for every unit-trace\npositive semidefinite $R$ with eigenvalues $\\lambda_i$ and diagonal entries\n$d_{ii}$,\n\\[\n  \\lVert R-\\operatorname{Diag}(R)\\rVert_1^2\n  \\leq c\\sum_i |\\lambda_i-d_{ii}|\n\\]\nfor some absolute constant $c$ independent of $n$."
+      "statement_tex": "The question answered was whether a positive semidefinite $M$ with\n$\\lVert D(M)-\\Lambda(M)\\rVert_1\\leq\\epsilon$ must lie within $2\\epsilon$ of\nconjectures the normalized case:\n\n\\begin{quote}\n``If you restrict $M$ to have trace $1$, then we felt the desired result was\ntrue but with a weaker conclusion of $O(\\sqrt\\epsilon)$ rather than\n$2\\epsilon$.''\n\\end{quote}\n\nWritten out, and with the implied constant absolute: for every unit-trace\npositive semidefinite $R$ with eigenvalues $\\lambda_i$ and diagonal entries\n$d_{ii}$,\n\\[\n  \\lVert R-\\operatorname{Diag}(R)\\rVert_1^2\n  \\leq c\\nlsum_i |\\lambda_i-d_{ii}|\n\\]\nfor some absolute constant $c$ independent of $n$."
     },
     "credits": {
       "posed_by": "R.~O'Donnell and J.~Wright \\citeyearpar{ODonnell2015AlmostDiagonal}",
@@ -453,7 +466,7 @@
       ],
       "formalized_by": "GPT-5.6 Pro",
       "audited_by": "GPT-5.6 Pro",
-      "contributed_by": "Suvrit Sra"
+      "contributed_by": "S.~Sra"
     },
     "verify": {
       "python": "verify.py",
@@ -464,6 +477,7 @@
   {
     "uid": "7X8N5PV5",
     "result_id": "dpp-feasible-step",
+    "former_ids": [],
     "case": "dpp-feasible-step",
     "title": "Feasible Picard steps for DPP likelihood",
     "status": "refuted",
@@ -504,21 +518,21 @@
   {
     "uid": "22S7HJGF",
     "result_id": "log-volume-distance",
+    "former_ids": [],
     "case": "lorentzian-jensen",
     "title": "Log-volume midpoint gap and its Lorentzian generalization",
     "status": "refuted",
     "ledger_no": 13,
     "appendix": true,
     "brief": false,
-    "ledger_label": "the geometric specialization in §1",
+    "ledger_label": "the geometric specialization, as posed",
     "withheld_reason": null,
     "class": "user formal problem",
     "certificate_level": "exact",
     "certificate_tex": "Strictly Lorentzian rational cubic realized as a Steiner polynomial in $\\R^3$; exact rational triangle-violation bound $>7.15\\times10^{-3}$.",
     "theorem_label": "thm:volume-distance",
     "provenance": {
-      "source_tex": "S.~Sra, standalone problem posed in 2012; formulation as recorded in \\S1 of the case's \\path{paper.tex}",
-      "url": "counterexamples/lorentzian-jensen/paper.tex",
+      "source_tex": "S.~Sra, standalone problem posed in 2012; formulation as recorded in the audit of Appendix~\\ref{sec:lorentzianaudit}",
       "retrieved": null,
       "fidelity": "paraphrase",
       "statement_tex": "The log-volume midpoint gap is the square of a distance on convex bodies: that is,\n\\[d_{\\Vol}(K,L):=\\left[\\log\\Vol\\!\\left(\\frac{K+L}{2}\\right)-\\tfrac12\\log\\Vol(K)-\\tfrac12\\log\\Vol(L)\\right]^{1/2}\\]\nis a semimetric on convex bodies."
@@ -544,21 +558,21 @@
   {
     "uid": "VRP253K2",
     "result_id": "lorentzian-jensen",
+    "former_ids": [],
     "case": "lorentzian-jensen",
     "title": "Log-volume midpoint gap and its Lorentzian generalization",
     "status": "refuted",
     "ledger_no": 14,
     "appendix": true,
     "brief": false,
-    "ledger_label": "the proposed master theorem in §1",
+    "ledger_label": "the proposed master theorem, as posed",
     "withheld_reason": null,
     "class": "user formal problem",
     "certificate_level": "exact",
     "certificate_tex": "The same cubic read as a homogeneous Lorentzian polynomial; the violation transfers verbatim.",
     "theorem_label": "thm:lorentzian",
     "provenance": {
-      "source_tex": "S.~Sra, standalone problem posed in 2019 as a Lorentzian generalization of the log-volume statement; formulation as recorded in \\S1 of the case's \\path{paper.tex}",
-      "url": "counterexamples/lorentzian-jensen/paper.tex",
+      "source_tex": "S.~Sra, standalone problem posed in 2019 as a Lorentzian generalization of the log-volume statement; formulation as recorded in the audit of Appendix~\\ref{sec:lorentzianaudit}",
       "retrieved": null,
       "fidelity": "paraphrase",
       "statement_tex": "Let $\\mathcal C\\subset\\R^m$ be an open convex cone, let $G:\\mathcal C\\to(0,\\infty)$, and put $F=-\\log G$ and\n\\[\\J_G(x,y):=\\frac{F(x)+F(y)}2-F\\!\\left(\\frac{x+y}{2}\\right).\\]\nIf $G$ is homogeneous and Lorentzian, then $d_G:=\\sqrt{\\J_G}$ is a semimetric."
@@ -584,6 +598,7 @@
   {
     "uid": "XMH9AHRY",
     "result_id": "sdd-nystrom-diminishing-returns",
+    "former_ids": [],
     "case": "sdd-nystrom-diminishing-returns",
     "title": "Strict diagonal dominance does not ensure diminishing Nyström error reductions",
     "status": "refuted",
@@ -624,6 +639,7 @@
   {
     "uid": "43W158R5",
     "result_id": "osi-sketch-and-solve",
+    "former_ids": [],
     "case": "osi-sketch-and-solve",
     "title": "An oblivious subspace injection need not give relative-error sketch-and-solve",
     "status": "refuted",
@@ -664,6 +680,7 @@
   {
     "uid": "0AR0V0FD",
     "result_id": "hamiltonian-nepv-identity",
+    "former_ids": [],
     "case": "hamiltonian-nepv-identity",
     "title": "Failure of the proposed Hamiltonian NEPv Rayleigh identity",
     "status": "refuted",
@@ -704,6 +721,7 @@
   {
     "uid": "BG0YN3VJ",
     "result_id": "qrcp-orthonormal-greedy",
+    "former_ids": [],
     "case": "qrcp-orthonormal-greedy",
     "title": "Exact QRCP can miss the orthonormal-row conditioning bound",
     "status": "refuted",

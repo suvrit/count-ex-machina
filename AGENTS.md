@@ -73,7 +73,8 @@ the baseline is red.
 | `counterexamples/<dir>/` | one bundle per case: `case.json` (machine facts), `case.tex` (all prose), `verify.py`, `artifacts/` | **yes** — this is where the work is |
 | `counterexamples/_template/` | scaffold copied by `tools/new_case.py` | only to change the scaffold itself |
 | `tex/01-literature.tex`, `tex/02-admission.tex`, `tex/main.tex`, `tex/references.bib`, `tex/cxcase.sty` | hand-written paper and the case format | yes, carefully |
-| `tex/generated/` | `cases.tex` and `appendix.tex` — the ordered `\input` lists and per-case metadata | **no — generated** (but the `\input` lines in `tex/main.tex` that place them are hand-written and yours to move) |
+| `tex/generated/` | `cases.tex`, `appendix-cases.tex`, `appendix-brief.tex` — the ordered `\input` lists and per-case metadata, and nothing else | **no — generated** (but the `\input` lines that place them, in `tex/main.tex` and `tex/09-additional.tex`, are hand-written and yours to move) |
+| `tex/09-additional.tex` | Appendix A: its heading, its prose, and two `\input`s | **yes — hand-written.** Nothing regenerates it |
 | `tex/ledger.tex` | the archive ledger table, row by row | **yes — hand-written.** Nothing regenerates it; `build.py` only checks that every admitted result still has a row |
 | `registry.json` | flattened machine-readable registry | **no — generated** |
 | `README.md` between `<!-- BEGIN/END CASE TABLE -->` and `<!-- BEGIN/END COUNT BADGES -->` | case table, headline counts | **no — generated** |
@@ -156,7 +157,8 @@ an attribution.
 6. **Changing or reusing a `uid`.** It is the registry's immutable primary key,
    checked against the committed `registry.json`. Mint one only with
    `python tools/new_case.py --mint-uid`, never by hand, and never cite one —
-   humans cite the result `id`.
+   humans cite the result `id`. Renaming a result is the exception, and it
+   keeps the uid: change `id` and add the old one to `former_ids`.
 7. **Fixing other people's TODOs while passing through.** Renumbering `order`,
    touching a neighbouring case, or reformatting adjacent LaTeX turns a
    reviewable diff into an unreviewable one.

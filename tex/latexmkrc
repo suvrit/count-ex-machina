@@ -1,6 +1,0 @@
-# The appendices write themselves into main.apx, which \cxappendixtoc reads
-# back (see cxcase.sty).  latexmk knows nothing about that extension on its
-# own, so without this line the list is one pass stale -- and empty on a clean
-# build.  @generated_exts both triggers the extra pass and gets the file
-# cleaned by `latexmk -C`.
-push @generated_exts, 'apx';

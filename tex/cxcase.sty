@@ -158,60 +158,19 @@
 % \cxgroup{Heading} -- opens the shared section a group of cases lives under.
 \newcommand{\cxgroup}[1]{\section{#1}}
 
-% \cxappendix{Heading} -- switches to appendix numbering and opens the single
-% section holding every de-emphasised case.  Issued at most once, by the
-% generator, immediately before the first case marked "appendix" in its
-% case.json; those cases are then typeset as subsections of it.
-\newcommand{\cxappendix}[1]{%
-  \appendix\section{#1}\label{sec:additional}\cx@apxline{#1}}
+% Appendices are ordinary \section's inside a hand-written \appendix, and the
+% list of them at the end of the body is a hand-written list in main.tex.  Until
+% August 2026 both went through this package: \cxappendix opened the generated
+% appendix, \cxappendixsection registered a hand-written one, and each wrote a
+% line into a private \jobname.apx contents stream that \cxappendixtoc read back
+% (with a tex/latexmkrc rule to make latexmk rerun on it).  That spelled each
+% title once, at the cost of a heading no one could edit where it was used.  All
+% four macros and the .apx file are gone; write \section and edit the list.
 
-% ---------------------------------------------------------------------------
-% The list of appendices.
-% ---------------------------------------------------------------------------
-% There are now enough appendices that a reader cannot find one by paging, so
-% each registers itself in a private contents file (\jobname.apx) which
-% \cxappendixtoc prints.  A file of its own rather than the document's .toc
-% because the paper has no table of contents and wants none: this lists the
-% appendices and nothing else.  Entries come from \cxappendix and
-% \cxappendixsection, so an appendix title is spelled once, in its own file,
-% and the list cannot drift from the headings.
-%
-% \@starttoc opens the write stream where it is called, so \cxappendixtoc must
-% come before the first appendix -- anything registered earlier is dropped on
-% the floor.  Like any contents list it needs two LaTeX passes to settle.
-\newcommand{\cx@apxline}[1]{%
-  \addcontentsline{apx}{section}{\protect\numberline{\thesection}#1}}
-% \cxappendixsection{Title} -- \section for a hand-written appendix, listed.
-% Use this rather than \section in an appendix file, or it will not appear.
-\newcommand{\cxappendixsection}[1]{\section{#1}\cx@apxline{#1}}
-% \cxappendixtoc -- the list.  Issued while the document is still in the body,
-% so it needs no \appendix of its own; \cxendrule closes the last body section
-% by hand, since what follows is not a \section.
-%
-% amsart's \@starttoc takes TWO arguments -- the extension and the heading,
-% which it sets itself in the contents font (amsart.cls l.1147).  That is why
-% the heading is not a \section* here: the class wants to place it, and
-% \section* would not survive this document's patching of \section in any case.
-\newcommand{\cxappendixtoc}{%
-  \cxendrule
-  \@starttoc{apx}{Appendices}}
-
-% cxbrieflist -- the run of statements the archive records without a dossier.
-% The generator emits only the \cxbriefitem lines; the heading and the lead-in
-% sentence live here so that no prose ever enters tex/generated/.  Reword them
-% freely, and note that emptying the environment is not how you remove an
-% entry: drop "brief" from the case's case.json and it goes back to a full
-% subsection and a ledger row.
-\newenvironment{cxbrieflist}
-  {\subsection{Statements recorded without a dossier}%
-   \noindent These fell to the same standard of evidence as every case above --
-   each carries a certificate in the repository that recomputes in exact
-   arithmetic -- but the statements are slight enough that the archive records
-   them here rather than spending a section and a ledger row on each.\par
-   \medskip\begin{itemize}\setlength{\itemsep}{0.4em}}
-  {\end{itemize}}
-
-% \cxbriefitem{item}{statement}{certificate}{path} -- one entry of the above.
+% \cxbriefitem{item}{statement}{certificate}{path} -- one entry of the appendix
+% list of statements recorded without a dossier.  The generator emits only these
+% lines; the \begin{itemize} around them, the heading and the lead-in sentence
+% are prose, and live in tex/09-additional.tex.
 % The source item trails the statement rather than leading it: a ledger_label
 % is free text ("Problem 5.1", but also "the identity after eq. (20) in 6.2"),
 % so it cannot be relied on to read as a heading.
