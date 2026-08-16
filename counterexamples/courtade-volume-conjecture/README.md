@@ -13,9 +13,10 @@ convex sets K, L, B in R^d,
 
 with |.| the d-dimensional volume and + the Minkowski sum — the geometric
 analogue of the entropy-power inequality proved in that paper. Unlike the rest
-of this archive the refutation is hand-made, and several independent
-counterexamples (Fradelizi–Madiman–Zvavitch via sharp Plünnecke–Ruzsa
-constants; Skorupinski's zonotope) are in the literature; hence the appendix.
+of this archive the refutation is hand-made (a reduction from June 2022), and
+several independent counterexamples (Fradelizi–Madiman–Zvavitch via sharp
+Plünnecke–Ruzsa constants; Skorupinski's zonotope) are in the literature;
+hence the appendix, and no claim of priority.
 
 ## Counterexample
 

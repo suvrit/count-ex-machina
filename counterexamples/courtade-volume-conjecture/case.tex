@@ -5,7 +5,7 @@
 
 \begin{cxcredits}
 \posedby{Thomas A. Courtade \citeyearpar{Courtade2017Concavity}}
-\foundby{Suvrit Sra, by hand}{2026-08}
+\foundby{Suvrit Sra, by hand}{2022-06}
 \formalizedby{Claude Fable 5}
 \auditedby{Claude Fable 5}
 \contributedby{Suvrit Sra}
@@ -127,8 +127,10 @@ polytope over $\mathbb{Q}$ and computes its volume by triangulation instead.
 \end{proof}
 
 \begin{remark}[The hand-made route]
-Unlike the rest of this archive, this refutation was first derived by hand
-(August 2026), by a reduction that shows failure for every $d\ge3$ without
+Unlike the rest of this archive, this refutation was first derived by hand,
+in June 2022 --- as it happens, the same month
+\citet{FradeliziMadimanZvavitch2024} first appeared on arXiv; no priority is
+claimed --- by a reduction that shows failure for every $d\ge3$ without
 exhibiting a witness.  Dropping the nonnegative term $|K|^{1/d}|L|^{1/d}$,
 the conjecture implies that $a\mapsto|a|/|a+K|$ is non-decreasing under
 Minkowski addition, for every fixed $K$.  Differentiating along a direction
@@ -142,9 +144,9 @@ exhibit, for every $d\ge3$, a pair of convex bodies (an interval and a
 truncated box) for which that monotonicity fails, and prove it does hold for
 $d=2$ --- consistent with the planar case of
 Problem~\ref{ctx:courtade-volume-conjecture} being true.  The explicit
-zonotope witness above was constructed afterwards for this archive, so that
-the case is self-contained and exactly recomputable; it lands in $d=4$ of
-necessity, since log-submodularity of volume holds for zonoids in $d\le3$
+zonotope witness above was constructed for this archive in August 2026, so
+that the case is self-contained and exactly recomputable; it lands in $d=4$
+of necessity, since log-submodularity of volume holds for zonoids in $d\le3$
 \citep{FradeliziMadimanMeyerZvavitch2024}.
 \end{remark}
 
@@ -155,11 +157,14 @@ imply that log-submodularity --- hence the stronger inequality here --- fails
 for general convex bodies in every dimension $d\ge3$.  In August 2026,
 \citet{Skorupinski2026} independently gave a zonotope counterexample to
 log-submodularity in $\R^4$, with volume vector
-$(|B|,|K{+}B|,|L{+}B|,|K{+}L{+}B|)=(14,30,26,56)$; the witness above is a
-different one (its volume vector $(28,68,44,108)$ is not proportional to his,
-so the two configurations are not affinely equivalent), found by an
-independent random search over integer generators, which also turned up
-dozens of further violating configurations.  What none of these witnesses
+$(|B|,|K{+}B|,|L{+}B|,|K{+}L{+}B|)=(14,30,26,56)$.  The witness above came
+from an independent random search over integer generators, which turned up
+dozens of violating configurations --- among them, rediscovered up to a
+unimodular transformation, Skorupinski's own witness with its volume vector
+$(14,30,26,56)$ --- so such violations are not isolated.  The configuration
+kept here is a different one: its volume vector $(28,68,44,108)$ is not
+proportional to his, so the two are not affinely equivalent, and its relative
+margin is about twice as large.  What none of these witnesses
 touch is the variant of the question in which the common summand $B$ is a
 Euclidean ball --- the case closest to $W$ Gaussian in the entropy-power
 inequality it mirrors, and one where the linearization above is provably
