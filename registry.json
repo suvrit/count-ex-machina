@@ -477,13 +477,56 @@
     }
   },
   {
+    "uid": "64HWFW4K",
+    "result_id": "courtade-volume-conjecture",
+    "former_ids": [],
+    "case": "courtade-volume-conjecture",
+    "title": "Courtade's volume conjecture for Minkowski sums is false",
+    "status": "refuted",
+    "ledger_no": 12,
+    "appendix": true,
+    "brief": false,
+    "ledger_label": "Section IV closing question",
+    "withheld_reason": null,
+    "class": "published conjecture",
+    "certificate_level": "exact",
+    "certificate_tex": "A zonotope with seven integer generators and two segments; four integer\nvolumes with $68\\cdot44=2992<3024=28\\cdot108$.",
+    "theorem_label": "thm:courtade-volume-conjecture",
+    "provenance": {
+      "source_tex": "Closing remarks (Section~IV) of \\citet{Courtade2017Concavity}, posed as a\nquestion for future work; no problem number is assigned there.",
+      "url": "https://people.eecs.berkeley.edu/~courtade/pdfs/ConcavityEntropy_ISIT2017.pdf",
+      "retrieved": "2026-08-16",
+      "fidelity": "verbatim",
+      "statement_tex": "In particular, for $K$, $L$, $B$ bounded convex sets in $\\R^d$, does it hold\nthat:\n\\[\n|K+L+B|^{1/d}|B|^{1/d}+|K|^{1/d}|L|^{1/d}\\le|K+B|^{1/d}|L+B|^{1/d},\n\\]\nwhere $|\\cdot|$ denotes $d$-dimensional volume?"
+    },
+    "credits": {
+      "posed_by": "Thomas A. Courtade \\citeyearpar{Courtade2017Concavity}",
+      "found_by": [
+        {
+          "model": "Suvrit Sra, by hand",
+          "date": "2026-08"
+        }
+      ],
+      "formalized_by": "Claude Fable 5",
+      "audited_by": "Claude Fable 5",
+      "contributed_by": "Suvrit Sra"
+    },
+    "verify": {
+      "python": "verify.py",
+      "sage": [
+        "verify_courtade.sage"
+      ],
+      "requires": []
+    }
+  },
+  {
     "uid": "7X8N5PV5",
     "result_id": "dpp-feasible-step",
     "former_ids": [],
     "case": "dpp-feasible-step",
     "title": "Feasible Picard steps for DPP likelihood",
     "status": "refuted",
-    "ledger_no": 12,
+    "ledger_no": 13,
     "appendix": true,
     "brief": false,
     "ledger_label": "the unnumbered claim in §2",
@@ -524,7 +567,7 @@
     "case": "lorentzian-jensen",
     "title": "Log-volume midpoint gap and its Lorentzian generalization",
     "status": "refuted",
-    "ledger_no": 13,
+    "ledger_no": 14,
     "appendix": true,
     "brief": false,
     "ledger_label": "the geometric specialization, as posed",
@@ -564,7 +607,7 @@
     "case": "lorentzian-jensen",
     "title": "Log-volume midpoint gap and its Lorentzian generalization",
     "status": "refuted",
-    "ledger_no": 14,
+    "ledger_no": 15,
     "appendix": true,
     "brief": false,
     "ledger_label": "the proposed master theorem, as posed",
@@ -604,7 +647,7 @@
     "case": "sdd-nystrom-diminishing-returns",
     "title": "Strict diagonal dominance does not ensure diminishing Nyström error reductions",
     "status": "refuted",
-    "ledger_no": 15,
+    "ledger_no": 16,
     "appendix": true,
     "brief": false,
     "ledger_label": "Problem 4.6(b)",
@@ -645,7 +688,7 @@
     "case": "osi-sketch-and-solve",
     "title": "An oblivious subspace injection need not give relative-error sketch-and-solve",
     "status": "refuted",
-    "ledger_no": 16,
+    "ledger_no": 17,
     "appendix": true,
     "brief": true,
     "ledger_label": "Problem 5.1",
@@ -686,7 +729,7 @@
     "case": "hamiltonian-nepv-identity",
     "title": "Failure of the proposed Hamiltonian NEPv Rayleigh identity",
     "status": "refuted",
-    "ledger_no": 17,
+    "ledger_no": 18,
     "appendix": true,
     "brief": true,
     "ledger_label": "the identity after eq. (20) in §6.2",
@@ -727,7 +770,7 @@
     "case": "qrcp-orthonormal-greedy",
     "title": "Exact QRCP can miss the orthonormal-row conditioning bound",
     "status": "refuted",
-    "ledger_no": 18,
+    "ledger_no": 19,
     "appendix": true,
     "brief": true,
     "ledger_label": "Problem 4.3",

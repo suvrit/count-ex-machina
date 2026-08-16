@@ -1,0 +1,168 @@
+% Every word of this case that is written in LaTeX.  Machine facts -- ids, uid,
+% dates, urls, enums -- live next door in case.json, and no LaTeX belongs there.
+
+\cxtitle{Courtade's volume conjecture for Minkowski sums is false}
+
+\begin{cxcredits}
+\posedby{Thomas A. Courtade \citeyearpar{Courtade2017Concavity}}
+\foundby{Suvrit Sra, by hand}{2026-08}
+\formalizedby{Claude Fable 5}
+\auditedby{Claude Fable 5}
+\contributedby{Suvrit Sra}
+\end{cxcredits}
+
+\begin{cxcontext}
+For compact convex sets $K,L\subset\R^d$ the Minkowski sum is
+$K+L=\{x+y:x\in K,\ y\in L\}$, and $|K|$ denotes $d$-dimensional volume.
+The statement below is the closing question of \citet{Courtade2017Concavity};
+the ``Theorem 1'' it refers to is the entropy-power inequality
+$N(X+W)\,N(Y+W)\ge N(X)\,N(Y)+N(X+Y+W)\,N(W)$ for independent random vectors
+$X,Y,W$ with $W$ Gaussian, proved there, of which the question proposes a
+Brunn--Minkowski-theoretic analogue.  Dropping the term $|K|^{1/d}|L|^{1/d}$
+weakens the question to the \emph{log-submodularity} of volume under Minkowski
+summation, $|B|\,|K+L+B|\le|K+B|\,|L+B|$, a property with its own literature;
+see the remarks after the proof.
+\end{cxcontext}
+
+% ---------------- result: courtade-volume-conjecture ----------------
+
+\begin{cxsource}{courtade-volume-conjecture}
+Closing remarks (Section~IV) of \citet{Courtade2017Concavity}, posed as a
+question for future work; no problem number is assigned there.
+\end{cxsource}
+
+\begin{cxstatement}{courtade-volume-conjecture}
+In particular, for $K$, $L$, $B$ bounded convex sets in $\R^d$, does it hold
+that:
+\[
+|K+L+B|^{1/d}|B|^{1/d}+|K|^{1/d}|L|^{1/d}\le|K+B|^{1/d}|L+B|^{1/d},
+\]
+where $|\cdot|$ denotes $d$-dimensional volume?
+\end{cxstatement}
+
+\begin{cxsummary}{courtade-volume-conjecture}
+Courtade's geometric analogue of entropy-power concavity:
+$|K{+}L{+}B|^{1/d}|B|^{1/d}+|K|^{1/d}|L|^{1/d}\le|K{+}B|^{1/d}|L{+}B|^{1/d}$
+for bounded convex sets.
+\end{cxsummary}
+
+\begin{cxcertificate}{courtade-volume-conjecture}
+A zonotope with seven integer generators and two segments; four integer
+volumes with $68\cdot44=2992<3024=28\cdot108$.
+\end{cxcertificate}
+
+\begin{cxrefutation}
+Problem~\ref{ctx:courtade-volume-conjecture} asks for the geometric analogue
+of the entropy-power inequality that \citet{Courtade2017Concavity} proves for
+Gaussian perturbations: volumes of Minkowski sums should play the role of
+entropy powers of independent sums.  For $d=1$ the two sides agree
+identically, and for $d=2$ the inequality is true
+\citep{FradeliziMadimanMeyerZvavitch2024}.  It fails from dimension three
+onwards.  We give a fully explicit witness in the zonotope calculus, where
+every volume in sight is an integer.
+
+\begin{theorem}[\statusfalse: Courtade's volume conjecture]
+\label{thm:courtade-volume-conjecture}
+For every $d\ge4$ there are bounded convex sets $K,L,B\subset\R^d$ with
+\[
+|K+L+B|^{1/d}|B|^{1/d}+|K|^{1/d}|L|^{1/d}>|K+B|^{1/d}|L+B|^{1/d}.
+\]
+One may take $B$ a zonotope and $K$, $L$ segments; in $\R^4$, $B$ has seven
+integer generators and all three sets may moreover be taken full-dimensional.
+\end{theorem}
+
+\begin{proof}
+A zonotope $Z(v_1,\dots,v_m)=\sum_{i\le m}[0,v_i]\subset\R^d$ has volume
+$\sum_S|\det(v_S)|$, the sum running over all $d$-element subsets $S$ of the
+generators \citep{Shephard1974}, and Minkowski summation simply concatenates
+generator lists.  In $\R^4$ let $B$ be the zonotope with the seven columns of
+\[
+G=\begin{pmatrix}
+1&0&0&0&0&1&0\\
+0&1&0&0&1&0&0\\
+0&0&1&0&-1&-1&1\\
+0&0&0&1&1&1&1
+\end{pmatrix}
+\]
+as generators, and let $K=[0,b]$ and $L=[0,c]$ be the segments with
+$b=(1,-1,1,1)$ and $c=(0,0,-1,1)$.  Summing $|\det|$ over the
+$\binom{7}{4}=35$ generator quadruples of $B$ (eleven are singular, twenty
+have $|\det|=1$, four have $|\det|=2$) gives $|B|=28$, and likewise over the
+$\binom{8}{4}=70$ quadruples of $B+K$ and of $B+L$ and the
+$\binom{9}{4}=126$ of $B+K+L$:
+\[
+|B|=28,\qquad|K+B|=68,\qquad|L+B|=44,\qquad|K+L+B|=108.
+\]
+Since $|K|=|L|=0$, the conjectured inequality asserts
+$(28\cdot108)^{1/4}\le(68\cdot44)^{1/4}$.  Raising to the fourth power, which
+is monotone on nonnegative reals, this is $3024\le2992$ --- false.
+
+For full-dimensional sets in $\R^4$, thicken each segment to a box: with
+$\varepsilon=\tfrac1{100}$ replace $K$ by
+$K_\varepsilon=[0,b]+[0,\varepsilon]^4$ and $L$ by
+$L_\varepsilon=[0,c]+[0,\varepsilon]^4$, both zonotopes with five generators
+and positive volume ($|K_\varepsilon|=\tfrac{401}{10^8}$,
+$|L_\varepsilon|=\tfrac{201}{10^8}$).  The same generator sums give the exact
+rationals
+\[
+|K_\varepsilon+B|=\tfrac{6926731601}{10^8},\qquad
+|L_\varepsilon+B|=\tfrac{4484551401}{10^8},\qquad
+|K_\varepsilon+L_\varepsilon+B|=\tfrac{696978401}{6250000},
+\]
+whence
+$|B|\,|K_\varepsilon+L_\varepsilon+B|-|K_\varepsilon+B|\,|L_\varepsilon+B|
+=\tfrac{161348459184476999}{10^{16}}>0$.  In fourth powers the conjectured
+inequality fails a fortiori, its left side now carrying the additional
+positive term $|K_\varepsilon|^{1/4}|L_\varepsilon|^{1/4}$.
+
+For $d>4$ pad only the common summand: replace $B$ by
+$B\times[0,1]^{d-4}$ and embed $K$, $L$ as the segments
+$[0,(b,0)]$, $[0,(c,0)]$.  The three sums then acquire the same cube factor,
+so all four volumes above are unchanged, and $|K|=|L|=0$ still; the same four
+integers refute the inequality in $\R^d$.  Every quantity displayed in this
+proof is an integer or an exact rational, recomputed by
+\texttt{verify.py} in integer respectively rational arithmetic, and
+cross-checked in SageMath, which rebuilds each Minkowski sum as a vertex
+polytope over $\mathbb{Q}$ and computes its volume by triangulation instead.
+\end{proof}
+
+\begin{remark}[The hand-made route]
+Unlike the rest of this archive, this refutation was first derived by hand
+(August 2026), by a reduction that shows failure for every $d\ge3$ without
+exhibiting a witness.  Dropping the nonnegative term $|K|^{1/d}|L|^{1/d}$,
+the conjecture implies that $a\mapsto|a|/|a+K|$ is non-decreasing under
+Minkowski addition, for every fixed $K$.  Differentiating along a direction
+$h$ turns this into
+$V(a[d{-}1],h)/|a|\ \ge\ V((a{+}K)[d{-}1],h)/|a{+}K|$
+for mixed volumes $V$, and the direction $h=B_2^d$ (the Euclidean ball)
+specializes it to the monotonicity $I(a+K)\ge I(a)$ of the information
+functional $I(\cdot)=|\cdot|/|\partial\cdot|$ of
+\citet{DemboCoverThomas1991}.  \citet[Section~4.1]{ArtsteinFlorentinOstrover2014}
+exhibit, for every $d\ge3$, a pair of convex bodies (an interval and a
+truncated box) for which that monotonicity fails, and prove it does hold for
+$d=2$ --- consistent with the planar case of
+Problem~\ref{ctx:courtade-volume-conjecture} being true.  The explicit
+zonotope witness above was constructed afterwards for this archive, so that
+the case is self-contained and exactly recomputable; it lands in $d=4$ of
+necessity, since log-submodularity of volume holds for zonoids in $d\le3$
+\citep{FradeliziMadimanMeyerZvavitch2024}.
+\end{remark}
+
+\begin{remark}[Scope, and others' counterexamples]
+The conjecture has by now been refuted several times over.  The sharp
+Pl\"unnecke--Ruzsa constants of \citet{FradeliziMadimanZvavitch2024} already
+imply that log-submodularity --- hence the stronger inequality here --- fails
+for general convex bodies in every dimension $d\ge3$.  In August 2026,
+\citet{Skorupinski2026} independently gave a zonotope counterexample to
+log-submodularity in $\R^4$, with volume vector
+$(|B|,|K{+}B|,|L{+}B|,|K{+}L{+}B|)=(14,30,26,56)$; the witness above is a
+different one (its volume vector $(28,68,44,108)$ is not proportional to his,
+so the two configurations are not affinely equivalent), found by an
+independent random search over integer generators, which also turned up
+dozens of further violating configurations.  What none of these witnesses
+touch is the variant of the question in which the common summand $B$ is a
+Euclidean ball --- the case closest to $W$ Gaussian in the entropy-power
+inequality it mirrors, and one where the linearization above is provably
+monotone \citep{DemboCoverThomas1991}.
+\end{remark}
+\end{cxrefutation}
