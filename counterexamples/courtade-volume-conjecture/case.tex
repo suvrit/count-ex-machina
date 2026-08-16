@@ -130,24 +130,68 @@ polytope over $\mathbb{Q}$ and computes its volume by triangulation instead.
 Unlike the rest of this archive, this refutation was first derived by hand,
 in May 2022 --- independently of, and essentially contemporaneously with, the
 arXiv posting of \citet{FradeliziMadimanZvavitch2024} in June 2022; no
-priority is claimed --- by a reduction that shows failure for every $d\ge3$
-without exhibiting a witness.  Dropping the nonnegative term $|K|^{1/d}|L|^{1/d}$,
-the conjecture implies that $a\mapsto|a|/|a+K|$ is non-decreasing under
-Minkowski addition, for every fixed $K$.  Differentiating along a direction
-$h$ turns this into
-$V(a[d{-}1],h)/|a|\ \ge\ V((a{+}K)[d{-}1],h)/|a{+}K|$
-for mixed volumes $V$, and the direction $h=B_2^d$ (the Euclidean ball)
-specializes it to the monotonicity $I(a+K)\ge I(a)$ of the information
-functional $I(\cdot)=|\cdot|/|\partial\cdot|$ of
-\citet{DemboCoverThomas1991}.  \citet[Section~4.1]{ArtsteinFlorentinOstrover2014}
-exhibit, for every $d\ge3$, a pair of convex bodies (an interval and a
-truncated box) for which that monotonicity fails, and prove it does hold for
-$d=2$ --- consistent with the planar case of
-Problem~\ref{ctx:courtade-volume-conjecture} being true.  The explicit
-zonotope witness above was constructed for this archive in August 2026, so
-that the case is self-contained and exactly recomputable; it lands in $d=4$
-of necessity, since log-submodularity of volume holds for zonoids in $d\le3$
-\citep{FradeliziMadimanMeyerZvavitch2024}.
+priority is claimed --- by a three-step reduction that shows failure for every
+$d\ge3$ without exhibiting a witness.  It is the shortest disproof of
+Problem~\ref{ctx:courtade-volume-conjecture} we know of, so we record it in
+full.  Throughout, $a,b,c,h$ are convex bodies in $\R^d$, $V(a)=|a|$, and
+$V(a[d{-}k],h[k])$ is the mixed volume with $a$ repeated $d-k$ times.
+
+\emph{Step 1: drop a term.}  Applied to $(K,L,B)=(b,c,a)$ and stripped of the
+nonnegative term $|b|^{1/d}|c|^{1/d}$, the conjecture asserts
+$V(a)\,V(a+b+c)\le V(a+b)\,V(a+c)$, which rearranges to
+\[
+f_b(a+c)\ \ge\ f_b(a)
+\qquad\text{for}\qquad
+f_b:\ a\ \longmapsto\ \frac{V(a)}{V(a+b)}:
+\]
+for every fixed $b$, the functional $f_b$ must be non-decreasing along
+Minkowski addition.
+
+\emph{Step 2: linearize.}  The expansion
+$V(a+th)=\sum_{k\le d}\binom dk\,t^k\,V(a[d{-}k],h[k])$ is a polynomial in
+$t\ge0$ with $\tfrac{d}{dt}V(a+th)\bigl|_{t=0}=d\,V(a[d{-}1],h)$, so
+$t\mapsto\log f_b(a+th)$ is differentiable; by Step~1 (applied at each base
+point $a+th$, with increment a multiple of $h$) it is non-decreasing, so its
+derivative at $t=0$ is nonnegative:
+\[
+\frac{V(a[d{-}1],h)}{V(a)}\ \ge\ \frac{V((a{+}b)[d{-}1],h)}{V(a+b)}
+\qquad\text{for all bodies }a,b,h.
+\]
+
+\emph{Step 3: take $h$ a ball.}  Since $d\,V(a[d{-}1],B_2^d)=|\partial a|$ is
+surface area, the display at $h=B_2^d$ is exactly the monotonicity
+$I(a+b)\ge I(a)$ of the information functional
+$I(\cdot)=|\cdot|/|\partial\,\cdot|$ of \citet{DemboCoverThomas1991}.
+\citet[Section~4.1]{ArtsteinFlorentinOstrover2014} exhibit, for every $d\ge3$,
+an interval $b$ and a truncated box $a$ with $I(a+b)<I(a)$ --- and prove that
+monotonicity does hold for $d=2$, consistent with the planar case of the
+conjecture being true.  Undoing Step~2, the strictly negative derivative gives
+a $t>0$ with $V(a+b)\,V(a+tB_2^d)<V(a)\,V(a+b+tB_2^d)$, and the conjecture
+fails at $(K,L,B)=(b,\,tB_2^d,\,a)$.
+
+The explicit zonotope witness above was constructed for this archive in August
+2026, so that the case is self-contained and exactly recomputable; it lands in
+$d=4$ of necessity, since log-submodularity of volume holds for zonoids in
+$d\le3$ \citep{FradeliziMadimanMeyerZvavitch2024}.
+\end{remark}
+
+\begin{remark}[What holds instead: hyperbolic polynomials]
+The failure is specific to volume, not to its formal calculus.  Replace
+$\Vol^{1/d}$ on convex bodies by $F=p^{1/m}$ on the closed hyperbolicity cone
+of a hyperbolic polynomial $p$ of degree $m$ --- a functional with the same
+two properties the conjecture seems to run on, positive homogeneity of degree
+one and concavity, G\aa rding's theorem standing in for Brunn--Minkowski ---
+and the four-point inequality becomes a theorem:
+Theorem~\ref{thm:lor-fourpoint} in Appendix~\ref{sec:lorentzianaudit} proves
+\[
+F(a+b)\,F(a+c)\ \ge\ F(a)\,F(a+b+c)+F(b)\,F(c),
+\]
+extra term included, via the Helton--Vinnikov determinantal representation;
+the case $p=\det$ on positive semidefinite matrices is contained in it.  The
+witness above therefore also certifies a small impossibility theorem: there is
+no hyperbolic polynomial $p$ and points $x_K,x_L,x_B$ of its hyperbolicity
+cone with $F(sx_K+tx_L+ux_B)=|sK+tL+uB|^{1/4}$ for all $s,t,u\ge0$, for
+otherwise Theorem~\ref{thm:lor-fourpoint} would forbid $2992<3024$.
 \end{remark}
 
 \begin{remark}[Scope, and others' counterexamples]
