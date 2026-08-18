@@ -49,16 +49,16 @@
 % to the author name is placed by hand at both ends.  The optional argument
 % keeps the star out of the running head.
 \author[Count ex Machina]{Count ex Machina\textsuperscript{\normalfont*}}
-\thanks{*\,Project name used to future proof for possible multiple contributors. The first version is authored by Suvrit Sra (\texttt{s.sra@tum.de}; TU Munich, Dept.~of Math, School of CIT.)}
+\thanks{*\,Project name used to future proof against possible multiple contributors. The first version is authored by Suvrit Sra (\texttt{s.sra@tum.de}; TU Munich, Dept.~of Math, School of CIT.)}
 %\email{s.sra@tum.de}
 %\address{TU Munich, Dept.\ of Mathematics, School of CIT; Garching, Germany}
-\date{Draft of \today}
+\date{Draft of \today~~(see {\fontfamily{ppl}\selectfont\itshape\href{https://github.com/suvrit/count-ex-machina}{\it https://github.com/suvrit/count-ex-machina}}~for the whole timeline)}
 \subjclass[2020]{Primary 68T01, 00A30; Secondary 05E05, 15A42, 26D10, 60E15, 68W40}
 \keywords{AI-assisted mathematics, counterexamples, real stable polynomials, Schur positivity, matrix inequalities, determinantal point processes, reproducible mathematics}
 
 \begin{document}
 \begin{abstract}
-  This document reports over 15 counterexamples found using GPT Pro over the course of 12 months, for problems in combinatorics, number theory, convexity, analysis, and other areas. The counterexamples concern both (reasonably) well-known problems as well as lesser known ones. Our counterexamples are accompanied by the repo \href{https://github.com/suvrit/count-ex-machina}{\fontfamily{ppl}\selectfont\itshape https://github.com/suvrit/count-ex-machina}, and we warmly welcome new contributions toward helping building a rich \emph{``open-source countex library.''}
+  This document reports over 15 counterexamples found using GPT Pro over the course of 12 months, for problems in combinatorics, number theory, convexity, analysis, and other areas. The counterexamples concern both (reasonably) well-known problems as well as lesser known instances. The counterexamples are accompanied by the repo \href{https://github.com/suvrit/count-ex-machina}{\fontfamily{ppl}\selectfont\itshape https://github.com/suvrit/count-ex-machina}, and we warmly welcome new contributions toward helping building a rich \emph{``open-source countex library.''}
 \end{abstract}
 \maketitle
 
@@ -84,7 +84,7 @@
 The author acknowledges generous support from the Alexander von Humboldt (AvH) foundation via an AvH Professorship in AI. I'd like to also thank Apoorva Khare (IISC) for suggesting that I write up all the progress in one document, which was instrumental in helping me overcome the \emph{``writer's block''} from not wanting to write 10+ separate preprints!
 
 \subsection*{Statement on AI Usage}
-I used Claude Code (Opus 5) to architect the document and the repo. Initial drafts were assembled by Claude using some of our GPT Pro transcripts as well as from my own existing \TeX code. However, the I rewrote the whole document myself to improve clarity, exposition, and precision, while ensuring it is authored in \emph{``my own voice.''} 
+I used Claude Code (Opus 5) to architect the document and the repo. Initial drafts were assembled by Claude using some of my GPT Pro transcripts as well as from my own existing \TeX code. However, I rewrote the bulk of the main document (excluding the appendix) myself to improve clarity and precision, hoping to also retain \emph{``my own voice.''} The bulk of the credit for the counterexamples reported herein goes to GPT. Moreover, to avoid meta-discourse I'm refraining from dwelling too much on the session prompts; some counterexamples were found in a response to a single-shot prompt other after a long and elaborate chat session. That said, I've taken the opportunity to piggyback onto this document some related results I found ``by hand'' but was too lazy to writeup as separate preprints; these results are reported in the appendix, and are their descriptive text notes their human origin.
 
 
 \bibliographystyle{abbrvnat}

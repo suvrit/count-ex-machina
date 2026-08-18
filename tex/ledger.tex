@@ -2,15 +2,16 @@
 %
 % One row per admitted statement:
 %
-%     \cxn & Formal statement & Witness.\ \emph{<level> certificate}; human proof Thm.~\ref{<theorem_label>}.\\
+%     \cxn & Formal statement & Witness.\ \ec; human proof Thm.~\ref{<theorem_label>}.\\
 %
 % The certificate cell carries two things: the machine check in this repo's own
-% taxonomy (\emph{Exact certificate} or \emph{Interval certificate}, matching
-% case.json's certificate_level), and the human-vetted proof, cross-referenced
+% taxonomy (\ec = exact certificate, \ic = interval certificate, typeset as
+% [EC]/[IC] and expanded in the table caption; both macros live in
+% cxcase.sty), and the human-vetted proof, cross-referenced
 % to the theorem that states it.  Where the assertion rests on an enclosure
 % rather than an argument a referee can follow by hand, say so instead:
 %
-%     ... \emph{Interval certificate}; no closed-form proof (reduction in Thm.~\ref{...}).\\
+%     ... \ic; no closed-form proof (reduction in Thm.~\ref{...}).\\
 %
 % \cxn is the margin number and counts itself (see cxcase.sty), so insert,
 % reorder or delete rows freely -- never type a row number.  It is
@@ -38,49 +39,49 @@
 \setlength{\LTright}{\fill}
 \setcounter{cxrow}{0}   % rows number themselves; see \cxn in cxcase.sty
 \begin{longtable}{@{}>{\raggedleft\arraybackslash}p{\cxnumwd}@{\hspace{\cxnumsep}}p{0.46\textwidth}p{0.50\textwidth}@{}}
-  \caption{Summary of our counterexamples\\ \phantom{table 1::} (listed in no specific order)}\label{tab:ledger}\\
+  \caption{Summary of counterexamples. \ec{} denotes \emph{Exact Certificate}; \ic{} denotes \emph{Interval Certificate}.}\label{tab:ledger}\\
   \cmidrule[\heavyrulewidth]{2-3}
-  & Formal statement & Certificate \\
+  & Problem statement & Certificate(s) \\
   \cmidrule{2-3}
   \endfirsthead
   \cmidrule[\heavyrulewidth]{2-3}
-  & Formal statement & Certificate \\
+  & Problem statement & Certificate(s) \\
   \cmidrule{2-3}
   \endhead
 %
   % aim-problem-35 (body)
-  \cxn & Borcea--Br\"and\'en Problem 35: existence of Johnson polynomial representation for stable polynomials \citep{AIMStableProblems} & Explicit polynomial (deg-5) with immanantal obstruction.\ \emph{Exact certificate}; human proof Thm.~\ref{thm:common-A}.\\
+  \cxn & Borcea--Br\"and\'en Problem 35: existence of Johnson polynomial representation for stable polynomials \citep{AIMStableProblems} & Explicit polynomial (deg-5) with immanantal obstruction.\ \ec; human proof Thm.~\ref{thm:common-A}.\\
 %
   % aim-problem-38 (body)
-  \cxn & Borcea--Br\"and\'en Problem 38: Stable polynomial Permanent-On-Top \citep{AIMStableProblems} & Exact Schur-basis expansion; four violating partitions.\ \emph{Exact certificate}; human proof Thm.~\ref{thm:pot}.\\
+  \cxn & Borcea--Br\"and\'en Problem 38: Stable polynomial Permanent-On-Top \citep{AIMStableProblems} & Exact Schur-basis expansion; four violating partitions.\ \ec; human proof Thm.~\ref{thm:pot}.\\
 %
   % aim-problem-36 (body)
-  \cxn & Borcea--Br\"and\'en Problem 36: Schur positivity of symmetric stable polynomials \citeyearpar{AIMStableProblems} & $5\times5$ determinantal polynomial; exact Schur-basis expansion with $[s_{(1^5)}]q=-2972$.\ \emph{Exact certificate}; human proof Thm.~\ref{thm:aim36}.\\
+  \cxn & Borcea--Br\"and\'en Problem 36: Schur positivity of symmetric stable polynomials \citeyearpar{AIMStableProblems} & Determinantal polynomial in Schur-basis with $[s_{(1^5)}]q=-2972$.\ \ec; human proof Thm.~\ref{thm:aim36}.\\
 %
   % aim-problem-37 (body)
-  \cxn & Borcea--Br\"and\'en Problem 37: stable Schur inequality (lower endpoint) \citeyearpar{AIMStableProblems} & Schur-\emph{positive} member of the same family; $a_{(1^5)}=69<125=f^{(1^5)}a_{(5)}$.\ \emph{Exact certificate}; human proof Thm.~\ref{thm:aim37}.\\
+  \cxn & Borcea--Br\"and\'en Problem 37: stable Schur inequality (lower endpoint) \citeyearpar{AIMStableProblems} & Schur-\emph{positive} member of the same family with $a_{(1^5)}<f^{(1^5)}a_{(5)}$.\ \ec; human proof Thm.~\ref{thm:aim37}.\\
 %
   % macdonald-schur-convexity (body)
-  \cxn & \citet[][Theorem 2.1]{McSwiggenSahi2026}: Claimed log- and Schur-convexity of a ratio of Macdonald polynomials & Failure of Schur (and thus also log-) convexity (rank 2).\ \emph{Exact certificate}; human proof Thm.~\ref{thm:macdonald}.\\
+  \cxn & \citet[][Theorem 2.1]{McSwiggenSahi2026}: Claimed log- and Schur-convexity of a ratio of Macdonald polynomials & Failure of Schur (and thus also log-) convexity (rank 2).\ \ec; human proof Thm.~\ref{thm:macdonald}.\\
 %
   % theta-derivative-log-concavity (body)
-  \cxn & \citep[][Conj.~2.5]{coffey2013log} Turán inequalities for Jacobi-Theta derivatives $\Phi^{(n)}$ & Rigorous interval evaluation for $n=9$.\ \emph{Interval certificate}; (reduction in Thm.~\ref{thm:theta}).\\
+  \cxn & \citep[][Conj.~2.5]{coffey2013log} Turán inequalities for Jacobi-Theta derivatives $\Phi^{(n)}$ & Rigorous interval evaluation for $n=9$.\ \ic; (reduction in Thm.~\ref{thm:theta}).\\
 %
 %
   % variance-only-matrix-discrepancy (body)
-  \cxn & Variance-sensitive Matrix Spencer~\cite[Prob.~4.25]{Bandeira2016} & Diagonal family with discrepancy $\Theta(\sqrt{\log n})$.\ \emph{Exact certificate}; human proof Thm.~\ref{thm:discrepancy}.\\
+  \cxn & Variance-sensitive Matrix Spencer~\cite[Prob.~4.25]{Bandeira2016} & Diagonal family with discrepancy $\Theta(\sqrt{\log n})$.\ \ec; human proof Thm.~\ref{thm:discrepancy}.\\
 %
   % mixed-norm-general-s (body)
-  \cxn & Mixed-norm $\|A^TB\|_{p,q}^2\le \|A^TA\|_{p,p}\|B^TB\|_{q,q}$ for $1\le p\le q$~\citep{SahSawhneyStonerZhao2020} & Explicit disproof via exact algebra; \emph{exact certificate}; human proof Thm.~\ref{thm:mixed-general}.\\
+  \cxn & Mixed-norm $\|A^TB\|_{p,q}^2\le \|A^TA\|_{p,p}\|B^TB\|_{q,q}$ for $1\le p\le q$~\citep{SahSawhneyStonerZhao2020} & Explicit analytic disproof; \ec; human proof Thm.~\ref{thm:mixed-general}.\\
 %
   % yufei-psd (body)
-  \cxn & The same question at $B=A$: $\|Z\|_{s,q}^2\le\|Z\|_{s,s}\|Z\|_{q,q}$ for completely positive $Z$ & Explicit disproof via a rank-2 $21\times 21$ PSD matrix;\ \emph{Interval certificate}; no closed-form proof;~\ref{thm:mixed}).\\
+  \cxn & The same question at $B=A$: $\|Z\|_{s,q}^2\le\|Z\|_{s,s}\|Z\|_{q,q}$ for completely positive $Z$ & Explicit disproof via a rank-2 $21\times 21$ PSD matrix;\ \ic; no closed-form disproof;~\ref{thm:mixed}).\\
 %
   % quantum-coupon-collector (body)
-  \cxn & Matrix version of the coupon-collector $\sum_{\emptyset\ne S}(-1)^{|S|-1}X_S^{-1}\stackrel{?}{\succ} 0$~\citep{Sra2017QuantumCoupon}. & Exact rational $3\times3$ matrices with $n=6$;\ \emph{Exact certificate}; human proof Thm.~\ref{thm:quantum-coupon-collector}.\\
+  \cxn & ``Quantum'' coupon-collector: $\sum_{\emptyset\ne S}(-1)^{|S|-1}X_S^{-1}\stackrel{?}{\succ} 0$~\citep{Sra2017QuantumCoupon}. & Disproof via rational $3\times3$ matrices with $n=6$;\ \ec; human proof Thm.~\ref{thm:quantum-coupon-collector}.\\
 %
   % odonnell-matrix-conjecture (body)
-  \cxn & \citet{ODonnell2015AlmostDiagonal} $\|A-D\|_1^2 \stackrel{?}{\le}C\|\lambda(A)-D\|_1$, where $A$ is PSD and $D=\Diag(A)$. & Givens-rotation family with a rational lower-bound, accompanied by an exact-arithmetic verifier.\ \emph{Exact certificate}; human proof Thm.~\ref{thm:odonnell-matrix-conjecture}.\\
+  \cxn & \citet{ODonnell2015AlmostDiagonal} $\|A-D\|_1^2 \stackrel{?}{\le}C\|\lambda(A)-D\|_1$, where $A$ is PSD and $D=\Diag(A)$. & Givens-rotation family with a rational lower-bound; \ec; human proof Thm.~\ref{thm:odonnell-matrix-conjecture}.\\
 %
 
   \cmidrule{2-3}\\
@@ -89,19 +90,19 @@
 
 
   % courtade-volume-conjecture (appendix)
-  \cxn & Courtade's geometric analogue of entropy-power concavity: $|K{+}L{+}B|^{1/d}|B|^{1/d}+|K|^{1/d}|L|^{1/d}\le|K{+}B|^{1/d}|L{+}B|^{1/d}$ for bounded convex sets~\citep{Courtade2017Concavity}. & $\R^4$ zonotope plus two segments; $68\cdot44=2992<3024=28\cdot108$.\ \emph{Exact certificate}; human proof Thm.~\ref{thm:courtade-volume-conjecture}.\\
+  \cxn & \citet{Courtade2017Concavity}: $V(K{+}L{+}B)^{1/d}V(B)^{1/d}+V(K)^{1/d}V(L)^{1/d}\le V(K{+}B)^{1/d}V(L{+}B)^{1/d}$. & Disproof in $\R^4$: zonotope plus two segments; \ec; human proof Thm.~\ref{thm:courtade-volume-conjecture}.\\
 %
   % dpp-feasible-step (appendix)
-  \cxn & \citet{MarietSra2015}'s feasible-step for a Picard iteration for DPP likelihood ascent.  & Exact $2\times2$ feasible update with lower likelihood.\ \emph{Exact certificate}; human proof Thm.~\ref{thm:dpp}.\\
+  \cxn & \citet{MarietSra2015}'s feasible-step for a Picard iteration for DPP likelihood ascent.  & Exact $2\times2$ feasible update violating likelihood ascent.\ \ec; human proof Thm.~\ref{thm:dpp}.\\
 %
   % log-volume-distance (appendix)
-  \cxn & The divergence $\log\frac{\Vol[(X+Y)/2]}{\sqrt{\Vol(X)\Vol(Y)}}$ is a squared distance for convex bodies~\citep{sra2013}. & Strictly Lorentzian cubic realized as a volume polynomial in $\R^3$; violates triangle inequality.\ \emph{Exact certificate}; human proof Thm.~\ref{thm:volume-distance}.\\
+  \cxn & The divergence $\log\frac{V[(X+Y)/2]}{\sqrt{V(X)V(Y)}}$ is a squared distance for convex bodies~\citep{sra2013}. & Cubic realizable as a volume polynomial; violates triangle inequality.\ \ec; human proof Thm.~\ref{thm:volume-distance}.\\
 %
   % lorentzian-jensen (appendix)
-  \cxn & Lorentzian Jensen--Bregman metrics: $\sqrt{\J_G}$ a semimetric for all homogeneous Lorentzian $G$. & The same cubic read as a homogeneous Lorentzian polynomial.\ \emph{Exact certificate}; human proof Cor.~\ref{thm:lorentzian}.\\
+  \cxn & Lorentzian Jensen--Bregman metrics: $\sqrt{\J_G}$ a semimetric for all homogeneous Lorentzian $G$. & Disproof via same cubic viewed as a Lorentzian polynomial.\ \ec; human proof Cor.~\ref{thm:lorentzian}.\\
 %
   % sdd-nystrom-diminishing-returns (appendix)
-  \cxn & An SDD-$4\times4$ signed matrix has a marginal Nystr\"om error reduction that increases after an additional index is selected. & An exact integer $4\times4$ matrix.\ \emph{Exact certificate}; human proof Thm.~\ref{thm:sdd-nystrom-diminishing-returns}.\\
+  \cxn & An SDD matrix has a marginal Nystr\"om error reduction\citep[Prob.~4.6(b)]{AmselEtAl2026}.  & Disproof via an integer $4\times4$ matrix.\ \ec; human proof Thm.~\ref{thm:sdd-nystrom-diminishing-returns}.\\
 %
   % osi-sketch-and-solve, hamiltonian-nepv-identity and qrcp-orthonormal-greedy
   % are marked "brief" in their case.json: they are listed in the appendix's
@@ -111,9 +112,8 @@
   \cmidrule[\heavyrulewidth]{2-3}
 \end{longtable}
 \setlength{\LTleft}{\fill}  % restore the default for later longtables
-
-
-
+%\noindent Now we are ready to describe Counterexamples No.~1--11 in some detail. We list the disproofs as theorems, but explicitly mark the theorem as a ``Disproof'' to highlight that it is disproving the associated conjecture.
+%\vfill
 %%% Local Variables:
 %%% mode: LaTeX
 %%% TeX-master: "main"
