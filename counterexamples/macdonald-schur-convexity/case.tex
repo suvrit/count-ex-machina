@@ -2,7 +2,7 @@
 % environment that tools/build.py extracts; machine facts (ids, uid, dates,
 % urls, enums) live in case.json.  See counterexamples/AGENTS.md.
 
-\cxtitle{Macdonald polynomial ratio's Schur-convexity}
+\cxtitle{Schur-convexity of a ratio of Macdonald polynomials}
 
 \begin{cxcredits}
 \posedby{McSwiggen and Sahi \citeyearpar{McSwiggenSahi2026}}
@@ -13,7 +13,7 @@
 \end{cxcredits}
 
 \begin{cxcontext}
-For parameters $q,t\in(0,1)$ and a partition $\lambda$ with at most $n$ parts, $P_\lambda(x;q,t)$ denotes the Macdonald polynomial in the monic normalization of Macdonald's book, as used in \citet{McSwiggenSahi2026}; at $q=t$ it specializes to the Schur polynomial $s_\lambda(x)$, which is what the refutation below exploits.  The statement concerns two convexity properties of the map $\lambda\mapsto\Omega_\lambda(x;q,t)$ on partitions: \emph{log-convexity}, and \emph{Schur-convexity}, meaning monotonicity with respect to the dominance (majorization) order, so that $\lambda\succeq\mu$ implies $\Omega_\lambda\ge\Omega_\mu$.  The normalization $\Omega_\lambda$ and the lattice $\mathcal L_n$ of evaluation points are defined inside the quoted statement.
+Let $P_\lambda(x;q,t)$ denote the Macdonald polynomial in the monic normalization of~\citet{macdonald1998symmetric}, with parameters $q,t\in(0,1)$ over a partition $\lambda$ with at most $n$ parts. At $q=t$ it specializes to the Schur polynomial $s_\lambda(x)$.  The statement concerns two convexity properties of the map $\lambda\mapsto\Omega_\lambda(x;q,t)$ on partitions studied by~\citet{McSwiggenSahi2026}: \emph{log-convexity}, and \emph{Schur-convexity} (i.e., $\lambda\succeq\mu$ implies $\Omega_\lambda\ge\Omega_\mu$).  The normalization $\Omega_\lambda$ is defined inside the quoted statement.
 \end{cxcontext}
 
 % ---------------- result: macdonald-schur-convexity ----------------
@@ -51,7 +51,7 @@ But $1+r+r^2-3r=(1-r)^2>0$, so $\Omega_{(2,0)}<\Omega_{(1,1)}$ for every $0<r<1$
 \end{proof}
 
 \begin{remark}[Scope]
-The specialization $q=t$ is a convenience, not the mechanism.  Appendix~\ref{sec:macdonaldomega} carries the reversal for all $q,t\in(0,1)$, with gap $(1-t)^2(1-qt)/\bigl(t(1+t)(1-qt^2)\bigr)$, and shows it is admissible whenever $t=q^k$ for a positive integer $k$ --- the case above being $k=1$.  It also locates the failure, in a determinant shift that the principal-specialization normalization does not commute with, and shows that the $1^n$-normalized ratio $W_\lambda=P_\lambda(x)/P_\lambda(1^n)$ satisfies in this case exactly the inequality $\Omega_\lambda$ violates.  What is refuted is a claim about the log- and Schur-convexity under the normalization used by~\citet{McSwiggenSahi2026}.
+The specialization $q=t$ is a convenience.  Appendix~\ref{sec:macdonaldomega} carries the reversal for all $q,t\in(0,1)$, with gap $(1-t)^2(1-qt)/\bigl(t(1+t)(1-qt^2)\bigr)$, and shows it is admissible whenever $t=q^k$ for a positive integer $k$ --- the case above being $k=1$.  It also locates the failure, in a determinant shift that the principal-specialization normalization does not commute with, and shows that the $1^n$-normalized ratio $W_\lambda=P_\lambda(x)/P_\lambda(1^n)$ satisfies in this case exactly the inequality $\Omega_\lambda$ violates.  What is refuted is a claim about the log- and Schur-convexity under the normalization used by~\citet{McSwiggenSahi2026}.
 \end{remark}
 \end{cxrefutation}
 

@@ -19,6 +19,11 @@ Schur complement
  \rho_S(i)=P_{ii}-P_{iS}P_{SS}^{-1}P_{Si}.
 \]
 Thus the exact pivot path depends only on the orthogonal projector $P$.
+The bound quoted below asserts that some $I$ is well conditioned; what is at
+issue is whether greedy pivoting finds one.  Randomized selection is the other
+route: dual volume sampling applied to $Q^T$ draws $I$ with probability
+proportional to $\det\bigl(Q(I,:)^TQ(I,:)\bigr)$ and admits polynomial-time
+samplers \citep{LiJegelkaSra2017}.
 
 Chen, Liu, He, and Dong first answered
 Problem~\ref{ctx:qrcp-orthonormal-greedy} negatively by an asymptotic
