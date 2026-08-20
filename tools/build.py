@@ -6,13 +6,17 @@ urls) and case.tex (everything written in LaTeX, in \\begin{cx...} regions this
 script extracts).  No LaTeX belongs in the JSON.
 
 Generated (checked in; never edit by hand):
-  tex/generated/cases.tex      the paper's case list: per-case metadata
-                               (heading level, theorem labels, fidelity) and an
-                               \\input of each case.tex, in ledger order.  The
+  tex/generated/metadata.tex   what LaTeX cannot know about a result: its
+                               theorem label, and whether the quoted statement
+                               is verbatim, a paraphrase or still pending.  The
                                typesetting itself is tex/cxcase.sty's job
+  tex/generated/appendix-brief.tex  the \\cxbriefitem lines of the appendix
   registry.json                flattened machine-readable registry (all cases,
                                including withheld ones)
   README.md                    case table between the BEGIN/END CASE TABLE markers
+
+Hand-written, and only checked here: tex/cases.tex (the body's section headings
+and \\input lines), tex/09-additional.tex (the appendix's), tex/ledger.tex.
 
 Usage:
   python tools/build.py                validate and regenerate
@@ -41,6 +45,12 @@ REGISTRY = ROOT / "registry.json"
 # Hand-written, never generated: the maintainer edits this table row by row.
 # build.py only checks that it still covers every admitted result.
 LEDGER_TEX = ROOT / "tex" / "ledger.tex"
+# Hand-written too: the body's section headings, each case's \cxlevel and the
+# \input line that places it, and the same for the appendix dossiers.  build.py
+# only checks that every admitted case is \input in the right one of the two.
+CASES_TEX = ROOT / "tex" / "cases.tex"
+APPENDIX_TEX = ROOT / "tex" / "09-additional.tex"
+CASE_INPUT_RE = re.compile(r"\\input\{\.\./counterexamples/([^/}]+)/([^}]*)\}")
 
 CLASSES = {
     "published theorem",
@@ -54,10 +64,11 @@ CERTIFICATE_LEVELS = {"exact", "computer-assisted"}
 # "verbatim" is rendered as a quotation of the original; "paraphrase" is labelled
 # as such in the paper so a restatement is never passed off as the original.
 FIDELITIES = {"verbatim", "paraphrase"}
-# Cases sharing a group key are emitted as subsections of one common section
-# instead of one section each; their 'order' values must be consecutive.
+# Appendix cases sharing a group key collapse to one README row per source;
+# their 'order' values must be consecutive.  A group is never a heading: cases
+# that belong under one section in the paper are one case directory with
+# several results (counterexamples/aim-problems is the worked example).
 GROUPS = {
-    "aim": "Borcea--Br\\\"and\\'en AIM problems",
     "amsel": "Simons workshop open questions",
 }
 # Cases carrying "appendix": true are typeset in the hand-written appendix
@@ -650,8 +661,8 @@ def validate(cases, allow_todo, errors):
             if is_todo(a.get("description")):
                 err(f"artifact {a.get('file')}: missing or TODO description")
 
-    # A group is emitted as a single section, so its members must be adjacent in
-    # 'order'; otherwise the section heading would be repeated.
+    # A group collapses to one README row, so its members must be adjacent in
+    # 'order'; otherwise the row would be repeated.
     seen_groups = set()
     previous = None
     ordered = [c for c in cases if c.get("status") == "refuted" and isinstance(c.get("order"), int)]
@@ -746,26 +757,21 @@ def found_by_str(credits):
     return " and ".join(f"{f.get('model')} ({f.get('date')})" for f in found_by_list(credits))
 
 
-def emit_cases(selected, lines, grouped=True):
-    """Append the metadata and \\input for each case in `selected` to `lines`.
+def gen_metadata(cases):
+    """Per-result facts LaTeX cannot know, declared once for the whole paper.
 
     Everything typeset comes out of the case files themselves, through the
-    environments tex/cxcase.sty defines.  What LaTeX cannot know is metadata --
-    where a case sits in the ledger, whether it shares a section with others,
-    which theorem label a result carries, and whether its quoted statement is
-    the source's own words -- so that is what these files carry.
-
-    `grouped=False` suppresses the per-group headings: the appendix already has
-    one heading of its own and does not reissue a section for each source.
+    environments tex/cxcase.sty defines, and where each case sits -- its
+    heading, its level, its order -- is written by hand in tex/cases.tex and
+    tex/09-additional.tex.  What neither can know is metadata: which theorem
+    label a result carries, and whether its quoted statement is the source's
+    own words.  Every declaration is keyed by result id, so they need not sit
+    next to the \\input they describe; main.tex loads this file in its preamble.
     """
-    open_group = None
-    for c in selected:
-        group = c.get("group")
-        if grouped and group is not None and group != open_group:
-            lines.append(f"\\cxgroup{{{GROUPS[group]}}}")
-        open_group = group
+    lines = [GENERATED_HEADER.rstrip("\n")]
+    for c in refuted_in_order(cases):
         lines.append("")
-        lines.append(f"\\cxlevel{{{'subsection' if (group or not grouped) else 'section'}}}")
+        lines.append(f"% {c['id']}")
         for r in c["results"]:
             if r.get("theorem_label"):
                 lines.append(f"\\cxtheorem{{{r['id']}}}{{{r['theorem_label']}}}")
@@ -776,8 +782,58 @@ def emit_cases(selected, lines, grouped=True):
                 lines.append(f"\\cxpending{{{r['id']}}}")
             elif prov.get("fidelity") in FIDELITIES:
                 lines.append(f"\\cx{prov['fidelity']}{{{r['id']}}}")
-        lines.append(f"\\input{{../counterexamples/{c['id']}/{c.get('prose', 'case.tex')}}}")
-    return lines
+    return "\n".join(lines) + "\n"
+
+
+def case_input(c):
+    """The line a maintainer can paste into tex/cases.tex or the appendix."""
+    return f"\\input{{../counterexamples/{c['id']}/{c.get('prose', 'case.tex')}}}"
+
+
+def check_case_inputs(cases, errors):
+    """The two case lists are hand-written; make sure they still cover every case.
+
+    tex/cases.tex holds the body's headings and \\input lines, and
+    tex/09-additional.tex the appendix's; their wording, order and levels are the
+    maintainer's, so nothing here rewrites either.  What a human can silently get
+    wrong is placement -- a case not \\input at all, \\input twice, in the wrong
+    file, or one that is withheld or brief and should not be typeset -- so the
+    build checks exactly that: the set of cases \\input in each file must equal
+    the set its case.json flags put there.
+    """
+    expected = {
+        CASES_TEX: body_in_order(cases),
+        APPENDIX_TEX: appendix_full_in_order(cases),
+    }
+    by_id = {c["id"]: c for c in cases}
+    for path, wanted in expected.items():
+        rel = path.relative_to(ROOT)
+        if not path.exists():
+            errors.append(f"{rel} is missing; it is hand-written, not generated")
+            continue
+        found = Counter(m.group(1) for m in CASE_INPUT_RE.finditer(path.read_text()))
+        for c in wanted:
+            if c["id"] not in found:
+                errors.append(
+                    f"{rel} does not \\input case {c['id']}: add the line\n  {case_input(c)}"
+                )
+        for cid, n in sorted(found.items()):
+            if n > 1:
+                errors.append(f"{rel} \\inputs case {cid} {n} times")
+            if any(c["id"] == cid for c in wanted):
+                continue
+            c = by_id.get(cid)
+            if c is None:
+                why = "no such case"
+            elif c["status"] != "refuted":
+                why = f"its status is {c['status']!r}"
+            elif c.get("brief"):
+                why = 'it is "brief": true and is listed by \\cxbriefitem instead'
+            elif c.get("appendix"):
+                why = 'it is "appendix": true and belongs in tex/09-additional.tex'
+            else:
+                why = 'it is not "appendix": true and belongs in tex/cases.tex'
+            errors.append(f"{rel} \\inputs case {cid}, but {why}")
 
 
 def squash(tex):
@@ -841,31 +897,6 @@ def check_ledger(cases, errors):
                 f"tex/ledger.tex references \\ref{{{label}}}, which names no admitted "
                 f"result; delete that row or fix the label"
             )
-
-
-def gen_cases(cases):
-    """The body case list, \\input by main.tex where the sections belong."""
-    return "\n".join(emit_cases(body_in_order(cases), [GENERATED_HEADER.rstrip("\n")])) + "\n"
-
-
-def gen_appendix_cases(cases):
-    """The dossiers of the appendix, as a bare list with no heading of its own.
-
-    Two files rather than one, and neither carrying the section heading, so that
-    tex/09-additional.tex can put prose before the dossiers, between them and the
-    brief list, and after -- which a single generated block would leave nowhere
-    to go.  Everything an author writes about the appendix lives there; this is
-    only the ordering and the per-case metadata, exactly as in cases.tex.
-    """
-    lines = [GENERATED_HEADER.rstrip("\n")]
-    full = appendix_full_in_order(cases)
-    if not full:
-        # Still written, so the \input never dangles when the archive happens to
-        # have no de-emphasised case that earns a dossier.
-        lines.append("% No cases are currently \"appendix\": true without \"brief\": true.")
-        return "\n".join(lines) + "\n"
-    emit_cases(full, lines, grouped=False)
-    return "\n".join(lines) + "\n"
 
 
 def gen_appendix_brief(cases):
@@ -1086,6 +1117,7 @@ def main():
     # would make it dead code for as long as the baseline carries errors, which
     # is precisely when a missing row is most likely to slip through.
     check_ledger(cases, errors)
+    check_case_inputs(cases, errors)
     if errors:
         fail(errors)
 
@@ -1094,8 +1126,7 @@ def main():
         fail(errors)
 
     outputs = {
-        GENERATED_DIR / "cases.tex": gen_cases(cases),
-        GENERATED_DIR / "appendix-cases.tex": gen_appendix_cases(cases),
+        GENERATED_DIR / "metadata.tex": gen_metadata(cases),
         GENERATED_DIR / "appendix-brief.tex": gen_appendix_brief(cases),
         REGISTRY: gen_registry(cases),
         README: splice_readme(readme_table, gen_count_badges(cases)),

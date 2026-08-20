@@ -7,13 +7,13 @@ the paper's structure genuinely changes.
 ## What each script owns
 
 - **`build.py`** — validates every case (`case.json` + `case.tex`) and writes
-  five generated artifacts: `tex/generated/cases.tex` (body sections),
-  `tex/generated/appendix-cases.tex` (dossiers of cases marked
-  `"appendix": true`) and `tex/generated/appendix-brief.tex` (bare
-  `\cxbriefitem` lines for those also marked `"brief": true`) — both written
-  even when empty so the `\input`s never dangle, and **neither carrying a
-  heading, a list environment, or a word of prose**: those belong to the
-  hand-written `tex/09-additional.tex`, which wraps both. Then
+  four generated artifacts: `tex/generated/metadata.tex` (per result, its
+  `\cxtheorem` label and `\cxverbatim` / `\cxparaphrase` / `\cxpending`
+  flag — declared once, loaded by `main.tex`'s preamble) and
+  `tex/generated/appendix-brief.tex` (bare `\cxbriefitem` lines for cases
+  marked `"brief": true`, written even when empty so the `\input` never
+  dangles, and carrying **no heading, list environment, or word of prose**:
+  those belong to the hand-written `tex/09-additional.tex`). Then
   `registry.json`, and two spliced regions of
   `README.md` — the case table (`<!-- BEGIN/END CASE TABLE -->`) and the
   headline count badges (`<!-- BEGIN/END COUNT BADGES -->`). Everything else in
@@ -22,6 +22,16 @@ the paper's structure genuinely changes.
   and exits 1 if any of them is stale; `--allow-todo` downgrades the
   `found_by` / provenance TODO errors to warnings (migration only — CI runs
   plain `--check`).
+
+  It also **checks, but never writes, the two case lists**: `tex/cases.tex`
+  (the body's section headings, `\cxlevel`s and `\input` lines) and the
+  dossier `\input`s in `tex/09-additional.tex`. `check_case_inputs()` requires
+  the set of cases `\input` in each to equal what the `appendix` / `brief`
+  flags put there — nothing missing, nothing twice, nothing in the wrong file,
+  no withheld or brief case — and prints the `\input` line to paste for a
+  missing one. Headings, order and levels are the maintainer's. Until August
+  2026 both lists were generated, and the one shared section heading came from
+  the `GROUPS` table here, which now serves only the README's collapsed rows.
 
   It also **checks, but never writes, `tex/ledger.tex`**: that table is
   hand-written, and `check_ledger()` only confirms that every refuted result's

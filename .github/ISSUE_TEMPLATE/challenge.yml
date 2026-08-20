@@ -14,7 +14,7 @@ body:
     id: case
     attributes:
       label: Case id
-      description: "The directory name, e.g. `stable-schur`."
+      description: "The directory name, e.g. `aim-problems`."
     validations:
       required: true
 

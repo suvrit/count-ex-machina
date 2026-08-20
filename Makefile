@@ -15,7 +15,7 @@ help:
 	@echo "make unpack BUNDLE=submissions/x.md   unpack a SUBMIT.md bundle"
 	@echo "make check   validate metadata + verify every certificate  <- the PR gate"
 	@echo "make verify  run every counterexample's verify.py only"
-	@echo "make regen   regenerate the case list, registry, README table"
+	@echo "make regen   regenerate the case metadata, registry, README table"
 	@echo "make paper   build tex/main.pdf"
 	@echo "make preview CASE=<id>   compile one case on its own"
 	@echo "make all     check, then build the paper"

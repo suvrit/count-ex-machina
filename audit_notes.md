@@ -92,7 +92,7 @@ Four kinds, and the standing disposition of each:
   Conjecture 1.2 of Akbas-Sra.  Two urls, one statement -- so a url check would have
   called it clean.  Only someone reading both sources catches this.
 - One witness, several statements.  Not a duplicate at all, and the reason a case
-  directory is not a case result: `stable-schur` refutes two AIM problems with one
+  directory is not a case result: `aim-problems` refutes Problems 35 and 38 with one
   polynomial, and one Lorentzian cubic settles both `lorentzian-jensen` and
   `log-volume-distance`.  Count by statement, never by witness or by directory.
 - Already refuted in the literature.  The damaging kind, since the archive would be

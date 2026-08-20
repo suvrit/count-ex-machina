@@ -48,7 +48,7 @@ So each file is in exactly one of three states:
 | State | Who writes it | Examples |
 |---|---|---|
 | **machine-owned** | the generator, every `make regen` | `tex/generated/`, `registry.json`, the two marker-delimited regions of `README.md` |
-| **adopted** | the maintainer, by hand; the build only *checks* it | `tex/ledger.tex` |
+| **adopted** | the maintainer, by hand; the build only *checks* it | `tex/ledger.tex`, `tex/cases.tex`, the dossier `\input`s in `tex/09-additional.tex` |
 | **hand-written** | the maintainer, always | `tex/main.tex`, `tex/01-literature.tex`, `tex/02-admission.tex`, `tex/cxcase.sty`, every `case.tex`, all the `AGENTS.md` files |
 
 `tools/build.py` enforces the first row: `machine_owned()` lists the only paths
@@ -73,19 +73,22 @@ the baseline is red.
 | `counterexamples/<dir>/` | one bundle per case: `case.json` (machine facts), `case.tex` (all prose), `verify.py`, `artifacts/` | **yes** — this is where the work is |
 | `counterexamples/_template/` | scaffold copied by `tools/new_case.py` | only to change the scaffold itself |
 | `tex/01-literature.tex`, `tex/02-admission.tex`, `tex/main.tex`, `tex/references.bib`, `tex/cxcase.sty` | hand-written paper and the case format | yes, carefully |
-| `tex/generated/` | `cases.tex`, `appendix-cases.tex`, `appendix-brief.tex` — the ordered `\input` lists and per-case metadata, and nothing else | **no — generated** (but the `\input` lines that place them, in `tex/main.tex` and `tex/09-additional.tex`, are hand-written and yours to move) |
-| `tex/09-additional.tex` | Appendix A: its heading, its prose, and two `\input`s | **yes — hand-written.** Nothing regenerates it |
+| `tex/generated/` | `metadata.tex` (each result's theorem label and verbatim/paraphrase/pending flag) and `appendix-brief.tex` (the `\cxbriefitem` lines), and nothing else | **no — generated** |
+| `tex/cases.tex` | the body: section headings, each case's `\cxlevel`, one `\input` per case, in order | **yes — hand-written.** Nothing regenerates it; `build.py` only checks that every body case is `\input` there and prints the line to paste |
+| `tex/09-additional.tex` | Appendix A: its heading, its prose, the dossier `\input`s, and the `\input` of the brief list | **yes — hand-written.** Nothing regenerates it; `build.py` checks the dossier `\input`s the same way |
 | `tex/ledger.tex` | the archive ledger table, row by row | **yes — hand-written.** Nothing regenerates it; `build.py` only checks that every admitted result still has a row |
 | `registry.json` | flattened machine-readable registry | **no — generated** |
 | `README.md` between `<!-- BEGIN/END CASE TABLE -->` and `<!-- BEGIN/END COUNT BADGES -->` | case table, headline counts | **no — generated** |
 | `tools/` | `build.py`, `verify_all.py`, `new_case.py`, `unpack_submission.py`, `exactcert.py` | yes, but see `tools/AGENTS.md` |
 | `verification_report.json` | last run of `verify_all.py` | no — regenerable, gitignored |
 
-A case **directory** is not a case **result**. Seventeen results live in fourteen
-directories (`stable-schur` holds `aim-problem-35` and `aim-problem-38`;
-`aim-problem-36` holds `aim-problem-36` and `aim-problem-37`;
-`lorentzian-jensen` holds `lorentzian-jensen` and `log-volume-distance`).
-Ids, ledger rows, credits, and citations are keyed to the **result**.
+A case **directory** is not a case **result**. Twenty results live in fourteen
+directories (`aim-problems` holds `aim-problem-35`, `aim-problem-38`,
+`aim-problem-36` and `aim-problem-37`; `lorentzian-jensen` holds
+`lorentzian-jensen` and `log-volume-distance`). Ids, ledger rows, credits, and
+citations are keyed to the **result**. Statements that belong under one section
+of the paper are one directory with several results — never two directories
+joined by a heading somewhere else.
 
 ## Commands
 

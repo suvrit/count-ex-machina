@@ -1,11 +1,13 @@
 % Appendix A -- the cases the archive keeps but does not foreground.
 %
 % Hand-written, and nothing regenerates it: this file owns the heading, every
-% word of prose, and the order of the parts.  The two \input lines below are the
-% only generated things in it -- a list of \cxlevel/\cxtheorem/\input metadata
-% for the dossiers, and a list of \cxbriefitem lines -- both driven by the
-% "appendix" and "brief" flags in each counterexamples/<id>/case.json.  Add
-% prose anywhere: before the dossiers, between them and the brief list, after.
+% word of prose, the order of the parts, and the \input line of each dossier.
+% The one generated thing in it is the list of \cxbriefitem lines, driven by the
+% "brief" flag in each counterexamples/<id>/case.json.  Add prose anywhere:
+% before the dossiers, between two of them, between them and the brief list,
+% after.  tools/build.py only checks that every case marked "appendix": true
+% (and not "brief") is \input here, and prints the line to paste when one is
+% missing.
 %
 % This \appendix is the document's only one, so every hand-written appendix
 % \input after this file in main.tex is numbered B, C, ... automatically.
@@ -17,7 +19,11 @@ The cases collected here clear the same three admission conditions as those in
 the body, and their certificates recompute under the same \texttt{make verify};
 their placement is editorial emphasis and never evidential standing.
 
-\input{generated/appendix-cases}
+\cxlevel{subsection}
+\input{../counterexamples/courtade-volume-conjecture/case.tex}
+\input{../counterexamples/dpp-feasible-step/case.tex}
+\input{../counterexamples/lorentzian-jensen/case.tex}
+\input{../counterexamples/sdd-nystrom-diminishing-returns/case.tex}
 
 \subsection{Statements recorded without a dossier}
 

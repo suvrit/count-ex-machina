@@ -1,0 +1,25 @@
+% The body of the paper: one \input per case, in the order the sections appear.
+%
+% Hand-written, and nothing regenerates it.  Every case is a \section whose
+% heading is the \cxtitle in its own case.tex; a case that bundles several
+% statements opens its own subsections with \cxsubtitle there.  Move a line to
+% move a section; `make regen` will not touch a character.  What LaTeX cannot
+% know about a result (theorem labels, verbatim vs. paraphrase) is declared once
+% in tex/generated/metadata.tex, which is generated.
+%
+% tools/build.py only checks coverage: every refuted case not marked "appendix"
+% in its case.json must be \input here, once, and nothing else may be.  Add a
+% case and `make check` prints the line to paste.
+
+\input{../counterexamples/aim-problems/case.tex}
+\input{../counterexamples/macdonald-schur-convexity/case.tex}
+\input{../counterexamples/theta-derivative-log-concavity/case.tex}
+\input{../counterexamples/variance-only-matrix-discrepancy/case.tex}
+\input{../counterexamples/rank-two-mixed-norm/case.tex}
+\input{../counterexamples/quantum-coupon-collector/case.tex}
+\input{../counterexamples/odonnell-matrix-conjecture/case.tex}
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: "main"
+%%% End:

@@ -1,14 +1,38 @@
 {
-  "id": "aim-problem-36",
-  "title": "AIM Problem 36: stable Schur positivity",
+  "id": "aim-problems",
+  "title": "Borcea-Branden AIM problems",
   "status": "refuted",
-  "order": 2,
-  "group": "aim",
+  "order": 1,
   "prose": "case.tex",
   "bib_keys": [
-    "AIMStableProblems"
+    "AIMStableProblems",
+    "Wanless2022"
   ],
   "results": [
+    {
+      "id": "aim-problem-35",
+      "uid": "4NP5KD9H",
+      "class": "external formal problem",
+      "certificate_level": "exact",
+      "theorem_label": "thm:common-A",
+      "provenance": {
+        "url": "https://www.aimath.org/pastworkshops/polyaschurlaxrep.pdf",
+        "retrieved": "2026-08-01",
+        "fidelity": "verbatim"
+      }
+    },
+    {
+      "id": "aim-problem-38",
+      "uid": "4TWB5MZJ",
+      "class": "external formal problem",
+      "certificate_level": "exact",
+      "theorem_label": "thm:pot",
+      "provenance": {
+        "url": "https://www.aimath.org/pastworkshops/polyaschurlaxrep.pdf",
+        "retrieved": "2026-08-01",
+        "fidelity": "verbatim"
+      }
+    },
     {
       "id": "aim-problem-36",
       "uid": "KKYHCMH6",
@@ -43,7 +67,11 @@
   },
   "artifacts": [
     {
-      "file": "artifacts/certificate.json",
+      "file": "artifacts/certificate-35-38.json",
+      "description": "Exact monomial and Schur coefficients of the stable degree-five polynomial, with the four POT-violating partitions."
+    },
+    {
+      "file": "artifacts/certificate-36-37.json",
       "description": "Exact certificate of the det-pencil construction: basis, Gram data, the five integer PD matrices, and the Schur expansion with its negative coefficient."
     }
   ]

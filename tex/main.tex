@@ -11,6 +11,11 @@
 % The case format: the cx... environments each counterexamples/<id>/case.tex is
 % written in, plus the theorem environments, status tags and notation they use.
 \usepackage{cxcase}
+% What LaTeX cannot know about a result -- its theorem label, and whether the
+% quoted statement is verbatim, a paraphrase, or still pending -- comes from the
+% case.json files, via this one generated file.  Declared once, up front, so the
+% case lists below carry nothing but headings and \input lines.
+\input{generated/metadata}
 \usepackage{listings}
 \usepackage{graphicx}
 \usepackage{url}
@@ -72,7 +77,10 @@
 % still has a row, and prints the row to paste when one is missing.
 \input{ledger}
 
-\input{generated/cases}
+% tex/cases.tex is hand-written too: the section headings, each case's level and
+% the order of the \input lines.  `make check` only verifies that every body
+% case is \input there, and prints the line to paste when one is missing.
+\input{cases}
 
 % The closing section.  Hand-written; its \section closes the rule opened by
 % the last case, which is why it sits before the acknowledgments rather than

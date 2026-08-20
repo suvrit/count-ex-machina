@@ -6,10 +6,10 @@ document fragment.  This wraps one counterexamples/<id>/case.tex in a minimal
 preamble so it can be typeset while it is being written, without rebuilding the
 paper.
 
-What a preview cannot show is metadata, which lives in case.json and reaches
-LaTeX through tex/generated/cases.tex: heading level, and whether a quoted
-statement is verbatim or a paraphrase.  A preview therefore labels every quote
-as a paraphrase.  Run `make paper` for the real thing.
+What a preview cannot show is metadata: whether a quoted statement is verbatim
+or a paraphrase (from case.json, via tex/generated/metadata.tex) and the heading
+level (set by hand in tex/cases.tex).  A preview therefore labels every quote as
+a paraphrase.  Run `make paper` for the real thing.
 
 Stdlib only.
 """

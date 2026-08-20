@@ -3,8 +3,8 @@
     "uid": "4NP5KD9H",
     "result_id": "aim-problem-35",
     "former_ids": [],
-    "case": "stable-schur",
-    "title": "Two Borcea-Branden problems",
+    "case": "aim-problems",
+    "title": "Borcea-Branden AIM problems",
     "status": "refuted",
     "ledger_no": 1,
     "appendix": false,
@@ -37,15 +37,17 @@
     "verify": {
       "python": "verify.py",
       "sage": [],
-      "requires": []
+      "requires": [
+        "sympy"
+      ]
     }
   },
   {
     "uid": "4TWB5MZJ",
     "result_id": "aim-problem-38",
     "former_ids": [],
-    "case": "stable-schur",
-    "title": "Two Borcea-Branden problems",
+    "case": "aim-problems",
+    "title": "Borcea-Branden AIM problems",
     "status": "refuted",
     "ledger_no": 2,
     "appendix": false,
@@ -78,15 +80,17 @@
     "verify": {
       "python": "verify.py",
       "sage": [],
-      "requires": []
+      "requires": [
+        "sympy"
+      ]
     }
   },
   {
     "uid": "KKYHCMH6",
     "result_id": "aim-problem-36",
     "former_ids": [],
-    "case": "aim-problem-36",
-    "title": "AIM Problem 36: stable Schur positivity",
+    "case": "aim-problems",
+    "title": "Borcea-Branden AIM problems",
     "status": "refuted",
     "ledger_no": 3,
     "appendix": false,
@@ -128,8 +132,8 @@
     "uid": "VP22SYRW",
     "result_id": "aim-problem-37",
     "former_ids": [],
-    "case": "aim-problem-36",
-    "title": "AIM Problem 36: stable Schur positivity",
+    "case": "aim-problems",
+    "title": "Borcea-Branden AIM problems",
     "status": "refuted",
     "ledger_no": 4,
     "appendix": false,

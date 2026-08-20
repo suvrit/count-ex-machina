@@ -25,8 +25,8 @@ calculation is used in any assertion.  It performs the following independent che
      restatement of the Problem 36 refutation rather than a separate one.
 
 Usage:
-    python verify.py                # run all checks, write artifacts/certificate.json
-    python verify.py --verbose      # additionally print all matrices and expansions
+    python verify_pencil.py         # run all checks, write artifacts/certificate-36-37.json
+    python verify_pencil.py --verbose  # additionally print all matrices and expansions
 
 Requires: sympy
 """
@@ -501,7 +501,7 @@ def verify() -> dict:
     certificate = build_certificate()
     negative = certificate["negative_coefficient"]
     return {
-        "id": "aim-problem-36",
+        "id": "aim-problems/verify_pencil",
         "ok": True,
         "summary": (
             f"exact det-pencil Schur expansion, "
@@ -518,8 +518,8 @@ def main() -> None:
     parser.add_argument(
         "--write-json",
         type=Path,
-        default=Path(__file__).resolve().parent / "artifacts" / "certificate.json",
-        help="write a machine-readable exact certificate (default: artifacts/certificate.json)",
+        default=Path(__file__).resolve().parent / "artifacts" / "certificate-36-37.json",
+        help="write a machine-readable exact certificate (default: artifacts/certificate-36-37.json)",
     )
     args = parser.parse_args()
 

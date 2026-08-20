@@ -2,7 +2,8 @@
 %
 % A case is one counterexamples/<id>/case.tex, written as a sequence of regions:
 %
-%   \begin{cxtitle}    ... \end{cxtitle}        the case heading
+%   \cxtitle{...}                                 the case heading
+%   \cxsubtitle{...}                              a heading inside it (optional)
 %   \begin{cxcredits}  ... \end{cxcredits}      \posedby \foundby \formalizedby ...
 %   \begin{cxcontext}  ... \end{cxcontext}      our setup prose (optional)
 %   \begin{cxsource}{r}... \end{cxsource}       who posed result r, and where
@@ -21,11 +22,12 @@
 % tex/generated/ledger.tex, and the table that holds those rows sits in
 % main.tex where it can be restyled by hand.
 %
-% What this package does NOT know is metadata: ledger order, grouping, and
-% whether a quoted statement is verbatim or a paraphrase all live in the
-% per-case case.json and reach LaTeX through tex/generated/cases.tex and
-% tex/generated/appendix.tex, which tools/build.py writes.  Prose is LaTeX's;
-% facts are the JSON's.
+% What this package does NOT know is metadata: each result's theorem label, and
+% whether its quoted statement is verbatim or a paraphrase, live in the per-case
+% case.json and reach LaTeX through tex/generated/metadata.tex, which
+% tools/build.py writes.  Where a case sits -- its section heading, its level,
+% its order -- is written by hand in tex/cases.tex and tex/09-additional.tex.
+% Prose is LaTeX's; facts are the JSON's.
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{cxcase}[2026/08/02 v1.0 count-ex-machina case format]
@@ -101,11 +103,14 @@
 }
 
 % ---------------------------------------------------------------------------
-% Metadata set by tex/generated/cases.tex, immediately before each \input.
+% Metadata.  \cxlevel is set by hand in tex/cases.tex and tex/09-additional.tex,
+% where the \input lines are; the rest is declared once, per result id, by the
+% generated tex/generated/metadata.tex that main.tex loads in its preamble.
 % ---------------------------------------------------------------------------
 \newcommand{\cx@level}{section}
-% \cxlevel{section|subsection} -- grouped cases are subsections of a shared
-% section, so the heading level is a property of the ledger, not of the case.
+% \cxlevel{section|subsection} -- the level of every \cxtitle that follows,
+% until the next \cxlevel.  Cases under a shared \section are subsections, so
+% the heading level is a property of the case list, not of the case.
 \newcommand{\cxlevel}[1]{\renewcommand{\cx@level}{#1}}
 % \cxverbatim{result} / \cxparaphrase{result} -- whether the quoted statement
 % is the source's own text.  Two commands rather than one with a value, so the
@@ -160,8 +165,12 @@
 % (before the acknowledgments, say, rather than after the bibliography).
 \newcommand{\cxendrule}{\cx@rule}
 
-% \cxgroup{Heading} -- opens the shared section a group of cases lives under.
-\newcommand{\cxgroup}[1]{\section{#1}}
+% Every case is one \section, headed by its own \cxtitle; a case bundling
+% several statements opens subsections with \cxsubtitle (below).  Until August
+% 2026 two directories could share a section instead, headed by \cxgroup{...}
+% emitted by the generator from a title table in tools/build.py -- the one
+% section title in the paper nobody could edit where it was used.  The macro
+% and the table entry are gone; the cases were merged into one directory.
 
 % Appendices are ordinary \section's inside a hand-written \appendix, and the
 % list of them at the end of the body is a hand-written list in main.tex.  Until
@@ -189,6 +198,17 @@
 % run-in heading issued from inside an environment is dropped when the group
 % closes.  A title is one line anyway.
 \newcommand{\cxtitle}[1]{\csname\cx@level\endcsname{#1}}
+% \cxsubtitle{Heading} -- a heading inside a case that bundles several
+% statements under one \cxtitle, one level below it: a subsection in the paper,
+% a subsubsection in a preview (where the case itself is a subsection).  The
+% level is looked up by name rather than compared as a string -- see \cxverbatim
+% above for why.  Cases that refute more than one statement need not use it;
+% it is for a case whose statements fall into parts with their own witnesses
+% and credit lines, and it is the only way a case may open a heading of its
+% own: cxrefutation carries no \section or \subsection.
+\@namedef{cx@sub@section}{subsection}
+\@namedef{cx@sub@subsection}{subsubsection}
+\newcommand{\cxsubtitle}[1]{\csname\@nameuse{cx@sub@\cx@level}\endcsname{#1}}
 
 % One macro per role, so that a per-result block can override a role and
 % inherit the others.  Every role but one takes a single argument -- a person

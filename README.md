@@ -124,12 +124,13 @@ count-ex-machina/
 │     ├─ README.md           what it refutes, how to check it
 │     └─ artifacts/          certificate.json, written by verify.py
 ├─ tex/                      the paper
-│  ├─ main.tex               preamble, front matter, the four \input's
+│  ├─ main.tex               preamble, front matter, the \input's
+│  ├─ cases.tex              the body's case list: headings and \input's, by hand
 │  ├─ 01-literature.tex      AI-assisted counterexamples in the literature
 │  ├─ 02-admission.tex       the authoritative admission rule
 │  ├─ references.bib
 │  ├─ cxcase.sty             the case format: the cx... environments
-│  └─ generated/             cases.tex — the ordered case list, generated
+│  └─ generated/             metadata.tex — per-result facts LaTeX cannot know
 ├─ tools/
 │  ├─ build.py               validate metadata, regenerate everything derived
 │  ├─ verify_all.py          recompute every certificate
@@ -197,7 +198,7 @@ To cite an individual counterexample rather than the paper, give its **result
 id** — for example, `aim-problem-35`. Result ids are what the table below and
 `registry.json` enumerate, and they are stable across revisions. A result need
 not share the name of the directory holding it: `aim-problem-35` lives in
-`counterexamples/stable-schur/`, which bundles two refuted problems.
+`counterexamples/aim-problems/`, which bundles four refuted problems.
 
 The **ledger numbers** in the table are *not* stable — they are presentation
 order, and admitting a case renumbers those after it. Every result also carries
@@ -208,10 +209,10 @@ an immutable `uid` in `registry.json`; that is a database key, not a citation.
 <!-- BEGIN CASE TABLE -->
 | No. | Case | Status | Posed in | Certificate | Found by |
 |---|---|---|---|---|---|
-| 1 | [aim-problem-35](counterexamples/stable-schur/) | refuted | [Borcea–Brändén, AIM problem list, Problem 35](https://www.aimath.org/pastworkshops/polyaschurlaxrep.pdf) | exact | GPT-5 (Pro) (2026-01-10) |
-| 2 | [aim-problem-38](counterexamples/stable-schur/) | refuted | [Borcea–Brändén, AIM problem list, Problem 38](https://www.aimath.org/pastworkshops/polyaschurlaxrep.pdf) | exact | GPT-5 (Pro) (2026-01-10) |
-| 3 | [aim-problem-36](counterexamples/aim-problem-36/) | refuted | [Borcea–Brändén, AIM problem list, Problem 36](https://www.aimath.org/pastworkshops/polyaschurlaxrep.pdf) | exact | GPT-5.6 (Pro) (2026-07-30) |
-| 4 | [aim-problem-37](counterexamples/aim-problem-36/) | refuted | [Borcea–Brändén, AIM problem list, Problem 37](https://www.aimath.org/pastworkshops/polyaschurlaxrep.pdf) | exact | GPT-5.6 (Pro) (2026-07-30) and bugfixed by Opus 5 (2026-08-10) |
+| 1 | [aim-problem-35](counterexamples/aim-problems/) | refuted | [Borcea–Brändén, AIM problem list, Problem 35](https://www.aimath.org/pastworkshops/polyaschurlaxrep.pdf) | exact | GPT-5 (Pro) (2026-01-10) |
+| 2 | [aim-problem-38](counterexamples/aim-problems/) | refuted | [Borcea–Brändén, AIM problem list, Problem 38](https://www.aimath.org/pastworkshops/polyaschurlaxrep.pdf) | exact | GPT-5 (Pro) (2026-01-10) |
+| 3 | [aim-problem-36](counterexamples/aim-problems/) | refuted | [Borcea–Brändén, AIM problem list, Problem 36](https://www.aimath.org/pastworkshops/polyaschurlaxrep.pdf) | exact | GPT-5.6 (Pro) (2026-07-30) |
+| 4 | [aim-problem-37](counterexamples/aim-problems/) | refuted | [Borcea–Brändén, AIM problem list, Problem 37](https://www.aimath.org/pastworkshops/polyaschurlaxrep.pdf) | exact | GPT-5.6 (Pro) (2026-07-30) and bugfixed by Opus 5 (2026-08-10) |
 | 5 | [macdonald-schur-convexity](counterexamples/macdonald-schur-convexity/) | refuted | [C. McSwiggen and S. Sahi, Theorem 2.1](https://arxiv.org/abs/2605.12680v2) | exact | GPT-5.6 (Pro) (2026-05-14) |
 | 6 | [theta-derivative-log-concavity](counterexamples/theta-derivative-log-concavity/) | refuted | [G. Csordas, Open Problem 4.13, restating Coffey–Csordas Conjecture 2.5](https://arxiv.org/abs/1309.0055v2) | computer-assisted | GPT-5.5 (Pro) (2026-02-22) |
 | 7 | [variance-only-matrix-discrepancy](counterexamples/variance-only-matrix-discrepancy/) | refuted | [Remark 4.25 of A. S. Bandeira's problem collection.](https://arxiv.org/abs/2606.16005) | exact | GPT-5.5 (Pro) (2026-05-24) |
@@ -254,12 +255,13 @@ way, and the mechanical discipline is:
    - `status`: `"refuted"` (goes into the ledger) or `"withheld"` (documented
      but excluded; needs `withheld_reason` and a standalone `paper.tex`);
    - `order`: next free integer, unless the case joins a group (below);
-   - `group` (optional): cases sharing a group key are emitted as
-     subsections of one common section — currently only `"aim"`, the
-     Borcea–Brändén AIM problems — and their `order` values must be
-     consecutive, so adding one renumbers the cases after it;
-   - one `results` entry per refuted statement (usually one; `stable-schur`
-     has two): `class` and `certificate_level` the classification,
+   - `group` (optional): appendix cases sharing a group key collapse to one
+     row of the table above — currently only `"amsel"` — and their `order`
+     values must be consecutive, so adding one renumbers the cases after it;
+     statements that share a section of the paper are instead one case with
+     several `results`;
+   - one `results` entry per refuted statement (usually one; `aim-problems`
+     has four): `class` and `certificate_level` the classification,
      `theorem_label` matching the `\label` in the refutation, and a
      `provenance` block giving `url` and `retrieved` for the copy consulted
      plus `fidelity` — `"verbatim"` only if transcribed from the source's own

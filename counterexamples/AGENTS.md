@@ -44,6 +44,7 @@ unfilled TODO.
 | Region | | |
 |---|---|---|
 | `\cxtitle{...}` | once | the case's section heading (a macro: a run-in subsection heading issued from inside an environment is dropped by LaTeX) |
+| `\cxsubtitle{...}` | optional, repeatable | a subsection inside the case, one level below `\cxtitle` — for a case whose several statements fall into parts with their own witnesses and credit lines (`aim-problems`). Outside any region, like `\cxtitle` |
 | `cxcredits` | once, `[result-id]` to override | `\posedby` `\foundby{model}{YYYY-MM}` `\formalizedby` `\auditedby` `\contributedby` |
 | `cxcontext` | optional | our setup prose: notation the quoted statement needs, rendered outside the quote boxes so our words are never mistaken for the source's |
 | `cxsource{rid}` | per result | who posed it and where, with `\cite{...}` |
@@ -56,9 +57,10 @@ unfilled TODO.
 `cxcredits[rid]` merges over the case block role by role, so a result that
 differs only in its finder need not restate the rest.
 
-`cxrefutation` is body only — the `\section` / `\subsection` heading and the
-credit line are **generated**, and writing them yourself duplicates them in the
-PDF:
+`cxrefutation` is body only — the section heading and the credit line are
+emitted by `\cxtitle` and `cxcredits`, and a heading inside the case is
+`\cxsubtitle`; a `\section` or `\subsection` of your own duplicates them in
+the PDF:
 
 ```tex
 \begin{cxrefutation}
@@ -96,9 +98,12 @@ Enums are enforced; the exact spellings are in `tools/build.py`.
   `paper.tex`).
 - `order` — positive int, unique, presentation order only. **Not stable, not a
   citation.** Take the next free integer; renumber nothing.
-- `group` — optional, currently `"aim"` or `"amsel"`. Members must be
+- `group` — optional, currently only `"amsel"`, and only meaningful with
+  `appendix`: the members collapse to one README row. Members must be
   **contiguous** in `order`, so joining a group renumbers cases you do not own:
-  do it explicitly and say so in the PR, never silently.
+  do it explicitly and say so in the PR, never silently. A group is never a
+  heading — statements that share a section of the paper are one case
+  directory with several `results` (`aim-problems`).
 - `appendix` — optional bool, default false, and a **maintainer's disposition,
   not a submitter's**. `true` typesets the case as a subsection of the paper's
   shared "Additional counterexamples" appendix instead of a body section, and
@@ -192,7 +197,8 @@ Hard requirements:
 |---|---|
 | `id "x" does not equal directory name "y"` | rename the directory or the id; they are one name |
 | `order N already used by case X` | take the next free integer, do not renumber X |
-| `group 'aim' is not contiguous in 'order'` | grouped cases share one section; make their orders adjacent, deliberately |
+| `group 'aim' is not contiguous in 'order'` | grouped cases share one README row; make their orders adjacent, deliberately |
+| `tex/cases.tex does not \input case x` / `tex/09-additional.tex does not \input case x` | the case lists are hand-written; paste the printed `\input` line where the case belongs |
 | `prose file 'case.tex' does not exist` | create it, or fix `prose` in `case.json` |
 | `[...] no longer belong in case.json; that prose lives in case.tex` | move those words into the named region; LaTeX never goes back into the JSON |
 | `unknown region cxfoo` / `cxfoo{x} names no result in case.json` | check the spelling and the result id — they must match `results[].id` |

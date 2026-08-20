@@ -51,7 +51,7 @@ def verify() -> dict:
     failures = [i for i in range(7) if a[i] > f[i] * a[-1]]
     assert failures == [2, 3, 4, 5]
     return {
-        "id": "stable-schur",
+        "id": "aim-problems/verify_pot",
         "ok": True,
         "summary": "exact expansion and POT failures at four partitions",
         "witness": {
@@ -68,7 +68,7 @@ if __name__ == "__main__":
     out = verify()
     art = pathlib.Path(__file__).resolve().parent / "artifacts"
     art.mkdir(exist_ok=True)
-    (art / "certificate.json").write_text(
+    (art / "certificate-35-38.json").write_text(
         json.dumps(out["witness"], indent=2, sort_keys=True) + "\n"
     )
     print(f"PASS {out['id']}: {out['summary']}")
