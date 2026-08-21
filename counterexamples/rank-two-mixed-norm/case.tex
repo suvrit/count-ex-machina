@@ -44,7 +44,7 @@ A.~Sah, M.~Sawhney, D.~Stoner and Y.~Zhao, the open question stated immediately 
 \end{cxsource}
 
 \begin{cxstatement}{mixed-norm-general-s}
-We do not know if the inequality can be extended to $\|A^{\mathsf T}B\|_{L_{p,q}}^2\le\|A^{\mathsf T}A\|_{L_{q,q}}\|B^{\mathsf T}B\|_{L_{p,p}}$ for all reals $1\le p\le q$ (this is true for positive integer $p$ by a tensor-power argument).
+We do not know if the inequality can be extended to $\|A^{\mathsf T}B\|_{{p,q}}^2\le\|A^{\mathsf T}A\|_{{q,q}}\|B^{\mathsf T}B\|_{{p,p}}$ for all reals $1\le p\le q$ (this is true for positive integer $p$ by a tensor-power argument).
 \end{cxstatement}
 
 \begin{cxsummary}{mixed-norm-general-s}
@@ -62,7 +62,7 @@ A.~Sah, M.~Sawhney, D.~Stoner and Y.~Zhao, the same open question at $B=A$; shar
 \end{cxsource}
 
 \begin{cxstatement}{yufei-psd}
-Taking $B=A$ in the question above and writing $Z=A^{\mathsf T}A$ for the resulting completely positive matrix: for all reals $1\le s\le q$ and every completely positive $Z$,
+Taking $B=A$ in the question above and writing $Z=AA^{\mathsf T}$ for the resulting completely positive matrix: for all reals $1\le s\le q$ and every completely positive $Z$,
 \[\|Z\|_{s,q}^2\le\|Z\|_{s,s}\|Z\|_{q,q}.\]
 \end{cxstatement}
 
@@ -75,11 +75,10 @@ Explicit 21-vector Gram matrix and interval-separated ratio $>1$.
 \end{cxcertificate}
 
 \begin{cxrefutation}
-Both Problems~\ref{ctx:mixed-norm-general-s} and~\ref{ctx:yufei-psd} fail by witnesses of quite different character. Problem~\ref{ctx:mixed-norm-general-s} fails at every non-integer exponent as a consequence of the Hadamard-power theory of \citet{FitzGeraldHorn1977} and \citet[Theorem~4.3]{HornMathias1990}; that argument is recorded as Remark~\ref{rmk:fh} below (and it is not due to an AI assistant). What Theorem~\ref{thm:mixed-general} adds is a minimal explicit witness, small enough to check by hand.  The second witness is larger and interval-certified, but it refutes the harder $B=A$ specialization of Problem~\ref{ctx:yufei-psd}. We note that for $p=1$ (and hence ever integer valued $p$ by exploiting the Schur product theorem) the alleged inequalities do hold---see Appendix~\ref{sec:proofdetails}.
+Both Problems~\ref{ctx:mixed-norm-general-s} and~\ref{ctx:yufei-psd} fail by witnesses of quite different character. Problem~\ref{ctx:mixed-norm-general-s} fails at every non-integer exponent as a consequence of the Hadamard-power theory of \citet{FitzGeraldHorn1977} and \citet[Theorem~4.3]{HornMathias1990}; that argument is recorded as Remark~\ref{rmk:fh} below (and it is my own observation, not a connection due to an AI assistant).  Theorem~\ref{thm:mixed-general} adds a minimal explicit witness though. The second witness is larger and interval-certified; it refutes the harder $B=A$ specialization of Problem~\ref{ctx:yufei-psd}. We note that for $p=1$ (and hence every integer valued $p$ by tensoring) the alleged inequalities do hold---\emph{see Appendix~\ref{sec:proofdetails} for details and additional results}.
 
-\subsubsection*{The general case}
-
-\begin{theorem}[\statusfalse: extension to non-integer exponents]\label{thm:mixed-general}
+%\subsubsection*{The general case}
+\begin{theorem}[\statusfalse: explicit disproof, $A\neq B$]\label{thm:mixed-general}
 Let $p=q=3/2$ and put
 \[
 A=\begin{bmatrix}2&4\\5&0\\1&0\end{bmatrix},\qquad
@@ -94,7 +93,7 @@ A^{\mathsf T}A=\begin{bmatrix}30&8\\8&16\end{bmatrix},\qquad
 B^{\mathsf T}B=\begin{bmatrix}17&8\\8&29\end{bmatrix},\qquad
 A^{\mathsf T}B=\begin{bmatrix}21&20\\0&20\end{bmatrix}.
 \]
-At $p=q=3/2$ the mixed norm is the entrywise $\ell_{3/2}$ norm, so $\|M\|_{3/2,3/2}^{3/2}=\sum_{ij}|m_{ij}|^{3/2}$ and the deficit
+At $p=q=3/2$ we calculate $\|M\|_{3/2,3/2}^{3/2}=\sum_{ij}|m_{ij}|^{3/2}$, and the deficit
 \[
 \Delta:=\|A^{\mathsf T}A\|_{3/2,3/2}^{3/2}+\|B^{\mathsf T}B\|_{3/2,3/2}^{3/2}-2\|A^{\mathsf T}B\|_{3/2,3/2}^{3/2}
 \]
@@ -106,7 +105,7 @@ Deciding the sign of $\Delta$ is exact algebra over a real field, with no roundi
 \[
 \Delta=-5.150045302282868288532184137690370433502833719528\ldots<0 .
 \]
-Hence $2\|A^{\mathsf T}B\|_{3/2,3/2}^{3/2}>\|A^{\mathsf T}A\|_{3/2,3/2}^{3/2}+\|B^{\mathsf T}B\|_{3/2,3/2}^{3/2}$, and the arithmetic--geometric mean inequality bounds the right side below by $2\bigl(\|A^{\mathsf T}A\|_{3/2,3/2}\|B^{\mathsf T}B\|_{3/2,3/2}\bigr)^{3/4}$.  Canceling and raising to the power $2/3$,
+Hence $2\|A^{\mathsf T}B\|_{3/2,3/2}^{3/2}>\|A^{\mathsf T}A\|_{3/2,3/2}^{3/2}+\|B^{\mathsf T}B\|_{3/2,3/2}^{3/2}$, and the AM-GM inequality bounds the right side below by $2\bigl(\|A^{\mathsf T}A\|_{3/2,3/2}\|B^{\mathsf T}B\|_{3/2,3/2}\bigr)^{3/4}$.  Canceling and raising to the power $2/3$,
 \[
 \frac{\|A^{\mathsf T}B\|_{3/2,3/2}}{\|A^{\mathsf T}A\|_{3/2,3/2}^{1/2}\|B^{\mathsf T}B\|_{3/2,3/2}^{1/2}}=1.00629360763001504125\ldots>1 . \qedhere
 \]
@@ -116,9 +115,9 @@ Hence $2\|A^{\mathsf T}B\|_{3/2,3/2}^{3/2}>\|A^{\mathsf T}A\|_{3/2,3/2}^{3/2}+\|
 Let $s\notin\mathbb N$ with $s<n-2$.  By the sharpness half of the FitzGerald--Horn theorem \citep{FitzGeraldHorn1977} there is a positive semidefinite $Z\in\R_{\ge0}^{n\times n}$ whose Hadamard power $Z^{\odot s}$ is not positive semidefinite, so $\sigma^{\mathsf T}Z^{\odot s}\sigma<0$ for some $\sigma$.  Rescaling if necessary, we can take  $\sigma$ to be in $\{\pm1\}^n$; then, splitting the index set along the sign of $\sigma$ write $Z$ as the block Gram matrix of two nonnegative blocks $A,B$, and the displayed quadratic form is exactly $-\Delta$.  This is the mechanism of \citet[Theorem~4.3]{HornMathias1990}, and it produces a counterexample for \emph{every} non-integer $s$. %, which is why the positive results stop precisely at the integers.
 \end{remark}
 
-\subsubsection*{The specialization $B=A$}
+%\subsubsection*{The specialization $B=A$}
 
-\begin{theorem}[\statusfalse; computer-assisted exact construction]\label{thm:mixed}
+\begin{theorem}[\statusfalse; computer-assisted disproof $A=B$ case]\label{thm:mixed}
 There is an explicit $21\times21$ completely positive matrix $Z$ of rank two with
 \[
 \|Z\|_{s,q}^2>\|Z\|_{s,s}\|Z\|_{q,q},\qquad (s,q)=(6/5,6).
@@ -159,9 +158,9 @@ The entire interval lies above one.  The source package regenerates $Z$ from the
 % Hence $\|Z\|_{s,q}^2=\|Z\|_{s,s}\|Z\|_{q,q}$ for every $1\le s\le q$: at rank one the conjectured inequality is an identity, with no slack anywhere to lose.  The witness of Theorem~\ref{thm:mixed} has rank two, so the failure appears at the first rank that admits any slack at all.
 % \end{remark}
 
-\begin{remark}[What the two results together settle]
-Theorem~\ref{thm:mixed-general} refutes the question as posed, for every non-integer exponent, but its mechanism needs two distinct blocks and so says nothing about $B=A$.  Theorem~\ref{thm:mixed} closes that gap at one point.  Between them the record is: the inequality holds for $p=1$, for every positive integer $p$, for $q=\infty$, and for completely positive $Z$ of order at most three; and it fails at $(6/5,6)$ for order $21$, and at $p=q$ for every non-integer $p$.  The order-three bound is again FitzGerald--Horn: a positive semidefinite matrix of order at most three has $|Z|$ positive semidefinite, and $s\ge n-2$ there.  Details are in Appendix~\ref{sec:proofdetails}.
-\end{remark}
+% \begin{remark}[What the two results together settle]
+% Theorem~\ref{thm:mixed-general} refutes the question as posed, for every non-integer exponent, but its mechanism needs two distinct blocks and so says nothing about $B=A$.  Theorem~\ref{thm:mixed} closes that gap at one point.  Between them the record is: the inequality holds for $p=1$, for every positive integer $p$, for $q=\infty$, and for completely positive $Z$ of order at most three; and it fails at $(6/5,6)$ for order $21$, and at $p=q$ for every non-integer $p$.  The order-three bound is again FitzGerald--Horn: a positive semidefinite matrix of order at most three has $|Z|$ positive semidefinite, and $s\ge n-2$ there.  Details are in Appendix~\ref{sec:proofdetails}.
+% \end{remark}
 \end{cxrefutation}
 
 

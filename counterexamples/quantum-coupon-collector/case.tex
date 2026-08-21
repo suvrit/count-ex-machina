@@ -19,16 +19,9 @@ $x_1,\ldots,x_n>0$, the expected waiting time is the alternating sum
 T_n(x_1,\ldots,x_n)=\sum_{k=1}^n(-1)^{k+1}
 \sum_{1\le i_1<\cdots<i_k\le n}\frac{1}{x_{i_1}+\cdots+x_{i_k}},
 \]
-whose positivity can be seen through a nice trick using the fact that $t\mapsto1/t$ is completely monotone on $(0,\infty)$, so the Laplace-transform representation makes the alternating sum an integral of a nonnegative quantity \cite{FlajoletGardyThimonier1992}.  The statement quoted below asks whether the same holds with the positive numbers replaced by positive definite matrices. % and the reciprocal by the matrix inverse.
+whose positivity can be seen through a clever trick using the fact that $t\mapsto1/t$ is completely monotone on $(0,\infty)$~\citep{FlajoletGardyThimonier1992}.  The statement quoted below asks whether the same holds with the positive numbers replaced by positive definite matrices. % and the reciprocal by the matrix inverse.
 
-Let $\mathbf{S}_{++}^{d}$ be the cone of real symmetric positive definite $d\times d$ matrices.
-% For a nonempty $S\subseteq[n]$ we abbreviate $X_S:=\sum_{i\in S}X_i$, so that the source's double sum is
-% \[
-% Q_n(X_1,\ldots,X_n)=\sum_{\emptyset\ne S\subseteq[n]}(-1)^{|S|-1}X_S^{-1}.
-% \]
-% We also write $\Delta_n:=\tr Q_n$ for its scalar trace transform; since a positive definite matrix has positive trace, the conjecture implies $\Delta_n>0$.
-
-The cone-valued form of the scalar mechanism is available: Theorem~7 of Niculescu and Sra \cite{NiculescuSra2023} states that every completely monotone $f$ on a cone $\mathcal C$ satisfies the inclusion--exclusion inequality $\sum_i f(x_i)-\sum_{i<j}f(x_i+x_j)+\cdots\ge0$ for all $x_1,\ldots,x_n\in\mathcal C$.  Applying it to $\mathcal C=\mathbf{S}_{++}^{d}$ and $f_v(X)=v^{\mathsf T}X^{-1}v$ would settle the conjecture for every $v$, and applying it to $X\mapsto\tr(X^{-1})$ would settle the trace form.  The refutation below therefore also shows that neither function is completely monotone on $\mathbf{S}_{++}^{d}$ for $d\ge3$ --- for $d=1$ both reduce to $1/t$, which is.  A matrix function that does satisfy the whole alternating string on $\mathbf{S}_{++}^{d}$ is $X\mapsto(\det X)^{-\rho}$, for $\rho\in\{0,\tfrac12,1,\tfrac32,\ldots\}\cup[(d-1)/2,\infty)$ \cite{NiculescuSra2023}.
+% Let $\mathbf{S}_{++}^{d}$ be the cone of real symmetric positive definite $d\times d$ matrices. The cone-valued form of the scalar mechanism is available: Theorem~7 of Niculescu and Sra \cite{NiculescuSra2023} states that every completely monotone $f$ on a cone $\mathcal C$ satisfies the inclusion--exclusion inequality $\sum_i f(x_i)-\sum_{i<j}f(x_i+x_j)+\cdots\ge0$ for all $x_1,\ldots,x_n\in\mathcal C$.  Applying it to $\mathcal C=\mathbf{S}_{++}^{d}$ and $f_v(X)=v^{\mathsf T}X^{-1}v$ would settle the conjecture for every $v$, and applying it to $X\mapsto\tr(X^{-1})$ would settle the trace form.  The refutation below therefore also shows that neither function is completely monotone on $\mathbf{S}_{++}^{d}$ for $d\ge3$ --- for $d=1$ both reduce to $1/t$, which is.  A matrix function that does satisfy the whole alternating string on $\mathbf{S}_{++}^{d}$ is $X\mapsto(\det X)^{-\rho}$, for $\rho\in\{0,\tfrac12,1,\tfrac32,\ldots\}\cup[(d-1)/2,\infty)$ \cite{NiculescuSra2023}.
 \end{cxcontext}
 
 % ---------------- result: quantum-coupon-collector ----------------
@@ -58,7 +51,7 @@ Exact rational $3\times3$ matrices with $n=6$ and the integer vector $(4,1,3)^{\
 \end{cxcertificate}
 
 \begin{cxrefutation}
-The conjecture holds for a tuple of simultaneously diagonalizable matrices, where it is the classical identity coordinate by coordinate, and the source records that $n\le3$ is trivial and that $n=4$ was checked numerically.  Lemma~\ref{lem:qcc-facet} and Theorem~\ref{thm:qcc-positive-five} below upgrade that record: the conjecture is a theorem for every $d$ and every $n\le5$.  It fails at $n=6$.
+The conjecture holds for a tuple of simultaneously diagonalizable matrices, where it is the classical identity coordinate by coordinate, and the source records that $n\le3$ is trivial and that $n=4$ was checked numerically.  Lemma~\ref{lem:qcc-facet} and Theorem~\ref{thm:qcc-positive-five} below upgrade that record: the conjecture is a theorem for every $d$ and every $n\le5$.  It fails at $n=6$. Let us first present proofs of when it holds before a disproof of the general case.
 
 \begin{lemma}[Facet averaging]\label{lem:qcc-facet}
 Let $A_1,\ldots,A_m\in\mathbf{S}_{++}^{d}$, where $m\ge2$, and put $A=\sum_{j=1}^{m}A_j$.  Then
@@ -78,7 +71,7 @@ Rearranging gives the claim.
 
 For a nonempty $S\subseteq[n]$ we abbreviate $X_S:=\sum_{i\in S}X_i$; then, for fixed $n$, introduce the layer sums
 \[
-E_k:=\sum_{\substack{S\subseteq[n]\\|S|=k}}X_S^{-1},\qquad1\le k\le n,
+E_k:=\sum_{S\subseteq[n], |S|=k} X_S^{-1},\qquad1\le k\le n,
 \]
 each of which is positive definite.  Applying Lemma~\ref{lem:qcc-facet} inside each $(k+1)$-subset $T$, with the $A_j$ taken to be the $X_i$ for $i\in T$, gives $X_T^{-1}\preceq\frac{k}{(k+1)^2}\sum_{i\in T}X_{T\setminus\{i\}}^{-1}$.  Summing over all $T$ of size $k+1$, and noting that each fixed $k$-subset arises as a facet of exactly $n-k$ of them, yields
 \begin{equation}\label{eq:qcc-layer}
@@ -130,7 +123,7 @@ Each $X_i$ is strictly positive definite because $X_i\succeq\varepsilon I_3\succ
 The accompanying verifier performs this computation using only rational arithmetic. Thus, $Q_6$ has a negative quadratic form and is not positive semidefinite, let alone positive definite.
 \end{proof}
 
-The failure is not confined to the matrix ordering: the weaker scalar consequence $\tr Q_n>0$ fails as well; see  Appendix~\ref{sec:qcctrace} for more details and commentary.
+The failure is not confined to the matrix ordering: the weaker scalar consequence $\tr Q_n>0$ fails as well; \emph{see  Appendix~\ref{sec:qcctrace} for more details and commentary}.
 
 % \begin{remark}[Scope]
 % What is refuted is the conjecture as posed, universally quantified over $n$ and $d$.  The exact record is now: for every $d$, the conjecture is true for $n\le5$ (Theorem~\ref{thm:qcc-positive-five}) and false at $n=6$ (Theorem~\ref{thm:quantum-coupon-collector}).  For the trace form the record is coarser --- true for $n\le5$, false at $n=10$, undecided in between; see Appendix~\ref{sec:qcctrace}.  Nothing here contradicts the simultaneously diagonalizable case, which remains an identity.
