@@ -6,7 +6,7 @@
 
 \begin{cxcredits}
 \posedby{Mariet and Sra \citeyearpar{MarietSra2015}}
-\foundby{TODO}{TODO}
+\foundby{GPT-5.6}{Aug 2026}
 \formalizedby{S.~Sra}
 \auditedby{S.~Sra}
 \contributedby{S.~Sra}
@@ -49,10 +49,7 @@ Exact rational $2\times2$ feasible update with lower likelihood.
 A feasible step with $a=5$ can strictly decrease the DPP log-likelihood.
 \end{theorem}
 \begin{proof}
-Use ground set $\{1,2\}$ and observations
-\[
-\mathcal T=\bigl\{\{1\},\{2\},\{1,2\}\bigr\}.
-\]
+Use ground set $\{1,2\}$ and observations $\mathcal T=\bigl\{\{1\},\{2\},\{1,2\}\bigr\}$.
 Let
 \[
 L_0=\begin{pmatrix}3.37200647&2.62325460\\2.62325460&6.07953037\end{pmatrix},
@@ -71,15 +68,8 @@ L_1=L_0+5L_0\Delta(L_0)L_0
 3.1681701017272776&3.4400758121589554
 \end{pmatrix}.
 \]
-Both matrices are positive definite; numerically,
-\[
-\det L_0\approx13.6187510458,\qquad
-\det L_1\approx0.8605575075.
-\]
-The normalized objective is
-\[
-\phi(L)=\frac13\bigl(\log L_{11}+\log L_{22}+\log\det L\bigr)-\log\det(I+L).
-\]
+Both matrices are positive definite; numerically, $\det L_0\approx13.6187510458$ and $\det L_1\approx0.8605575075$.
+The normalized objective is $\phi(L)=\frac13\bigl(\log L_{11}+\log L_{22}+\log\det L\bigr)-\log\det(I+L).$
 The inequality $\phi(L_1)<\phi(L_0)$ is equivalent, after exponentiating and cubing, to the exact rational comparison
 \[
 \frac{(L_1)_{11}(L_1)_{22}\det L_1}{(L_0)_{11}(L_0)_{22}\det L_0}
@@ -94,3 +84,9 @@ Numerically, the left and right sides are respectively
 Their exact rational difference is positive.  Hence the step is feasible but descending.
 \end{proof}
 \end{cxrefutation}
+
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: "../../tex/main"
+%%% End:

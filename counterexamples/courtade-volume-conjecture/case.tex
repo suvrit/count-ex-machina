@@ -126,17 +126,16 @@ cross-checked in SageMath, which rebuilds each Minkowski sum as a vertex
 polytope over $\mathbb{Q}$ and computes its volume by triangulation instead.
 \end{proof}
 
-\begin{remark}[The hand-made route]
-Unlike the rest of this archive, this refutation was first derived by hand,
-in May 2022 --- independently of, and essentially contemporaneously with, the
-arXiv posting of \citet{FradeliziMadimanZvavitch2024} in June 2022; no
-priority is claimed --- by a three-step reduction that shows failure for every
+\noindent\textbf{The author's own hand-made proof.}
+Unlike most of this archive, this refutation was first derived by hand,
+in May 2022 (independently of, and essentially contemporaneously with, the
+arXiv posting of \citet{FradeliziMadimanZvavitch2024} in June 2022; no priority is claimed) by a three-step reduction that shows failure for every
 $d\ge3$ without exhibiting a witness.  It is the shortest disproof of
 Problem~\ref{ctx:courtade-volume-conjecture} we know of, so we record it in
 full.  Throughout, $a,b,c,h$ are convex bodies in $\R^d$, $V(a)=|a|$, and
 $V(a[d{-}k],h[k])$ is the mixed volume with $a$ repeated $d-k$ times.
 
-\emph{Step 1: drop a term.}  Applied to $(K,L,B)=(b,c,a)$ and stripped of the
+\textcolor{darkblue}{\textbf{\emph{Step 1: drop a term.}}}  Applied to $(K,L,B)=(b,c,a)$ and stripped of the
 nonnegative term $|b|^{1/d}|c|^{1/d}$, the conjecture asserts
 $V(a)\,V(a+b+c)\le V(a+b)\,V(a+c)$, which rearranges to
 \[
@@ -147,7 +146,7 @@ f_b:\ a\ \longmapsto\ \frac{V(a)}{V(a+b)}:
 for every fixed $b$, the functional $f_b$ must be non-decreasing along
 Minkowski addition.
 
-\emph{Step 2: linearize.}  The expansion
+\textcolor{darkblue}{\textbf{\emph{Step 2: linearize.}}}  The expansion
 $V(a+th)=\sum_{k\le d}\binom dk\,t^k\,V(a[d{-}k],h[k])$ is a polynomial in
 $t\ge0$ with $\tfrac{d}{dt}V(a+th)\bigl|_{t=0}=d\,V(a[d{-}1],h)$, so
 $t\mapsto\log f_b(a+th)$ is differentiable; by Step~1 (applied at each base
@@ -158,7 +157,7 @@ derivative at $t=0$ is nonnegative:
 \qquad\text{for all bodies }a,b,h.
 \]
 
-\emph{Step 3: take $h$ a ball.}  Since $d\,V(a[d{-}1],B_2^d)=|\partial a|$ is
+\textcolor{darkblue}{\textbf{\emph{Step 3: take $h$ a ball.}}}  Since $d\,V(a[d{-}1],B_2^d)=|\partial a|$ is
 surface area, the display at $h=B_2^d$ is exactly the monotonicity
 $I(a+b)\ge I(a)$ of the information functional
 $I(\cdot)=|\cdot|/|\partial\,\cdot|$ of \citet{DemboCoverThomas1991}.
@@ -173,9 +172,9 @@ The explicit zonotope witness above was constructed for this archive in August
 2026, so that the case is self-contained and exactly recomputable; it lands in
 $d=4$ of necessity, since log-submodularity of volume holds for zonoids in
 $d\le3$ \citep{FradeliziMadimanMeyerZvavitch2024}.
-\end{remark}
 
-\begin{remark}[What holds instead: hyperbolic polynomials]
+
+\noindent\textbf{What holds instead: hyperbolic polynomials}
 The failure is specific to volume, not to its formal calculus.  Replace
 $\Vol^{1/d}$ on convex bodies by $F=p^{1/m}$ on the closed hyperbolicity cone
 of a hyperbolic polynomial $p$ of degree $m$ --- a functional with the same
@@ -192,7 +191,7 @@ witness above therefore also certifies a small impossibility theorem: there is
 no hyperbolic polynomial $p$ and points $x_K,x_L,x_B$ of its hyperbolicity
 cone with $F(sx_K+tx_L+ux_B)=|sK+tL+uB|^{1/4}$ for all $s,t,u\ge0$, for
 otherwise Theorem~\ref{thm:lor-fourpoint} would forbid $2992<3024$.
-\end{remark}
+
 
 \begin{remark}[Scope, and others' counterexamples]
 The conjecture has by now been refuted several times over.  The sharp
@@ -215,3 +214,10 @@ inequality it mirrors, and one where the linearization above is provably
 monotone \citep{DemboCoverThomas1991}.
 \end{remark}
 \end{cxrefutation}
+
+
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: "../../tex/main"
+%%% End:
