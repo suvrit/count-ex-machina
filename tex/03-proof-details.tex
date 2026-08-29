@@ -1,57 +1,53 @@
 % Hand-written appendix of supporting proofs.  Nothing generates this file.
 % It is \input after generated/appendix.tex, which has already issued \appendix,
 % so the \section below is numbered as the second appendix.
-\section{Positive results for the mixed-norm Cauchy--Schwarz inequality}
+\section{Positive results for Sah et al's mixed-norm CS inequality}
 \label{sec:proofdetails}
 
 This appendix collects the positive results that bound where the mixed-norm
-counterexamples of Theorems~\ref{thm:mixed-general} and~\ref{thm:mixed} can live.  None of them is
-new; they are recorded because together they show that the two counterexamples
-sit in the only region left open.
-
+counterexamples of Theorems~\ref{thm:mixed-general} and~\ref{thm:mixed} can live.  
 Throughout we use the convention of \citet{SahSawhneyStonerZhao2020},
 \[
-\|X\|_{L_{p,q}}:=\Bigl(\sum_i\Bigl(\sum_j|x_{ij}|^p\Bigr)^{q/p}\Bigr)^{1/q},
+\|X\|_{{p,q}}:=\Bigl(\nlsum_i\Bigl(\nlsum_j|x_{ij}|^p\Bigr)^{q/p}\Bigr)^{1/q},
 \]
-which is the transpose of the convention used in the case above; on the
+which is the transpose of the convention used in the reported counterexamples; on the
 symmetric matrices $A^{\mathsf T}A$, $B^{\mathsf T}B$ and at $p=q$ the two agree,
 which covers every statement below.  Write $p'$ for the conjugate exponent,
-$1/p+1/p'=1$.  The question at issue is whether
+$1/p+1/p'=1$.  The question is whether
 \begin{equation}\label{eq:ssszq}
-\|A^{\mathsf T}B\|_{L_{p,q}}^2\ \le\ \|A^{\mathsf T}A\|_{L_{q,q}}\,\|B^{\mathsf T}B\|_{L_{p,p}}
+\|A^{\mathsf T}B\|_{{p,q}}^2\ \le\ \|A^{\mathsf T}A\|_{{q,q}}\,\|B^{\mathsf T}B\|_{{p,p}}
 \end{equation}
 holds for all real $1\le p\le q$ and all entrywise nonnegative $A,B$.
 
 \begin{lemma}\label{lem:dualitybound}
-Let $M$ be Hermitian and $q\ge1$.  Then $\sup_{\|w\|_{q'}\le1}w^*Mw\le\|M\|_{L_{q,q}}$.
+Let $M$ be Hermitian and $q\ge1$.  Then, $\sup_{\|w\|_{q'}\le1}w^*Mw\le\|M\|_{{q,q}}$.
 \end{lemma}
 \begin{proof}
-Since $\|w\|_{q'}\le1$ iff $\|w\|_{q'}^2\le1$, and $\|w\|_{q'}^2=\|ww^*\|_{L_{q',q'}}$,
+Since $\|w\|_{q'}\le1$ iff $\|w\|_{q'}^2\le1$, and $\|w\|_{q'}^2=\|ww^*\|_{{q',q'}}$,
 \[
-\sup_{\|w\|_{q'}\le1}w^*Mw=\sup_{\|ww^*\|_{L_{q',q'}}\le1}\tr(Mww^*)
-\le\sup_{\|W\|_{L_{q',q'}}\le1}\tr(MW)=\|M\|_{L_{q,q}},
+\sup_{\|w\|_{q'}\le1}w^*Mw=\sup_{\|ww^*\|_{{q',q'}}\le1}\tr(Mww^*)
+\le\sup_{\|W\|_{{q',q'}}\le1}\tr(MW)=\|M\|_{{q,q}},
 \]
-the last step being duality of $\|\cdot\|_{L_{q,q}}$ and $\|\cdot\|_{L_{q',q'}}$.
+the last step being duality of $\|\cdot\|_{{q,q}}$ and $\|\cdot\|_{{q',q'}}$.
 \end{proof}
 
-\begin{proposition}[$p=1$]\label{prop:pone}
+\begin{proposition}\label{prop:pone}
 Let $A,B$ be entrywise nonnegative and $q\ge1$.  Then \eqref{eq:ssszq} holds at $p=1$.
 \end{proposition}
 \begin{proof}
 As $A^{\mathsf T}B\ge0$ entrywise, $\|A^{\mathsf T}Be_i\|_1=\mathbf 1^{\mathsf T}A^{\mathsf T}Be_i$, so by duality
 \[
-\|A^{\mathsf T}B\|_{L_{1,q}}=\sup_{\|u\|_{q'}\le1}\sum_i u_i\mathbf 1^{\mathsf T}A^{\mathsf T}Be_i
+\|A^{\mathsf T}B\|_{{1,q}}=\sup_{\|u\|_{q'}\le1}\sum_i u_i\mathbf 1^{\mathsf T}A^{\mathsf T}Be_i
 =\sup_{\|u\|_{q'}\le1}\langle A\mathbf 1,\ Bu\rangle
 \le\sup_{\|u\|_{q'}\le1}\|A\mathbf 1\|_2\|Bu\|_2 ,
 \]
 by Cauchy--Schwarz.  Now $\|A\mathbf 1\|_2=(\mathbf 1^{\mathsf T}A^{\mathsf T}A\mathbf 1)^{1/2}=\|A^{\mathsf T}A\|_{L_{1,1}}^{1/2}$, while
-$\sup_{\|u\|_{q'}\le1}\|Bu\|_2=\sup_{\|u\|_{q'}\le1}(u^{\mathsf T}B^{\mathsf T}Bu)^{1/2}\le\|B^{\mathsf T}B\|_{L_{q,q}}^{1/2}$
+$$\sup_{\|u\|_{q'}\le1}\|Bu\|_2=\sup_{\|u\|_{q'}\le1}(u^{\mathsf T}B^{\mathsf T}Bu)^{1/2}\le\|B^{\mathsf T}B\|_{{q,q}}^{1/2}$$
 by Lemma~\ref{lem:dualitybound}.
 \end{proof}
 
-This is Lemma~3.1 of \citet{SahSawhneyStonerZhao2020}; the duality proof recorded
-there was supplied by the present author, and the paper's acknowledgment records
-as much.
+This result appears as Lemma~3.1 in~\citet{SahSawhneyStonerZhao2020}; the duality proof recorded
+there was supplied by S.~Sra, and the paper's acknowledgment records as much.
 
 \begin{proposition}[every positive integer $p$]\label{prop:intp}
 If $p\in\mathbb N$ and $q\ge p$, then \eqref{eq:ssszq} holds for all entrywise nonnegative $A,B$.
@@ -59,42 +55,42 @@ If $p\in\mathbb N$ and $q\ge p$, then \eqref{eq:ssszq} holds for all entrywise n
 \begin{proof}
 The block matrix $\begin{bsmallmatrix}A^{\mathsf T}A&A^{\mathsf T}B\\B^{\mathsf T}A&B^{\mathsf T}B\end{bsmallmatrix}=[A\ B]^{\mathsf T}[A\ B]$ is positive semidefinite, so by the Schur product theorem its $p$-th Hadamard power is too, and is therefore $\begin{bsmallmatrix}C^{\mathsf T}C&C^{\mathsf T}D\\D^{\mathsf T}C&D^{\mathsf T}D\end{bsmallmatrix}$ for some $C,D$ with $C^{\mathsf T}D$, $C^{\mathsf T}C$, $D^{\mathsf T}D$ entrywise nonnegative.  Writing $r=q/p\ge1$,
 \[
-\|A^{\mathsf T}B\|_{L_{p,q}}=\Bigl(\sum_i\Bigl(\sum_j (A^{\mathsf T}B)_{ij}^{p}\Bigr)^{q/p}\Bigr)^{1/q}
-=\|C^{\mathsf T}D\|_{L_{1,r}}^{1/p}
-\le\bigl(\|C^{\mathsf T}C\|_{L_{1,1}}^{1/2}\|D^{\mathsf T}D\|_{L_{r,r}}^{1/2}\bigr)^{1/p},
+\|A^{\mathsf T}B\|_{{p,q}}=\Bigl(\sum_i\Bigl(\sum_j (A^{\mathsf T}B)_{ij}^{p}\Bigr)^{q/p}\Bigr)^{1/q}
+=\|C^{\mathsf T}D\|_{{1,r}}^{1/p}
+\le\bigl(\|C^{\mathsf T}C\|_{{1,1}}^{1/2}\|D^{\mathsf T}D\|_{{r,r}}^{1/2}\bigr)^{1/p},
 \]
-by Proposition~\ref{prop:pone}, and the right-hand side is $\|A^{\mathsf T}A\|_{L_{p,p}}^{1/2}\|B^{\mathsf T}B\|_{L_{q,q}}^{1/2}$.
+by Proposition~\ref{prop:pone}, and the right-hand side is $\|A^{\mathsf T}A\|_{{p,p}}^{1/2}\|B^{\mathsf T}B\|_{{q,q}}^{1/2}$.
 \end{proof}
 
 \begin{proposition}[$q=\infty$]\label{prop:qinf}
 For $1\le p$ and any complex $A,B$ of compatible size,
-$\|A^*B\|_{L_{p,\infty}}^2\le\|A^*A\|_{L_{p,p}}\|B^*B\|_{L_{\infty,\infty}}$.
+$\|A^*B\|_{{p,\infty}}^2\le\|A^*A\|_{{p,p}}\|B^*B\|_{{\infty,\infty}}$.
 Here entrywise nonnegativity is not needed.
 \end{proposition}
 \begin{proof}
 By duality and Cauchy--Schwarz,
 \[
-\|A^*B\|_{L_{p,\infty}}^2=\max_i\max_{\|z_i\|_{p'}\le1}|z_i^*A^*Be_i|^2
+\|A^*B\|_{{p,\infty}}^2=\max_i\max_{\|z_i\|_{p'}\le1}|z_i^*A^*Be_i|^2
 \le\max_i\max_{\|z_i\|_{p'}\le1}(z_i^*A^*Az_i)\,(B^*B)_{ii},
 \]
-and Lemma~\ref{lem:dualitybound} bounds the first factor by $\|A^*A\|_{L_{p,p}}$ and the second by $\|B^*B\|_{L_{\infty,\infty}}$.
+and Lemma~\ref{lem:dualitybound} bounds the first factor by $\|A^*A\|_{{p,p}}$ and the second by $\|B^*B\|_{{\infty,\infty}}$.
 \end{proof}
 
 The next two statements concern the specialization $B=A$, i.e.\ the inequality
-$\|Z\|_{L_{p,q}}^2\le\|Z\|_{L_{p,p}}\|Z\|_{L_{q,q}}$ for completely positive $Z$.
+$\|Z\|_{{p,q}}^2\le\|Z\|_{{p,p}}\|Z\|_{{q,q}}$ for completely positive $Z$.
 
 \begin{proposition}[infinite divisibility]\label{prop:infdiv}
-Let $Z\in\R_{\ge0}^{n\times n}$ be positive semidefinite and suppose the Hadamard power $Z^{\odot p}=[z_{ij}^p]$ is positive semidefinite for some $p\ge1$.  Then $\|Z\|_{L_{p,q}}^2\le\|Z\|_{L_{p,p}}\|Z\|_{L_{q,q}}$ for every $q\ge p$.
+Let $Z\in\R_{\ge0}^{n\times n}$ be positive semidefinite and suppose the Hadamard power $Z^{\odot p}=[z_{ij}^p]$ is positive semidefinite for some $p\ge1$.  Then $\|Z\|_{{p,q}}^2\le\|Z\|_{{p,p}}\|Z\|_{{q,q}}$ for every $q\ge p$.
 \end{proposition}
 \begin{proof}
-Write $Z^{\odot p}=X^{\mathsf T}X$.  Then $\|Z\|_{L_{p,q}}=\|X^{\mathsf T}X\|_{L_{1,q/p}}^{1/p}$, and Proposition~\ref{prop:pone} bounds this by $\bigl(\|X^{\mathsf T}X\|_{L_{1,1}}\|X^{\mathsf T}X\|_{L_{q/p,q/p}}\bigr)^{1/2p}=\|Z\|_{L_{p,p}}^{1/2}\|Z\|_{L_{q,q}}^{1/2}$.
+Write $Z^{\odot p}=X^{\mathsf T}X$.  Then $\|Z\|_{{p,q}}=\|X^{\mathsf T}X\|_{{1,q/p}}^{1/p}$, and Proposition~\ref{prop:pone} bounds this by $\bigl(\|X^{\mathsf T}X\|_{{1,1}}\|X^{\mathsf T}X\|_{{q/p,q/p}}\bigr)^{1/2p}=\|Z\|_{{p,p}}^{1/2}\|Z\|_{{q,q}}^{1/2}$.
 \end{proof}
 
 \begin{corollary}[order at most three]\label{cor:smalln}
-Let $Z\in\R^{n\times n}$ be positive semidefinite with $n\le3$, with no assumption that its entries are nonnegative.  Then $\|Z\|_{L_{p,q}}^2\le\|Z\|_{L_{p,p}}\|Z\|_{L_{q,q}}$ for all $1\le p\le q$.
+Let $Z\in\R^{n\times n}$ be positive semidefinite with $n\le3$, with no assumption that its entries are nonnegative.  Then $\|Z\|_{{p,q}}^2\le\|Z\|_{{p,p}}\|Z\|_{{q,q}}$ for all $1\le p\le q$.
 \end{corollary}
 \begin{proof}
-For $n\le3$ a positive semidefinite $Z$ has $|Z|:=[|z_{ij}|]$ positive semidefinite as well.\footnote{This is a classical fact about small Hermitian matrices; the source manuscript for this case attributes it to Marcus and Watkins (1969), a reference the present text has not independently checked.}  Since $p\ge1\ge n-2$, the FitzGerald--Horn theorem \citep{FitzGeraldHorn1977} makes $|Z|^{\odot p}$ positive semidefinite, so Proposition~\ref{prop:infdiv} applies to $|Z|$.  The mixed norms depend only on $|z_{ij}|$, so the bound transfers to $Z$.
+For $n\le3$ a PSD $Z$ has $|Z|:=[|z_{ij}|]$ PSD as well.\footnote{This is a classical fact about small Hermitian matrices; the source manuscript for this case attributes it to Marcus and Watkins (1969), a reference the present text has not independently checked.}  Since $p\ge1\ge n-2$, the FitzGerald--Horn theorem \citep{FitzGeraldHorn1977} makes $|Z|^{\odot p}$ positive semidefinite, so Proposition~\ref{prop:infdiv} applies to $|Z|$.  The mixed norms depend only on $|z_{ij}|$, so the bound transfers to $Z$.
 \end{proof}
 
 Together, Propositions~\ref{prop:pone}, \ref{prop:intp}, \ref{prop:qinf} and Corollary~\ref{cor:smalln} confine any counterexample
@@ -103,14 +99,14 @@ lives at $p=q=3/2$ and order four (as a Gram matrix of two $3\times2$ blocks), a
 Theorem~\ref{thm:mixed} at $(6/5,6)$ and order $21$ --- in each case the smallest region the
 positive results leave open.
 
-\begin{remark}[A correction to the reduction]
-The reduction sketched in the source manuscript normalizes a negative direction
-$x$ for $Z^{\odot s}$ by replacing $Z$ with $D_{|x|}ZD_{|x|}$, which does not have
-the intended effect: $(D_uZD_u)^{\odot s}=D_{u^s}Z^{\odot s}D_{u^s}$, so the
-rescaling that turns $x$ into a $\pm1$ vector is $D_{|x|^{1/s}}$, not $D_{|x|}$.
-The construction of Theorem~\ref{thm:mixed-general} sidesteps the point by exhibiting a
-$\pm1$ direction outright, so nothing downstream depends on the correction.
-\end{remark}
+% \begin{remark}[A correction to the reduction]
+% The reduction sketched in the source manuscript normalizes a negative direction
+% $x$ for $Z^{\odot s}$ by replacing $Z$ with $D_{|x|}ZD_{|x|}$, which does not have
+% the intended effect: $(D_uZD_u)^{\odot s}=D_{u^s}Z^{\odot s}D_{u^s}$, so the
+% rescaling that turns $x$ into a $\pm1$ vector is $D_{|x|^{1/s}}$, not $D_{|x|}$.
+% The construction of Theorem~\ref{thm:mixed-general} sidesteps the point by exhibiting a
+% $\pm1$ direction outright, so nothing downstream depends on the correction.
+% \end{remark}
 
 %%% Local Variables:
 %%% mode: LaTeX

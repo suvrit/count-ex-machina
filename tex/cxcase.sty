@@ -63,7 +63,7 @@
 \newcommand{\disc}{\operatorname{disc}}
 
 \definecolor{darkblue}{rgb}{0.0,0.0,0.75}
-\newcommand{\db}[1]{\textbf{\textcolor{darkblue}{#1}}}
+\newcommand{\dblue}[1]{\textbf{\textcolor{darkblue}{#1}}}
 
 % Certificate-level tags used in tex/ledger.tex; expanded in the table caption.
 \definecolor{darkgreen}{rgb}{0.0,0.5,0.0}
@@ -77,7 +77,7 @@
 % \setcounter{cxrow}{0} before the table.  Do not put \cxn in a longtable head:
 % heads are typeset once per page and the counter would run ahead.
 \newcounter{cxrow}
-\newcommand{\cxn}{\refstepcounter{cxrow}\db{\thecxrow.}}
+\newcommand{\cxn}{\refstepcounter{cxrow}\dblue{\thecxrow.}}
 
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{proposition}[theorem]{Proposition}

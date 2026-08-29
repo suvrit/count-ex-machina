@@ -6,13 +6,16 @@
 
 \begin{cxcredits}
 \posedby{S.~Sra}
-\foundby{TODO}{TODO}
+\foundby{GPT-5.6 Pro}{July 31, 2026}
 \formalizedby{S.~Sra}
 \auditedby{S.~Sra}
 \contributedby{S.~Sra}
 \end{cxcredits}
 
 \begin{cxcontext}
+\noindent\textbf{Note:} I could not locate the chat but I believe GPT-5.5 Pro already broke this earlier in 2026.
+\vskip 8pt
+  
 For convex bodies, $K+L=\{k+\ell:k\in K,\ \ell\in L\}$ is the Minkowski sum and $\Vol$ is Lebesgue volume.  Recall that $d$ is a \emph{semimetric} when it is symmetric, nonnegative, vanishes only on equal arguments, and satisfies the triangle inequality; the triangle inequality is the property that fails below.  A homogeneous polynomial with nonnegative coefficients is \emph{Lorentzian} in the sense of Br\"and\'en and Huh \citeyearpar{BrandenHuh} if all its second-order directional derivatives, taken at positive arguments, are quadratic forms of Lorentzian signature $(+,-,\ldots,-)$; in two variables, a form $\sum_{k}a_kx^ky^{d-k}$ is strictly Lorentzian exactly when the normalized coefficients $a_k/\binom dk$ are strictly log-concave, which is the criterion used below.  Lorentzian polynomials are log-concave on the positive orthant, so $F=-\log G$ is convex there and every midpoint Jensen gap $\J_G$ is nonnegative.  On the cone of positive definite matrices the corresponding statement is a theorem: there $\J_{\det}$ is the squared S-divergence, whose square root is a metric \citep{SraSdiv}, and the same holds for a parameterized family of symmetric divergences on that cone \citep{SraJSMetrics2021}.
 \end{cxcontext}
 
@@ -128,3 +131,9 @@ Immediate from Lemma~\ref{lem:lorentzian-cubic}: the cubic \eqref{eq:lorentzian-
 The midpoint integral identity and the homogeneous primitive decomposition of the earlier positive argument are correct.  What fails is a claimed Gram-determinant identity for the derivative of a Hessian Rayleigh quotient, whose two sides have incompatible homogeneity in the line direction; the omitted calculation therefore conceals a false identity rather than a technical gap.  Appendix~\ref{sec:lorentzianaudit} carries the full audit, including the exact enclosure procedure behind \eqref{eq:lorentzian-gap}.
 \end{remark}
 \end{cxrefutation}
+
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: "../../tex/main"
+%%% End:

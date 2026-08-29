@@ -12,16 +12,11 @@
 \end{cxcredits}
 
 \begin{cxcontext}
-For compact convex sets $K,L\subset\R^d$ the Minkowski sum is
-$K+L=\{x+y:x\in K,\ y\in L\}$, and $|K|$ denotes $d$-dimensional volume.
-The statement below is the closing question of \citet{Courtade2017Concavity};
-the ``Theorem 1'' it refers to is the entropy-power inequality
-$N(X+W)\,N(Y+W)\ge N(X)\,N(Y)+N(X+Y+W)\,N(W)$ for independent random vectors
-$X,Y,W$ with $W$ Gaussian, proved there, of which the question proposes a
-Brunn--Minkowski-theoretic analogue.  Dropping the term $|K|^{1/d}|L|^{1/d}$
-weakens the question to the \emph{log-submodularity} of volume under Minkowski
-summation, $|B|\,|K+L+B|\le|K+B|\,|L+B|$, a property with its own literature;
-see the remarks after the proof.
+For two sets $K,L\subset\R^d$ the Minkowski sum is the set
+$K+L :=\{x+y:x\in K,\ y\in L\}$. The statement below is the closing question of \citet{Courtade2017Concavity};
+the ``Theorem 1'' refers to Courtade's similarly structured entropy-power inequality, of which he conjectured a volume analogue.  Dropping $V(K)^{1/d}V(L)^{1/d}$ weakens his question to the \emph{log-submodularity} of volume under Minkowski
+summation, $V(B)V(K+L+B)\le V(K+B)V(L+B)$, a property with its own literature; 
+see the remarks after the proof. Following Courtade, we'll locally also use the notation $|K| \equiv V(K)$.
 \end{cxcontext}
 
 % ---------------- result: courtade-volume-conjecture ----------------
@@ -126,7 +121,7 @@ cross-checked in SageMath, which rebuilds each Minkowski sum as a vertex
 polytope over $\mathbb{Q}$ and computes its volume by triangulation instead.
 \end{proof}
 
-\noindent\textbf{The author's own hand-made proof.}
+\noindent\textbf{The author's own (non AI) proof.}
 Unlike most of this archive, this refutation was first derived by hand,
 in May 2022 (independently of, and essentially contemporaneously with, the
 arXiv posting of \citet{FradeliziMadimanZvavitch2024} in June 2022; no priority is claimed) by a three-step reduction that shows failure for every
@@ -174,27 +169,19 @@ $d=4$ of necessity, since log-submodularity of volume holds for zonoids in
 $d\le3$ \citep{FradeliziMadimanMeyerZvavitch2024}.
 
 
+\vskip4pt
 \noindent\textbf{What holds instead: hyperbolic polynomials}
-The failure is specific to volume, not to its formal calculus.  Replace
-$\Vol^{1/d}$ on convex bodies by $F=p^{1/m}$ on the closed hyperbolicity cone
-of a hyperbolic polynomial $p$ of degree $m$ --- a functional with the same
-two properties the conjecture seems to run on, positive homogeneity of degree
-one and concavity, G\aa rding's theorem standing in for Brunn--Minkowski ---
-and the four-point inequality becomes a theorem:
+Replace $\Vol^{1/d}$ on convex bodies by $p^{1/m}$ on the closed hyperbolicity cone
+of a hyperbolic polynomial $p$ of degree $m$. Then, the four-point inequality becomes a theorem, since
 Theorem~\ref{thm:lor-fourpoint} in Appendix~\ref{sec:lorentzianaudit} proves
 \[
-F(a+b)\,F(a+c)\ \ge\ F(a)\,F(a+b+c)+F(b)\,F(c),
+p^{1/m}(a+b)\,p^{1/m}(a+c)\ \ge\ p^{1/m}(a)\,p^{1/m}(a+b+c)+p^{1/m}(b)\,p^{1/m}(c),
 \]
-extra term included, via the Helton--Vinnikov determinantal representation;
-the case $p=\det$ on positive semidefinite matrices is contained in it.  The
-witness above therefore also certifies a small impossibility theorem: there is
-no hyperbolic polynomial $p$ and points $x_K,x_L,x_B$ of its hyperbolicity
-cone with $F(sx_K+tx_L+ux_B)=|sK+tL+uB|^{1/4}$ for all $s,t,u\ge0$, for
-otherwise Theorem~\ref{thm:lor-fourpoint} would forbid $2992<3024$.
+extra term included. The weaker inequality without the $p^{1/m}(b)\,p^{1/m}(c)$ was first observed by the author (S.~Sra) here~\citep{sra2017MO}. %, via the Helton--Vinnikov determinantal representation; the case $p=\det$ on positive semidefinite matrices is contained in it.  The witness above therefore also certifies a small impossibility theorem: there is no hyperbolic polynomial $p$ and points $x_K,x_L,x_B$ of its hyperbolicity cone with $F(sx_K+tx_L+ux_B)=|sK+tL+uB|^{1/4}$ for all $s,t,u\ge0$, for otherwise Theorem~\ref{thm:lor-fourpoint} would forbid $2992<3024$.
 
 
-\begin{remark}[Scope, and others' counterexamples]
-The conjecture has by now been refuted several times over.  The sharp
+\vskip4pt
+\noindent\textbf{Scope, and others' counterexamples.} The conjecture has by now been refuted several times over.  The sharp
 Pl\"unnecke--Ruzsa constants of \citet{FradeliziMadimanZvavitch2024} already
 imply that log-submodularity --- hence the stronger inequality here --- fails
 for general convex bodies in every dimension $d\ge3$.  In August 2026,
@@ -212,7 +199,6 @@ touch is the variant of the question in which the common summand $B$ is a
 Euclidean ball --- the case closest to $W$ Gaussian in the entropy-power
 inequality it mirrors, and one where the linearization above is provably
 monotone \citep{DemboCoverThomas1991}.
-\end{remark}
 \end{cxrefutation}
 
 
