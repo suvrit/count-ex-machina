@@ -9,7 +9,7 @@ arXiv wants few files and no build system, so tex/ is folded into three:
                       the appendix \\inputs replaced by one \\input{appendix}
   arxiv/appendix.tex  the appendix files in main.tex's order, with their
                       case.tex's and generated/appendix-brief inlined
-  arxiv/cxcase.sty    a verbatim copy
+  arxiv/cxcase.sty    tex/cxcase.sty, comments removed the same way
 
 The source becomes public on arXiv, so whole-line comments are dropped,
 trailing comment text is cut back to a bare % (which still eats the newline,
@@ -258,7 +258,8 @@ def main() -> int:
     appendix_lines = build_appendix(inlined)
     (OUT / "main.tex").write_text("\n".join(main_lines) + "\n")
     (OUT / "appendix.tex").write_text("\n".join(appendix_lines) + "\n")
-    shutil.copyfile(TEX / "cxcase.sty", OUT / "cxcase.sty")
+    sty = header("tex/cxcase.sty") + clean((TEX / "cxcase.sty").read_text().splitlines(), "tex/cxcase.sty")
+    (OUT / "cxcase.sty").write_text("\n".join(collapse(sty)) + "\n")
     print("inlined, in order:")
     for p in inlined:
         print(f"  {p}")

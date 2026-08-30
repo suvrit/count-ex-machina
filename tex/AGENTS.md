@@ -91,7 +91,7 @@ level up, which is how `cxcase.sty` and `references.bib` are still found.
 Deleting the directory at any time is safe.
 
 For arXiv: `make arxiv` (`tools/flatten_arxiv.py`) folds the whole paper into
-`arxiv/main.tex`, `arxiv/appendix.tex` and a copy of `cxcase.sty`, with every
+`arxiv/main.tex`, `arxiv/appendix.tex` and `arxiv/cxcase.sty`, with every
 `\input` inlined, the bibliography spliced in from a fresh bibtex run, and
 whole-line comments and `\iffalse ... \fi` blocks removed, since the source
 is public there. It then compiles the three files on their own and fails on an
