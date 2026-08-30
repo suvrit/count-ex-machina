@@ -90,6 +90,14 @@ compiles from inside that directory with `TEXINPUTS`/`BIBINPUTS` pointing one
 level up, which is how `cxcase.sty` and `references.bib` are still found.
 Deleting the directory at any time is safe.
 
+For arXiv: `make arxiv` (`tools/flatten_arxiv.py`) folds the whole paper into
+`arxiv/main.tex`, `arxiv/appendix.tex` and a copy of `cxcase.sty`, with every
+`\input` inlined, the bibliography spliced in from a fresh bibtex run, and
+whole-line comments and `\iffalse ... \fi` blocks removed, since the source
+is public there. It then compiles the three files on their own and fails on an
+undefined reference or citation. `arxiv/` is regenerated wholesale each run and
+the whole directory is gitignored -- fix things in `tex/`, not there.
+
 ## Preamble facts worth knowing before you write LaTeX
 
 - Bare `\cite` is `\citep` (`\AtBeginDocument{\let\cite\citep}`); use `\citet`

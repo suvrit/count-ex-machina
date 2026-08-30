@@ -341,6 +341,9 @@ __pycache__/
 verification_report.json
 paper.pdf
 
+## The arXiv flattening (`make arxiv`): regenerated wholesale from tex/.
+/arxiv/
+
 ## Local scratch.  Drafts, retired writeups and one-off experiments that are
 ## kept on disk but deliberately outside the archive.  Nothing in here is read
 ## by `make check` or `make verify`, and -- since it is untracked -- nothing in
