@@ -97,9 +97,9 @@ the paper's structure genuinely changes.
 ## After changing anything here
 
 ```sh
-.venv/bin/python tools/build.py --allow-todo   # regenerate
+make regen                                     # regenerate
 git diff                                       # expect only what you intended
-make check                                     # error list unchanged except by design
+make check                                     # must pass
 make verify                                    # ALL n CASES PASS
 make paper
 ```

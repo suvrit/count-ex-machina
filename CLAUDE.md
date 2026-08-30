@@ -19,7 +19,6 @@ If you read nothing else:
    anything; once a human has edited it, it is theirs — do not regenerate,
    reformat, or "resync" it unless asked in that session.** Report drift
    instead of fixing it. See "Who owns which file" in AGENTS.md.
-4. `make check` **already fails** with 12 pre-existing errors on a clean tree
-   (eleven `credits.found_by` TODOs, one missing provenance block). Capture
-   the list before you start; only new errors are yours. `make verify` passes
-   and must stay passing.
+4. `make check` and `make verify` **both pass** on a clean tree and must stay
+   passing: any error either prints after your change is yours. CI runs the
+   same two commands plus `git diff --exit-code`.

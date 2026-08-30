@@ -1,6 +1,6 @@
 # Archive audit notes
 
-Included: seventeen formal disproofs in fourteen case directories.
+Included: nineteen formal disproofs in fourteen case directories.
 
 Withheld or withdrawn:
 - Subgroup Johnson stability: a false target raised during an investigation, never a

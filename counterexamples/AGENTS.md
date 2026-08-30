@@ -224,9 +224,8 @@ CI, which runs plain `--check`.
 ## Before you call it done
 
 ```sh
-make regen        # today, while the eleven found_by TODOs stand:
-                  #   .venv/bin/python tools/build.py --allow-todo
-make check        # no error may name your case; the pre-existing 12 may remain
+make regen        # regenerate the case list, registry, README table
+make check        # must pass: no error at all
 make verify       # ALL n CASES PASS
 make paper
 ```

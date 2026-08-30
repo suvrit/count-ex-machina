@@ -7,9 +7,9 @@ points here, and `counterexamples/`, `tex/`, and `tools/` each carry a shorter
 ## What this repository is
 
 An archive of AI-found counterexamples to publicly posed mathematical
-statements, companion to the paper *“GPT: The Counterexample Machine”*
+statements, companion to the paper *“GPT, the Counterexample Machine”*
 (Suvrit Sra, TU Munich). It is not a software project that happens to contain
-mathematics: the artifact being shipped is **seventeen refuted statements, each
+mathematics: the artifact being shipped is **nineteen refuted statements, each
 with a certificate a stranger can recompute**.
 
 One invariant governs everything:
@@ -82,7 +82,7 @@ the baseline is red.
 | `tools/` | `build.py`, `verify_all.py`, `new_case.py`, `unpack_submission.py`, `exactcert.py` | yes, but see `tools/AGENTS.md` |
 | `verification_report.json` | last run of `verify_all.py` | no — regenerable, gitignored |
 
-A case **directory** is not a case **result**. Twenty results live in fourteen
+A case **directory** is not a case **result**. Nineteen results live in fourteen
 directories (`aim-problems` holds `aim-problem-35`, `aim-problem-38`,
 `aim-problem-36` and `aim-problem-37`; `lorentzian-jensen` holds
 `lorentzian-jensen` and `log-volume-distance`). Ids, ledger rows, credits, and
@@ -110,32 +110,22 @@ install; a dependency free to drift is a certificate free to drift. Sage
 cross-checks run when `sage` is on `PATH` and are skipped loudly otherwise (CI
 has no Sage, so every case must stand on its pure-Python certificate alone).
 
-## The baseline is red — know what is *your* failure
+## The baseline is green — keep it that way
 
 As of the current commit, on a clean tree:
 
-- `make verify` → **passes**, `ALL 14 CASES PASS` (two Sage cross-checks pass
-  too, if Sage is installed). Keep it that way; this is the gate you can hold
-  yourself to.
-- `make check` → **fails with 12 pre-existing errors**: one
-  `credits.found_by` TODO for each of the seventeen results except
-  `quantum-coupon-collector` and `odonnell-matrix-conjecture`, plus a missing
-  `provenance` for `rank-two-mixed-norm`. These are the maintainer's to fill in
-  — they are facts about real sessions that nobody can reconstruct from the
-  repository.
-- CI is **temporarily disabled** because of exactly those twelve: the workflow's
-  `push` and `pull_request` triggers are commented out in
-  `.github/workflows/verify.yml`, so nothing runs automatically and the verify
-  badge is parked. Run `make check` yourself; it is still the gate, and the
-  workflow can be dispatched by hand from the Actions tab.
-- Generated files are nevertheless **current**: `tools/build.py --allow-todo`
-  reproduces them byte-for-byte. Because plain `build.py` refuses to write
-  while errors stand, use `--allow-todo` to regenerate today, and diff the
-  result — anything beyond your own case is drift you introduced.
+- `make check` → **passes**: every attribution and provenance field is filled
+  in, and the generated files are current.
+- `make verify` → **passes**, `ALL 14 CASES PASS` (four Sage cross-checks pass
+  too, if Sage is installed).
+- CI (`.github/workflows/verify.yml`) runs both on every push and pull
+  request, then `git diff --exit-code`, so a certificate that does not
+  recompute bit-for-bit fails there.
 
-So: capture the error list *before* you start, and compare. Twelve errors
-after your change means you broke nothing; eleven probably means you invented
-an attribution.
+So any error `make check` prints after your change is yours. `build.py
+--allow-todo` still exists for scaffolding a case whose attribution is not yet
+known, but CI runs plain `--check`, and a case is not done while it needs the
+flag.
 
 ## Things that are never OK
 
@@ -186,10 +176,8 @@ an attribution.
 
 ## Definition of done
 
-1. `make regen` (today: `.venv/bin/python tools/build.py --allow-todo`) run, and
-   the regenerated files committed.
-2. `make check` shows no error naming your case — the pre-existing fourteen may
-   remain.
+1. `make regen` run, and the regenerated files committed.
+2. `make check` passes — no error at all, not merely none naming your case.
 3. `make verify` ends with `ALL n CASES PASS`.
 4. `make paper` compiles.
 5. `git status` clean after a second `make verify` — certificates must
