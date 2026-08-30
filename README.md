@@ -19,7 +19,7 @@ intervals, never floating point.</sub>
 
 </div>
 
-Companion repository for the paper **“GPT: The Counterexample Machine”**
+Companion repository for the paper **“GPT, the Counterexample Machine”**
 (Suvrit Sra, TU Munich). It archives AI-assisted counterexamples to
 mathematical statements that were posed publicly — in a paper, a preprint, a
 problem list, a talk, a forum thread — together with certificates a stranger
@@ -180,7 +180,7 @@ replace `ARXIV-ID` below (and update `CITATION.cff` to match).
 ```bibtex
 @misc{Sra2026CountExMachina,
   author        = {Suvrit Sra},
-  title         = {{GPT}: The Counterexample Machine},
+  title         = {{GPT}, the Counterexample Machine},
   year          = {2026},
   eprint        = {ARXIV-ID},
   archivePrefix = {arXiv},

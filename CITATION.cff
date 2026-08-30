@@ -21,7 +21,7 @@ license:
   - Apache-2.0
   - CC-BY-4.0
 version: 0.1.0
-date-released: "2026-08-01"
+date-released: "2026-08-30"
 repository-code: "https://github.com/suvrit/count-ex-machina"
 url: "https://github.com/suvrit/count-ex-machina"
 keywords:
@@ -33,7 +33,7 @@ keywords:
   - matrix inequalities
 preferred-citation:
   type: article
-  title: "count-ex-machina: GPT, the Counterexample Machine"
+  title: "GPT, the Counterexample Machine"
   authors:
     - family-names: Sra
       given-names: Suvrit
