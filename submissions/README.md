@@ -11,6 +11,10 @@ checks apply.
 If you have not cloned the repository, you do not need to: paste the bundle
 into an issue instead, using the *Submit a counterexample* template.
 
+[`admitted/`](admitted/) keeps the bundles that were unpacked and admitted, as
+the record of what was submitted; the case directory under `counterexamples/`
+is the authoritative version.
+
 [`not-admitted/`](not-admitted/) keeps bundles that were screened and declined,
 each with the reason written out. They are worth reading before packaging
 something similar: both were arithmetically correct and still did not qualify.
