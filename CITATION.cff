@@ -40,6 +40,5 @@ preferred-citation:
       affiliation: "TU Munich, Dept. of Mathematics, School of CIT"
       email: s.sra@tum.de
   year: 2026
-  notes: >-
-    Preprint; the arXiv identifier is pending.  When it is assigned, add it here
-    and in the BibTeX entry in README.md.
+  url: "https://arxiv.org/abs/2608.29595"
+  notes: "arXiv:2608.29595 [math.CO]"

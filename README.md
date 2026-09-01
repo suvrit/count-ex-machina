@@ -174,17 +174,17 @@ every push and pull request.
 
 ## Citing
 
-The paper is being submitted to the arXiv; until the identifier is assigned,
-replace `ARXIV-ID` below (and update `CITATION.cff` to match).
+The paper is on the arXiv as
+[arXiv:2608.29595](https://arxiv.org/abs/2608.29595).
 
 ```bibtex
 @misc{Sra2026CountExMachina,
   author        = {Suvrit Sra},
   title         = {{GPT}, the Counterexample Machine},
   year          = {2026},
-  eprint        = {ARXIV-ID},
+  eprint        = {2608.29595},
   archivePrefix = {arXiv},
-  primaryClass  = {math.HO},
+  primaryClass  = {math.CO},
   note          = {Code and certificates:
                    \url{https://github.com/suvrit/count-ex-machina}}
 }
