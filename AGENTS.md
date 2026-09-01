@@ -157,7 +157,7 @@ flag.
    reviewable diff into an unreviewable one.
 8. **Refuting a strengthening.** If you tightened a hypothesis or flipped a
    quantifier to make the witness work, you have refuted a different statement.
-   This is the failure mode that gets a case withdrawn (see `audit_notes.md`).
+   This is the failure mode that gets a case withdrawn.
 
 ## Common tasks
 
@@ -172,7 +172,7 @@ flag.
 | Change the generator or the schema | `tools/AGENTS.md` |
 | Touch the paper or its macros | `tex/AGENTS.md` |
 | Decide whether a case is admissible at all | `tex/02-admission.tex`, then `CONTRIBUTING.md` |
-| Check whether a case duplicates an admitted one | `audit_notes.md` § duplicates — no build check exists; read the sources |
+| Check whether a case duplicates an admitted one | No build check exists; read both statements' sources |
 
 ## Definition of done
 

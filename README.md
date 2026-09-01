@@ -223,7 +223,7 @@ an immutable `uid` in `registry.json`; that is a database key, not a citation.
 <!-- END CASE TABLE -->
 
 Withheld cases are documented but excluded from the paper's admitted ledger;
-see `audit_notes.md` and each case's README for the reason.
+see each case's README for the reason.
 
 ## Adding a counterexample
 

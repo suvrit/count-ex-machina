@@ -6,8 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        These are the most valuable issues this repository can receive. The
-        archive publishes what it withdraws (see `audit_notes.md`), and a
+        These are the most valuable issues this repository can receive. A
         successful challenge is credited like a result.
 
   - type: input

@@ -9,7 +9,7 @@ Nothing in this directory is built, verified, counted, or cited. These are not
 withheld *cases* — a withheld case is admitted into the repository with
 `status: "withheld"`, a `withheld_reason`, and its own `paper.tex`. These never
 became cases at all, so they have no `uid` and no ledger `order`, and none was
-minted for them. See `../../audit_notes.md` for the archive-level record.
+minted for them.
 
 The standing reason in both instances is that the refuted item was not the kind
 of thing a witness can refute, or was refuted only by discarding a hypothesis

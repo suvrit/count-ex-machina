@@ -537,7 +537,7 @@ Python's exact `fractions.Fraction` arithmetic is used; no float appears.
 Both counterexamples were found on 16 February 2026, in a session with the GPT
 Pro model then current; **which version that was is not recorded**, so the
 credit line says `GPT Pro` and claims no more. The exact matrices from that
-session were not preserved — see `audit_notes.md` — and were re-derived in
+session were not preserved, and were re-derived in
 August 2026, which is what `verify.py` certifies. The refuted statement itself
 is nine years older than either session.
 ```
