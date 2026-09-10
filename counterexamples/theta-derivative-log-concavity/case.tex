@@ -13,7 +13,21 @@
 \end{cxcredits}
 
 \begin{cxcontext}
-The kernel $\Phi$ below is the Jacobi theta kernel whose cosine transform is the Riemann $\xi$-function. A positive function $g$ is \emph{strictly log-concave} when $(g')^2-gg''>0$, so the assertion $J_n(t)>0$ says that the $(n-1)$st derivative $\Phi^{(n-1)}$ is strictly log-concave. %, for every order $n$ and every real $t$.
+Write $\xi(s)=\tfrac12 s(s-1)\pi^{-s/2}\Gamma(s/2)\zeta(s)$ for the Riemann $\xi$-function and $\Xi(x)=\xi(\tfrac12+ix)$ for its restriction to the critical line, a real even entire function of order one. Pólya's Fourier-cosine representation of $\Xi$ (see \citealp[\S4]{Csordas2014}, who writes $H(x)$ for $\Xi(x/2)/8$) is
+\[
+\Xi(x/2)=8\int_0^\infty \Phi(t)\cos(xt)\,dt,
+\]
+where $\Phi$ is the kernel displayed in the statement. The Riemann Hypothesis is equivalent to all zeros of $\Xi$ being real, that is, to $\Xi$ belonging to the Laguerre--P\'olya class of real entire functions that are locally uniform limits of real polynomials with only real zeros. Nothing is known that characterizes, in terms of a kernel, when its cosine transform has only real zeros; the program behind the statement below is to find properties of $\Phi$ that constrain the zeros of $\Xi$.
+
+Classical facts about the kernel (P\'olya, Wintner; collected as Theorem~4.1 of \citealp{Csordas2014}): $\Phi$ is even and positive, analytic in the strip $|\operatorname{Im}z|<\pi/8$, satisfies $\Phi'(t)<0$ for $t>0$, and every derivative $\Phi^{(n)}(t)$ decays faster than $\exp(-(\pi-\varepsilon)e^{4t})$ as $t\to\infty$. Because $\Phi$ is even, each $J_n$ below is even, so the conjecture is a statement about $t\ge0$.
+
+The interest in derivatives of $\Phi$ comes from the Tur\'an inequalities. The Maclaurin coefficients of $\Xi$ are, up to the normalization, the moments $b_k=\int_0^\infty t^{2k}\Phi(t)\,dt$, since $\Xi(x/2)=8\sum_{k\ge0}(-1)^k b_k\,x^{2k}/(2k)!$, and a necessary condition for the Riemann Hypothesis (P\'olya--Schur) is
+\[
+b_k^2-\tfrac{2k-1}{2k+1}\,b_{k-1}b_{k+1}\ge0\qquad(k\ge1).
+\]
+These were proved by Csordas, Norfolk and Varga \citeyearpar{CsordasNorfolkVarga1986} and by Csordas and Varga \citeyearpar{CsordasVarga1988} from concavity properties of $\Phi$, in particular the strict concavity of $\log\Phi(\sqrt t\,)$ on $t>0$, which is stronger than the log-concavity of $\Phi$ itself. Coffey and Csordas \citeyearpar{coffey2013log} gave a new proof that $\Phi$ is log-concave, the case $n=1$ below, and conjectured that every derivative of $\Phi$ is strictly log-concave as well; Csordas restated that conjecture as Open Problem~4.13.
+
+A positive function $g$ is \emph{strictly log-concave} when $(\log g)''<0$, equivalently $(g')^2-gg''>0$. For $n\ge2$ the derivative $\Phi^{(n-1)}$ need not be positive (already $\Phi'\le0$ on $t\ge0$), and the source takes the inequality $J_n(t)>0$ itself as the meaning of strict log-concavity of $\Phi^{(n-1)}$; that inequality is what is refuted below.
 \end{cxcontext}
 
 % ---------------- result: theta-derivative-log-concavity ----------------

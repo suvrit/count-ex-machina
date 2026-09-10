@@ -5,7 +5,10 @@
   "order": 5,
   "prose": "case.tex",
   "bib_keys": [
-    "Csordas2014"
+    "Csordas2014",
+    "coffey2013log",
+    "CsordasNorfolkVarga1986",
+    "CsordasVarga1988"
   ],
   "results": [
     {
