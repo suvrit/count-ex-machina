@@ -9,7 +9,7 @@ points here, and `counterexamples/`, `tex/`, and `tools/` each carry a shorter
 An archive of AI-found counterexamples to publicly posed mathematical
 statements, companion to the paper *“GPT, the Counterexample Machine”*
 (Suvrit Sra, TU Munich). It is not a software project that happens to contain
-mathematics: the artifact being shipped is **nineteen refuted statements, each
+mathematics: the artifact being shipped is **twenty-one refuted statements, each
 with a certificate a stranger can recompute**.
 
 One invariant governs everything:
@@ -82,7 +82,7 @@ the baseline is red.
 | `tools/` | `build.py`, `verify_all.py`, `new_case.py`, `unpack_submission.py`, `exactcert.py` | yes, but see `tools/AGENTS.md` |
 | `verification_report.json` | last run of `verify_all.py` | no — regenerable, gitignored |
 
-A case **directory** is not a case **result**. Nineteen results live in fourteen
+A case **directory** is not a case **result**. Twenty-one results live in sixteen
 directories (`aim-problems` holds `aim-problem-35`, `aim-problem-38`,
 `aim-problem-36` and `aim-problem-37`; `lorentzian-jensen` holds
 `lorentzian-jensen` and `log-volume-distance`). Ids, ledger rows, credits, and
@@ -116,7 +116,7 @@ As of the current commit, on a clean tree:
 
 - `make check` → **passes**: every attribution and provenance field is filled
   in, and the generated files are current.
-- `make verify` → **passes**, `ALL 14 CASES PASS` (four Sage cross-checks pass
+- `make verify` → **passes**, `ALL 16 CASES PASS` (four Sage cross-checks pass
   too, if Sage is installed).
 - CI (`.github/workflows/verify.yml`) runs both on every push and pull
   request, then `git diff --exit-code`, so a certificate that does not
