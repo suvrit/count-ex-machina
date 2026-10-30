@@ -198,11 +198,17 @@ def long_date(iso):
     return f"{d.day} {d.strftime('%B %Y')}"
 
 
-def case_date(c):
-    """The date of the last commit touching the case directory, so a rebuild of
-    an unchanged case gives an identical note."""
-    iso = git("log", "-1", "--format=%cs", "--", str(c["_dir"].relative_to(ROOT)))
-    return iso or datetime.date.today().isoformat()
+def case_commit(c, carried):
+    """(sha, unix time, ISO date) of the last commit touching what the note is
+    made of: the case directory and the appendix files it carries.  A note cites
+    that commit and is dated by it, so it changes only when its case does and a
+    rebuild of an unchanged case gives a byte-identical PDF."""
+    paths = [str(c["_dir"].relative_to(ROOT))] + [f"tex/{name}.tex" for name in carried]
+    line = git("log", "-1", "--format=%H %ct %cs", "--", *paths)
+    if not line:
+        sys.exit(f"error: case {c['id']} has no commit yet; commit it before building its note")
+    sha, epoch, iso = line.split()
+    return sha, epoch, iso
 
 
 def abstract(c):
@@ -254,7 +260,7 @@ def aiusage(c):
             "of the archive at the commit cited above.")
 
 
-def write_note(c, plan, sha):
+def write_note(c, plan, sha, iso):
     carried, externals = plan[c["id"]]
     title = c["title_tex"]
     plain = c.get("title") or c["id"]
@@ -264,7 +270,7 @@ def write_note(c, plan, sha):
         "short": title if len(plain) <= 60 else "A Count ex Machina note",
         "repo": REPO,
         "paper": PAPER,
-        "date": long_date(case_date(c)),
+        "date": long_date(iso),
         "abstract": abstract(c),
         "xr": "\\usepackage{xr-hyper}\n" if externals else "",
         # amsart keeps its table-of-contents indents as tocindent labels in the
@@ -280,10 +286,6 @@ def write_note(c, plan, sha):
     path = NOTES_DIR / f"{c['id']}.tex"
     path.write_text(WRAPPER % fields)
     return path
-
-
-def case_epoch(c):
-    return git("log", "-1", "--format=%ct", "--", str(c["_dir"].relative_to(ROOT)))
 
 
 def compile_note(path, epoch):
@@ -323,11 +325,8 @@ def main():
     if errors:
         sys.exit("error: " + "\n  ".join(errors))
 
-    sha = git("rev-parse", "HEAD")
     if git("status", "--porcelain", "--", "counterexamples", "tex"):
-        print(f"warning: the tree differs from {sha[:7]}, which the notes cite", file=sys.stderr)
-    if not git("branch", "-r", "--contains", sha):
-        print(f"warning: {sha[:7]} is not on any remote branch, so the notes' links will not resolve",
+        print("warning: the tree has uncommitted changes, which the notes' cited commits lack",
               file=sys.stderr)
 
     chosen = [c for c in cases if not args.cases or c["id"] in args.cases]
@@ -336,7 +335,10 @@ def main():
     NOTES_DIR.mkdir(parents=True, exist_ok=True)
     failed = []
     for c in chosen:
-        code, problems = compile_note(write_note(c, plan, sha), case_epoch(c))
+        sha, epoch, iso = case_commit(c, plan[c["id"]][0])
+        if not git("branch", "-r", "--contains", sha):
+            print(f"warning: {c['id']} cites {sha[:7]}, which is on no remote branch yet", file=sys.stderr)
+        code, problems = compile_note(write_note(c, plan, sha, iso), epoch)
         status = "ok" if code == 0 and not problems else "FAILED"
         print(f"{status:6} {c['id']}" + "".join(f"\n         {p}" for p in problems[:5]))
         if status != "ok":
@@ -360,6 +362,10 @@ def main():
                 "found_by": list({(f["model"], f["date"]): {"model": f["model"], "date": f["date"]}
                                   for r in c["results"]
                                   for f in found_by_list(effective_credits(c, r))}.values()),
+                "posed_by": list(dict.fromkeys(
+                    tex_to_markdown(effective_credits(c, r).get("posed_by", ""), errors, c["id"])
+                    for r in c["results"])),
+                "certificate_levels": list(dict.fromkeys(r["certificate_level"] for r in c["results"])),
                 "results": [r["id"] for r in c["results"]],
                 "appendix": bool(c.get("appendix")),
             })
