@@ -848,5 +848,45 @@
       "sage": [],
       "requires": []
     }
+  },
+  {
+    "uid": "JX0NC0F3",
+    "result_id": "hermitian-exponential-determinant",
+    "former_ids": [],
+    "case": "hermitian-exponential-determinant",
+    "title": "A determinant inequality for sums of Hermitian exponentials",
+    "status": "refuted",
+    "ledger_no": 21,
+    "appendix": true,
+    "brief": false,
+    "ledger_label": "Conjecture 4.6",
+    "withheld_reason": null,
+    "class": "user formal problem",
+    "certificate_level": "computer-assisted",
+    "certificate_tex": "Integer $3\\times3$ symmetric inputs; exact rational Taylor intervals certify normalized right side $<1007/1000<101/100<$ normalized left side.",
+    "theorem_label": "thm:hermitian-exponential-determinant",
+    "provenance": {
+      "source_tex": "S.~Sra, Conjecture~4.6, posed in 2015 while studying MathOverflow question\n224121 \\citep{Wolfgang2015MO}",
+      "retrieved": null,
+      "fidelity": "paraphrase",
+      "statement_tex": "For Hermitian matrices $H,K$ of the same order,\n\\[\n \\det(e^H+e^K)^2\n \\leq \\det\\bigl(e^{2H}+e^{2K}+2e^{H+K}\\bigr).\n\\]"
+    },
+    "credits": {
+      "posed_by": "S.~Sra",
+      "found_by": [
+        {
+          "model": "GPT Astra (Pro)",
+          "date": "2026-10-30"
+        }
+      ],
+      "formalized_by": "GPT Astra (Pro)",
+      "audited_by": "GPT Astra (Pro)",
+      "contributed_by": "S.~Sra"
+    },
+    "verify": {
+      "python": "verify.py",
+      "sage": [],
+      "requires": []
+    }
   }
 ]

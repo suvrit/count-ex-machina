@@ -6,8 +6,8 @@
 
 [![verify](https://github.com/suvrit/count-ex-machina/actions/workflows/verify.yml/badge.svg?branch=main)](https://github.com/suvrit/count-ex-machina/actions/workflows/verify.yml)
 <!-- BEGIN COUNT BADGES -->
-[![counterexamples](https://img.shields.io/badge/counterexamples-12%20refuted%2C%208%20additional-0b7285)](#the-cases)
-[![certificates](https://img.shields.io/badge/certificates-17%20exact%2C%203%20interval-0b7285)](#the-cases)
+[![counterexamples](https://img.shields.io/badge/counterexamples-12%20refuted%2C%209%20additional-0b7285)](#the-cases)
+[![certificates](https://img.shields.io/badge/certificates-17%20exact%2C%204%20interval-0b7285)](#the-cases)
 <!-- END COUNT BADGES -->
 [![Python](https://img.shields.io/badge/Python-3.14-3776AB?logo=python&logoColor=white)](requirements.txt)
 [![code: Apache 2.0](https://img.shields.io/badge/code-Apache%202.0-4c566a)](LICENSE)
@@ -221,6 +221,7 @@ an immutable `uid` in `registry.json`; that is a database key, not a citation.
 | 14 | [dpp-feasible-step](counterexamples/dpp-feasible-step/) | refuted by explicit construction | [Feasible Picard steps for DPP likelihood — the unnumbered claim in §2](https://proceedings.mlr.press/v37/mariet15.pdf) | exact | GPT-5.6 (2026-08) |
 | 15–16 | [lorentzian-jensen](counterexamples/lorentzian-jensen/) | refuted by explicit construction | Log-volume midpoint gap and its Lorentzian generalization — the geometric specialization, as posed, the proposed master theorem, as posed | exact | GPT-5.6 Pro (2026-07-31) |
 | 17–20 | [sdd-nystrom-diminishing-returns](counterexamples/sdd-nystrom-diminishing-returns/), [osi-sketch-and-solve](counterexamples/osi-sketch-and-solve/), [hamiltonian-nepv-identity](counterexamples/hamiltonian-nepv-identity/), [qrcp-orthonormal-greedy](counterexamples/qrcp-orthonormal-greedy/) | refuted by explicit construction | [Simons workshop open questions — Problem 4.6(b), Problem 5.1, the identity after eq. (20) in §6.2, Problem 4.3](https://arxiv.org/html/2602.05394v2) | exact | OpenAI Codex (2026-08) |
+| 21 | [hermitian-exponential-determinant](counterexamples/hermitian-exponential-determinant/) | refuted by explicit construction | A determinant inequality for sums of Hermitian exponentials — Conjecture 4.6 | computer-assisted | GPT Astra (Pro) (2026-10-30) |
 <!-- END CASE TABLE -->
 
 Withheld cases are documented but excluded from the paper's admitted ledger;

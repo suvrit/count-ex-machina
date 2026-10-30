@@ -1,0 +1,232 @@
+\cxtitle{A determinant inequality for sums of Hermitian exponentials}
+\begin{cxcredits}
+\posedby{S.~Sra}
+\foundby{GPT Astra (Pro)}{2026-10-30}
+\formalizedby{GPT Astra (Pro)}
+\auditedby{GPT Astra (Pro)}
+\contributedby{S.~Sra}
+\end{cxcredits}
+
+\begin{cxcontext}
+All matrices in a comparison have the same finite order. A Hermitian matrix
+satisfies $H=H^*$, where $*$ denotes conjugate transpose, and $e^H$ is the
+usual matrix exponential. The notation $\det(e^H+e^K)^2$ means the square
+of the determinant, equivalently $\det((e^H+e^K)^2)$, not an entrywise square.
+For Hermitian $H,K$, set
+\[
+ A=e^H,\qquad B=e^K,\qquad E=e^{H+K},\qquad D=B^{-1}=e^{-K}.
+\]
+These exponentials are positive definite. Products such as $DA$ need not
+be Hermitian; the determinant identities used below do not require them to be.
+\end{cxcontext}
+
+\begin{cxsource}{hermitian-exponential-determinant}
+S.~Sra, Conjecture~4.6, posed in 2015 while studying MathOverflow question
+224121 \citep{Wolfgang2015MO}
+\end{cxsource}
+
+\begin{cxstatement}{hermitian-exponential-determinant}
+For Hermitian matrices $H,K$ of the same order,
+\[
+ \det(e^H+e^K)^2
+ \leq \det\bigl(e^{2H}+e^{2K}+2e^{H+K}\bigr).
+\]
+\end{cxstatement}
+
+\begin{cxsummary}{hermitian-exponential-determinant}
+A proposed determinant inequality comparing sums of Hermitian exponentials.
+\end{cxsummary}
+
+\begin{cxcertificate}{hermitian-exponential-determinant}
+Integer $3\times3$ symmetric inputs; exact rational Taylor intervals certify normalized right side $<1007/1000<101/100<$ normalized left side.
+\end{cxcertificate}
+
+\begin{cxrefutation}
+\begin{theorem}[\statusfalse: Hermitian exponential determinant comparison]\label{thm:hermitian-exponential-determinant}
+The assertion in Problem~\ref{ctx:hermitian-exponential-determinant} is false
+already for real symmetric $3\times3$ matrices.
+\end{theorem}
+\begin{proof}
+Take the exact integer matrices
+\[
+ H=\begin{pmatrix}
+ -26&10&-10\\
+ 10&-16&20\\
+ -10&20&-26
+ \end{pmatrix},
+ \qquad
+ K=\begin{pmatrix}
+ 0&0&0\\
+ 0&10&0\\
+ 0&0&20
+ \end{pmatrix}.
+\]
+Both are real symmetric, hence Hermitian, of the same order. Define
+\[
+ L=\frac{\det(A+B)^2}{\det(B)^2},\qquad
+ R=\frac{\det(A^2+B^2+2E)}{\det(B)^2}.
+\]
+Here $\det(B)^2=e^{2\operatorname{tr}K}=e^{60}>0$, so the proposed
+inequality is equivalent to $L\leq R$. Left multiplication and congruence,
+respectively, give the exact identities
+\[
+ L=\det(I+DA)^2,\qquad
+ R=\det(I+DA^2D+2DED).
+\]
+The supplied verifier certifies
+\begin{align*}
+ 1.0106259614312670597488454657
+ &<L<1.0106259614312670597488454658,\\
+ 1.0066369661468304923537507020
+ &<R<1.0066369661468304923537507021.
+\end{align*}
+Every terminating decimal in these strict bounds denotes an exact rational
+number, not a rounded estimate. In particular,
+\[
+ R<\frac{1007}{1000}<\frac{101}{100}<L,
+ \qquad L-R>\frac{3}{1000}.
+\]
+This reverses the claimed comparison.
+
+For completeness, here is the error control behind the certificate.
+For a rational matrix $X$ put
+\[
+ r=\|X\|_\infty=\max_i\sum_j|X_{ij}|,
+ \qquad T_m(X)=\sum_{j=0}^{m}\frac{X^j}{j!}.
+\]
+Submultiplicativity and the power-series definition imply
+\[
+ \|e^X-T_m(X)\|_\infty
+ \leq\sum_{j=m+1}^{\infty}\frac{r^j}{j!}
+ \leq\frac{r^{m+1}}{(m+1)!}\,
+       \frac{1}{1-r/(m+2)}
+ =:\varepsilon_m(r),\qquad r<m+2.
+\]
+The last bound is a geometric-series bound: after the first omitted term,
+each successive ratio is at most $r/(m+2)$. Therefore every entry of $e^X$
+lies in the rational interval
+$[(T_m(X))_{ij}-\varepsilon_m(r),
+  (T_m(X))_{ij}+\varepsilon_m(r)]$.
+
+The verifier takes $m=256$. The required norms are
+$\|H\|_\infty=56$, $\|H+K\|_\infty=46$, and $0,10,20$ for the three
+scalar exponents forming $D$. Each is strictly below $258$.
+The off-diagonal entries of $D$ are exactly zero. Rational interval addition,
+subtraction, and multiplication propagate these enclosures through the two
+normalized determinant expressions, using the six-term determinant formula
+in order three. Before squaring the left determinant interval, its strict
+positivity is certified. Interval endpoints and every inequality test use
+integers and \texttt{fractions.Fraction}; there is no unbounded truncation
+error and no machine-precision comparison. All displayed enclosing bounds
+and the strict separation above are checked, not merely printed.
+\end{proof}
+
+\begin{remark}[The linear coefficient and a log-determinant normalization]
+The following coefficientwise strengthening is recorded only as an auxiliary
+observation, not as a second archival result.
+For fixed $A,B,E$, let
+\[
+ \Delta(t)=\det(B^2+2tE+t^2A^2)-\det(B+tA)^2.
+\]
+Jacobi's determinant differentiation formula at $t=0$ gives
+\[
+ \frac{[t]\Delta(t)}{\det(B)^2}
+ =2\bigl(\operatorname{tr}(B^{-2}E)
+          -\operatorname{tr}(B^{-1}A)\bigr)
+ =2\bigl(\operatorname{tr}(DED)-\operatorname{tr}(DA)\bigr).
+\]
+For the same exact witness, the verifier certifies that this number $c_1$
+satisfies
+\[
+ -0.0081120478335667666163258676
+ <c_1<
+ -0.0081120478335667666163258675
+ <-\frac1{125}<0.
+\]
+Thus even the linear coefficient has the wrong sign.
+
+This is also the obstruction exposed by a log-determinant normalization.
+Put $S_t=B^2+t^2A^2$. Since
+$(B+tA)^2=S_t+t(AB+BA)$, cancellation of $\det S_t$ gives, for $t$ near zero,
+\begin{align*}
+ F(t)
+ &=\operatorname{tr}\log\bigl(I+2tS_t^{-1/2}ES_t^{-1/2}\bigr)\\
+ &\quad-\operatorname{tr}\log\bigl(I+tS_t^{-1/2}(AB+BA)S_t^{-1/2}\bigr)\\
+ &=c_1t+O(t^2).
+\end{align*}
+The logarithms are defined in a neighborhood of zero by positivity and
+continuity. The expansion is used to explain the discovery, not as a
+substitute for the exact certificate at $t=1$.
+\end{remark}
+
+\begin{remark}[An analytic family explaining the failure]
+A separate limiting construction explains why counterexamples exist.
+Set
+\[
+ M=\begin{pmatrix}0&1&-1\\1&1&2\\-1&2&0\end{pmatrix},
+ \qquad N=\operatorname{diag}(0,1,2),
+ \qquad \lambda=\lambda_{\max}(M).
+\]
+The unit vector $v=(0,1,1)^T/\sqrt2$ has $v^TMv=5/2$, so
+$\lambda\geq5/2>2$. No eigenvector of $M$ can have first coordinate zero: writing its eigenvalue
+as $\mu$, the first row would give $u_2=u_3$, and the second and third rows
+would then give simultaneously $\mu u_2=3u_2$ and $\mu u_2=2u_2$.
+This would force the entire vector to vanish. Consequently each eigenspace
+is one-dimensional (otherwise a linear combination would have first
+coordinate zero). Let $P=uu^T$ be the rank-one top spectral projection,
+with $\|u\|=1$, and put $Q=e_1e_1^T$, $\alpha=|u_1|^2>0$.
+
+For $r>0$ define
+\[
+ H_r=r(M-\lambda I),\quad K_r=rN,\quad
+ A_r=e^{H_r},\quad B_r=e^{K_r},\quad
+ D_r=B_r^{-1},\quad E_r=e^{H_r+K_r}.
+\]
+Then $A_r\longrightarrow P$ and $D_r\longrightarrow Q$. The matrix
+$T=M+N$ has characteristic polynomial $(x-4)(x^2-2)$ and top unit
+eigenvector $v$. Since this vector has zero first coordinate,
+\begin{align*}
+ \|D_rE_rD_r\|_2
+ &\leq e^{(\sqrt2-\lambda)r}
+       +e^{(4-\lambda)r}\|D_rv\|^2\\
+ &=e^{(\sqrt2-\lambda)r}
+   +\tfrac12 e^{(2-\lambda)r}
+   +\tfrac12 e^{-\lambda r}
+ \longrightarrow0.
+\end{align*}
+Here $\|\cdot\|_2$ is the operator norm. The contribution from the two
+remaining eigenspaces is bounded by $e^{(\sqrt2-\lambda)r}$, since
+$\|D_r\|_2=1$.
+
+It follows that, coefficientwise as polynomials in $t$,
+\begin{align*}
+ \frac{\det(B_r^2+2tE_r+t^2A_r^2)}{\det(B_r)^2}
+ &=\det(I+2tD_rE_rD_r+t^2D_rA_r^2D_r)
+ \longrightarrow1+\alpha t^2,\\
+ \frac{\det(B_r+tA_r)^2}{\det(B_r)^2}
+ &=\det(I+tD_rA_r)^2
+ \longrightarrow(1+\alpha t)^2.
+\end{align*}
+Coefficientwise convergence follows because these coefficients are polynomial
+functions of the converging matrix entries. The normalized difference tends to
+\[
+ -2\alpha t+\alpha(1-\alpha)t^2.
+\]
+At $t=1$ its limit is $-\alpha(1+\alpha)<0$, so the original inequality
+fails for all sufficiently large $r$. Its linear coefficient tends to
+$-2\alpha<0$. This analytic explanation is not needed to validate the fixed
+integer witness above; in particular, no numerical value of $\lambda$ enters
+the executable certificate.
+\end{remark}
+
+\begin{remark}[Scope]
+The certified conclusion concerns the displayed universal assertion for
+same-order Hermitian matrices, with the direction $\leq$ and with the term
+$2e^{H+K}$ unchanged.
+
+Commuting pairs satisfy equality, and this case does not dispute that fact.
+No claim is made that dimension three is minimal, nor is the dimension-two
+case resolved here. The negative coefficient above is auxiliary, not a
+separately provenanced claim. No novelty or priority is asserted.
+\end{remark}
+\end{cxrefutation}

@@ -1,0 +1,36 @@
+{
+  "id": "hermitian-exponential-determinant",
+  "title": "A determinant inequality for sums of Hermitian exponentials",
+  "status": "refuted",
+  "order": 17,
+  "appendix": true,
+  "prose": "case.tex",
+  "bib_keys": [
+    "Wolfgang2015MO"
+  ],
+  "results": [
+    {
+      "id": "hermitian-exponential-determinant",
+      "uid": "JX0NC0F3",
+      "class": "user formal problem",
+      "certificate_level": "computer-assisted",
+      "theorem_label": "thm:hermitian-exponential-determinant",
+      "provenance": {
+        "retrieved": null,
+        "fidelity": "paraphrase"
+      },
+      "ledger_label": "Conjecture 4.6"
+    }
+  ],
+  "verify": {
+    "python": "verify.py",
+    "sage": [],
+    "requires": []
+  },
+  "artifacts": [
+    {
+      "file": "artifacts/certificate.json",
+      "description": "Integer witness, rational Taylor-error bounds, outward-rounded rational enclosures, and strict separating inequalities."
+    }
+  ]
+}
