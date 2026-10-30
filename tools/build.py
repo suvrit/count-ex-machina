@@ -668,7 +668,7 @@ def validate(cases, allow_todo, errors):
     ordered = [c for c in cases if c.get("status") == "refuted" and isinstance(c.get("order"), int)]
     for c in sorted(ordered, key=lambda c: c["order"]):
         group = c.get("group")
-        if group != previous and group in seen_groups:
+        if group is not None and group != previous and group in seen_groups:
             errors.append(f"case {c['id']}: group {group!r} is not contiguous in 'order'")
         seen_groups.add(group)
         previous = group
