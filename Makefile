@@ -7,7 +7,7 @@
 PY ?= .venv/bin/python
 
 .DEFAULT_GOAL := help
-.PHONY: help venv new unpack check verify regen paper preview arxiv all clean
+.PHONY: help venv new unpack check verify regen paper preview notes arxiv all clean
 
 help:
 	@echo "make venv    create .venv and install the pinned dependencies"
@@ -18,6 +18,7 @@ help:
 	@echo "make regen   regenerate the case metadata, registry, README table"
 	@echo "make paper   build tex/main.pdf"
 	@echo "make preview CASE=<id>   compile one case on its own"
+	@echo "make notes   one short standalone note per case, in tex/notes/"
 	@echo "make arxiv   flatten tex/ into arxiv/ for an arXiv upload"
 	@echo "make all     check, then build the paper"
 	@echo "make clean   remove LaTeX build artifacts"
@@ -52,6 +53,11 @@ paper:
 # level, verbatim vs paraphrase) is not applied; see tools/preview_case.py.
 preview:
 	@$(PY) tools/preview_case.py $(CASE)
+
+# One short note per case (all of them, or CASES="a b"), for the author's
+# website; see tools/notes.py.
+notes:
+	@$(PY) tools/notes.py $(CASES)
 
 # arXiv upload: tex/ flattened into arxiv/{main.tex,appendix.tex,cxcase.sty},
 # bibliography folded in, then compiled once to prove it stands alone.

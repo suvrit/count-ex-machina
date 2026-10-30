@@ -333,6 +333,7 @@ TSWLatexianTemp*
 ## Compiled PDF output (this repo has no PDF figures)
 main.pdf
 tex/preview/
+tex/notes/
 
 ## Project tooling and regenerable outputs
 .venv/
