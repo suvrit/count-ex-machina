@@ -1,0 +1,286 @@
+\cxtitle{Commuting counterexamples to determinantal entropy concavity}
+
+\begin{cxcredits}
+\posedby{Russell Lyons \citeyearpar{Lyons2003DPM,Lyons2014DPP}}
+\foundby{GPT Astra (Pro)}{2026-10-30}
+\formalizedby{OpenAI Codex}
+\auditedby{OpenAI Codex}
+\contributedby{Suvrit Sra}
+\end{cxcredits}
+
+\begin{cxcontext}
+Fix a finite coordinate set $E$. A positive contraction $Q$ is a self-adjoint
+operator on the real or complex Hilbert space $\ell^2(E)$ satisfying
+$0\preceq Q\preceq I$. Its determinantal law $\mathbf P^Q$ is defined by
+$\mathbf P^Q[A\subseteq X]=\det Q_{A,A}$ for every $A\subseteq E$.
+The entropy in the statement is the Shannon entropy of the entire occupied
+set, with the coordinate basis fixed:
+\[
+ \operatorname{Ent}(Q)
+ =-\sum_{S\subseteq E}\mathbf P^Q(\{S\})\log\mathbf P^Q(\{S\}),
+ \qquad 0\log0=0.
+\]
+We use natural logarithms. Write $H(Q)=\operatorname{Ent}(Q)$ below. For the
+coordinate projection $P_{S^c}$, the exact-set convention is
+\[
+ p_S(Q):=\mathbf P^Q(\{S\})
+ =(-1)^{|S^c|}\det(Q-P_{S^c}).
+\]
+This is not the entropy of the particle count and not the sum of binary
+entropies of the eigenvalues. The source explicitly permits complex Hilbert
+spaces (Section~2.1 of \cite{Lyons2014DPP}), so complex Hermitian kernels are
+within the stated domain; commutativity is a property of our witness, not a
+hypothesis of the statement.
+\end{cxcontext}
+
+\begin{cxsource}{lyons-dpp-entropy-concavity}
+R.~Lyons \citeyearpar{Lyons2014DPP}, Conjecture~2.6, eq.~(2.14); first posed
+as Conjecture~9.2 \citep{Lyons2003DPM}
+\end{cxsource}
+
+\begin{cxstatement}{lyons-dpp-entropy-concavity}
+For all positive contractions $Q_1$ and $Q_2$, we have
+\[
+ \operatorname{Ent}\bigl((Q_1+Q_2)/2\bigr)
+ \ge \bigl(\operatorname{Ent}(Q_1)+\operatorname{Ent}(Q_2)\bigr)/2.
+\]
+\end{cxstatement}
+
+\begin{cxsummary}{lyons-dpp-entropy-concavity}
+The exact-set Shannon entropy of a determinantal law is midpoint concave in its positive-contraction kernel.
+\end{cxsummary}
+
+\begin{cxcertificate}{lyons-dpp-entropy-concavity}
+Commuting $5\times5$ Hermitian kernels with rational spectra; rigorous rational logarithm bounds certify an entropy midpoint deficit exceeding $1/5{,}000{,}000{,}000$.
+\end{cxcertificate}
+
+\begin{cxrefutation}
+The entropy conjecture of \cite{Lyons2014DPP} fails along a commuting affine
+family. The matrices have an exact Fourier eigenbasis and rational spectra;
+all squared minors needed for their occupation probabilities lie in
+$\mathbb Q(\sqrt5)$.
+
+\begin{theorem}[\statusfalse: determinantal entropy concavity]\label{thm:lyons-dpp-entropy-concavity}
+Let $E=\{0,1,2,3,4\}$, let
+\[
+ \omega=e^{2\pi i/5},\qquad F_{jk}=5^{-1/2}\omega^{jk}
+ \quad(0\le j,k\le4),
+\]
+and set
+\[
+ \lambda_+=\frac1{10000}(11,9,9991,9990,9989),\qquad
+ \lambda_-=\frac1{10000}(9,11,9989,9990,9991),
+\]
+and $K_\pm=F\operatorname{diag}(\lambda_\pm)F^*$. These are commuting Hermitian strict positive contractions, but
+\[
+ H(K_+)=H(K_-),\qquad
+ H(K_+)-H\left(\frac{K_++K_-}{2}\right)
+ >\frac1{5{,}000{,}000{,}000}>0.
+\]
+In particular Conjecture~2.6 of \cite{Lyons2014DPP} is false as stated.
+\end{theorem}
+\begin{proof}
+All displayed spectral entries are exact rational numbers. Because $F$ is
+unitary, the two matrices commute, and their eigenvalues are strictly between
+zero and one. Introduce the family
+\[
+ \lambda_\varepsilon(t)=
+ (\varepsilon+t,\varepsilon-t,1-\varepsilon+t,
+  1-\varepsilon,1-\varepsilon-t),\qquad
+ K_\varepsilon(t)=F\operatorname{diag}(\lambda_\varepsilon(t))F^*.
+\]
+The theorem uses $\varepsilon=1/1000$ and $t=\pm1/10000$.
+For every $0<\varepsilon<1/2$ and $|t|<\varepsilon$, the entire family
+consists of commuting strict positive contractions.
+
+For $J\subseteq E$ put
+\[
+ q_J(\lambda)=\prod_{j\in J}\lambda_j\prod_{j\notin J}(1-\lambda_j),
+ \qquad M(S,J)=|\det F_{S,J}|^2.
+\]
+The exact-set probabilities satisfy
+\begin{equation}\label{eq:lyons-dpp-spectral-probability}
+ p_S(F\operatorname{diag}(\lambda)F^*)
+ =\sum_{J:\,|J|=|S|}M(S,J)q_J(\lambda).
+\end{equation}
+Indeed the inclusion convention gives the probability generating polynomial
+$\det(I-K+KZ)$, with $Z=\operatorname{diag}(z_i)$. Conjugating by $F$ and
+expanding in the rows of $I-\operatorname{diag}(\lambda)$ and
+$\operatorname{diag}(\lambda)F^*ZF$ gives
+$\sum_Jq_J(\lambda)\det((F^*ZF)_{J,J})$. Cauchy--Binet expands the latter
+minor as $\sum_{|S|=|J|}M(S,J)\prod_{i\in S}z_i$; comparison of coefficients
+proves \eqref{eq:lyons-dpp-spectral-probability}.
+
+Write $s=\sqrt5$. Squared Fourier minors of sizes zero and five equal one;
+those of sizes one and four equal $1/5$. For two-element sets
+$S=\{a,b\}$ and $J=\{c,d\}$,
+\[
+ M(S,J)=\frac{|\omega^{ac+bd}-\omega^{ad+bc}|^2}{25}
+ =\begin{cases}
+ (5-s)/50,&(b-a)(d-c)\equiv\pm1\pmod5,\\
+ (5+s)/50,&(b-a)(d-c)\equiv\pm2\pmod5.
+ \end{cases}
+\]
+The size-three values are the complementary size-two values, by the
+complementary-minor identity for a unitary matrix. Thus every $p_S$ is an
+explicit polynomial in $\varepsilon,t$ with coefficients in
+$\mathbb Q(\sqrt5)$.
+
+Let $R$ permute eigenmodes by $j\mapsto1-j\pmod5$. It fixes
+$\lambda_\varepsilon(0)$ and reverses the direction $(1,-1,1,0,-1)$.
+Since $FR=D\overline F$, where $D_{jj}=\omega^j$, we have
+\[
+ K_\varepsilon(-t)=D\overline{K_\varepsilon(t)}D^*.
+\]
+Complex conjugation and diagonal unitary conjugation preserve each exact-set
+probability. Hence every $p_S(\varepsilon,t)$ is even in $t$, proving the
+equality of the endpoint distributions and entropies.
+
+It remains to establish the strictly positive finite entropy difference.
+The accompanying \texttt{verify.py} evaluates
+\eqref{eq:lyons-dpp-spectral-probability} with exact rational coefficients
+and encloses all logarithms by rational bounds. It computes the eigenvalues
+at both endpoints and checks strict admissibility, polynomial normalization,
+and coefficientwise evenness. Its enclosure $[L,U]$ for
+$H(K_+)-H((K_++K_-)/2)$ satisfies the exact assertions
+\[
+ L>\frac1{5{,}000{,}000{,}000}>0,
+ \qquad
+ L\le H(K_+)-H\left(\frac{K_++K_-}{2}\right)\le U.
+\]
+Here is the complete error-control method used by that finite computation.
+With $D_0=10^{40}$ and $r=\lfloor\sqrt{5D_0^2}\rfloor$, integer square
+root gives
+\[
+ r/D_0<\sqrt5<(r+1)/D_0.
+\]
+After exact power-of-two range reduction, logarithms of positive rational
+endpoints reduce to arguments $1\le x\le2$. For
+$z=(x-1)/(x+1)$ and $N=40$,
+\[
+ \log x=2\sum_{k=0}^{N-1}\frac{z^{2k+1}}{2k+1}+R_N,\qquad
+ 0\le R_N\le\frac{2z^{2N+1}}{(2N+1)(1-z^2)}.
+\]
+The series follows by integrating the geometric series; the tail bound
+replaces each omitted denominator by $2N+1$. Algebraic arguments are
+enclosed using the bounds on $\sqrt5$, and logarithms by monotonicity.
+Interval multiplication uses the minimum and maximum of all four endpoint
+products. Endpoints are rounded outward, using integer floor and ceiling,
+to a grid of denominator $10^{32}$. These operations preserve containment
+at each step. Every calculation and decisive inequality uses integers or
+\texttt{fractions.Fraction}; no floating-point evidence is used. This proves
+the stated finite inequality.
+\end{proof}
+
+There is also a complete analytic existence proof for the same family,
+independent of executing the certificate. It explains the sign of the
+curvature near a rank-three projection.
+
+\begin{proposition}
+For the family above,
+\[
+ \lim_{\varepsilon\downarrow0}
+ \left.\frac{d^2}{dt^2}H(K_\varepsilon(t))\right|_{t=0}
+ =2\log\frac{15}{44}
+  +\frac2{\sqrt5}\log\frac{147+65\sqrt5}{22}>0.
+\]
+\end{proposition}
+\begin{proof}
+The kernel is circulant, so translating $S$ preserves its probability. For
+the eight translation classes write
+\[
+ p_S(\varepsilon,0)=c_S\varepsilon^{m_S}(1+O(\varepsilon)),\qquad
+ \partial_t^2p_S(\varepsilon,0)=d_S+O(\varepsilon).
+\]
+The Fourier-minor formula gives the following table; the last column is per
+individual outcome, before multiplication by the class size.
+\[
+\begin{array}{c|r|r|c|c}
+ S&\text{class size}&m_S&c_S&d_S\\\hline
+ \varnothing&1&3&1&0\\
+ \{0\}&5&2&3/5&-2/5\\
+ \{0,1\}&5&1&(15-s)/50&(10-2s)/25\\
+ \{0,2\}&5&1&(15+s)/50&(10+2s)/25\\
+ \{0,1,2\}&5&0&(5-s)/50&(-10+6s)/25\\
+ \{0,1,3\}&5&0&(5+s)/50&(-10-6s)/25\\
+ \{0,1,2,3\}&5&1&2/5&4/5\\
+ E&1&2&1&-2
+\end{array}
+\]
+For completeness, the leading latent set at $\varepsilon=t=0$ is
+$J_0=\{2,3,4\}$. The leading singleton contributions are its three
+singletons, giving $3/5$. The leading pair contributions are
+$\{2,3\},\{2,4\},\{3,4\}$, whose squared minors sum to
+$(15\mp s)/50$. The leading triple contribution is $J_0$ itself. The two
+leading four-point sets add either 0 or 1 to $J_0$, giving $2/5$.
+The empty and full probabilities at $t=0$ are
+$\varepsilon^3(1-\varepsilon)^2$ and
+$\varepsilon^2(1-\varepsilon)^3$. These facts verify $m_S,c_S$.
+
+To check $d_S$ directly, the only nonzero values of
+$\partial_t^2q_J(\lambda_\varepsilon(t))$ at $\varepsilon=t=0$ are
+\[
+\begin{array}{c|r@{\qquad}c|r}
+ J&q_J''&J&q_J''\\\hline
+ \{3\}&-2&\{2,3\}&2\\
+ \{3,4\}&2&\{0,2,3\}&2\\
+ \{1,2,3\}&-2&\{0,3,4\}&-2\\
+ \{1,3,4\}&2&\{2,3,4\}&-4\\
+ \{0,2,3,4\}&2&\{1,2,3,4\}&2\\
+ E&-2&&
+\end{array}
+\]
+These are obtained by differentiating the five-factor products defining
+$q_J$. Multiplication by the squared Fourier minors and summation gives
+the displayed $d_S$ values. Polynomial dependence supplies all stated
+error terms.
+
+At every positive $\varepsilon$, all probabilities are positive, so entropy
+is smooth. Evenness gives $p_S'(\varepsilon,0)=0$, and normalization gives
+$\sum_Sp_S''=0$. Therefore
+\[
+ H_\varepsilon''(0)=-\sum_Sp_S''(\varepsilon,0)\log p_S(\varepsilon,0).
+\]
+The potential $\log\varepsilon$ terms cancel, because
+$\sum_Sm_Sd_S=-4+4+4-4=0$; all errors are
+$O(\varepsilon\log\varepsilon)$ or smaller and vanish. Put
+$a=(5-s)/50$, $b=(5+s)/50$, $c=(15-s)/50$, $d=(15+s)/50$. The finite limit is
+\begin{align*}
+ C={}&2\log(3/5)-4\log(2/5)\\
+ &-\tfrac25\bigl[(5-s)\log c+(5+s)\log d\bigr]
+ +\tfrac25\bigl[(5-3s)\log a+(5+3s)\log b\bigr]\\
+ ={}&2\log(15/44)+\tfrac2s\log\bigl((147+65s)/22\bigr),
+\end{align*}
+using $ab=1/125$, $cd=11/125$, and
+$(c/d)(b/a)^3=(147+65s)/22$. Since
+$15/44>1/3$, $(147+65\sqrt5)/22>13$, and $2/\sqrt5>8/9$,
+\[
+ C>\tfrac89\log13-2\log3
+ =\tfrac29\log(28561/19683)>0.
+\]
+The second and third inequalities follow from $11/5<\sqrt5<9/4$.
+Thus positive curvature occurs at interior kernels for every sufficiently
+small positive $\varepsilon$. No boundary derivative of entropy is used.
+\end{proof}
+
+\begin{remark}[Scope]
+The finite witness refutes the source's midpoint inequality itself, with
+its original hypotheses and quantifiers intact. It also refutes full
+concavity, even on a commuting affine family. It does not establish the
+least possible dimension or settle the real-symmetric restriction.
+It concerns finite exact-set Shannon entropy; it does not refute concavity
+of particle-count entropy, spectral entropy, or any statement about entropy
+rates of infinite stationary processes.
+
+As a consequence, the auxiliary balanced beam-splitter inequality from the
+discovery discussion also fails for this pair. For
+\[
+ W=\frac1{\sqrt2}\begin{pmatrix}I&I\\-I&I\end{pmatrix},\qquad
+ Q=W(K_+\oplus K_-)W^*,\qquad \bar K=(K_++K_-)/2,
+\]
+both output coordinate marginals have kernel $\bar K$. Subadditivity yields
+$H(Q)\le2H(\bar K)<H(K_+)+H(K_-)$, with output-minus-input gap strictly
+less than $-1/2{,}500{,}000{,}000$. This is a corollary, not a second
+provenance claim or an attribution of that auxiliary statement to Lyons.
+\end{remark}
+\end{cxrefutation}

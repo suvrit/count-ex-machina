@@ -1,0 +1,155 @@
+{
+  "common_eigenbasis_and_commuting": true,
+  "curvature_interval": {
+    "lower": "216986103044791030250951293201/4000000000000000000000000000000",
+    "upper": "5424652576119775756273782343119/100000000000000000000000000000000"
+  },
+  "dimension": 5,
+  "direction": [
+    "1",
+    "-1",
+    "1",
+    "0",
+    "-1"
+  ],
+  "endpoint_minus_midpoint_interval": {
+    "lower": "1022112625537700440827/5000000000000000000000000000000",
+    "upper": "20442252510754008816859/100000000000000000000000000000000"
+  },
+  "entropy_endpoint_interval": {
+    "lower": "223283297055983585289405463985683/100000000000000000000000000000000",
+    "upper": "2791041213199794816117568299823/1250000000000000000000000000000"
+  },
+  "entropy_midpoint_interval": {
+    "lower": "223283297035541332778651455168981/100000000000000000000000000000000",
+    "upper": "223283297035541332778651455169143/100000000000000000000000000000000"
+  },
+  "entropy_minus_equals_entropy_plus": true,
+  "exact_even_probability_polynomials": true,
+  "exact_probability_normalization": true,
+  "log_series_terms": 40,
+  "outward_rounding_denominator": "100000000000000000000000000000000",
+  "probability_orbit_classes": [
+    {
+      "multiplicity": 1,
+      "p_at_zero_as_a_plus_b_sqrt_five": [
+        "998001/1000000000000000",
+        "0"
+      ],
+      "p_second_as_a_plus_b_sqrt_five": [
+        "-499001/250000000",
+        "0"
+      ]
+    },
+    {
+      "multiplicity": 5,
+      "p_at_zero_as_a_plus_b_sqrt_five": [
+        "598202199/1000000000000000",
+        "0"
+      ],
+      "p_second_as_a_plus_b_sqrt_five": [
+        "-99501199/250000000",
+        "0"
+      ]
+    },
+    {
+      "multiplicity": 5,
+      "p_at_zero_as_a_plus_b_sqrt_five": [
+        "298802397601/1000000000000000",
+        "-249001/12500000000"
+      ],
+      "p_second_as_a_plus_b_sqrt_five": [
+        "99401399/250000000",
+        "-249/3125"
+      ]
+    },
+    {
+      "multiplicity": 5,
+      "p_at_zero_as_a_plus_b_sqrt_five": [
+        "298802397601/1000000000000000",
+        "249001/12500000000"
+      ],
+      "p_second_as_a_plus_b_sqrt_five": [
+        "99401399/250000000",
+        "249/3125"
+      ]
+    },
+    {
+      "multiplicity": 5,
+      "p_at_zero_as_a_plus_b_sqrt_five": [
+        "99501597202599/1000000000000000",
+        "-248751999/12500000000"
+      ],
+      "p_second_as_a_plus_b_sqrt_five": [
+        "-99201599/250000000",
+        "749/3125"
+      ]
+    },
+    {
+      "multiplicity": 5,
+      "p_at_zero_as_a_plus_b_sqrt_five": [
+        "99501597202599/1000000000000000",
+        "248751999/12500000000"
+      ],
+      "p_second_as_a_plus_b_sqrt_five": [
+        "-99201599/250000000",
+        "-749/3125"
+      ]
+    },
+    {
+      "multiplicity": 5,
+      "p_at_zero_as_a_plus_b_sqrt_five": [
+        "398402997201/1000000000000000",
+        "0"
+      ],
+      "p_second_as_a_plus_b_sqrt_five": [
+        "198901799/250000000",
+        "0"
+      ]
+    },
+    {
+      "multiplicity": 1,
+      "p_at_zero_as_a_plus_b_sqrt_five": [
+        "997002999/1000000000000000",
+        "0"
+      ],
+      "p_second_as_a_plus_b_sqrt_five": [
+        "-498501999/250000000",
+        "0"
+      ]
+    }
+  ],
+  "simpler_curvature_bounds": [
+    "271/5000",
+    "543/10000"
+  ],
+  "spectrum_at_midpoint": [
+    "1/1000",
+    "1/1000",
+    "999/1000",
+    "999/1000",
+    "999/1000"
+  ],
+  "spectrum_minus": [
+    "9/10000",
+    "11/10000",
+    "9989/10000",
+    "999/1000",
+    "9991/10000"
+  ],
+  "spectrum_plus": [
+    "11/10000",
+    "9/10000",
+    "9991/10000",
+    "999/1000",
+    "9989/10000"
+  ],
+  "sqrt_five_interval": {
+    "lower": "11180339887498948482045868343656381177203/5000000000000000000000000000000000000000",
+    "upper": "22360679774997896964091736687312762354407/10000000000000000000000000000000000000000"
+  },
+  "step": "1/10000",
+  "strict_gap_lower_bound": "1/5000000000",
+  "strict_positive_contractions": true,
+  "unitary": "U[a,b]=exp(2*pi*i*a*b/5)/sqrt(5), indices a,b=0,...,4"
+}

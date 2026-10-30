@@ -1,0 +1,36 @@
+{
+  "id": "lyons-dpp-entropy-concavity",
+  "title": "Commuting counterexamples to determinantal entropy concavity",
+  "status": "refuted",
+  "prose": "case.tex",
+  "bib_keys": [
+    "Lyons2003DPM",
+    "Lyons2014DPP"
+  ],
+  "results": [
+    {
+      "id": "lyons-dpp-entropy-concavity",
+      "uid": "47RE51ZS",
+      "class": "published conjecture",
+      "certificate_level": "computer-assisted",
+      "theorem_label": "thm:lyons-dpp-entropy-concavity",
+      "provenance": {
+        "url": "https://rdlyons.pages.iu.edu/pdf/icm-pub.pdf",
+        "retrieved": "2026-10-30",
+        "fidelity": "verbatim"
+      }
+    }
+  ],
+  "verify": {
+    "python": "verify.py",
+    "sage": [],
+    "requires": []
+  },
+  "artifacts": [
+    {
+      "file": "artifacts/certificate.json",
+      "description": "Exact spectra, occupation probability coefficients, and outward rational intervals certifying the entropy midpoint violation and positive curvature."
+    }
+  ],
+  "order": 16
+}
